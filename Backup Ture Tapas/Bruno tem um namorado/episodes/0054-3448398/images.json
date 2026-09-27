@@ -1,0 +1,20 @@
+[
+ {
+  "panel": 1,
+  "url": "https://us-a.tapas.io/c/a6/f59232f3-f8a8-42b9-a071-8dd5338a659b.png?__token__=exp=1790526621~acl=/c/a6/f59232f3-f8a8-42b9-a071-8dd5338a659b.png*~hmac=5f331f24ab7f41e87f9bf1a4707b698ac18f7d04b4704ce7f8daeff1c3a0f64b&version=v4",
+  "file": "images/panel-001.png",
+  "bytes": 611433
+ },
+ {
+  "panel": 2,
+  "url": "https://us-a.tapas.io/c/93/91bdd16c-45ee-40f2-a08b-5208c289abb9.png?__token__=exp=1790526621~acl=/c/93/91bdd16c-45ee-40f2-a08b-5208c289abb9.png*~hmac=8a0c4aa517ea2a2372148e8b9e47b30ea54e2868b2100e8b635dbcf6cc0050ef&version=v4",
+  "file": "images/panel-002.png",
+  "bytes": 493800
+ },
+ {
+  "panel": 3,
+  "url": "https://us-a.tapas.io/c/c4/c1836322-5764-448b-8c9b-478cf7e2add2.png?__token__=exp=1790526621~acl=/c/c4/c1836322-5764-448b-8c9b-478cf7e2add2.png*~hmac=430336a60759a39a0c1de59bffbe11c9b78eb859bfc8c7cdba8cfac58196ae6d&version=v4",
+  "file": "images/panel-003.png",
+  "bytes": 743798
+ }
+]

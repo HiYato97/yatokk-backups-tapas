@@ -1,0 +1,82 @@
+[
+ {
+  "id": 22506689,
+  "username": "bqkina704",
+  "display_name": "W_Leitor",
+  "date": "Dec 15, 2025",
+  "text": "Simplesmente t&ocirc; amando o desenvolvimento da hist&oacute;ria",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 21857256,
+  "username": "heloisaaguiarda",
+  "display_name": "heloisaaguiarda",
+  "date": "Jun 18, 2025",
+  "text": "O rob&ocirc; pilantrinha e fofoqueiro kkkkkk",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20798873,
+  "username": "robsonb7albuquerque",
+  "display_name": "robsonb7albuquerque",
+  "date": "Oct 06, 2024",
+  "text": "Gente eles est&atilde;o msm no ensino medio pq t&atilde;o bem avan&ccedil;ados na intelig&ecirc;ncia",
+  "likes": 27,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20630563,
+  "username": "veigagabriel430",
+  "display_name": "Malaertes_zm",
+  "date": "Aug 31, 2024",
+  "text": "esse universo e uma escola interna s&oacute; de meninos n&eacute; ???",
+  "likes": 5,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 20630581,
+    "username": "OkTure",
+    "display_name": "Ture",
+    "date": "Aug 31, 2024",
+    "text": "Sim :)",
+    "likes": 1,
+    "is_creator": true
+   }
+  ]
+ },
+ {
+  "id": 20087103,
+  "username": "clubedarisu",
+  "display_name": "Clube da Risu",
+  "date": "May 12, 2024",
+  "text": "Esses dois juntos t&atilde;o incr&iacute;veis, t&ocirc; amando akakakkkakaka",
+  "likes": 36,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20058108,
+  "username": "leoeagatha26",
+  "display_name": "Takeute",
+  "date": "May 06, 2024",
+  "text": "Lista de tarefas nunca jamais nunquinha mesmo ser inimigo do Marcel ou do vini",
+  "likes": 51,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 20058238,
+    "username": "OkTure",
+    "display_name": "Ture",
+    "date": "May 06, 2024",
+    "text": "s&atilde;o farinha do mesmo saco",
+    "likes": 4,
+    "is_creator": true
+   }
+  ]
+ }
+]

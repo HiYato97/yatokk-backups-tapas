@@ -1,0 +1,89 @@
+[
+ {
+  "id": 22064010,
+  "username": "augustohsaraujo",
+  "display_name": "OnlyAugusto☆ミ",
+  "date": "Aug 15, 2025",
+  "text": "Naooook",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 21438277,
+  "username": "souzafariagabriel7",
+  "display_name": "souzafariagabriel7",
+  "date": "Mar 04, 2025",
+  "text": "Deixa que eu respondo por ele N&Atilde;O",
+  "likes": 13,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 19816758,
+  "username": "clubedarisu",
+  "display_name": "Clube da Risu",
+  "date": "Mar 19, 2024",
+  "text": "Ah, mano... Poxa, Bruno, voc&ecirc; nem foi conversar com ele? Levou muito a s&eacute;rio o &quot;Silentzio, Bruno!&quot;",
+  "likes": 48,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 19816785,
+    "username": "OkTure",
+    "display_name": "Ture",
+    "date": "Mar 19, 2024",
+    "text": "curiosidade kkkk o Bruno se chama Bruno por causa do &quot; sil&ecirc;ncio Bruno&quot; kkkk",
+    "likes": 9,
+    "is_creator": true
+   },
+   {
+    "id": 19816868,
+    "username": "clubedarisu",
+    "display_name": "Clube da Risu",
+    "date": "Mar 19, 2024",
+    "text": "Olha s&oacute; rapaiz! N&eacute;, que eu peguei a refer&ecirc;ncia!!! Ahahahha",
+    "likes": 10,
+    "is_creator": false
+   }
+  ]
+ },
+ {
+  "id": 19813461,
+  "username": "leoeagatha26",
+  "display_name": "Takeute",
+  "date": "Mar 18, 2024",
+  "text": "Isso n&atilde;o faz do Bruno um namorado ruim?",
+  "likes": 22,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 19813485,
+    "username": "OkTure",
+    "display_name": "Ture",
+    "date": "Mar 18, 2024",
+    "text": "bom... tecnicamente eles ainda n namoram kkkk",
+    "likes": 8,
+    "is_creator": true
+   },
+   {
+    "id": 21572315,
+    "username": "sarahotako905",
+    "display_name": "sarah_:p",
+    "date": "Apr 06, 2025",
+    "text": "&Eacute; kk",
+    "likes": 0,
+    "is_creator": false
+   },
+   {
+    "id": 23346655,
+    "username": "rosaliegames1",
+    "display_name": "rosalierar",
+    "date": "Aug 15, 2026",
+    "text": "E na verdade eles n&atilde;o tem nem 1 mes que se conhecem",
+    "likes": 0,
+    "is_creator": false
+   }
+  ]
+ }
+]

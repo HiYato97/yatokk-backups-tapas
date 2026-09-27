@@ -1,0 +1,72 @@
+[
+ {
+  "id": 22567985,
+  "username": "wallydesenha",
+  "display_name": "wallydesenha",
+  "date": "Jan 02, 2026",
+  "text": "&Eacute; Gustave algu&eacute;m tem que chorar pros moleque rir",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 22506721,
+  "username": "bqkina704",
+  "display_name": "W_Leitor",
+  "date": "Dec 15, 2025",
+  "text": "Eeeeeuuuuu Sssssssabia",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 21160845,
+  "username": "Moniqueyaoi",
+  "display_name": "Moniqueyaoi",
+  "date": "Dec 29, 2024",
+  "text": "vai ser o viny to falando",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20662478,
+  "username": "mamaesolthur",
+  "display_name": "mamaesolthur",
+  "date": "Sep 07, 2024",
+  "text": "EU SABIA!!!!!!!! EU DISSEEEEEEEEEEEE 💥💥💥💥💥💥",
+  "likes": 19,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20184542,
+  "username": "Priatri_Pimentel",
+  "display_name": "Pri_7778",
+  "date": "May 31, 2024",
+  "text": "Marcelo non ha bisogno di un fidanzato, ha bisogno di una terapia",
+  "likes": 12,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20164038,
+  "username": "clubedarisu",
+  "display_name": "Clube da Risu",
+  "date": "May 28, 2024",
+  "text": "OMG EU QUERO UM MARCEL TEM UM NAMORADO!!!",
+  "likes": 49,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 23346733,
+    "username": "rosaliegames1",
+    "display_name": "rosalierar",
+    "date": "Aug 15, 2026",
+    "text": "EU TAMBEMMMMMMMM",
+    "likes": 2,
+    "is_creator": false
+   }
+  ]
+ }
+]

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ture | Acervo de Séries</title>
+    <style>
+        :root {
+            --bg-main: #0f0f10;
+            --bg-card: #18181c;
+            --text-primary: #ffffff;
+            --text-secondary: #9999a1;
+            --accent: #ffcc00;
+            --border-color: #27272e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--border-color);
+            background: #222;
+        }
+
+        .avatar-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid var(--border-color);
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .author-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .author-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 10px 0 20px 0;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: #444;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-tabs {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+
+        .header-tabs h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
+            padding-bottom: 10px;
+            margin-bottom: -13px;
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .series-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .series-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #25252b;
+            display: block;
+        }
+
+        .card-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-author {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <img src="avatar.png" alt="ture" class="avatar">
+            <h1 class="author-name">ture</h1>
+            
+            <p class="bio">Eu desenho gays se beijando, fazendo piadinhas e chorando :) contato:
+arturmartins.arte@gmail.com</p>
+            <div class="social-links"><a href="https://linktr.ee/turetastico" target="_blank" class="social-link">🔗 Linktree</a></div>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-tabs">
+                <h2>1 Séries</h2>
+            </div>
+
+            <div class="series-grid">
+
+                <a href="Bruno tem um namorado/Bruno tem um namorado_completo.html" class="series-card">
+                    <img src="Bruno tem um namorado/cover.png" alt="Bruno tem um namorado" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Bruno tem um namorado">Bruno tem um namorado</div>
+                        <div class="card-author">ture</div>
+                        <div class="card-tag">BL</div>
+                    </div>
+                </a>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+ {
+  "id": 22762771,
+  "username": "sarah08heloisa",
+  "display_name": "sarah",
+  "date": "Feb 25, 2026",
+  "text": "MEU DEUS UMA FACADA VEY",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 21856608,
+  "username": "heloisaaguiarda",
+  "display_name": "heloisaaguiarda",
+  "date": "Jun 18, 2025",
+  "text": "AEEEEEE! O CARA DO Y CHEGOU!",
+  "likes": 6,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 20798809,
+  "username": "robsonb7albuquerque",
+  "display_name": "robsonb7albuquerque",
+  "date": "Oct 06, 2024",
+  "text": "Mn que &oacute;dio desse cara meuuu",
+  "likes": 17,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 21572350,
+    "username": "sarahotako905",
+    "display_name": "sarah_:p",
+    "date": "Apr 06, 2025",
+    "text": "Nossa vei que raiva dele n&eacute;?",
+    "likes": 0,
+    "is_creator": false
+   }
+  ]
+ },
+ {
+  "id": 19860128,
+  "username": "clubedarisu",
+  "display_name": "Clube da Risu",
+  "date": "Mar 28, 2024",
+  "text": "Tudo bem, tire seu tempo ... MAS EU VOU TACAR MINHA M&Atilde;O NA CARA DE FDP!!!",
+  "likes": 33,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 20798808,
+    "username": "robsonb7albuquerque",
+    "display_name": "robsonb7albuquerque",
+    "date": "Oct 06, 2024",
+    "text": "Simm",
+    "likes": 2,
+    "is_creator": false
+   }
+  ]
+ }
+]
