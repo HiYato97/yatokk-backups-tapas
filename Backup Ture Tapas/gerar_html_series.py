@@ -97,7 +97,7 @@ body {
     left: 0;
     width: var(--sidebar-width);
     max-width: 85vw;
-    height: calc(100vh - 31px - 54px); /* <-- Desconta a barra superior e o rodapé */
+    height: calc(100vh - 31px - 54px);
     background: var(--bg-sidebar);
     padding: 50px 15px 30px 15px;
     border-right: 1px solid var(--border-color);
@@ -333,7 +333,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 
 /* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
-    display: flex; /* <-- Agora fica sempre visível */
+    display: flex;
     position: fixed; 
     bottom: 0; 
     left: 0; 
@@ -353,7 +353,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 
 #topoBtn {
     position: fixed; 
-    bottom: 70px; /* Sobe o botão do topo para ficar acima do rodapé */
+    bottom: 70px;
     right: 20px;
     background: var(--bg-card); 
     color: var(--text-primary);
@@ -606,7 +606,7 @@ function atualizarCapituloAtualVisivel() {
 
 function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA COM DESTRAVA DE ROTAÇÃO) ---
 function toggleModoImersivo() {
     modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
     const btnFS = document.getElementById('btnFullscreen');
@@ -616,7 +616,11 @@ function toggleModoImersivo() {
         if (btnFS) btnFS.textContent = '❌ Sair Leitura';
         if (btnFSNav) btnFSNav.textContent = '❌ Sair';
         if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().catch(() => {});
+            document.documentElement.requestFullscreen().then(() => {
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock().catch(() => {});
+                }
+            }).catch(() => {});
         }
         pagAtualIndex = 1;
         atualizarModoImersivoPagina();
@@ -626,11 +630,9 @@ function toggleModoImersivo() {
         if (document.exitFullscreen && document.fullscreenElement) {
             document.exitFullscreen().catch(() => {});
         }
-        // Limpa classes do imersivo
         document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
         document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
         
-        // Garante rolar até o capítulo atual ao sair
         const capEl = document.getElementById(`cap${capAtualIndex}`);
         if (capEl) capEl.scrollIntoView();
     }
@@ -670,7 +672,6 @@ function atualizarModoImersivoPagina() {
         }
     });
 
-    // Atualiza HUD de status no fundo da tela
     const hud = document.getElementById('imersivoHud');
     if (hud) {
         hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
@@ -684,7 +685,6 @@ function imersivoProximaPagina() {
         pagAtualIndex++;
         atualizarModoImersivoPagina();
     } else if (capAtualIndex < totalCapitulos) {
-        // Avança pro próximo capítulo se estiver na última página
         capAtualIndex++;
         pagAtualIndex = 1;
         sincronizarSelectsCapitulos();
@@ -698,7 +698,6 @@ function imersivoPaginaAnterior() {
         pagAtualIndex--;
         atualizarModoImersivoPagina();
     } else if (capAtualIndex > 1) {
-        // Volta pro capítulo anterior (na última página dele)
         capAtualIndex--;
         sincronizarSelectsCapitulos();
         const imgsPrev = obterImagensDoCapituloAtual();
@@ -900,22 +899,12 @@ async function limparTodoCache() {
     verificarEstadoOffline();
 }
 
-// Service Worker Inline
+// Registo do Service Worker a partir do ficheiro estático sw.js
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        const swScript = `
-            const CACHE_NAME = '${CACHE_NAME}';
-            self.addEventListener('fetch', (event) => {
-                event.respondWith(
-                    caches.match(event.request).then((response) => {
-                        return response || fetch(event.request);
-                    })
-                );
-            });
-        `;
-        const blob = new Blob([swScript], { type: 'text/javascript' });
-        const swUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swUrl).catch(err => console.warn('SW:', err));
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW registrado:', reg.scope))
+            .catch(err => console.warn('Erro ao registrar SW:', err));
     });
 }
 
@@ -927,6 +916,35 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => { 
     atualizarCapituloAtualVisivel();
     verificarEstadoOffline();
+});
+"""
+
+# Conteúdo do Service Worker que será salvo como sw.js nas pastas das séries
+SW_SCRIPT_CONTENT = """const CACHE_NAME = 'serie-app-v1';
+
+self.addEventListener('install', (event) => {
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+    event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+            return fetch(event.request).then((networkResponse) => {
+                return networkResponse;
+            }).catch(() => {
+                if (event.request.mode === 'navigate') {
+                    return caches.match(event.request) || caches.match('./');
+                }
+            });
+        })
+    );
 });
 """
 
@@ -1067,7 +1085,7 @@ def carregar_dados_serie(pasta_serie):
                 metadata["description"] = extrair_valor(s_data, ["description", "summary", "synopsis"])
 
         except Exception as e:
-            print(f"   ⚠️️ Erro ao ler series.json: {e}")
+            print(f"   ⚠ Erro ao ler series.json: {e}")
 
     if metadata["thumb_url"]:
         metadata["local_thumb"] = baixar_capa_local(metadata["thumb_url"], pasta_serie)
@@ -1102,7 +1120,7 @@ def processar_serie(pasta_serie):
 
     thumb_html = f'<img src="{meta["local_thumb"]}" class="series-thumb" alt="Capa">' if meta["local_thumb"] else ''
     genre_html = f'<span class="series-genre">{html.escape(str(meta["genre"]))}</span>' if meta["genre"] else ''
-    likes_html = f'❤️ {meta["likes"]} curtidas' if meta["likes"] else ''
+    likes_html = f'❤️️ {meta["likes"]} curtidas' if meta["likes"] else ''
     
     desc_str = str(meta["description"])
     desc_formatted = desc_str if ("<p>" in desc_str or "<br>" in desc_str) else html.escape(desc_str).replace("\n", "<br>")
@@ -1183,7 +1201,7 @@ def processar_serie(pasta_serie):
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
     <title>{html.escape(meta["title"])}</title>
     <style>{CSS_ESTILOS}</style>
 </head>
@@ -1211,7 +1229,7 @@ def processar_serie(pasta_serie):
                 <button onclick="marcarTodosCheckboxes(false)">Limpar Seleção</button>
                 <button onclick="salvarCapitulosSelecionados()" class="btn-full-width">📥 Baixar Selecionados</button>
                 <button onclick="deletarCapitulosSelecionados()" class="btn-desalvar">🗑️ Apagar Sel.</button>
-                <button onclick="limparTodoCache()" class="btn-desalvar">⚠️ Apagar Tudo</button>
+                <button onclick="limparTodoCache()" class="btn-desalvar">⚠️️ Apagar Tudo</button>
             </div>
 
             <h3>Opções da Página</h3>
@@ -1269,9 +1287,16 @@ def processar_serie(pasta_serie):
 </body>
 </html>'''
 
+    # Escreve o HTML gerado
     output_file = pasta_serie_abs / f"{pasta_serie_abs.name}_completo.html"
     output_file.write_text(html_final, encoding="utf-8")
+    
+    # Cria/Atualiza o sw.js na pasta da série para garantir suporte offline real no recarregamento
+    sw_file = pasta_serie_abs / "sw.js"
+    sw_file.write_text(SW_SCRIPT_CONTENT, encoding="utf-8")
+
     print(f"   ✅ HTML gerado em: {output_file}")
+    print(f"   ✅ Service Worker atualizado em: {sw_file}")
     return True
 
 def main():
