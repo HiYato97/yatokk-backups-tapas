@@ -320,7 +320,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 #topoBtn.visivel { display: flex; }
 
-/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+/* --- MODO LEITURA IMERSIVO --- */
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
@@ -410,17 +410,32 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 4px 14px;
-    border-radius: 15px;
-    font-size: 0.78rem;
-    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
-    pointer-events: none;
-    letter-spacing: 0.5px;
+    align-items: center;
+    gap: 10px;
 }
-body.modo-imersivo .imersivo-hud-bottom { display: block; }
+body.modo-imersivo .imersivo-hud-bottom { display: flex; }
+
+.imersivo-nav-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.imersivo-nav-btn:active {
+    background: var(--accent);
+    color: #000;
+}
 
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
@@ -430,7 +445,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: block; }
 </head>
 <body id="topo">
     <div id="versao">
-        Série: <b>Quem é Marceline?</b> | Gerado em 29/09/2026 22:50
+        Série: <b>Quem é Marceline?</b> | Gerado em 30/09/2026 17:57
     </div>
 
     <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
@@ -49057,7 +49072,11 @@ A minha reação: 🥀💔🫩</div>
         <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
     </div>
 
-    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+    <div id="imersivoHud" class="imersivo-hud-bottom">
+        <button class="imersivo-nav-btn" onclick="imersivoPaginaAnterior()">← Anterior</button>
+        <span id="imersivoInfoText">Cap. 1 • Pág. 1/1</span>
+        <button class="imersivo-nav-btn" onclick="imersivoProximaPagina()">Próximo →</button>
+    </div>
 
     <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
         <div class="modal-conteudo">
@@ -49249,9 +49268,9 @@ function atualizarModoImersivoPagina() {
         }
     });
 
-    const hud = document.getElementById('imersivoHud');
-    if (hud) {
-        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    const info = document.getElementById('imersivoInfoText');
+    if (info) {
+        info.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
     }
 }
 
@@ -49280,36 +49299,6 @@ function imersivoPaginaAnterior() {
         const imgsPrev = obterImagensDoCapituloAtual();
         pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
         atualizarModoImersivoPagina();
-    }
-}
-
-// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-        touchStartX = e.changedTouches[0].screenX;
-    }
-}, false);
-
-document.addEventListener('touchend', (e) => {
-    if (e.changedTouches.length === 1) {
-        touchEndX = e.changedTouches[0].screenX;
-        tratarSwipe();
-    }
-}, false);
-
-function tratarSwipe() {
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 60) {
-        if (modoImersivoAtivo) {
-            if (diff > 0) imersivoProximaPagina();
-            else imersivoPaginaAnterior();
-        } else {
-            if (diff > 0) capProximo();
-            else capAnterior();
-        }
     }
 }
 
