@@ -1,5 +1,5 @@
-import json
 import html
+import json
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -158,6 +158,7 @@ body {
     display: block;
     font-size: 0.85rem;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 .sidebar a:hover { background: var(--bg-card); }
 
@@ -323,7 +324,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 #topoBtn.visivel { display: flex; }
 
-/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+/* --- MODO LEITURA IMERSIVO --- */
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
@@ -381,7 +382,7 @@ body.modo-imersivo img.pag-ativa-imersivo {
     display: block !important;
 }
 
-/* CONTROLES E HUD IMERSIVO */
+/* CONTROLES E HUD IMERSIVO COMPACTOS */
 .imersivo-controles {
     display: none;
     position: fixed;
@@ -409,21 +410,37 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 .imersivo-hud-bottom {
     display: none;
     position: fixed;
-    bottom: 12px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 4px 14px;
-    border-radius: 15px;
-    font-size: 0.78rem;
-    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
-    pointer-events: none;
-    letter-spacing: 0.5px;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }
-body.modo-imersivo .imersivo-hud-bottom { display: block; }
+body.modo-imersivo .imersivo-hud-bottom { display: flex; }
+
+.imersivo-nav-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.imersivo-nav-btn:active {
+    background: var(--accent);
+    color: #000;
+}
 
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
@@ -600,9 +617,9 @@ function atualizarModoImersivoPagina() {
         }
     });
 
-    const hud = document.getElementById('imersivoHud');
-    if (hud) {
-        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    const info = document.getElementById('imersivoInfoText');
+    if (info) {
+        info.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
     }
 }
 
@@ -631,36 +648,6 @@ function imersivoPaginaAnterior() {
         const imgsPrev = obterImagensDoCapituloAtual();
         pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
         atualizarModoImersivoPagina();
-    }
-}
-
-// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-        touchStartX = e.changedTouches[0].screenX;
-    }
-}, false);
-
-document.addEventListener('touchend', (e) => {
-    if (e.changedTouches.length === 1) {
-        touchEndX = e.changedTouches[0].screenX;
-        tratarSwipe();
-    }
-}, false);
-
-function tratarSwipe() {
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 60) {
-        if (modoImersivoAtivo) {
-            if (diff > 0) imersivoProximaPagina();
-            else imersivoPaginaAnterior();
-        } else {
-            if (diff > 0) capProximo();
-            else capAnterior();
-        }
     }
 }
 
@@ -938,9 +925,9 @@ def processar_serie(pasta_serie):
         Série: <b>{html.escape(meta["title"])}</b> | Gerado em {DATA_GERACAO}
     </div>
 
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar oculto" id="sidebar">
         {botao_voltar_html}
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
@@ -962,7 +949,7 @@ def processar_serie(pasta_serie):
         <ul>{"".join(indice_items)}</ul>
     </div>
 
-    <div class="conteudo" id="conteudo">
+    <div class="conteudo expandido" id="conteudo">
         {header_html}
         {"".join(capitulos_html)}
     </div>
@@ -972,7 +959,11 @@ def processar_serie(pasta_serie):
         <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
     </div>
 
-    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+    <div id="imersivoHud" class="imersivo-hud-bottom">
+        <button class="imersivo-nav-btn" onclick="imersivoPaginaAnterior()">← Anterior</button>
+        <span id="imersivoInfoText">Cap. 1 • Pág. 1/1</span>
+        <button class="imersivo-nav-btn" onclick="imersivoProximaPagina()">Próximo →</button>
+    </div>
 
     <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
         <div class="modal-conteudo">
@@ -1018,4 +1009,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

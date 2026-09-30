@@ -155,6 +155,7 @@ body {
     display: block;
     font-size: 0.85rem;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 .sidebar a:hover { background: var(--bg-card); }
 
@@ -320,7 +321,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 #topoBtn.visivel { display: flex; }
 
-/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+/* --- MODO LEITURA IMERSIVO --- */
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
@@ -378,7 +379,7 @@ body.modo-imersivo img.pag-ativa-imersivo {
     display: block !important;
 }
 
-/* CONTROLES E HUD IMERSIVO */
+/* CONTROLES E HUD IMERSIVO COMPACTOS */
 .imersivo-controles {
     display: none;
     position: fixed;
@@ -406,21 +407,37 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 .imersivo-hud-bottom {
     display: none;
     position: fixed;
-    bottom: 12px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 4px 14px;
-    border-radius: 15px;
-    font-size: 0.78rem;
-    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
-    pointer-events: none;
-    letter-spacing: 0.5px;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }
-body.modo-imersivo .imersivo-hud-bottom { display: block; }
+body.modo-imersivo .imersivo-hud-bottom { display: flex; }
+
+.imersivo-nav-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.imersivo-nav-btn:active {
+    background: var(--accent);
+    color: #000;
+}
 
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
@@ -430,12 +447,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: block; }
 </head>
 <body id="topo">
     <div id="versao">
-        Série: <b>Bruno tem um namorado</b> | Gerado em 29/09/2026 22:32
+        Série: <b>Bruno tem um namorado</b> | Gerado em 30/09/2026 18:28
     </div>
 
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar oculto" id="sidebar">
         <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
@@ -457,7 +474,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: block; }
         <ul><li><a href="#cap1">Cap. 1 - 0001-3059514</a></li><li><a href="#cap2">Cap. 2 - 0002-3064678</a></li><li><a href="#cap3">Cap. 3 - 0003-3067576</a></li><li><a href="#cap4">Cap. 4 - 0004-3072794</a></li><li><a href="#cap5">Cap. 5 - 0005-3074359</a></li><li><a href="#cap6">Cap. 6 - 0006-3079491</a></li><li><a href="#cap7">Cap. 7 - 0007-3081819</a></li><li><a href="#cap8">Cap. 8 - 0008-3085541</a></li><li><a href="#cap9">Cap. 9 - 0009-3089557</a></li><li><a href="#cap10">Cap. 10 - 0010-3091234</a></li><li><a href="#cap11">Cap. 11 - 0011-3095027</a></li><li><a href="#cap12">Cap. 12 - 0012-3099117</a></li><li><a href="#cap13">Cap. 13 - 0013-3104325</a></li><li><a href="#cap14">Cap. 14 - 0014-3106034</a></li><li><a href="#cap15">Cap. 15 - 0015-3110000</a></li><li><a href="#cap16">Cap. 16 - 0016-3113137</a></li><li><a href="#cap17">Cap. 17 - 0017-3115177</a></li><li><a href="#cap18">Cap. 18 - 0018-3118352</a></li><li><a href="#cap19">Cap. 19 - 0019-3120758</a></li><li><a href="#cap20">Cap. 20 - 0020-3121078</a></li><li><a href="#cap21">Cap. 21 - 0021-3124957</a></li><li><a href="#cap22">Cap. 22 - 0022-3129292</a></li><li><a href="#cap23">Cap. 23 - 0023-3132022</a></li><li><a href="#cap24">Cap. 24 - 0024-3137418</a></li><li><a href="#cap25">Cap. 25 - 0025-3140310</a></li><li><a href="#cap26">Cap. 26 - 0026-3145666</a></li><li><a href="#cap27">Cap. 27 - 0027-3146910</a></li><li><a href="#cap28">Cap. 28 - 0028-3149462</a></li><li><a href="#cap29">Cap. 29 - 0029-3154132</a></li><li><a href="#cap30">Cap. 30 - 0030-3157249</a></li><li><a href="#cap31">Cap. 31 - 0031-3163347</a></li><li><a href="#cap32">Cap. 32 - 0032-3167906</a></li><li><a href="#cap33">Cap. 33 - 0033-3172017</a></li><li><a href="#cap34">Cap. 34 - 0034-3177073</a></li><li><a href="#cap35">Cap. 35 - 0035-3182950</a></li><li><a href="#cap36">Cap. 36 - 0036-3188889</a></li><li><a href="#cap37">Cap. 37 - 0037-3190705</a></li><li><a href="#cap38">Cap. 38 - 0038-3197468</a></li><li><a href="#cap39">Cap. 39 - 0039-3207714</a></li><li><a href="#cap40">Cap. 40 - 0040-3213089</a></li><li><a href="#cap41">Cap. 41 - 0041-3258288</a></li><li><a href="#cap42">Cap. 42 - 0042-3273134</a></li><li><a href="#cap43">Cap. 43 - 0043-3295154</a></li><li><a href="#cap44">Cap. 44 - 0044-3324949</a></li><li><a href="#cap45">Cap. 45 - 0045-3334256</a></li><li><a href="#cap46">Cap. 46 - 0046-3344189</a></li><li><a href="#cap47">Cap. 47 - 0047-3350912</a></li><li><a href="#cap48">Cap. 48 - 0048-3353445</a></li><li><a href="#cap49">Cap. 49 - 0049-3405944</a></li><li><a href="#cap50">Cap. 50 - 0050-3410750</a></li><li><a href="#cap51">Cap. 51 - 0051-3417687</a></li><li><a href="#cap52">Cap. 52 - 0052-3428421</a></li><li><a href="#cap53">Cap. 53 - 0053-3439250</a></li><li><a href="#cap54">Cap. 54 - 0054-3448398</a></li><li><a href="#cap55">Cap. 55 - 0055-3458876</a></li><li><a href="#cap56">Cap. 56 - 0056-3462764</a></li><li><a href="#cap57">Cap. 57 - 0057-3468573</a></li><li><a href="#cap58">Cap. 58 - 0058-3476194</a></li><li><a href="#cap59">Cap. 59 - 0059-3477490</a></li><li><a href="#cap60">Cap. 60 - 0060-3480475</a></li><li><a href="#cap61">Cap. 61 - 0061-3494780</a></li><li><a href="#cap62">Cap. 62 - 0062-3506404</a></li><li><a href="#cap63">Cap. 63 - 0063-3507370</a></li><li><a href="#cap64">Cap. 64 - 0064-3507749</a></li><li><a href="#cap65">Cap. 65 - 0065-3511005</a></li><li><a href="#cap66">Cap. 66 - 0066-3516991</a></li><li><a href="#cap67">Cap. 67 - 0067-3517194</a></li><li><a href="#cap68">Cap. 68 - 0068-3518384</a></li><li><a href="#cap69">Cap. 69 - 0069-3522833</a></li><li><a href="#cap70">Cap. 70 - 0070-3533164</a></li><li><a href="#cap71">Cap. 71 - 0071-3534145</a></li><li><a href="#cap72">Cap. 72 - 0072-3543422</a></li><li><a href="#cap73">Cap. 73 - 0073-3547205</a></li><li><a href="#cap74">Cap. 74 - 0074-3554938</a></li><li><a href="#cap75">Cap. 75 - 0075-3560175</a></li><li><a href="#cap76">Cap. 76 - 0076-3574727</a></li><li><a href="#cap77">Cap. 77 - 0077-3607879</a></li><li><a href="#cap78">Cap. 78 - 0078-3654361</a></li><li><a href="#cap79">Cap. 79 - 0079-3659056</a></li><li><a href="#cap80">Cap. 80 - 0080-3661861</a></li><li><a href="#cap81">Cap. 81 - 0081-3668773</a></li><li><a href="#cap82">Cap. 82 - 0082-3681412</a></li><li><a href="#cap83">Cap. 83 - 0083-3688397</a></li><li><a href="#cap84">Cap. 84 - 0084-3693576</a></li><li><a href="#cap85">Cap. 85 - 0085-3716500</a></li><li><a href="#cap86">Cap. 86 - 0086-3724086</a></li><li><a href="#cap87">Cap. 87 - 0087-3728220</a></li><li><a href="#cap88">Cap. 88 - 0088-3739655</a></li><li><a href="#cap89">Cap. 89 - 0089-3746250</a></li><li><a href="#cap90">Cap. 90 - 0090-3748866</a></li><li><a href="#cap91">Cap. 91 - 0091-3752587</a></li><li><a href="#cap92">Cap. 92 - 0092-3756282</a></li><li><a href="#cap93">Cap. 93 - 0093-3795690</a></li><li><a href="#cap94">Cap. 94 - 0094-3802183</a></li><li><a href="#cap95">Cap. 95 - 0095-3809521</a></li><li><a href="#cap96">Cap. 96 - 0096-3854824</a></li><li><a href="#cap97">Cap. 97 - 0097-3910314</a></li><li><a href="#cap98">Cap. 98 - 0098-3922670</a></li></ul>
     </div>
 
-    <div class="conteudo" id="conteudo">
+    <div class="conteudo expandido" id="conteudo">
         
     <div class="series-header">
         <img src="cover.png" class="series-thumb" alt="Capa">
@@ -17289,7 +17306,11 @@ PQ FEZ ISSO COM AGENTE MEU DEUSSSSSS, QUE FINAL LINDO AHHHHHHHH</div>
         <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
     </div>
 
-    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+    <div id="imersivoHud" class="imersivo-hud-bottom">
+        <button class="imersivo-nav-btn" onclick="imersivoPaginaAnterior()">← Anterior</button>
+        <span id="imersivoInfoText">Cap. 1 • Pág. 1/1</span>
+        <button class="imersivo-nav-btn" onclick="imersivoProximaPagina()">Próximo →</button>
+    </div>
 
     <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
         <div class="modal-conteudo">
@@ -17481,9 +17502,9 @@ function atualizarModoImersivoPagina() {
         }
     });
 
-    const hud = document.getElementById('imersivoHud');
-    if (hud) {
-        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    const info = document.getElementById('imersivoInfoText');
+    if (info) {
+        info.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
     }
 }
 
@@ -17512,36 +17533,6 @@ function imersivoPaginaAnterior() {
         const imgsPrev = obterImagensDoCapituloAtual();
         pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
         atualizarModoImersivoPagina();
-    }
-}
-
-// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-        touchStartX = e.changedTouches[0].screenX;
-    }
-}, false);
-
-document.addEventListener('touchend', (e) => {
-    if (e.changedTouches.length === 1) {
-        touchEndX = e.changedTouches[0].screenX;
-        tratarSwipe();
-    }
-}, false);
-
-function tratarSwipe() {
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 60) {
-        if (modoImersivoAtivo) {
-            if (diff > 0) imersivoProximaPagina();
-            else imersivoPaginaAnterior();
-        } else {
-            if (diff > 0) capProximo();
-            else capAnterior();
-        }
     }
 }
 
