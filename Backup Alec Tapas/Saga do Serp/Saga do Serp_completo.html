@@ -155,6 +155,7 @@ body {
     display: block;
     font-size: 0.85rem;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 .sidebar a:hover { background: var(--bg-card); }
 
@@ -378,7 +379,7 @@ body.modo-imersivo img.pag-ativa-imersivo {
     display: block !important;
 }
 
-/* CONTROLES E HUD IMERSIVO */
+/* CONTROLES E HUD IMERSIVO COMPACTOS */
 .imersivo-controles {
     display: none;
     position: fixed;
@@ -406,19 +407,20 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 .imersivo-hud-bottom {
     display: none;
     position: fixed;
-    bottom: 12px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
     background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
     border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    white-space: nowrap;
 }
 body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
@@ -426,10 +428,10 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
 }
 .imersivo-nav-btn:active {
@@ -445,12 +447,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 </head>
 <body id="topo">
     <div id="versao">
-        Série: <b>Saga do Serp</b> | Gerado em 30/09/2026 17:57
+        Série: <b>Saga do Serp</b> | Gerado em 30/09/2026 18:40
     </div>
 
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar oculto" id="sidebar">
         <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
@@ -472,7 +474,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <ul><li><a href="#cap1">Cap. 1 - 0001-499826</a></li><li><a href="#cap2">Cap. 2 - 0002-499828</a></li><li><a href="#cap3">Cap. 3 - 0003-499829</a></li><li><a href="#cap4">Cap. 4 - 0004-499920</a></li><li><a href="#cap5">Cap. 5 - 0005-499937</a></li><li><a href="#cap6">Cap. 6 - 0006-499940</a></li><li><a href="#cap7">Cap. 7 - 0007-499942</a></li><li><a href="#cap8">Cap. 8 - 0008-499949</a></li><li><a href="#cap9">Cap. 9 - 0009-499954</a></li><li><a href="#cap10">Cap. 10 - 0010-499960</a></li><li><a href="#cap11">Cap. 11 - 0011-499969</a></li><li><a href="#cap12">Cap. 12 - 0012-522723</a></li><li><a href="#cap13">Cap. 13 - 0013-583966</a></li><li><a href="#cap14">Cap. 14 - 0014-590255</a></li><li><a href="#cap15">Cap. 15 - 0015-599585</a></li><li><a href="#cap16">Cap. 16 - 0016-646948</a></li><li><a href="#cap17">Cap. 17 - 0017-648315</a></li><li><a href="#cap18">Cap. 18 - 0018-688453</a></li><li><a href="#cap19">Cap. 19 - 0019-722780</a></li><li><a href="#cap20">Cap. 20 - 0020-740261</a></li><li><a href="#cap21">Cap. 21 - 0021-740262</a></li><li><a href="#cap22">Cap. 22 - 0022-740263</a></li><li><a href="#cap23">Cap. 23 - 0023-740264</a></li><li><a href="#cap24">Cap. 24 - 0024-740265</a></li><li><a href="#cap25">Cap. 25 - 0025-740268</a></li><li><a href="#cap26">Cap. 26 - 0026-740272</a></li><li><a href="#cap27">Cap. 27 - 0027-740279</a></li><li><a href="#cap28">Cap. 28 - 0028-749816</a></li><li><a href="#cap29">Cap. 29 - 0029-749819</a></li><li><a href="#cap30">Cap. 30 - 0030-749821</a></li><li><a href="#cap31">Cap. 31 - 0031-749823</a></li><li><a href="#cap32">Cap. 32 - 0032-749825</a></li><li><a href="#cap33">Cap. 33 - 0033-749826</a></li><li><a href="#cap34">Cap. 34 - 0034-749828</a></li><li><a href="#cap35">Cap. 35 - 0035-794237</a></li><li><a href="#cap36">Cap. 36 - 0036-794246</a></li><li><a href="#cap37">Cap. 37 - 0037-794248</a></li><li><a href="#cap38">Cap. 38 - 0038-794249</a></li><li><a href="#cap39">Cap. 39 - 0039-821220</a></li><li><a href="#cap40">Cap. 40 - 0040-821222</a></li><li><a href="#cap41">Cap. 41 - 0041-821225</a></li><li><a href="#cap42">Cap. 42 - 0042-821228</a></li><li><a href="#cap43">Cap. 43 - 0043-844154</a></li><li><a href="#cap44">Cap. 44 - 0044-870178</a></li><li><a href="#cap45">Cap. 45 - 0045-870179</a></li><li><a href="#cap46">Cap. 46 - 0046-870180</a></li><li><a href="#cap47">Cap. 47 - 0047-870182</a></li><li><a href="#cap48">Cap. 48 - 0048-870184</a></li><li><a href="#cap49">Cap. 49 - 0049-870186</a></li><li><a href="#cap50">Cap. 50 - 0050-870191</a></li><li><a href="#cap51">Cap. 51 - 0051-889979</a></li><li><a href="#cap52">Cap. 52 - 0052-914125</a></li><li><a href="#cap53">Cap. 53 - 0053-974465</a></li><li><a href="#cap54">Cap. 54 - 0054-1644969</a></li></ul>
     </div>
 
-    <div class="conteudo" id="conteudo">
+    <div class="conteudo expandido" id="conteudo">
         
     <div class="series-header">
         <img src="cover.jpg" class="series-thumb" alt="Capa">

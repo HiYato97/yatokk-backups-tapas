@@ -158,6 +158,7 @@ body {
     display: block;
     font-size: 0.85rem;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 .sidebar a:hover { background: var(--bg-card); }
 
@@ -381,7 +382,7 @@ body.modo-imersivo img.pag-ativa-imersivo {
     display: block !important;
 }
 
-/* CONTROLES E HUD IMERSIVO */
+/* CONTROLES E HUD IMERSIVO COMPACTOS */
 .imersivo-controles {
     display: none;
     position: fixed;
@@ -409,19 +410,20 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 .imersivo-hud-bottom {
     display: none;
     position: fixed;
-    bottom: 12px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
     background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
     border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    white-space: nowrap;
 }
 body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
@@ -429,10 +431,10 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
 }
 .imersivo-nav-btn:active {
@@ -923,9 +925,9 @@ def processar_serie(pasta_serie):
         Série: <b>{html.escape(meta["title"])}</b> | Gerado em {DATA_GERACAO}
     </div>
 
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar oculto" id="sidebar">
         {botao_voltar_html}
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
@@ -947,7 +949,7 @@ def processar_serie(pasta_serie):
         <ul>{"".join(indice_items)}</ul>
     </div>
 
-    <div class="conteudo" id="conteudo">
+    <div class="conteudo expandido" id="conteudo">
         {header_html}
         {"".join(capitulos_html)}
     </div>

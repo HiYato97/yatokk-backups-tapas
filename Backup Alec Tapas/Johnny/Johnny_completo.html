@@ -155,6 +155,7 @@ body {
     display: block;
     font-size: 0.85rem;
     border-radius: 4px;
+    transition: background 0.2s ease;
 }
 .sidebar a:hover { background: var(--bg-card); }
 
@@ -378,7 +379,7 @@ body.modo-imersivo img.pag-ativa-imersivo {
     display: block !important;
 }
 
-/* CONTROLES E HUD IMERSIVO */
+/* CONTROLES E HUD IMERSIVO COMPACTOS */
 .imersivo-controles {
     display: none;
     position: fixed;
@@ -406,19 +407,20 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 .imersivo-hud-bottom {
     display: none;
     position: fixed;
-    bottom: 12px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
     background: rgba(0,0,0,0.85);
     color: #ffffff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
     border: 1px solid rgba(255,255,255,0.2);
     backdrop-filter: blur(5px);
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    white-space: nowrap;
 }
 body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
@@ -426,10 +428,10 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
 }
 .imersivo-nav-btn:active {
@@ -445,12 +447,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 </head>
 <body id="topo">
     <div id="versao">
-        Série: <b>Jonnhy</b> | Gerado em 30/09/2026 17:57
+        Série: <b>Jonnhy</b> | Gerado em 30/09/2026 18:40
     </div>
 
-    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar oculto" id="sidebar">
         <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
@@ -472,7 +474,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <ul><li><a href="#cap1">Cap. 1 - 0001-1116831</a></li><li><a href="#cap2">Cap. 2 - 0002-1116832</a></li><li><a href="#cap3">Cap. 3 - 0003-1116833</a></li><li><a href="#cap4">Cap. 4 - 0004-1116834</a></li><li><a href="#cap5">Cap. 5 - 0005-1116835</a></li><li><a href="#cap6">Cap. 6 - 0006-1116836</a></li><li><a href="#cap7">Cap. 7 - 0007-1116837</a></li><li><a href="#cap8">Cap. 8 - 0008-1116838</a></li><li><a href="#cap9">Cap. 9 - 0009-1116839</a></li><li><a href="#cap10">Cap. 10 - 0010-1116840</a></li><li><a href="#cap11">Cap. 11 - 0011-1116841</a></li><li><a href="#cap12">Cap. 12 - 0012-1116842</a></li><li><a href="#cap13">Cap. 13 - 0013-1116843</a></li><li><a href="#cap14">Cap. 14 - 0014-1116844</a></li><li><a href="#cap15">Cap. 15 - 0015-1116846</a></li><li><a href="#cap16">Cap. 16 - 0016-1116847</a></li><li><a href="#cap17">Cap. 17 - 0017-1116848</a></li><li><a href="#cap18">Cap. 18 - 0018-1116850</a></li><li><a href="#cap19">Cap. 19 - 0019-1116851</a></li><li><a href="#cap20">Cap. 20 - 0020-1116852</a></li><li><a href="#cap21">Cap. 21 - 0021-1178625</a></li><li><a href="#cap22">Cap. 22 - 0022-1178633</a></li></ul>
     </div>
 
-    <div class="conteudo" id="conteudo">
+    <div class="conteudo expandido" id="conteudo">
         
     <div class="series-header">
         <img src="cover.jpg" class="series-thumb" alt="Capa">
