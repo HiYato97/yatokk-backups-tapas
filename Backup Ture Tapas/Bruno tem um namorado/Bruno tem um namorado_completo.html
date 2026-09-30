@@ -34,7 +34,7 @@ body.light {
     --success: #22c55e;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -138,52 +138,6 @@ body {
 }
 
 .btn-full-width { grid-column: span 2; }
-
-/* PAINEL SELETOR OFFLINE */
-.seletor-offline-container {
-    max-height: 160px;
-    overflow-y: auto;
-    background: var(--bg-body);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 6px;
-    margin-bottom: 8px;
-}
-.item-cap-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    padding: 3px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-.item-cap-checkbox label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    width: 100%;
-}
-.tag-salvo {
-    font-size: 0.7rem;
-    color: var(--success);
-    font-weight: bold;
-}
-
-button.btn-desalvar {
-    background: var(--danger) !important;
-    color: #ffffff !important;
-    border-color: var(--danger-hover) !important;
-}
-
-.status-cache {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-    text-align: center;
-    grid-column: span 2;
-    word-break: break-word;
-}
 
 .sidebar h2 {
     font-size: 0.9rem;
@@ -366,7 +320,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 #topoBtn.visivel { display: flex; }
 
-/* --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) --- */
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
@@ -380,16 +334,15 @@ body.modo-imersivo .mobile-nav-bar {
 }
 
 body.modo-imersivo {
-    overflow: hidden !important;
     background: #000000 !important;
+    padding-bottom: 0 !important;
 }
 
 body.modo-imersivo .conteudo {
     margin-left: 0 !important;
     margin-top: 0 !important;
     padding: 0 !important;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -398,8 +351,8 @@ body.modo-imersivo .conteudo {
 body.modo-imersivo .capitulo {
     display: none;
     max-width: 100% !important;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    min-height: 100vh;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
@@ -415,12 +368,10 @@ body.modo-imersivo .capitulo.cap-ativo-imersivo {
 
 body.modo-imersivo img {
     display: none !important;
-    max-height: 100vh;
-    max-width: 100vw;
-    object-fit: contain;
+    max-width: 100%;
+    height: auto;
     margin: 0 auto !important;
     border-radius: 0 !important;
-    user-select: none;
 }
 
 body.modo-imersivo img.pag-ativa-imersivo {
@@ -446,9 +397,9 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
     background: var(--danger);
     color: #fff;
     border: none;
-    padding: 4px 10px;
+    padding: 6px 14px;
     border-radius: 12px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
 }
 
@@ -471,19 +422,6 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
 }
 body.modo-imersivo .imersivo-hud-bottom { display: block; }
 
-/* ZONAS DE TOQUE PARA NAVEGAÇÃO */
-.imersivo-touch-zone {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 35%;
-    z-index: 9998;
-}
-body.modo-imersivo .imersivo-touch-zone { display: block; }
-.touch-left { left: 0; }
-.touch-right { right: 0; }
-
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
     .series-header { flex-direction: column; align-items: center; text-align: center; }
@@ -492,7 +430,7 @@ body.modo-imersivo .imersivo-touch-zone { display: block; }
 </head>
 <body id="topo">
     <div id="versao">
-        Série: <b>Bruno tem um namorado</b> | Gerado em 29/09/2026 22:23
+        Série: <b>Bruno tem um namorado</b> | Gerado em 29/09/2026 22:32
     </div>
 
     <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
@@ -505,704 +443,6 @@ body.modo-imersivo .imersivo-touch-zone { display: block; }
                 <option value="1">Cap. 1 - 0001-3059514</option><option value="2">Cap. 2 - 0002-3064678</option><option value="3">Cap. 3 - 0003-3067576</option><option value="4">Cap. 4 - 0004-3072794</option><option value="5">Cap. 5 - 0005-3074359</option><option value="6">Cap. 6 - 0006-3079491</option><option value="7">Cap. 7 - 0007-3081819</option><option value="8">Cap. 8 - 0008-3085541</option><option value="9">Cap. 9 - 0009-3089557</option><option value="10">Cap. 10 - 0010-3091234</option><option value="11">Cap. 11 - 0011-3095027</option><option value="12">Cap. 12 - 0012-3099117</option><option value="13">Cap. 13 - 0013-3104325</option><option value="14">Cap. 14 - 0014-3106034</option><option value="15">Cap. 15 - 0015-3110000</option><option value="16">Cap. 16 - 0016-3113137</option><option value="17">Cap. 17 - 0017-3115177</option><option value="18">Cap. 18 - 0018-3118352</option><option value="19">Cap. 19 - 0019-3120758</option><option value="20">Cap. 20 - 0020-3121078</option><option value="21">Cap. 21 - 0021-3124957</option><option value="22">Cap. 22 - 0022-3129292</option><option value="23">Cap. 23 - 0023-3132022</option><option value="24">Cap. 24 - 0024-3137418</option><option value="25">Cap. 25 - 0025-3140310</option><option value="26">Cap. 26 - 0026-3145666</option><option value="27">Cap. 27 - 0027-3146910</option><option value="28">Cap. 28 - 0028-3149462</option><option value="29">Cap. 29 - 0029-3154132</option><option value="30">Cap. 30 - 0030-3157249</option><option value="31">Cap. 31 - 0031-3163347</option><option value="32">Cap. 32 - 0032-3167906</option><option value="33">Cap. 33 - 0033-3172017</option><option value="34">Cap. 34 - 0034-3177073</option><option value="35">Cap. 35 - 0035-3182950</option><option value="36">Cap. 36 - 0036-3188889</option><option value="37">Cap. 37 - 0037-3190705</option><option value="38">Cap. 38 - 0038-3197468</option><option value="39">Cap. 39 - 0039-3207714</option><option value="40">Cap. 40 - 0040-3213089</option><option value="41">Cap. 41 - 0041-3258288</option><option value="42">Cap. 42 - 0042-3273134</option><option value="43">Cap. 43 - 0043-3295154</option><option value="44">Cap. 44 - 0044-3324949</option><option value="45">Cap. 45 - 0045-3334256</option><option value="46">Cap. 46 - 0046-3344189</option><option value="47">Cap. 47 - 0047-3350912</option><option value="48">Cap. 48 - 0048-3353445</option><option value="49">Cap. 49 - 0049-3405944</option><option value="50">Cap. 50 - 0050-3410750</option><option value="51">Cap. 51 - 0051-3417687</option><option value="52">Cap. 52 - 0052-3428421</option><option value="53">Cap. 53 - 0053-3439250</option><option value="54">Cap. 54 - 0054-3448398</option><option value="55">Cap. 55 - 0055-3458876</option><option value="56">Cap. 56 - 0056-3462764</option><option value="57">Cap. 57 - 0057-3468573</option><option value="58">Cap. 58 - 0058-3476194</option><option value="59">Cap. 59 - 0059-3477490</option><option value="60">Cap. 60 - 0060-3480475</option><option value="61">Cap. 61 - 0061-3494780</option><option value="62">Cap. 62 - 0062-3506404</option><option value="63">Cap. 63 - 0063-3507370</option><option value="64">Cap. 64 - 0064-3507749</option><option value="65">Cap. 65 - 0065-3511005</option><option value="66">Cap. 66 - 0066-3516991</option><option value="67">Cap. 67 - 0067-3517194</option><option value="68">Cap. 68 - 0068-3518384</option><option value="69">Cap. 69 - 0069-3522833</option><option value="70">Cap. 70 - 0070-3533164</option><option value="71">Cap. 71 - 0071-3534145</option><option value="72">Cap. 72 - 0072-3543422</option><option value="73">Cap. 73 - 0073-3547205</option><option value="74">Cap. 74 - 0074-3554938</option><option value="75">Cap. 75 - 0075-3560175</option><option value="76">Cap. 76 - 0076-3574727</option><option value="77">Cap. 77 - 0077-3607879</option><option value="78">Cap. 78 - 0078-3654361</option><option value="79">Cap. 79 - 0079-3659056</option><option value="80">Cap. 80 - 0080-3661861</option><option value="81">Cap. 81 - 0081-3668773</option><option value="82">Cap. 82 - 0082-3681412</option><option value="83">Cap. 83 - 0083-3688397</option><option value="84">Cap. 84 - 0084-3693576</option><option value="85">Cap. 85 - 0085-3716500</option><option value="86">Cap. 86 - 0086-3724086</option><option value="87">Cap. 87 - 0087-3728220</option><option value="88">Cap. 88 - 0088-3739655</option><option value="89">Cap. 89 - 0089-3746250</option><option value="90">Cap. 90 - 0090-3748866</option><option value="91">Cap. 91 - 0091-3752587</option><option value="92">Cap. 92 - 0092-3756282</option><option value="93">Cap. 93 - 0093-3795690</option><option value="94">Cap. 94 - 0094-3802183</option><option value="95">Cap. 95 - 0095-3809521</option><option value="96">Cap. 96 - 0096-3854824</option><option value="97">Cap. 97 - 0097-3910314</option><option value="98">Cap. 98 - 0098-3922670</option>
             </select>
 
-            <h3>Gerenciador Offline</h3>
-            <div class="seletor-offline-container">
-                
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="1">
-                <span>Cap. 1</span>
-            </label>
-            <span id="badgeSalvoCap1" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="2">
-                <span>Cap. 2</span>
-            </label>
-            <span id="badgeSalvoCap2" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="3">
-                <span>Cap. 3</span>
-            </label>
-            <span id="badgeSalvoCap3" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="4">
-                <span>Cap. 4</span>
-            </label>
-            <span id="badgeSalvoCap4" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="5">
-                <span>Cap. 5</span>
-            </label>
-            <span id="badgeSalvoCap5" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="6">
-                <span>Cap. 6</span>
-            </label>
-            <span id="badgeSalvoCap6" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="7">
-                <span>Cap. 7</span>
-            </label>
-            <span id="badgeSalvoCap7" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="8">
-                <span>Cap. 8</span>
-            </label>
-            <span id="badgeSalvoCap8" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="9">
-                <span>Cap. 9</span>
-            </label>
-            <span id="badgeSalvoCap9" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="10">
-                <span>Cap. 10</span>
-            </label>
-            <span id="badgeSalvoCap10" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="11">
-                <span>Cap. 11</span>
-            </label>
-            <span id="badgeSalvoCap11" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="12">
-                <span>Cap. 12</span>
-            </label>
-            <span id="badgeSalvoCap12" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="13">
-                <span>Cap. 13</span>
-            </label>
-            <span id="badgeSalvoCap13" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="14">
-                <span>Cap. 14</span>
-            </label>
-            <span id="badgeSalvoCap14" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="15">
-                <span>Cap. 15</span>
-            </label>
-            <span id="badgeSalvoCap15" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="16">
-                <span>Cap. 16</span>
-            </label>
-            <span id="badgeSalvoCap16" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="17">
-                <span>Cap. 17</span>
-            </label>
-            <span id="badgeSalvoCap17" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="18">
-                <span>Cap. 18</span>
-            </label>
-            <span id="badgeSalvoCap18" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="19">
-                <span>Cap. 19</span>
-            </label>
-            <span id="badgeSalvoCap19" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="20">
-                <span>Cap. 20</span>
-            </label>
-            <span id="badgeSalvoCap20" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="21">
-                <span>Cap. 21</span>
-            </label>
-            <span id="badgeSalvoCap21" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="22">
-                <span>Cap. 22</span>
-            </label>
-            <span id="badgeSalvoCap22" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="23">
-                <span>Cap. 23</span>
-            </label>
-            <span id="badgeSalvoCap23" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="24">
-                <span>Cap. 24</span>
-            </label>
-            <span id="badgeSalvoCap24" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="25">
-                <span>Cap. 25</span>
-            </label>
-            <span id="badgeSalvoCap25" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="26">
-                <span>Cap. 26</span>
-            </label>
-            <span id="badgeSalvoCap26" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="27">
-                <span>Cap. 27</span>
-            </label>
-            <span id="badgeSalvoCap27" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="28">
-                <span>Cap. 28</span>
-            </label>
-            <span id="badgeSalvoCap28" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="29">
-                <span>Cap. 29</span>
-            </label>
-            <span id="badgeSalvoCap29" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="30">
-                <span>Cap. 30</span>
-            </label>
-            <span id="badgeSalvoCap30" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="31">
-                <span>Cap. 31</span>
-            </label>
-            <span id="badgeSalvoCap31" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="32">
-                <span>Cap. 32</span>
-            </label>
-            <span id="badgeSalvoCap32" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="33">
-                <span>Cap. 33</span>
-            </label>
-            <span id="badgeSalvoCap33" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="34">
-                <span>Cap. 34</span>
-            </label>
-            <span id="badgeSalvoCap34" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="35">
-                <span>Cap. 35</span>
-            </label>
-            <span id="badgeSalvoCap35" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="36">
-                <span>Cap. 36</span>
-            </label>
-            <span id="badgeSalvoCap36" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="37">
-                <span>Cap. 37</span>
-            </label>
-            <span id="badgeSalvoCap37" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="38">
-                <span>Cap. 38</span>
-            </label>
-            <span id="badgeSalvoCap38" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="39">
-                <span>Cap. 39</span>
-            </label>
-            <span id="badgeSalvoCap39" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="40">
-                <span>Cap. 40</span>
-            </label>
-            <span id="badgeSalvoCap40" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="41">
-                <span>Cap. 41</span>
-            </label>
-            <span id="badgeSalvoCap41" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="42">
-                <span>Cap. 42</span>
-            </label>
-            <span id="badgeSalvoCap42" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="43">
-                <span>Cap. 43</span>
-            </label>
-            <span id="badgeSalvoCap43" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="44">
-                <span>Cap. 44</span>
-            </label>
-            <span id="badgeSalvoCap44" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="45">
-                <span>Cap. 45</span>
-            </label>
-            <span id="badgeSalvoCap45" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="46">
-                <span>Cap. 46</span>
-            </label>
-            <span id="badgeSalvoCap46" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="47">
-                <span>Cap. 47</span>
-            </label>
-            <span id="badgeSalvoCap47" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="48">
-                <span>Cap. 48</span>
-            </label>
-            <span id="badgeSalvoCap48" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="49">
-                <span>Cap. 49</span>
-            </label>
-            <span id="badgeSalvoCap49" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="50">
-                <span>Cap. 50</span>
-            </label>
-            <span id="badgeSalvoCap50" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="51">
-                <span>Cap. 51</span>
-            </label>
-            <span id="badgeSalvoCap51" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="52">
-                <span>Cap. 52</span>
-            </label>
-            <span id="badgeSalvoCap52" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="53">
-                <span>Cap. 53</span>
-            </label>
-            <span id="badgeSalvoCap53" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="54">
-                <span>Cap. 54</span>
-            </label>
-            <span id="badgeSalvoCap54" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="55">
-                <span>Cap. 55</span>
-            </label>
-            <span id="badgeSalvoCap55" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="56">
-                <span>Cap. 56</span>
-            </label>
-            <span id="badgeSalvoCap56" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="57">
-                <span>Cap. 57</span>
-            </label>
-            <span id="badgeSalvoCap57" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="58">
-                <span>Cap. 58</span>
-            </label>
-            <span id="badgeSalvoCap58" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="59">
-                <span>Cap. 59</span>
-            </label>
-            <span id="badgeSalvoCap59" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="60">
-                <span>Cap. 60</span>
-            </label>
-            <span id="badgeSalvoCap60" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="61">
-                <span>Cap. 61</span>
-            </label>
-            <span id="badgeSalvoCap61" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="62">
-                <span>Cap. 62</span>
-            </label>
-            <span id="badgeSalvoCap62" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="63">
-                <span>Cap. 63</span>
-            </label>
-            <span id="badgeSalvoCap63" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="64">
-                <span>Cap. 64</span>
-            </label>
-            <span id="badgeSalvoCap64" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="65">
-                <span>Cap. 65</span>
-            </label>
-            <span id="badgeSalvoCap65" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="66">
-                <span>Cap. 66</span>
-            </label>
-            <span id="badgeSalvoCap66" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="67">
-                <span>Cap. 67</span>
-            </label>
-            <span id="badgeSalvoCap67" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="68">
-                <span>Cap. 68</span>
-            </label>
-            <span id="badgeSalvoCap68" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="69">
-                <span>Cap. 69</span>
-            </label>
-            <span id="badgeSalvoCap69" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="70">
-                <span>Cap. 70</span>
-            </label>
-            <span id="badgeSalvoCap70" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="71">
-                <span>Cap. 71</span>
-            </label>
-            <span id="badgeSalvoCap71" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="72">
-                <span>Cap. 72</span>
-            </label>
-            <span id="badgeSalvoCap72" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="73">
-                <span>Cap. 73</span>
-            </label>
-            <span id="badgeSalvoCap73" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="74">
-                <span>Cap. 74</span>
-            </label>
-            <span id="badgeSalvoCap74" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="75">
-                <span>Cap. 75</span>
-            </label>
-            <span id="badgeSalvoCap75" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="76">
-                <span>Cap. 76</span>
-            </label>
-            <span id="badgeSalvoCap76" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="77">
-                <span>Cap. 77</span>
-            </label>
-            <span id="badgeSalvoCap77" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="78">
-                <span>Cap. 78</span>
-            </label>
-            <span id="badgeSalvoCap78" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="79">
-                <span>Cap. 79</span>
-            </label>
-            <span id="badgeSalvoCap79" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="80">
-                <span>Cap. 80</span>
-            </label>
-            <span id="badgeSalvoCap80" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="81">
-                <span>Cap. 81</span>
-            </label>
-            <span id="badgeSalvoCap81" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="82">
-                <span>Cap. 82</span>
-            </label>
-            <span id="badgeSalvoCap82" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="83">
-                <span>Cap. 83</span>
-            </label>
-            <span id="badgeSalvoCap83" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="84">
-                <span>Cap. 84</span>
-            </label>
-            <span id="badgeSalvoCap84" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="85">
-                <span>Cap. 85</span>
-            </label>
-            <span id="badgeSalvoCap85" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="86">
-                <span>Cap. 86</span>
-            </label>
-            <span id="badgeSalvoCap86" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="87">
-                <span>Cap. 87</span>
-            </label>
-            <span id="badgeSalvoCap87" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="88">
-                <span>Cap. 88</span>
-            </label>
-            <span id="badgeSalvoCap88" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="89">
-                <span>Cap. 89</span>
-            </label>
-            <span id="badgeSalvoCap89" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="90">
-                <span>Cap. 90</span>
-            </label>
-            <span id="badgeSalvoCap90" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="91">
-                <span>Cap. 91</span>
-            </label>
-            <span id="badgeSalvoCap91" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="92">
-                <span>Cap. 92</span>
-            </label>
-            <span id="badgeSalvoCap92" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="93">
-                <span>Cap. 93</span>
-            </label>
-            <span id="badgeSalvoCap93" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="94">
-                <span>Cap. 94</span>
-            </label>
-            <span id="badgeSalvoCap94" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="95">
-                <span>Cap. 95</span>
-            </label>
-            <span id="badgeSalvoCap95" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="96">
-                <span>Cap. 96</span>
-            </label>
-            <span id="badgeSalvoCap96" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="97">
-                <span>Cap. 97</span>
-            </label>
-            <span id="badgeSalvoCap97" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="98">
-                <span>Cap. 98</span>
-            </label>
-            <span id="badgeSalvoCap98" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>
-            </div>
-            <div class="botoes-grid" style="margin-bottom:8px;">
-                <button onclick="marcarTodosCheckboxes(true)">Marcar Todos</button>
-                <button onclick="marcarTodosCheckboxes(false)">Limpar Seleção</button>
-                <button onclick="salvarCapitulosSelecionados()" class="btn-full-width">📥 Baixar Selecionados</button>
-                <button onclick="deletarCapitulosSelecionados()" class="btn-desalvar">🗑️ Apagar Sel.</button>
-                <button onclick="limparTodoCache()" class="btn-desalvar">⚠️️ Apagar Tudo</button>
-            </div>
-
             <h3>Opções da Página</h3>
             <div class="botoes-grid">
                 <button onclick="mudarTema()">Tema</button>
@@ -1210,12 +450,11 @@ body.modo-imersivo .imersivo-touch-zone { display: block; }
                 <button onclick="alterarFonte(1)">A+</button>
                 <button onclick="alterarFonte(-1)">A-</button>
                 <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
-                <div id="statusCacheMsg" class="status-cache"></div>
             </div>
         </div>
 
         <h2>Índice</h2>
-        <ul><li><a href="#cap1">Cap. 1 - 0001-3059514 <span id="tagIndexSalvoCap1" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap2">Cap. 2 - 0002-3064678 <span id="tagIndexSalvoCap2" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap3">Cap. 3 - 0003-3067576 <span id="tagIndexSalvoCap3" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap4">Cap. 4 - 0004-3072794 <span id="tagIndexSalvoCap4" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap5">Cap. 5 - 0005-3074359 <span id="tagIndexSalvoCap5" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap6">Cap. 6 - 0006-3079491 <span id="tagIndexSalvoCap6" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap7">Cap. 7 - 0007-3081819 <span id="tagIndexSalvoCap7" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap8">Cap. 8 - 0008-3085541 <span id="tagIndexSalvoCap8" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap9">Cap. 9 - 0009-3089557 <span id="tagIndexSalvoCap9" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap10">Cap. 10 - 0010-3091234 <span id="tagIndexSalvoCap10" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap11">Cap. 11 - 0011-3095027 <span id="tagIndexSalvoCap11" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap12">Cap. 12 - 0012-3099117 <span id="tagIndexSalvoCap12" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap13">Cap. 13 - 0013-3104325 <span id="tagIndexSalvoCap13" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap14">Cap. 14 - 0014-3106034 <span id="tagIndexSalvoCap14" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap15">Cap. 15 - 0015-3110000 <span id="tagIndexSalvoCap15" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap16">Cap. 16 - 0016-3113137 <span id="tagIndexSalvoCap16" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap17">Cap. 17 - 0017-3115177 <span id="tagIndexSalvoCap17" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap18">Cap. 18 - 0018-3118352 <span id="tagIndexSalvoCap18" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap19">Cap. 19 - 0019-3120758 <span id="tagIndexSalvoCap19" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap20">Cap. 20 - 0020-3121078 <span id="tagIndexSalvoCap20" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap21">Cap. 21 - 0021-3124957 <span id="tagIndexSalvoCap21" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap22">Cap. 22 - 0022-3129292 <span id="tagIndexSalvoCap22" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap23">Cap. 23 - 0023-3132022 <span id="tagIndexSalvoCap23" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap24">Cap. 24 - 0024-3137418 <span id="tagIndexSalvoCap24" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap25">Cap. 25 - 0025-3140310 <span id="tagIndexSalvoCap25" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap26">Cap. 26 - 0026-3145666 <span id="tagIndexSalvoCap26" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap27">Cap. 27 - 0027-3146910 <span id="tagIndexSalvoCap27" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap28">Cap. 28 - 0028-3149462 <span id="tagIndexSalvoCap28" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap29">Cap. 29 - 0029-3154132 <span id="tagIndexSalvoCap29" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap30">Cap. 30 - 0030-3157249 <span id="tagIndexSalvoCap30" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap31">Cap. 31 - 0031-3163347 <span id="tagIndexSalvoCap31" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap32">Cap. 32 - 0032-3167906 <span id="tagIndexSalvoCap32" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap33">Cap. 33 - 0033-3172017 <span id="tagIndexSalvoCap33" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap34">Cap. 34 - 0034-3177073 <span id="tagIndexSalvoCap34" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap35">Cap. 35 - 0035-3182950 <span id="tagIndexSalvoCap35" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap36">Cap. 36 - 0036-3188889 <span id="tagIndexSalvoCap36" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap37">Cap. 37 - 0037-3190705 <span id="tagIndexSalvoCap37" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap38">Cap. 38 - 0038-3197468 <span id="tagIndexSalvoCap38" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap39">Cap. 39 - 0039-3207714 <span id="tagIndexSalvoCap39" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap40">Cap. 40 - 0040-3213089 <span id="tagIndexSalvoCap40" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap41">Cap. 41 - 0041-3258288 <span id="tagIndexSalvoCap41" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap42">Cap. 42 - 0042-3273134 <span id="tagIndexSalvoCap42" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap43">Cap. 43 - 0043-3295154 <span id="tagIndexSalvoCap43" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap44">Cap. 44 - 0044-3324949 <span id="tagIndexSalvoCap44" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap45">Cap. 45 - 0045-3334256 <span id="tagIndexSalvoCap45" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap46">Cap. 46 - 0046-3344189 <span id="tagIndexSalvoCap46" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap47">Cap. 47 - 0047-3350912 <span id="tagIndexSalvoCap47" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap48">Cap. 48 - 0048-3353445 <span id="tagIndexSalvoCap48" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap49">Cap. 49 - 0049-3405944 <span id="tagIndexSalvoCap49" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap50">Cap. 50 - 0050-3410750 <span id="tagIndexSalvoCap50" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap51">Cap. 51 - 0051-3417687 <span id="tagIndexSalvoCap51" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap52">Cap. 52 - 0052-3428421 <span id="tagIndexSalvoCap52" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap53">Cap. 53 - 0053-3439250 <span id="tagIndexSalvoCap53" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap54">Cap. 54 - 0054-3448398 <span id="tagIndexSalvoCap54" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap55">Cap. 55 - 0055-3458876 <span id="tagIndexSalvoCap55" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap56">Cap. 56 - 0056-3462764 <span id="tagIndexSalvoCap56" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap57">Cap. 57 - 0057-3468573 <span id="tagIndexSalvoCap57" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap58">Cap. 58 - 0058-3476194 <span id="tagIndexSalvoCap58" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap59">Cap. 59 - 0059-3477490 <span id="tagIndexSalvoCap59" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap60">Cap. 60 - 0060-3480475 <span id="tagIndexSalvoCap60" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap61">Cap. 61 - 0061-3494780 <span id="tagIndexSalvoCap61" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap62">Cap. 62 - 0062-3506404 <span id="tagIndexSalvoCap62" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap63">Cap. 63 - 0063-3507370 <span id="tagIndexSalvoCap63" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap64">Cap. 64 - 0064-3507749 <span id="tagIndexSalvoCap64" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap65">Cap. 65 - 0065-3511005 <span id="tagIndexSalvoCap65" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap66">Cap. 66 - 0066-3516991 <span id="tagIndexSalvoCap66" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap67">Cap. 67 - 0067-3517194 <span id="tagIndexSalvoCap67" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap68">Cap. 68 - 0068-3518384 <span id="tagIndexSalvoCap68" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap69">Cap. 69 - 0069-3522833 <span id="tagIndexSalvoCap69" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap70">Cap. 70 - 0070-3533164 <span id="tagIndexSalvoCap70" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap71">Cap. 71 - 0071-3534145 <span id="tagIndexSalvoCap71" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap72">Cap. 72 - 0072-3543422 <span id="tagIndexSalvoCap72" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap73">Cap. 73 - 0073-3547205 <span id="tagIndexSalvoCap73" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap74">Cap. 74 - 0074-3554938 <span id="tagIndexSalvoCap74" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap75">Cap. 75 - 0075-3560175 <span id="tagIndexSalvoCap75" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap76">Cap. 76 - 0076-3574727 <span id="tagIndexSalvoCap76" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap77">Cap. 77 - 0077-3607879 <span id="tagIndexSalvoCap77" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap78">Cap. 78 - 0078-3654361 <span id="tagIndexSalvoCap78" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap79">Cap. 79 - 0079-3659056 <span id="tagIndexSalvoCap79" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap80">Cap. 80 - 0080-3661861 <span id="tagIndexSalvoCap80" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap81">Cap. 81 - 0081-3668773 <span id="tagIndexSalvoCap81" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap82">Cap. 82 - 0082-3681412 <span id="tagIndexSalvoCap82" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap83">Cap. 83 - 0083-3688397 <span id="tagIndexSalvoCap83" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap84">Cap. 84 - 0084-3693576 <span id="tagIndexSalvoCap84" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap85">Cap. 85 - 0085-3716500 <span id="tagIndexSalvoCap85" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap86">Cap. 86 - 0086-3724086 <span id="tagIndexSalvoCap86" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap87">Cap. 87 - 0087-3728220 <span id="tagIndexSalvoCap87" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap88">Cap. 88 - 0088-3739655 <span id="tagIndexSalvoCap88" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap89">Cap. 89 - 0089-3746250 <span id="tagIndexSalvoCap89" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap90">Cap. 90 - 0090-3748866 <span id="tagIndexSalvoCap90" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap91">Cap. 91 - 0091-3752587 <span id="tagIndexSalvoCap91" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap92">Cap. 92 - 0092-3756282 <span id="tagIndexSalvoCap92" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap93">Cap. 93 - 0093-3795690 <span id="tagIndexSalvoCap93" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap94">Cap. 94 - 0094-3802183 <span id="tagIndexSalvoCap94" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap95">Cap. 95 - 0095-3809521 <span id="tagIndexSalvoCap95" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap96">Cap. 96 - 0096-3854824 <span id="tagIndexSalvoCap96" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap97">Cap. 97 - 0097-3910314 <span id="tagIndexSalvoCap97" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li><li><a href="#cap98">Cap. 98 - 0098-3922670 <span id="tagIndexSalvoCap98" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span></a></li></ul>
+        <ul><li><a href="#cap1">Cap. 1 - 0001-3059514</a></li><li><a href="#cap2">Cap. 2 - 0002-3064678</a></li><li><a href="#cap3">Cap. 3 - 0003-3067576</a></li><li><a href="#cap4">Cap. 4 - 0004-3072794</a></li><li><a href="#cap5">Cap. 5 - 0005-3074359</a></li><li><a href="#cap6">Cap. 6 - 0006-3079491</a></li><li><a href="#cap7">Cap. 7 - 0007-3081819</a></li><li><a href="#cap8">Cap. 8 - 0008-3085541</a></li><li><a href="#cap9">Cap. 9 - 0009-3089557</a></li><li><a href="#cap10">Cap. 10 - 0010-3091234</a></li><li><a href="#cap11">Cap. 11 - 0011-3095027</a></li><li><a href="#cap12">Cap. 12 - 0012-3099117</a></li><li><a href="#cap13">Cap. 13 - 0013-3104325</a></li><li><a href="#cap14">Cap. 14 - 0014-3106034</a></li><li><a href="#cap15">Cap. 15 - 0015-3110000</a></li><li><a href="#cap16">Cap. 16 - 0016-3113137</a></li><li><a href="#cap17">Cap. 17 - 0017-3115177</a></li><li><a href="#cap18">Cap. 18 - 0018-3118352</a></li><li><a href="#cap19">Cap. 19 - 0019-3120758</a></li><li><a href="#cap20">Cap. 20 - 0020-3121078</a></li><li><a href="#cap21">Cap. 21 - 0021-3124957</a></li><li><a href="#cap22">Cap. 22 - 0022-3129292</a></li><li><a href="#cap23">Cap. 23 - 0023-3132022</a></li><li><a href="#cap24">Cap. 24 - 0024-3137418</a></li><li><a href="#cap25">Cap. 25 - 0025-3140310</a></li><li><a href="#cap26">Cap. 26 - 0026-3145666</a></li><li><a href="#cap27">Cap. 27 - 0027-3146910</a></li><li><a href="#cap28">Cap. 28 - 0028-3149462</a></li><li><a href="#cap29">Cap. 29 - 0029-3154132</a></li><li><a href="#cap30">Cap. 30 - 0030-3157249</a></li><li><a href="#cap31">Cap. 31 - 0031-3163347</a></li><li><a href="#cap32">Cap. 32 - 0032-3167906</a></li><li><a href="#cap33">Cap. 33 - 0033-3172017</a></li><li><a href="#cap34">Cap. 34 - 0034-3177073</a></li><li><a href="#cap35">Cap. 35 - 0035-3182950</a></li><li><a href="#cap36">Cap. 36 - 0036-3188889</a></li><li><a href="#cap37">Cap. 37 - 0037-3190705</a></li><li><a href="#cap38">Cap. 38 - 0038-3197468</a></li><li><a href="#cap39">Cap. 39 - 0039-3207714</a></li><li><a href="#cap40">Cap. 40 - 0040-3213089</a></li><li><a href="#cap41">Cap. 41 - 0041-3258288</a></li><li><a href="#cap42">Cap. 42 - 0042-3273134</a></li><li><a href="#cap43">Cap. 43 - 0043-3295154</a></li><li><a href="#cap44">Cap. 44 - 0044-3324949</a></li><li><a href="#cap45">Cap. 45 - 0045-3334256</a></li><li><a href="#cap46">Cap. 46 - 0046-3344189</a></li><li><a href="#cap47">Cap. 47 - 0047-3350912</a></li><li><a href="#cap48">Cap. 48 - 0048-3353445</a></li><li><a href="#cap49">Cap. 49 - 0049-3405944</a></li><li><a href="#cap50">Cap. 50 - 0050-3410750</a></li><li><a href="#cap51">Cap. 51 - 0051-3417687</a></li><li><a href="#cap52">Cap. 52 - 0052-3428421</a></li><li><a href="#cap53">Cap. 53 - 0053-3439250</a></li><li><a href="#cap54">Cap. 54 - 0054-3448398</a></li><li><a href="#cap55">Cap. 55 - 0055-3458876</a></li><li><a href="#cap56">Cap. 56 - 0056-3462764</a></li><li><a href="#cap57">Cap. 57 - 0057-3468573</a></li><li><a href="#cap58">Cap. 58 - 0058-3476194</a></li><li><a href="#cap59">Cap. 59 - 0059-3477490</a></li><li><a href="#cap60">Cap. 60 - 0060-3480475</a></li><li><a href="#cap61">Cap. 61 - 0061-3494780</a></li><li><a href="#cap62">Cap. 62 - 0062-3506404</a></li><li><a href="#cap63">Cap. 63 - 0063-3507370</a></li><li><a href="#cap64">Cap. 64 - 0064-3507749</a></li><li><a href="#cap65">Cap. 65 - 0065-3511005</a></li><li><a href="#cap66">Cap. 66 - 0066-3516991</a></li><li><a href="#cap67">Cap. 67 - 0067-3517194</a></li><li><a href="#cap68">Cap. 68 - 0068-3518384</a></li><li><a href="#cap69">Cap. 69 - 0069-3522833</a></li><li><a href="#cap70">Cap. 70 - 0070-3533164</a></li><li><a href="#cap71">Cap. 71 - 0071-3534145</a></li><li><a href="#cap72">Cap. 72 - 0072-3543422</a></li><li><a href="#cap73">Cap. 73 - 0073-3547205</a></li><li><a href="#cap74">Cap. 74 - 0074-3554938</a></li><li><a href="#cap75">Cap. 75 - 0075-3560175</a></li><li><a href="#cap76">Cap. 76 - 0076-3574727</a></li><li><a href="#cap77">Cap. 77 - 0077-3607879</a></li><li><a href="#cap78">Cap. 78 - 0078-3654361</a></li><li><a href="#cap79">Cap. 79 - 0079-3659056</a></li><li><a href="#cap80">Cap. 80 - 0080-3661861</a></li><li><a href="#cap81">Cap. 81 - 0081-3668773</a></li><li><a href="#cap82">Cap. 82 - 0082-3681412</a></li><li><a href="#cap83">Cap. 83 - 0083-3688397</a></li><li><a href="#cap84">Cap. 84 - 0084-3693576</a></li><li><a href="#cap85">Cap. 85 - 0085-3716500</a></li><li><a href="#cap86">Cap. 86 - 0086-3724086</a></li><li><a href="#cap87">Cap. 87 - 0087-3728220</a></li><li><a href="#cap88">Cap. 88 - 0088-3739655</a></li><li><a href="#cap89">Cap. 89 - 0089-3746250</a></li><li><a href="#cap90">Cap. 90 - 0090-3748866</a></li><li><a href="#cap91">Cap. 91 - 0091-3752587</a></li><li><a href="#cap92">Cap. 92 - 0092-3756282</a></li><li><a href="#cap93">Cap. 93 - 0093-3795690</a></li><li><a href="#cap94">Cap. 94 - 0094-3802183</a></li><li><a href="#cap95">Cap. 95 - 0095-3809521</a></li><li><a href="#cap96">Cap. 96 - 0096-3854824</a></li><li><a href="#cap97">Cap. 97 - 0097-3910314</a></li><li><a href="#cap98">Cap. 98 - 0098-3922670</a></li></ul>
     </div>
 
     <div class="conteudo" id="conteudo">
@@ -1224,7 +463,7 @@ body.modo-imersivo .imersivo-touch-zone { display: block; }
         <img src="cover.png" class="series-thumb" alt="Capa">
         <div class="series-info">
             <h1 class="series-title">Bruno tem um namorado</h1>
-            <div class="series-meta"><span class="series-genre">BL</span> ❤️️ 18881 curtidas</div>
+            <div class="series-meta"><span class="series-genre">BL</span> ❤ 18881 curtidas</div>
             <div class="series-desc"></div>
         </div>
     </div>
@@ -18046,9 +17285,6 @@ PQ FEZ ISSO COM AGENTE MEU DEUSSSSSS, QUE FINAL LINDO AHHHHHHHH</div>
     </div>
 
     <!-- ELEMENTOS DO MODO IMERSIVO -->
-    <div class="imersivo-touch-zone touch-left" onclick="imersivoPaginaAnterior()"></div>
-    <div class="imersivo-touch-zone touch-right" onclick="imersivoProximaPagina()"></div>
-    
     <div class="imersivo-controles">
         <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
     </div>
@@ -18189,7 +17425,7 @@ function atualizarCapituloAtualVisivel() {
 
 function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA COM DESTRAVA DE ROTAÇÃO) ---
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
 function toggleModoImersivo() {
     modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
     const btnFS = document.getElementById('btnFullscreen');
@@ -18198,21 +17434,11 @@ function toggleModoImersivo() {
     if (modoImersivoAtivo) {
         if (btnFS) btnFS.textContent = '❌ Sair Leitura';
         if (btnFSNav) btnFSNav.textContent = '❌ Sair';
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock().catch(() => {});
-                }
-            }).catch(() => {});
-        }
         pagAtualIndex = 1;
         atualizarModoImersivoPagina();
     } else {
         if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
         if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
-        if (document.exitFullscreen && document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-        }
         document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
         document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
         
@@ -18289,22 +17515,26 @@ function imersivoPaginaAnterior() {
     }
 }
 
-// --- NAVEGAÇÃO MOBILE POR SWIPE ---
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
 let touchStartX = 0;
 let touchEndX = 0;
 
 document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
 }, false);
 
 document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    tratarSwipe();
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
 }, false);
 
 function tratarSwipe() {
     const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
+    if (Math.abs(diff) > 60) {
         if (modoImersivoAtivo) {
             if (diff > 0) imersivoProximaPagina();
             else imersivoPaginaAnterior();
@@ -18328,169 +17558,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
 });
 
-// --- GERENCIAMENTO OFFLINE SELETIVO POR CAPÍTULO ---
-const CACHE_NAME = 'serie-cache-' + window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_');
-
-function obterRecursosDoCapitulo(idxCap) {
-    const recursos = new Set();
-    const capEl = document.getElementById(`cap${idxCap}`);
-    if (!capEl) return [];
-
-    capEl.querySelectorAll('img').forEach(img => {
-        const src = img.getAttribute('src');
-        if (src) recursos.add(new URL(src, window.location.href).href);
-    });
-    return Array.from(recursos);
-}
-
-function marcarTodosCheckboxes(marcar) {
-    document.querySelectorAll('.chk-cap-offline').forEach(chk => {
-        chk.checked = marcar;
-    });
-}
-
-async function verificarEstadoOffline() {
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (!('caches' in window)) return;
-
-    try {
-        const existe = await caches.has(CACHE_NAME);
-        if (!existe) {
-            if (statusEl) statusEl.textContent = 'Nenhum capítulo salvo.';
-            return;
-        }
-
-        const cache = await caches.open(CACHE_NAME);
-        const keys = await cache.keys();
-        const urlsCached = new Set(keys.map(k => k.url));
-
-        let capSalvos = 0;
-        const totalCaps = document.querySelectorAll('.capitulo').length;
-
-        for (let i = 1; i <= totalCaps; i++) {
-            const urlsCap = obterRecursosDoCapitulo(i);
-            const salvo = urlsCap.length > 0 && urlsCap.every(u => urlsCached.has(u));
-            
-            const badgeEl = document.getElementById(`badgeSalvoCap${i}`);
-            const tagIdxEl = document.getElementById(`tagIndexSalvoCap${i}`);
-            
-            if (salvo) {
-                capSalvos++;
-                if (badgeEl) badgeEl.style.display = 'inline';
-                if (tagIdxEl) tagIdxEl.style.display = 'inline';
-            } else {
-                if (badgeEl) badgeEl.style.display = 'none';
-                if (tagIdxEl) tagIdxEl.style.display = 'none';
-            }
-        }
-
-        if (statusEl) {
-            statusEl.textContent = `${capSalvos}/${totalCaps} cap. salvos (${keys.length} imgs)`;
-        }
-    } catch (e) {
-        console.error('Erro ao verificar cache:', e);
-    }
-}
-
-async function salvarCapitulosSelecionados() {
-    if (!('caches' in window)) {
-        alert('Seu navegador não suporta armazenamento offline.');
-        return;
-    }
-
-    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
-                              .map(chk => parseInt(chk.value));
-
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (selecionados.length === 0) {
-        if (statusEl) statusEl.textContent = 'Selecione pelo menos 1 cap.!';
-        return;
-    }
-
-    if (statusEl) statusEl.textContent = 'Mapeando imagens...';
-    
-    const recursos = new Set();
-    recursos.add(window.location.href);
-
-    const thumbImg = document.querySelector('.series-thumb');
-    if (thumbImg && thumbImg.src) recursos.add(thumbImg.src);
-
-    selecionados.forEach(idx => {
-        obterRecursosDoCapitulo(idx).forEach(u => recursos.add(u));
-    });
-
-    const listaUrls = Array.from(recursos);
-    const total = listaUrls.length;
-
-    try {
-        const cache = await caches.open(CACHE_NAME);
-        const chunkSize = 15;
-        let baixados = 0;
-
-        for (let i = 0; i < total; i += chunkSize) {
-            const chunk = listaUrls.slice(i, i + chunkSize);
-            await Promise.allSettled(chunk.map(url => cache.add(url)));
-            baixados = Math.min(i + chunkSize, total);
-            if (statusEl) statusEl.textContent = `Baixando (${baixados}/${total})...`;
-        }
-
-        if (statusEl) statusEl.textContent = 'Salvo com sucesso!';
-        verificarEstadoOffline();
-    } catch (err) {
-        console.error(err);
-        if (statusEl) statusEl.textContent = 'Erro no download.';
-    }
-}
-
-async function deletarCapitulosSelecionados() {
-    if (!('caches' in window)) return;
-    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
-                              .map(chk => parseInt(chk.value));
-
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (selecionados.length === 0) {
-        if (statusEl) statusEl.textContent = 'Selecione para remover!';
-        return;
-    }
-
-    try {
-        const cache = await caches.open(CACHE_NAME);
-        const recursosParaDeletar = new Set();
-
-        selecionados.forEach(idx => {
-            obterRecursosDoCapitulo(idx).forEach(u => recursosParaDeletar.add(u));
-        });
-
-        for (const url of recursosParaDeletar) {
-            await cache.delete(url);
-        }
-
-        if (statusEl) statusEl.textContent = 'Selecionados removidos!';
-        verificarEstadoOffline();
-    } catch (e) {
-        console.error(e);
-        if (statusEl) statusEl.textContent = 'Erro ao remover.';
-    }
-}
-
-async function limparTodoCache() {
-    if (!('caches' in window)) return;
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (statusEl) statusEl.textContent = 'Limpando tudo...';
-    await caches.delete(CACHE_NAME);
-    if (statusEl) statusEl.textContent = 'Todo o cache foi limpo!';
-    verificarEstadoOffline();
-}
-
-// Registo do Service Worker a partir do ficheiro estático sw.js
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('SW registrado:', reg.scope))
-            .catch(err => console.warn('Erro ao registrar SW:', err));
-    });
-}
-
 window.addEventListener('scroll', () => {
     document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
     atualizarCapituloAtualVisivel();
@@ -18498,7 +17565,6 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => { 
     atualizarCapituloAtualVisivel();
-    verificarEstadoOffline();
 });
 </script>
 </body>

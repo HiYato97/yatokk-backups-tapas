@@ -37,7 +37,7 @@ body.light {
     --success: #22c55e;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -141,52 +141,6 @@ body {
 }
 
 .btn-full-width { grid-column: span 2; }
-
-/* PAINEL SELETOR OFFLINE */
-.seletor-offline-container {
-    max-height: 160px;
-    overflow-y: auto;
-    background: var(--bg-body);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 6px;
-    margin-bottom: 8px;
-}
-.item-cap-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    padding: 3px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-.item-cap-checkbox label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    width: 100%;
-}
-.tag-salvo {
-    font-size: 0.7rem;
-    color: var(--success);
-    font-weight: bold;
-}
-
-button.btn-desalvar {
-    background: var(--danger) !important;
-    color: #ffffff !important;
-    border-color: var(--danger-hover) !important;
-}
-
-.status-cache {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-    text-align: center;
-    grid-column: span 2;
-    word-break: break-word;
-}
 
 .sidebar h2 {
     font-size: 0.9rem;
@@ -369,7 +323,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 #topoBtn.visivel { display: flex; }
 
-/* --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) --- */
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
@@ -383,16 +337,15 @@ body.modo-imersivo .mobile-nav-bar {
 }
 
 body.modo-imersivo {
-    overflow: hidden !important;
     background: #000000 !important;
+    padding-bottom: 0 !important;
 }
 
 body.modo-imersivo .conteudo {
     margin-left: 0 !important;
     margin-top: 0 !important;
     padding: 0 !important;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -401,8 +354,8 @@ body.modo-imersivo .conteudo {
 body.modo-imersivo .capitulo {
     display: none;
     max-width: 100% !important;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    min-height: 100vh;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
@@ -418,12 +371,10 @@ body.modo-imersivo .capitulo.cap-ativo-imersivo {
 
 body.modo-imersivo img {
     display: none !important;
-    max-height: 100vh;
-    max-width: 100vw;
-    object-fit: contain;
+    max-width: 100%;
+    height: auto;
     margin: 0 auto !important;
     border-radius: 0 !important;
-    user-select: none;
 }
 
 body.modo-imersivo img.pag-ativa-imersivo {
@@ -449,9 +400,9 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
     background: var(--danger);
     color: #fff;
     border: none;
-    padding: 4px 10px;
+    padding: 6px 14px;
     border-radius: 12px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
 }
 
@@ -473,19 +424,6 @@ body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: 
     letter-spacing: 0.5px;
 }
 body.modo-imersivo .imersivo-hud-bottom { display: block; }
-
-/* ZONAS DE TOQUE PARA NAVEGAÇÃO */
-.imersivo-touch-zone {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 35%;
-    z-index: 9998;
-}
-body.modo-imersivo .imersivo-touch-zone { display: block; }
-.touch-left { left: 0; }
-.touch-right { right: 0; }
 
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
@@ -606,7 +544,7 @@ function atualizarCapituloAtualVisivel() {
 
 function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
-// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA COM DESTRAVA DE ROTAÇÃO) ---
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
 function toggleModoImersivo() {
     modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
     const btnFS = document.getElementById('btnFullscreen');
@@ -615,21 +553,11 @@ function toggleModoImersivo() {
     if (modoImersivoAtivo) {
         if (btnFS) btnFS.textContent = '❌ Sair Leitura';
         if (btnFSNav) btnFSNav.textContent = '❌ Sair';
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().then(() => {
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock().catch(() => {});
-                }
-            }).catch(() => {});
-        }
         pagAtualIndex = 1;
         atualizarModoImersivoPagina();
     } else {
         if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
         if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
-        if (document.exitFullscreen && document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-        }
         document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
         document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
         
@@ -706,22 +634,26 @@ function imersivoPaginaAnterior() {
     }
 }
 
-// --- NAVEGAÇÃO MOBILE POR SWIPE ---
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
 let touchStartX = 0;
 let touchEndX = 0;
 
 document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
 }, false);
 
 document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    tratarSwipe();
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
 }, false);
 
 function tratarSwipe() {
     const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
+    if (Math.abs(diff) > 60) {
         if (modoImersivoAtivo) {
             if (diff > 0) imersivoProximaPagina();
             else imersivoPaginaAnterior();
@@ -745,169 +677,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
 });
 
-// --- GERENCIAMENTO OFFLINE SELETIVO POR CAPÍTULO ---
-const CACHE_NAME = 'serie-cache-' + window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_');
-
-function obterRecursosDoCapitulo(idxCap) {
-    const recursos = new Set();
-    const capEl = document.getElementById(`cap${idxCap}`);
-    if (!capEl) return [];
-
-    capEl.querySelectorAll('img').forEach(img => {
-        const src = img.getAttribute('src');
-        if (src) recursos.add(new URL(src, window.location.href).href);
-    });
-    return Array.from(recursos);
-}
-
-function marcarTodosCheckboxes(marcar) {
-    document.querySelectorAll('.chk-cap-offline').forEach(chk => {
-        chk.checked = marcar;
-    });
-}
-
-async function verificarEstadoOffline() {
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (!('caches' in window)) return;
-
-    try {
-        const existe = await caches.has(CACHE_NAME);
-        if (!existe) {
-            if (statusEl) statusEl.textContent = 'Nenhum capítulo salvo.';
-            return;
-        }
-
-        const cache = await caches.open(CACHE_NAME);
-        const keys = await cache.keys();
-        const urlsCached = new Set(keys.map(k => k.url));
-
-        let capSalvos = 0;
-        const totalCaps = document.querySelectorAll('.capitulo').length;
-
-        for (let i = 1; i <= totalCaps; i++) {
-            const urlsCap = obterRecursosDoCapitulo(i);
-            const salvo = urlsCap.length > 0 && urlsCap.every(u => urlsCached.has(u));
-            
-            const badgeEl = document.getElementById(`badgeSalvoCap${i}`);
-            const tagIdxEl = document.getElementById(`tagIndexSalvoCap${i}`);
-            
-            if (salvo) {
-                capSalvos++;
-                if (badgeEl) badgeEl.style.display = 'inline';
-                if (tagIdxEl) tagIdxEl.style.display = 'inline';
-            } else {
-                if (badgeEl) badgeEl.style.display = 'none';
-                if (tagIdxEl) tagIdxEl.style.display = 'none';
-            }
-        }
-
-        if (statusEl) {
-            statusEl.textContent = `${capSalvos}/${totalCaps} cap. salvos (${keys.length} imgs)`;
-        }
-    } catch (e) {
-        console.error('Erro ao verificar cache:', e);
-    }
-}
-
-async function salvarCapitulosSelecionados() {
-    if (!('caches' in window)) {
-        alert('Seu navegador não suporta armazenamento offline.');
-        return;
-    }
-
-    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
-                              .map(chk => parseInt(chk.value));
-
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (selecionados.length === 0) {
-        if (statusEl) statusEl.textContent = 'Selecione pelo menos 1 cap.!';
-        return;
-    }
-
-    if (statusEl) statusEl.textContent = 'Mapeando imagens...';
-    
-    const recursos = new Set();
-    recursos.add(window.location.href);
-
-    const thumbImg = document.querySelector('.series-thumb');
-    if (thumbImg && thumbImg.src) recursos.add(thumbImg.src);
-
-    selecionados.forEach(idx => {
-        obterRecursosDoCapitulo(idx).forEach(u => recursos.add(u));
-    });
-
-    const listaUrls = Array.from(recursos);
-    const total = listaUrls.length;
-
-    try {
-        const cache = await caches.open(CACHE_NAME);
-        const chunkSize = 15;
-        let baixados = 0;
-
-        for (let i = 0; i < total; i += chunkSize) {
-            const chunk = listaUrls.slice(i, i + chunkSize);
-            await Promise.allSettled(chunk.map(url => cache.add(url)));
-            baixados = Math.min(i + chunkSize, total);
-            if (statusEl) statusEl.textContent = `Baixando (${baixados}/${total})...`;
-        }
-
-        if (statusEl) statusEl.textContent = 'Salvo com sucesso!';
-        verificarEstadoOffline();
-    } catch (err) {
-        console.error(err);
-        if (statusEl) statusEl.textContent = 'Erro no download.';
-    }
-}
-
-async function deletarCapitulosSelecionados() {
-    if (!('caches' in window)) return;
-    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
-                              .map(chk => parseInt(chk.value));
-
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (selecionados.length === 0) {
-        if (statusEl) statusEl.textContent = 'Selecione para remover!';
-        return;
-    }
-
-    try {
-        const cache = await caches.open(CACHE_NAME);
-        const recursosParaDeletar = new Set();
-
-        selecionados.forEach(idx => {
-            obterRecursosDoCapitulo(idx).forEach(u => recursosParaDeletar.add(u));
-        });
-
-        for (const url of recursosParaDeletar) {
-            await cache.delete(url);
-        }
-
-        if (statusEl) statusEl.textContent = 'Selecionados removidos!';
-        verificarEstadoOffline();
-    } catch (e) {
-        console.error(e);
-        if (statusEl) statusEl.textContent = 'Erro ao remover.';
-    }
-}
-
-async function limparTodoCache() {
-    if (!('caches' in window)) return;
-    const statusEl = document.getElementById('statusCacheMsg');
-    if (statusEl) statusEl.textContent = 'Limpando tudo...';
-    await caches.delete(CACHE_NAME);
-    if (statusEl) statusEl.textContent = 'Todo o cache foi limpo!';
-    verificarEstadoOffline();
-}
-
-// Registo do Service Worker a partir do ficheiro estático sw.js
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('SW registrado:', reg.scope))
-            .catch(err => console.warn('Erro ao registrar SW:', err));
-    });
-}
-
 window.addEventListener('scroll', () => {
     document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
     atualizarCapituloAtualVisivel();
@@ -915,36 +684,6 @@ window.addEventListener('scroll', () => {
 
 document.addEventListener('DOMContentLoaded', () => { 
     atualizarCapituloAtualVisivel();
-    verificarEstadoOffline();
-});
-"""
-
-# Conteúdo do Service Worker que será salvo como sw.js nas pastas das séries
-SW_SCRIPT_CONTENT = """const CACHE_NAME = 'serie-app-v1';
-
-self.addEventListener('install', (event) => {
-    self.skipWaiting();
-});
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
-            return fetch(event.request).then((networkResponse) => {
-                return networkResponse;
-            }).catch(() => {
-                if (event.request.mode === 'navigate') {
-                    return caches.match(event.request) || caches.match('./');
-                }
-            });
-        })
-    );
 });
 """
 
@@ -1120,7 +859,7 @@ def processar_serie(pasta_serie):
 
     thumb_html = f'<img src="{meta["local_thumb"]}" class="series-thumb" alt="Capa">' if meta["local_thumb"] else ''
     genre_html = f'<span class="series-genre">{html.escape(str(meta["genre"]))}</span>' if meta["genre"] else ''
-    likes_html = f'❤️️ {meta["likes"]} curtidas' if meta["likes"] else ''
+    likes_html = f'❤ {meta["likes"]} curtidas' if meta["likes"] else ''
     
     desc_str = str(meta["description"])
     desc_formatted = desc_str if ("<p>" in desc_str or "<br>" in desc_str) else html.escape(desc_str).replace("\n", "<br>")
@@ -1137,7 +876,6 @@ def processar_serie(pasta_serie):
 
     indice_items = []
     select_options = []
-    checkboxes_offline = []
     capitulos_html = []
 
     for idx, ep_path in enumerate(episodios, start=1):
@@ -1152,18 +890,8 @@ def processar_serie(pasta_serie):
 
         titulo_limpo = html.escape(ep_title)
         
-        tag_index = f'<span id="tagIndexSalvoCap{idx}" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span>'
-        indice_items.append(f'<li><a href="#{id_cap}">Cap. {idx} - {titulo_limpo} {tag_index}</a></li>')
+        indice_items.append(f'<li><a href="#{id_cap}">Cap. {idx} - {titulo_limpo}</a></li>')
         select_options.append(f'<option value="{idx}">Cap. {idx} - {titulo_limpo}</option>')
-
-        checkboxes_offline.append(f'''
-        <div class="item-cap-checkbox">
-            <label>
-                <input type="checkbox" class="chk-cap-offline" value="{idx}">
-                <span>Cap. {idx}</span>
-            </label>
-            <span id="badgeSalvoCap{idx}" class="tag-salvo" style="display:none;">Salvo</span>
-        </div>''')
 
         imgs_html = []
         comentarios_html = ""
@@ -1220,18 +948,6 @@ def processar_serie(pasta_serie):
                 {options_html_str}
             </select>
 
-            <h3>Gerenciador Offline</h3>
-            <div class="seletor-offline-container">
-                {"".join(checkboxes_offline)}
-            </div>
-            <div class="botoes-grid" style="margin-bottom:8px;">
-                <button onclick="marcarTodosCheckboxes(true)">Marcar Todos</button>
-                <button onclick="marcarTodosCheckboxes(false)">Limpar Seleção</button>
-                <button onclick="salvarCapitulosSelecionados()" class="btn-full-width">📥 Baixar Selecionados</button>
-                <button onclick="deletarCapitulosSelecionados()" class="btn-desalvar">🗑️ Apagar Sel.</button>
-                <button onclick="limparTodoCache()" class="btn-desalvar">⚠️️ Apagar Tudo</button>
-            </div>
-
             <h3>Opções da Página</h3>
             <div class="botoes-grid">
                 <button onclick="mudarTema()">Tema</button>
@@ -1239,7 +955,6 @@ def processar_serie(pasta_serie):
                 <button onclick="alterarFonte(1)">A+</button>
                 <button onclick="alterarFonte(-1)">A-</button>
                 <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
-                <div id="statusCacheMsg" class="status-cache"></div>
             </div>
         </div>
 
@@ -1253,9 +968,6 @@ def processar_serie(pasta_serie):
     </div>
 
     <!-- ELEMENTOS DO MODO IMERSIVO -->
-    <div class="imersivo-touch-zone touch-left" onclick="imersivoPaginaAnterior()"></div>
-    <div class="imersivo-touch-zone touch-right" onclick="imersivoProximaPagina()"></div>
-    
     <div class="imersivo-controles">
         <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
     </div>
@@ -1287,16 +999,10 @@ def processar_serie(pasta_serie):
 </body>
 </html>'''
 
-    # Escreve o HTML gerado
     output_file = pasta_serie_abs / f"{pasta_serie_abs.name}_completo.html"
     output_file.write_text(html_final, encoding="utf-8")
-    
-    # Cria/Atualiza o sw.js na pasta da série para garantir suporte offline real no recarregamento
-    sw_file = pasta_serie_abs / "sw.js"
-    sw_file.write_text(SW_SCRIPT_CONTENT, encoding="utf-8")
 
     print(f"   ✅ HTML gerado em: {output_file}")
-    print(f"   ✅ Service Worker atualizado em: {sw_file}")
     return True
 
 def main():
@@ -1312,3 +1018,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
