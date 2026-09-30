@@ -1,0 +1,20 @@
+[
+ {
+  "panel": 1,
+  "url": "https://us-a.tapas.io/c/7e/6c7da03a-0a43-4f46-ab2b-66c5ed89ac26.jpg?__token__=exp=1790455786~acl=/c/7e/6c7da03a-0a43-4f46-ab2b-66c5ed89ac26.jpg*~hmac=46a3f8598bd5c874668a90cb4661894e1aa73cd12fce491925c7761159954a5f&version=v4",
+  "file": "images/panel-001.jpg",
+  "bytes": 185455
+ },
+ {
+  "panel": 2,
+  "url": "https://us-a.tapas.io/c/86/45b5b721-4810-4c84-8b6b-c698584d21bc.jpg?__token__=exp=1790455786~acl=/c/86/45b5b721-4810-4c84-8b6b-c698584d21bc.jpg*~hmac=9b26b84f687cedfbe94950ffee25a0588472383611ed897f4cb2aa73274512cb&version=v4",
+  "file": "images/panel-002.jpg",
+  "bytes": 162208
+ },
+ {
+  "panel": 3,
+  "url": "https://us-a.tapas.io/c/c9/43a56007-aa9c-4f7e-ac15-78b4d9df81cb.jpg?__token__=exp=1790455786~acl=/c/c9/43a56007-aa9c-4f7e-ac15-78b4d9df81cb.jpg*~hmac=3c7a6623511f818fc81173440b199db4d58a20f7ad53ebda045c5799bdc7a239&version=v4",
+  "file": "images/panel-003.jpg",
+  "bytes": 289158
+ }
+]

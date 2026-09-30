@@ -1,0 +1,4556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>Jonnhy</title>
+    <style>
+:root {
+    --bg-body: #000000;
+    --bg-card: #090a0a;
+    --bg-sidebar: #0d0e10;
+    --border-color: #222428;
+    --text-primary: #e1e3e6;
+    --text-muted: #737984;
+    --accent: #ffcb05;
+    --accent-hover: #ffffff;
+    --sidebar-width: 280px;
+    --danger: #dc2626;
+    --danger-hover: #991b1b;
+    --success: #16a34a;
+}
+
+body.light {
+    --bg-body: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-sidebar: #eaecef;
+    --border-color: #d0d4dc;
+    --text-primary: #22252a;
+    --text-muted: #626875;
+    --accent: #d97706;
+    --accent-hover: #111827;
+    --danger: #ef4444;
+    --danger-hover: #b91c1c;
+    --success: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+#versao {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    padding: 0.4rem 1rem;
+    text-align: center;
+    z-index: 1000;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-voltar-index {
+    display: block;
+    width: 100%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggleSidebarBtn {
+    position: fixed;
+    top: 36px;
+    left: 10px;
+    z-index: 1001;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 31px;
+    left: 0;
+    width: var(--sidebar-width);
+    max-width: 85vw;
+    height: calc(100vh - 31px - 54px);
+    background: var(--bg-sidebar);
+    padding: 50px 15px 30px 15px;
+    border-right: 1px solid var(--border-color);
+    z-index: 999;
+    overflow-y: auto;
+    transition: transform 0.25s ease;
+}
+.sidebar.oculto { transform: translateX(-100%); }
+
+.painel-controles {
+    background: var(--bg-card);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.painel-controles h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.botoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+.painel-controles button, .select-capitulos {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 100%;
+}
+.select-capitulos {
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.btn-full-width { grid-column: span 2; }
+
+.sidebar h2 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar ul { list-style: none; }
+.sidebar a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 6px 8px;
+    display: block;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.sidebar a:hover { background: var(--bg-card); }
+
+.conteudo {
+    margin-left: var(--sidebar-width);
+    margin-top: 31px;
+    padding: 30px;
+    transition: margin-left 0.25s ease;
+}
+.conteudo.expandido { margin-left: 0; }
+
+.series-header {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.series-thumb {
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+.series-info { flex: 1; }
+.series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-genre {
+    display: inline-block;
+    background: var(--border-color);
+    color: var(--text-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.series-desc { font-size: 0.95rem; margin-top: 10px; color: var(--text-primary); line-height: 1.5; }
+
+.capitulo {
+    margin-bottom: 30px;
+    scroll-margin-top: 45px;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.capitulo h2 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+.comentarios-wrapper { margin-top: 15px; }
+.btn-toggle-comentarios {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.comentarios-conteudo {
+    display: none;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 12px;
+}
+.comentarios-conteudo.aberto { display: block !important; }
+.comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
+.autor { font-weight: 600; color: var(--text-primary); }
+.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
+.comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
+.replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
+
+.nav-botoes {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+.nav-botoes a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+
+/* MODAL COMENTÁRIOS MOBILE */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2000;
+}
+.modal-overlay.visivel { display: flex; }
+.modal-conteudo {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+.modal-body { padding: 16px; overflow-y: auto; }
+
+/* BARRA NAVEGAÇÃO MOBILE */
+.mobile-nav-bar {
+    display: flex;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 54px;
+    background: var(--bg-sidebar); 
+    border-top: 1px solid var(--border-color);
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1002;
+    padding: 0 10px;
+}
+.mobile-nav-btn {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 0.8rem; cursor: pointer; flex: 1; height: 100%;
+}
+
+#topoBtn {
+    position: fixed; 
+    bottom: 70px;
+    right: 20px;
+    background: var(--bg-card); 
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); 
+    width: 38px; 
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    z-index: 1001;
+}
+#topoBtn.visivel { display: flex; }
+
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+body.modo-imersivo #versao,
+body.modo-imersivo #toggleSidebarBtn,
+body.modo-imersivo .sidebar,
+body.modo-imersivo .series-header,
+body.modo-imersivo .capitulo h2,
+body.modo-imersivo .comentarios-wrapper,
+body.modo-imersivo .nav-botoes,
+body.modo-imersivo #topoBtn,
+body.modo-imersivo .mobile-nav-bar {
+    display: none !important;
+}
+
+body.modo-imersivo {
+    background: #000000 !important;
+    padding-bottom: 0 !important;
+}
+
+body.modo-imersivo .conteudo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-imersivo .capitulo {
+    display: none;
+    max-width: 100% !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .capitulo.cap-ativo-imersivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body.modo-imersivo img {
+    display: none !important;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+}
+
+body.modo-imersivo img.pag-ativa-imersivo {
+    display: block !important;
+}
+
+/* CONTROLES E HUD IMERSIVO */
+.imersivo-controles {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: center; }
+
+.btn-sair-imersivo {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.imersivo-hud-bottom {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+body.modo-imersivo .imersivo-hud-bottom { display: block; }
+
+@media (max-width: 768px) {
+    .conteudo { margin-left: 0 !important; padding: 15px 10px; }
+    .series-header { flex-direction: column; align-items: center; text-align: center; }
+}
+</style>
+</head>
+<body id="topo">
+    <div id="versao">
+        Série: <b>Jonnhy</b> | Gerado em 29/09/2026 22:50
+    </div>
+
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+
+    <div class="sidebar" id="sidebar">
+        <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
+        <div class="painel-controles">
+            <h3>Seletor Rápido</h3>
+            <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
+                <option value="1">Cap. 1 - 0001-1116831</option><option value="2">Cap. 2 - 0002-1116832</option><option value="3">Cap. 3 - 0003-1116833</option><option value="4">Cap. 4 - 0004-1116834</option><option value="5">Cap. 5 - 0005-1116835</option><option value="6">Cap. 6 - 0006-1116836</option><option value="7">Cap. 7 - 0007-1116837</option><option value="8">Cap. 8 - 0008-1116838</option><option value="9">Cap. 9 - 0009-1116839</option><option value="10">Cap. 10 - 0010-1116840</option><option value="11">Cap. 11 - 0011-1116841</option><option value="12">Cap. 12 - 0012-1116842</option><option value="13">Cap. 13 - 0013-1116843</option><option value="14">Cap. 14 - 0014-1116844</option><option value="15">Cap. 15 - 0015-1116846</option><option value="16">Cap. 16 - 0016-1116847</option><option value="17">Cap. 17 - 0017-1116848</option><option value="18">Cap. 18 - 0018-1116850</option><option value="19">Cap. 19 - 0019-1116851</option><option value="20">Cap. 20 - 0020-1116852</option><option value="21">Cap. 21 - 0021-1178625</option><option value="22">Cap. 22 - 0022-1178633</option>
+            </select>
+
+            <h3>Opções da Página</h3>
+            <div class="botoes-grid">
+                <button onclick="mudarTema()">Tema</button>
+                <button id="btnFullscreen" onclick="toggleModoImersivo()">📖 Leitura Imersiva</button>
+                <button onclick="alterarFonte(1)">A+</button>
+                <button onclick="alterarFonte(-1)">A-</button>
+                <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+            </div>
+        </div>
+
+        <h2>Índice</h2>
+        <ul><li><a href="#cap1">Cap. 1 - 0001-1116831</a></li><li><a href="#cap2">Cap. 2 - 0002-1116832</a></li><li><a href="#cap3">Cap. 3 - 0003-1116833</a></li><li><a href="#cap4">Cap. 4 - 0004-1116834</a></li><li><a href="#cap5">Cap. 5 - 0005-1116835</a></li><li><a href="#cap6">Cap. 6 - 0006-1116836</a></li><li><a href="#cap7">Cap. 7 - 0007-1116837</a></li><li><a href="#cap8">Cap. 8 - 0008-1116838</a></li><li><a href="#cap9">Cap. 9 - 0009-1116839</a></li><li><a href="#cap10">Cap. 10 - 0010-1116840</a></li><li><a href="#cap11">Cap. 11 - 0011-1116841</a></li><li><a href="#cap12">Cap. 12 - 0012-1116842</a></li><li><a href="#cap13">Cap. 13 - 0013-1116843</a></li><li><a href="#cap14">Cap. 14 - 0014-1116844</a></li><li><a href="#cap15">Cap. 15 - 0015-1116846</a></li><li><a href="#cap16">Cap. 16 - 0016-1116847</a></li><li><a href="#cap17">Cap. 17 - 0017-1116848</a></li><li><a href="#cap18">Cap. 18 - 0018-1116850</a></li><li><a href="#cap19">Cap. 19 - 0019-1116851</a></li><li><a href="#cap20">Cap. 20 - 0020-1116852</a></li><li><a href="#cap21">Cap. 21 - 0021-1178625</a></li><li><a href="#cap22">Cap. 22 - 0022-1178633</a></li></ul>
+    </div>
+
+    <div class="conteudo" id="conteudo">
+        
+    <div class="series-header">
+        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <div class="series-info">
+            <h1 class="series-title">Jonnhy</h1>
+            <div class="series-meta"><span class="series-genre">Comedy</span> ❤ 16926 curtidas</div>
+            <div class="series-desc"></div>
+        </div>
+    </div>
+        
+        <div class="capitulo" id="cap1">
+            <h2>Capítulo 1 - 0001-1116831</h2>
+            <img src="episodes/0001-1116831/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
+            <span>💬 Ver Comentários (12)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap1">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">heloisaazpezanka</span> 
+        </div>
+        <div class="comentario-texto">A maioria dos comentários sendo de 7 anos atrás :0</div>
+        <div class="comentario-meta">Mar 19, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aneliz Lima</span> 
+        </div>
+        <div class="comentario-texto">Ele não entendeu</div>
+        <div class="comentario-meta">Feb 13, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">😁</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ichijou</span> 
+        </div>
+        <div class="comentario-texto">Queria ter dinheiro pra comprar essas comics, as comics do Alec são maravilhosas :"^</div>
+        <div class="comentario-meta">Jan 07, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ricardojfrancisco</span> 
+        </div>
+        <div class="comentario-texto">Já gostamos logo de cara XD</div>
+        <div class="comentario-meta">Nov 23, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Sparkly.Idiot</span> 
+        </div>
+        <div class="comentario-texto">NAO TO CRENDO QUE VC VAI POSTAR AQUI ESSA COMIC!!!! DOS PRIMÓRDIOS DA SUA PÁGINA NO FACE MEU DEUS. Amei poder acompanhar ela aqui pq n vou ter dinheiro pra comprar p segundo volume :')</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 48</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ágatha</span> 
+        </div>
+        <div class="comentario-texto">Vc sabe se tem ela completa em algum lugar? Eu preciso saber como termina essa bosta</div>
+        <div class="comentario-meta">Sep 28, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Ja amei de cara kkk</div>
+        <div class="comentario-meta">Jul 26, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">trocadilho eeeeeeeee</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 23</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dan</span> 
+        </div>
+        <div class="comentario-texto">NOVA COMIC PORRAAAAA!!!!!!!!!!!!</div>
+        <div class="comentario-meta">Jun 30, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">xMektx</span> 
+        </div>
+        <div class="comentario-texto">Ebaaaa!!!</div>
+        <div class="comentario-meta">Jun 29, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">nova comic! ye \o/</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 21</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                
+                <a href="#cap2">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap2">
+            <h2>Capítulo 2 - 0002-1116832</h2>
+            <img src="episodes/0002-1116832/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap2">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aneliz Lima</span> 
+        </div>
+        <div class="comentario-texto">Ish, só uma página por capítulo?</div>
+        <div class="comentario-meta">Feb 13, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Não julgue o livro pela capa ekkeke</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fatcat</span> 
+        </div>
+        <div class="comentario-texto">que nostalgia a poha</div>
+        <div class="comentario-meta">Nov 03, 2018 • ❤️ 14</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Coitado haha</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 17</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">coitado sendo julgado</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 35</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queijota</span> 
+        </div>
+        <div class="comentario-texto">Meu deus ,_,</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap1">◀ Anterior</a>
+                <a href="#cap3">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap3">
+            <h2>Capítulo 3 - 0003-1116833</h2>
+            <img src="episodes/0003-1116833/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
+            <span>💬 Ver Comentários (7)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap3">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachumariaeduarda</span> 
+        </div>
+        <div class="comentario-texto">Melhor apelido ever</div>
+        <div class="comentario-meta">May 06, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Então era por diversão antes.</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">E morreu</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 21</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">temos que concordar que ele e gato</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 48</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fatcat</span> 
+        </div>
+        <div class="comentario-texto">com certeza</div>
+        <div class="comentario-meta">Nov 03, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">uma otaku</span> 
+        </div>
+        <div class="comentario-texto">Sim ou com certeza?</div>
+        <div class="comentario-meta">Jun 11, 2020 • ❤️ 5</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">esse é o melhor apelido q ja vi pra um assassino kk</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 78</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap2">◀ Anterior</a>
+                <a href="#cap4">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap4">
+            <h2>Capítulo 4 - 0004-1116834</h2>
+            <img src="episodes/0004-1116834/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
+            <span>💬 Ver Comentários (9)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap4">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Wtf a tranquilidade dele ekkekeke</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">Esse se daria muito bem com o Deadpool,  igualzinho,  kskska</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Morta kkkk</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 12</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">H e l l H a c k</span> 
+        </div>
+        <div class="comentario-texto">Eu to tranquilão,to numa boa,to curtindo o batidão</div>
+        <div class="comentario-meta">Jul 08, 2018 • ❤️ 61</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">geovanapiresluz</span> 
+        </div>
+        <div class="comentario-texto">Me lembrei muito do Deadpool !</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 25</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">Eu tbm vei,  ksksks</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">kkkkkk ta parei .-.</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">vicio mata sabia</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">ele nao tem morals concretos</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 3</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap3">◀ Anterior</a>
+                <a href="#cap5">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap5">
+            <h2>Capítulo 5 - 0005-1116835</h2>
+            <img src="episodes/0005-1116835/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
+            <span>💬 Ver Comentários (10)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap5">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">b1txh</span> 
+        </div>
+        <div class="comentario-texto">Bang, bang, dei meu tiro certo em você...
+</div>
+        <div class="comentario-meta">Jun 08, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachumariaeduarda</span> 
+        </div>
+        <div class="comentario-texto">[Atiro]
+
+[Rosno para você]</div>
+        <div class="comentario-meta">May 06, 2022 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Uau essa pág 😱🤯</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jota Ed[AF]</span> 
+        </div>
+        <div class="comentario-texto">Krl alec q traço lindo</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 40</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ReineRouge</span> 
+        </div>
+        <div class="comentario-texto">AAAAAA esta página está magnífica ♡u♡</div>
+        <div class="comentario-meta">Jul 17, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">doppelganger</span> 
+        </div>
+        <div class="comentario-texto">Nice gwaphics</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 21</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">*pew pew*</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 44</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IgorComics</span> 
+        </div>
+        <div class="comentario-texto">Pow</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">oia, tu aki tmb? :3</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IgorComics</span> 
+        </div>
+        <div class="comentario-texto">pse hahsha</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap4">◀ Anterior</a>
+                <a href="#cap6">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap6">
+            <h2>Capítulo 6 - 0006-1116836</h2>
+            <img src="episodes/0006-1116836/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap6">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachumariaeduarda</span> 
+        </div>
+        <div class="comentario-texto">De Havaianas pô</div>
+        <div class="comentario-meta">May 06, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Havaiana havaianas</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 13</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">De havaianas oxi</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 20</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IgorComics</span> 
+        </div>
+        <div class="comentario-texto">de havaiana uái</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 58</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap5">◀ Anterior</a>
+                <a href="#cap7">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap7">
+            <h2>Capítulo 7 - 0007-1116837</h2>
+            <img src="episodes/0007-1116837/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap7', this)">
+            <span>💬 Ver Comentários (21)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap7">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mipper</span> 
+        </div>
+        <div class="comentario-texto">Ele eh imorrivel 🤫🤫</div>
+        <div class="comentario-meta">Feb 09, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Moniqueyaoi</span> 
+        </div>
+        <div class="comentario-texto">Kenny 😄</div>
+        <div class="comentario-meta">Dec 28, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Lembrei do dazai</div>
+        <div class="comentario-meta">Nov 22, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Nem pra ser mata presta</div>
+        <div class="comentario-meta">Jul 17, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachumariaeduarda</span> 
+        </div>
+        <div class="comentario-texto">Vai ter que matar um jojo, fod4 lek...</div>
+        <div class="comentario-meta">May 06, 2022 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ladylushton</span> 
+        </div>
+        <div class="comentario-texto">Ele é imorrivel,imortal,sobrenatural...</div>
+        <div class="comentario-meta">Apr 16, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Credo</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">srabatata02</span> 
+        </div>
+        <div class="comentario-texto">IMORRÍVEL KKKKKK</div>
+        <div class="comentario-meta">Jun 15, 2020 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vic_p3</span> 
+        </div>
+        <div class="comentario-texto">"Imorrivel" é a minha nova palavra favorita kkk</div>
+        <div class="comentario-meta">Aug 27, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Missa-chan</span> 
+        </div>
+        <div class="comentario-texto">Imorrivel é foda filhote</div>
+        <div class="comentario-meta">Jun 30, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Ele é imorrivel serio?</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Imorrivel Hauahauah amei. Vem cá Jojo vamo conversar...</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Andrew</span> 
+        </div>
+        <div class="comentario-texto">IMORRIVEL KSKSKSKSKS</div>
+        <div class="comentario-meta">Oct 28, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kamefur</span> 
+        </div>
+        <div class="comentario-texto">Pq tinha que ter meu nome? Kkk</div>
+        <div class="comentario-meta">Aug 08, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Imorrível kkkkk Um suicida pra lá de falho? Eitcha</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">abacatemer</span> 
+        </div>
+        <div class="comentario-texto">AKJWJFKEKF IMORRÍVEL</div>
+        <div class="comentario-meta">Jul 05, 2018 • ❤️ 75</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">UmaLinha</span> 
+        </div>
+        <div class="comentario-texto">nome dele é joshua ou dazai? tenta se matar mas n consegue :v</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 51</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Monokuma-chan</span> 
+        </div>
+        <div class="comentario-texto">Eu entendi essa referência 
+
+(~‾∇‾)~</div>
+        <div class="comentario-meta">Oct 21, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">eve ★</span> 
+        </div>
+        <div class="comentario-texto">N pode ver uma viga que o olho brilha</div>
+        <div class="comentario-meta">Jul 23, 2024</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vitorgus</span> 
+        </div>
+        <div class="comentario-texto">Ele vai ter que matar um Jojo? Isso não vai dar certo...</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 35</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lauryw</span> 
+        </div>
+        <div class="comentario-texto">né? kkkk</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap6">◀ Anterior</a>
+                <a href="#cap8">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap8">
+            <h2>Capítulo 8 - 0008-1116838</h2>
+            <img src="episodes/0008-1116838/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap8', this)">
+            <span>💬 Ver Comentários (13)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap8">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Ser ele não morreu em 10 anos imagina agr pow aí complica</div>
+        <div class="comentario-meta">Jul 17, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Q?</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">To confusa vei,  eu só fui beber uma água...</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Johnny filosofando♡</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Monokuma-chan</span> 
+        </div>
+        <div class="comentario-texto">Ele foi uma coisa tão bonita com uma expressão tão feia kkkkkkkkk</div>
+        <div class="comentario-meta">Oct 21, 2018 • ❤️ 7</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Monokuma-chan</span> 
+        </div>
+        <div class="comentario-texto">Ops corrigindo 
+
+Ele FALOU uma coisa tão bonita com uma expressão tão feia
+
+
+
+Corretor idiota</div>
+        <div class="comentario-meta">Nov 19, 2018 • ❤️ 5</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Sofifia</span> 
+        </div>
+        <div class="comentario-texto">essa coisa de amor verdadeiro seria pelo fato de que nesses dez anos alguém ame o Joshua e como o assassino disse na pag 3, essa pessoa ia chorar pelo joshua e até buscaria vingança? ^<^</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 55</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mecmig</span> 
+        </div>
+        <div class="comentario-texto">Levemente confusa mas to fingindo que entendi rs</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 92</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bellaohimesama</span> 
+        </div>
+        <div class="comentario-texto">Q? De repente eu me perdi kkkk</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 50</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lov3drama</span> 
+        </div>
+        <div class="comentario-texto">i very confundida</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">amor?!</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kerimacus</span> 
+        </div>
+        <div class="comentario-texto">hein?</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">d8hunter</span> 
+        </div>
+        <div class="comentario-texto">Bom in media res</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap7">◀ Anterior</a>
+                <a href="#cap9">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap9">
+            <h2>Capítulo 9 - 0009-1116839</h2>
+            <img src="episodes/0009-1116839/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap9', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap9">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Que isso Jojo?</div>
+        <div class="comentario-meta">Nov 22, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Bom rapaz?...</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikko Eli</span> 
+        </div>
+        <div class="comentario-texto">Enquanto isso Jojô gemia na floresta kk</div>
+        <div class="comentario-meta">Aug 25, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">KokyoTheOne</span> 
+        </div>
+        <div class="comentario-texto">O vovô tá comovido irmão</div>
+        <div class="comentario-meta">Jul 24, 2019 • ❤️ 41</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Ele até é um bom rapaz sksksksksksksksk</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 35</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jota Ed[AF]</span> 
+        </div>
+        <div class="comentario-texto">O tanto de copo d'água kanswjzns</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 62</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap8">◀ Anterior</a>
+                <a href="#cap10">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap10">
+            <h2>Capítulo 10 - 0010-1116840</h2>
+            <img src="episodes/0010-1116840/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap10', this)">
+            <span>💬 Ver Comentários (22)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap10">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Depois disso o cara morreu, pq não é possível ele ainda tá vivo</div>
+        <div class="comentario-meta">Jan 15, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Misericórdia esse aí faleceu duas vezes</div>
+        <div class="comentario-meta">Nov 22, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lelex</span> 
+        </div>
+        <div class="comentario-texto">impressão minha ou esse mlk parece o franz?</div>
+        <div class="comentario-meta">Jan 07, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Poha mas não era pra ele mata-lo?</div>
+        <div class="comentario-meta">Jul 17, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Urubu seco</span> 
+        </div>
+        <div class="comentario-texto">Carai olha o chutão nas costas, se a corda não matar o chute vai concerteza misericórdia</div>
+        <div class="comentario-meta">Feb 11, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Voadora do assassino da havaiana!</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">O CARA IMORRIVEL MORREU DPS DESSA VOADORA,  KSKSKS</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Misaki-Kun</span> 
+        </div>
+        <div class="comentario-texto">"Você não vai morrer... porque eu que vou te matar!"</div>
+        <div class="comentario-meta">Sep 29, 2019 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Emyy</span> 
+        </div>
+        <div class="comentario-texto">Mano, isso me lembrou o Dazai :v</div>
+        <div class="comentario-meta">May 01, 2019 • ❤️ 3</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikki</span> 
+        </div>
+        <div class="comentario-texto">Tbm Kakakkaka ficou parecendo o Kunikida dando uma voadora no Dazai</div>
+        <div class="comentario-meta">Apr 22, 2021</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Esse ultimo quadrinho foi a reprentáção da minha vida</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">JESUS JOJO FAIL AGAIN</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sofi</span> 
+        </div>
+        <div class="comentario-texto">KKKKKKKKk "VOCÊ NÃO VAI MORRER, NÃO"</div>
+        <div class="comentario-meta">Aug 02, 2018 • ❤️ 67</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">VOADORA DE HAVAIANA!!!</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GabsGabsGabsGabsGabs</span> 
+        </div>
+        <div class="comentario-texto">KATIAAAUUUUUU</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">geovanapiresluz</span> 
+        </div>
+        <div class="comentario-texto">Tutorial como impedir uma pessoa de se enforcar: Dá-lhe uma voadora nas costas!</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 148</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MehGabss</span> 
+        </div>
+        <div class="comentario-texto">O Jojo sou eu e o assassino eh meus amigos usndusbsusbjsbsjsbs</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Tô achando que irão ficar juntos</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 10</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Andrew</span> 
+        </div>
+        <div class="comentario-texto">Amém</div>
+        <div class="comentario-meta">Oct 28, 2018 • ❤️ 3</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">MUAHAHAHAHA</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LazyReader</span> 
+        </div>
+        <div class="comentario-texto">SUICIDE IS FOR QUITTERS</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">d8hunter</span> 
+        </div>
+        <div class="comentario-texto">Com esse chute na espinha, já deve ter morrido...</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 83</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap9">◀ Anterior</a>
+                <a href="#cap11">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap11">
+            <h2>Capítulo 11 - 0011-1116841</h2>
+            <img src="episodes/0011-1116841/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap11', this)">
+            <span>💬 Ver Comentários (15)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap11">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Mim identifiquei</div>
+        <div class="comentario-meta">Nov 22, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Eybi pink 11</span> 
+        </div>
+        <div class="comentario-texto">N muito obrigado,jjjkkkkkjjkk</div>
+        <div class="comentario-meta">Jun 01, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">😶</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikki</span> 
+        </div>
+        <div class="comentario-texto">Ok, foi só eu ou mais alguém acho esse mlk parecido com o Franz?</div>
+        <div class="comentario-meta">Apr 22, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">"Não muito obrigado " socorro</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 44</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gilmaraassuncao14</span> 
+        </div>
+        <div class="comentario-texto">shippei</div>
+        <div class="comentario-meta">Jan 25, 2019 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">BERRO AMEI. "Você não pode se matar, quem tem que te matar sou eu"</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">vou usar isso quando me mandarem ir parao inferno</div>
+        <div class="comentario-meta">Jul 13, 2018 • ❤️ 43</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sofi</span> 
+        </div>
+        <div class="comentario-texto">somos duas</div>
+        <div class="comentario-meta">Aug 02, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BabyB✿y</span> 
+        </div>
+        <div class="comentario-texto">Somos três</div>
+        <div class="comentario-meta">Aug 06, 2018 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">UmaLinha</span> 
+        </div>
+        <div class="comentario-texto">chuuya evitando q o dazai se mate -q
+
+parei :v</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 84</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Loren</span> 
+        </div>
+        <div class="comentario-texto">Mds huahuahauaha</div>
+        <div class="comentario-meta">Sep 08, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">estefanymilke</span> 
+        </div>
+        <div class="comentario-texto">Eu pensei a mesma coisa kakakaka</div>
+        <div class="comentario-meta">Jun 20, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ceci</span> 
+        </div>
+        <div class="comentario-texto">Sim KJSKSSJKS</div>
+        <div class="comentario-meta">Jul 18, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Kkkkk</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap10">◀ Anterior</a>
+                <a href="#cap12">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap12">
+            <h2>Capítulo 12 - 0012-1116842</h2>
+            <img src="episodes/0012-1116842/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap12', this)">
+            <span>💬 Ver Comentários (12)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap12">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">juliafofa785</span> 
+        </div>
+        <div class="comentario-texto">Conhecendo o Alec, o Jhonny vai bem se apaixonar pelo Joshua</div>
+        <div class="comentario-meta">Jul 01, 2026 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Eu amei esse bixo suicída</div>
+        <div class="comentario-meta">Nov 22, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Q?</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">AI CARA,  TO RINDO DE MAIS "MATAR? MATAR VC DIZ? O DE MORRER?" KSKSKA</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Você ama ele eai vai se matar com ele?</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 36</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Você uai</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Kkkkk</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">"matar, você diz? é o de morrer? " HSUABAUABUSHSUSHSUSHUSHSJSHS</div>
+        <div class="comentario-meta">Jul 16, 2018 • ❤️ 106</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">resposta: vc ama ele :v</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 48</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">otakugamerlokaU</span> 
+        </div>
+        <div class="comentario-texto">Mar esse povo do ship faz ship bem rapido né</div>
+        <div class="comentario-meta">Jul 29, 2020 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">otakugamerlokaU</span> 
+        </div>
+        <div class="comentario-texto">Também shipei</div>
+        <div class="comentario-meta">Jul 29, 2020 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">heloisaazpezanka</span> 
+        </div>
+        <div class="comentario-texto">Fã de NANBAKA????</div>
+        <div class="comentario-meta">Mar 19, 2026</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap11">◀ Anterior</a>
+                <a href="#cap13">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap13">
+            <h2>Capítulo 13 - 0013-1116843</h2>
+            <img src="episodes/0013-1116843/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap13', this)">
+            <span>💬 Ver Comentários (20)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap13">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ágatha</span> 
+        </div>
+        <div class="comentario-texto">Encosta na parede e bota a mão na cabeça</div>
+        <div class="comentario-meta">Sep 04, 2025 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Calma aí carai</div>
+        <div class="comentario-meta">Jan 15, 2025 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">esquisitinha</span> 
+        </div>
+        <div class="comentario-texto">Uma vibe de dazai e chuuya</div>
+        <div class="comentario-meta">Nov 22, 2024 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">liamsoares55</span> 
+        </div>
+        <div class="comentario-texto">O diálogo akakakkaak</div>
+        <div class="comentario-meta">Nov 08, 2024 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Akira!🪐 (rebzyyx fa</span> 
+        </div>
+        <div class="comentario-texto">EPA, ISSO TÁ PARECENDO O DAZAI E O CHUUYA</div>
+        <div class="comentario-meta">Sep 06, 2024 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Como é amigo?</div>
+        <div class="comentario-meta">Jul 17, 2023 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Calma aí moreno</div>
+        <div class="comentario-meta">Jul 17, 2023 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ruthepollyquirino</span> 
+        </div>
+        <div class="comentario-texto">Pq esse cara parece MT o Franz de lebre e coelho?????</div>
+        <div class="comentario-meta">Jun 08, 2023 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Oxi</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikki</span> 
+        </div>
+        <div class="comentario-texto">Chotto matte colega</div>
+        <div class="comentario-meta">Apr 22, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Batata :)</span> 
+        </div>
+        <div class="comentario-texto">Por um momento, eu te juro q pensei q era o Franz</div>
+        <div class="comentario-meta">Mar 27, 2021 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikko Eli</span> 
+        </div>
+        <div class="comentario-texto">Hmmm Shippo ou não Shippo?
+
+,_,</div>
+        <div class="comentario-meta">Aug 25, 2020 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">Um momento, colega</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Toda calma nossa hora</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Ih rapa, agora diz "Quem te ama?"</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rubyzinha</span> 
+        </div>
+        <div class="comentario-texto">Um momento aí rapa</div>
+        <div class="comentario-meta">Sep 12, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">parado ai moleque</div>
+        <div class="comentario-meta">Jul 13, 2018 • ❤️ 49</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">luremix</span> 
+        </div>
+        <div class="comentario-texto">um momento, amigo</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 75</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">soaresnauhanna</span> 
+        </div>
+        <div class="comentario-texto">espere ai camarada</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 56</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Ih rapa</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 6</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap12">◀ Anterior</a>
+                <a href="#cap14">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap14">
+            <h2>Capítulo 14 - 0014-1116844</h2>
+            <img src="episodes/0014-1116844/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap14', this)">
+            <span>💬 Ver Comentários (14)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap14">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravi0lly</span> 
+        </div>
+        <div class="comentario-texto">SOCORRO ESSE SOL AKSKSKSKKSKSKSKSKSKSKSKSKSKSKAKAKSKDJKSKSKDKSKD</div>
+        <div class="comentario-meta">Jan 28, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Casa cogumelo? Alec tava fumado quando fez essa HQ em ekkekeke</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jeniffisilva82</span> 
+        </div>
+        <div class="comentario-texto">Agora q entendi havaianas ,há</div>
+        <div class="comentario-meta">Sep 03, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">"Preciso passar lá em casa primeiro" "e vai pegar o quê?" "Uma arma, pra caso tu não me matar de morrer, eu mesmo fazer isso" Q? Eu tenho problemas aaa</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Nesse mundo é matar ou ser morrido</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 49</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vivilf2</span> 
+        </div>
+        <div class="comentario-texto">Tel portugeis ta bao en</div>
+        <div class="comentario-meta">Mar 26, 2021 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">É um meme, trouxa</div>
+        <div class="comentario-meta">Mar 27, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">cururu992</span> 
+        </div>
+        <div class="comentario-texto">Referência? Undertale firifimfô</div>
+        <div class="comentario-meta">May 27, 2022 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">cara se, se mata ou ser morto por ele dana mesma pqo jojo nao se mata logo</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ThatOnePaul</span> 
+        </div>
+        <div class="comentario-texto">hoho</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">d8hunter</span> 
+        </div>
+        <div class="comentario-texto">Ele poderia dar uma chinela na cara de cada pessoa que chamasse ele assim</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 76</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vivilf2</span> 
+        </div>
+        <div class="comentario-texto">MDS SIIIIIIM</div>
+        <div class="comentario-meta">Mar 26, 2021 • ❤️ 3</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vitorgus</span> 
+        </div>
+        <div class="comentario-texto">"Não tem nada mais marcante na minha pessoa do que os meus chinelos?", pergunta a pessoa de jaqueta estilosa, uma espiral tatuada no braço, tapa-olho e um cabelão que fica caindo na frente do seu rosto.
+
+
+
+Resposta: Não.</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 146</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">exato</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 9</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap13">◀ Anterior</a>
+                <a href="#cap15">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap15">
+            <h2>Capítulo 15 - 0015-1116846</h2>
+            <img src="episodes/0015-1116846/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap15', this)">
+            <span>💬 Ver Comentários (9)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap15">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yukizzinx</span> 
+        </div>
+        <div class="comentario-texto">Voltando aq dps de uns anos pra reler essa obra☝💞</div>
+        <div class="comentario-meta">Nov 19, 2025 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">eve ★</span> 
+        </div>
+        <div class="comentario-texto">o nome do cachorro veio de 1/2 Prince né possível</div>
+        <div class="comentario-meta">Jul 23, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letii.Emanuksj</span> 
+        </div>
+        <div class="comentario-texto">Tabom, eu tô chorando pq causa disso, scrr</div>
+        <div class="comentario-meta">May 18, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Morre e deixa o doguinho... Deixa q eu te mato então fio</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Migo seu cachorro ia morrer sem você</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Descobrimos quem ama o Jojo.</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 56</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">J e n i f o</span> 
+        </div>
+        <div class="comentario-texto">NOSSA ELE IA SE MATAR E DEIXA O DOGGO ;-;</div>
+        <div class="comentario-meta">Jul 20, 2018 • ❤️ 103</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sarah_:p</span> 
+        </div>
+        <div class="comentario-texto">Que crueldade</div>
+        <div class="comentario-meta">Apr 04, 2025 • ❤️ 3</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">que nome de cachorro é esse</div>
+        <div class="comentario-meta">Jul 13, 2018 • ❤️ 45</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap14">◀ Anterior</a>
+                <a href="#cap16">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap16">
+            <h2>Capítulo 16 - 0016-1116847</h2>
+            <img src="episodes/0016-1116847/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap16', this)">
+            <span>💬 Ver Comentários (20)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap16">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Nossa, senti até daqui Clotilde</div>
+        <div class="comentario-meta">Jan 15, 2025 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">liamsoares55</span> 
+        </div>
+        <div class="comentario-texto">Man...eu tava chorando por ter lido Pela Última Vez e agora tô morrendo de rir lendo isso...eis o efeito obras do Alec.</div>
+        <div class="comentario-meta">Nov 08, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Concordo com o assassino</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oppazinha</span> 
+        </div>
+        <div class="comentario-texto">Clotilde me representa ashuhahuhashua 🤸💐</div>
+        <div class="comentario-meta">Sep 04, 2019 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Verdades na cara</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Jonnhy rei sensato, me identifiquei.</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">"Fui eu que peidei" kkkk</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 20</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">abacatemer</span> 
+        </div>
+        <div class="comentario-texto">caralho, clotilde</div>
+        <div class="comentario-meta">Jul 05, 2018 • ❤️ 89</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">se ele deixasse o filhote para orrer nao precisava nem se matar eu fazia isso por ele</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 27</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">soaresnauhanna</span> 
+        </div>
+        <div class="comentario-texto">cruzes Clotilde</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dududinha2005</span> 
+        </div>
+        <div class="comentario-texto">Vai abandonar o doguinho? Que maldade</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 22</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bellaohimesama</span> 
+        </div>
+        <div class="comentario-texto">Porra Jojo, ai não neh</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yasmin Fox</span> 
+        </div>
+        <div class="comentario-texto">Mereceu o socão</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 84</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Pera Jojo, você ia deixar o filhote sozinhoooo? ??</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 16</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Essa doeu em mim</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vitorgus</span> 
+        </div>
+        <div class="comentario-texto">Nossa, dá uma diminuída no repolho, Clotilde.</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 151</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">H e l l H a c k</span> 
+        </div>
+        <div class="comentario-texto">KKKKKKKK</div>
+        <div class="comentario-meta">Jul 08, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bellen</span> 
+        </div>
+        <div class="comentario-texto">Nera espinafre? :v</div>
+        <div class="comentario-meta">Jul 16, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Zos Nox</span> 
+        </div>
+        <div class="comentario-texto">Clotilde tá comendo muito feijão...</div>
+        <div class="comentario-meta">Dec 23, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">otakugamerlokaU</span> 
+        </div>
+        <div class="comentario-texto">E no feijão preto também</div>
+        <div class="comentario-meta">Jul 29, 2020 • ❤️ 5</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap15">◀ Anterior</a>
+                <a href="#cap17">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap17">
+            <h2>Capítulo 17 - 0017-1116848</h2>
+            <img src="episodes/0017-1116848/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap17', this)">
+            <span>💬 Ver Comentários (15)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap17">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">patinfofo</span> 
+        </div>
+        <div class="comentario-texto">Q fofo mano ;-;</div>
+        <div class="comentario-meta">Jan 14, 2022 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">A mordida do amor</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">E fofo ate mesmo destruindo pernas alheias</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 66</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">"Não é só pq eu alimento que ele me ama" EU COM MEUS IRMÃOS</div>
+        <div class="comentario-meta">Jan 22, 2019 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">coisa fofa</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 47</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Owwnt</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">ô bixin forte esse, viu?</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 105</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">É fã do Saiko você?</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">ss :3</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">James</span> 
+        </div>
+        <div class="comentario-texto">por acaso sua foto de perfil é do Lafayette?</div>
+        <div class="comentario-meta">Jul 14, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">UM FÃ DE HAMILTON??? AQUI???? :O STO CHOCADA</div>
+        <div class="comentario-meta">Jul 15, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">e sim, é do Laffayette :3</div>
+        <div class="comentario-meta">Jul 15, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IceAngelSimon</span> 
+        </div>
+        <div class="comentario-texto">Eita, tem fãs de Hamilton aqui? que legal :3</div>
+        <div class="comentario-meta">Aug 26, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">eta, ta brotando mais</div>
+        <div class="comentario-meta">Aug 27, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">@gehlatina_</span> 
+        </div>
+        <div class="comentario-texto">ceis tudo tem bom gosto :'3</div>
+        <div class="comentario-meta">Nov 09, 2018 • ❤️ 1</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap16">◀ Anterior</a>
+                <a href="#cap18">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap18">
+            <h2>Capítulo 18 - 0018-1116850</h2>
+            <img src="episodes/0018-1116850/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap18', this)">
+            <span>💬 Ver Comentários (7)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap18">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">O muleque vai matar o cachorro junto?</div>
+        <div class="comentario-meta">Jan 15, 2025 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">OMG</div>
+        <div class="comentario-meta">Jul 17, 2023 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">🤔😶</div>
+        <div class="comentario-meta">Dec 22, 2021 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jeon-Kookies</span> 
+        </div>
+        <div class="comentario-texto">I WANNA KNOW WHAT THEY'RE SAYING!!!!!! (TTOTT)</div>
+        <div class="comentario-meta">Sep 22, 2018 • ❤️ 34</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">emillycristina90</span> 
+        </div>
+        <div class="comentario-texto">If you want I can translate for you I'm Brazilian</div>
+        <div class="comentario-meta">Sep 29, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jeon-Kookies</span> 
+        </div>
+        <div class="comentario-texto">Nah it's fine. I don't want to cause trouble for you :)</div>
+        <div class="comentario-meta">Sep 29, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">emillycristina90</span> 
+        </div>
+        <div class="comentario-texto">It will not work for me, but if you want, I just asked.</div>
+        <div class="comentario-meta">Oct 01, 2018 • ❤️ 3</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap17">◀ Anterior</a>
+                <a href="#cap19">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap19">
+            <h2>Capítulo 19 - 0019-1116851</h2>
+            <img src="episodes/0019-1116851/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap19', this)">
+            <span>💬 Ver Comentários (20)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap19">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">heloisaazpezanka</span> 
+        </div>
+        <div class="comentario-texto">Todos os fãs do Alec gostam de relacionamentos tóxicos nos quadrinhos kaksksks (e eu tmb...</div>
+        <div class="comentario-meta">Mar 19, 2026 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Moniqueyaoi</span> 
+        </div>
+        <div class="comentario-texto">1. Casal</div>
+        <div class="comentario-meta">Dec 28, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">eve ★</span> 
+        </div>
+        <div class="comentario-texto">Coisa boa né, mata o cachorro e o dono</div>
+        <div class="comentario-meta">Jul 23, 2024 • ❤️ 1</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">_Nemo_</span> 
+        </div>
+        <div class="comentario-texto">Promoção 2 por 1</div>
+        <div class="comentario-meta">Jul 24, 2026</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Kkkkkkkkkkk</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikki</span> 
+        </div>
+        <div class="comentario-texto">Óh o clima, ala</div>
+        <div class="comentario-meta">Apr 22, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">emmanuellycerqueira</span> 
+        </div>
+        <div class="comentario-texto">Se apaixonou, ala.</div>
+        <div class="comentario-meta">Aug 04, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cancêr ( Bob )</span> 
+        </div>
+        <div class="comentario-texto">JÁ TÔ SHIPPANDO AQUI! AAAAAAAAAAAHHHHHHHHH!</div>
+        <div class="comentario-meta">Feb 01, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vic_p3</span> 
+        </div>
+        <div class="comentario-texto">To apai pelo assassino de Havaiana</div>
+        <div class="comentario-meta">Aug 27, 2019 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Pra não perder tempo, ja se beigem</div>
+        <div class="comentario-meta">Mar 06, 2019 • ❤️ 12</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cart00nMilk</span> 
+        </div>
+        <div class="comentario-texto">Huuuummm. 7w7</div>
+        <div class="comentario-meta">Oct 08, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Kkkk</div>
+        <div class="comentario-meta">Jul 26, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Sofifia</span> 
+        </div>
+        <div class="comentario-texto">aii que desenhos lindos, não é a toa que o Alec é famoso por Lebre e Coelho ^<^</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 17</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">-como eu tive a ideia eu vou leva. o seu cu</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 67</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">já shippo</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 87</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Chuinhochuchu</span> 
+        </div>
+        <div class="comentario-texto">Eu também já shippo</div>
+        <div class="comentario-meta">Jul 03, 2019 • ❤️ 7</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">soaresnauhanna</span> 
+        </div>
+        <div class="comentario-texto">gente, o Assassino de Havaiana é muito lindo</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 83</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Helloisa</span> 
+        </div>
+        <div class="comentario-texto">Concordo plenamente</div>
+        <div class="comentario-meta">Dec 24, 2020 • ❤️ 5</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dududinha2005</span> 
+        </div>
+        <div class="comentario-texto">senti uma atração chamegosa</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 20</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pudimdocemineamordo</span> 
+        </div>
+        <div class="comentario-texto">Hmm</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 7</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap18">◀ Anterior</a>
+                <a href="#cap20">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap20">
+            <h2>Capítulo 20 - 0020-1116852</h2>
+            <img src="episodes/0020-1116852/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap20', this)">
+            <span>💬 Ver Comentários (37)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap20">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Jojosinho é fodakkkkkkk</div>
+        <div class="comentario-meta">Jan 15, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Eybi pink 11</span> 
+        </div>
+        <div class="comentario-texto">Iiii vai dar namoro, Jesus eu tenho que parar com isso kkkkkkk</div>
+        <div class="comentario-meta">Jun 01, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Não tô tankando os velhos não mano namoral KSKAKAK</div>
+        <div class="comentario-meta">Jul 17, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vellany</span> 
+        </div>
+        <div class="comentario-texto">Eu ouvi JOJO?</div>
+        <div class="comentario-meta">Dec 22, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Star</span> 
+        </div>
+        <div class="comentario-texto">Alec plmds termina isso.</div>
+        <div class="comentario-meta">Sep 09, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">rinn_zz</span> 
+        </div>
+        <div class="comentario-texto">pera ...... Já fazem quantos anos?</div>
+        <div class="comentario-meta">Dec 15, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">HeloisaC276</span> 
+        </div>
+        <div class="comentario-texto">Jojozinh, Já tem um apelido carinhoso agora</div>
+        <div class="comentario-meta">Jun 27, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">taisdonato13</span> 
+        </div>
+        <div class="comentario-texto">os peidos são terremotos</div>
+        <div class="comentario-meta">Jul 16, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Missa-chan</span> 
+        </div>
+        <div class="comentario-texto">Eu escrevo Jhonny desde antes de ler essa comic ;-;</div>
+        <div class="comentario-meta">Jun 30, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Chuinhochuchu</span> 
+        </div>
+        <div class="comentario-texto">É só eu que shippo o jonnhy com o jojo(SE FOR PEDOFILIA EU SHIPPO MESMO ASSIM)?</div>
+        <div class="comentario-meta">May 14, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Nomes de se shipi ,por favor depositar nesse comentario:</div>
+        <div class="comentario-meta">Mar 06, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Shippei forte</div>
+        <div class="comentario-meta">Jan 22, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Hugo_Verso</span> 
+        </div>
+        <div class="comentario-texto">Que sol divo</div>
+        <div class="comentario-meta">Oct 22, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">☆Laries☆</span> 
+        </div>
+        <div class="comentario-texto">Jojozin</div>
+        <div class="comentario-meta">Sep 01, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAA, TO SHIPPANDO "JOJOZIN" AAAAAAA</div>
+        <div class="comentario-meta">Aug 25, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jojo</span> 
+        </div>
+        <div class="comentario-texto">Meu apelido é jojo kkkk</div>
+        <div class="comentario-meta">Jul 27, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Jojozin kkk</div>
+        <div class="comentario-meta">Jul 26, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bipolar</span> 
+        </div>
+        <div class="comentario-texto">Jojozin kkkkkk desde o início tô rindo como um abestado kkkkk</div>
+        <div class="comentario-meta">Jul 19, 2018 • ❤️ 14</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">TiaGohan</span> 
+        </div>
+        <div class="comentario-texto">Eu comecei a ler e já me apaixonei de cara pela comic. Eu já estou em um árduo trabalho de fazer meus amigos lerem para eu ter com quem comentar os acontecimentos (nenhuma ameaça está sendo utilizada para que isso aconteça).</div>
+        <div class="comentario-meta">Jul 16, 2018 • ❤️ 12</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lauryw</span> 
+        </div>
+        <div class="comentario-texto">JONATHAN JOESTAR srry n deu pra segurae</div>
+        <div class="comentario-meta">Jul 11, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gi.Cheshire432</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAAAA to amando já <3</div>
+        <div class="comentario-meta">Jul 06, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">doppelganger</span> 
+        </div>
+        <div class="comentario-texto">No fim da história Alec ñ vai terminar e vai deixar todo mundo querendo saber o q vai acontecer</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 68</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GabsGabsGabsGabsGabs</span> 
+        </div>
+        <div class="comentario-texto">Jojozin KKKKKKKKKK 💙</div>
+        <div class="comentario-meta">Jul 04, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sasalele</span> 
+        </div>
+        <div class="comentario-texto">QUERU MAIS!!!!</div>
+        <div class="comentario-meta">Jul 02, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">to decidindo o nome para o ship</div>
+        <div class="comentario-meta">Jul 01, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bellaohimesama</span> 
+        </div>
+        <div class="comentario-texto">Tamo meio perdido ainda, mas segue o bonde pra ver pra onde vamos nessa aventura loca do senhor alec o/</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Amai_yorokobi</span> 
+        </div>
+        <div class="comentario-texto">ae gostei .-. agora tenho só que descobrir como se pronuncia jonnhy (eu simplismente não consigo falar .-.)</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">Jonhy ( som de NH )</div>
+        <div class="comentario-meta">Sep 02, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">acho que eh assim-q</div>
+        <div class="comentario-meta">Sep 02, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hiimih</span> 
+        </div>
+        <div class="comentario-texto">acho q é tipi djoni (?</div>
+        <div class="comentario-meta">Nov 03, 2018 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LuluFazbear</span> 
+        </div>
+        <div class="comentario-texto">a comic já começa com 20 paginas, MUITO BOM ;W;</div>
+        <div class="comentario-meta">Jun 30, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">xMektx</span> 
+        </div>
+        <div class="comentario-texto">Adorei,ainda mais o Jonnhy parecendo que foi atacado por uma fera kkkk</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Wylla Carter</span> 
+        </div>
+        <div class="comentario-texto">Ja to shipando e imaginando o casório, quero nem saber!</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IgorComics</span> 
+        </div>
+        <div class="comentario-texto">Foda foda, quero mais</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">esse sol agora eh minha religião</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Momota</span> 
+        </div>
+        <div class="comentario-texto">Mais uma comic pro alec n terminar xD ( rindo pra n chorar )</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 75</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alea Ernie</span> 
+        </div>
+        <div class="comentario-texto">N sei o q foi mais engraçado nesse capítulo 1: as piadas de peido ou esse sol com cara de tiozão</div>
+        <div class="comentario-meta">Jun 29, 2018 • ❤️ 103</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap19">◀ Anterior</a>
+                <a href="#cap21">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap21">
+            <h2>Capítulo 21 - 0021-1178625</h2>
+            <img src="episodes/0021-1178625/images/panel-001.png" alt="panel-001.png">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap21', this)">
+            <span>💬 Ver Comentários (37)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap21">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Nós moide:3</div>
+        <div class="comentario-meta">Jan 15, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Vi_</span> 
+        </div>
+        <div class="comentario-texto">Eu moido tbm :3</div>
+        <div class="comentario-meta">Jun 27, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">Mi moide</div>
+        <div class="comentario-meta">Jul 17, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">zueirat319</span> 
+        </div>
+        <div class="comentario-texto">Nois moidemo</div>
+        <div class="comentario-meta">Mar 08, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Batata :)</span> 
+        </div>
+        <div class="comentario-texto">Ovo moide ╹ω╹</div>
+        <div class="comentario-meta">Mar 27, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">somoosh</span> 
+        </div>
+        <div class="comentario-texto">Nois moide UwU</div>
+        <div class="comentario-meta">Jan 28, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikko Eli</span> 
+        </div>
+        <div class="comentario-texto">Nóix moidemux :3</div>
+        <div class="comentario-meta">Aug 25, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">HeloisaC276</span> 
+        </div>
+        <div class="comentario-texto">agora que eu percebi o jojô é muito mais novo que o jonnhy  do que eu pensava</div>
+        <div class="comentario-meta">Jun 28, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lorenna</span> 
+        </div>
+        <div class="comentario-texto">:3</div>
+        <div class="comentario-meta">Apr 18, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alex(MeninoeMenina)</span> 
+        </div>
+        <div class="comentario-texto">Todo mundo mode :3</div>
+        <div class="comentario-meta">Feb 11, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Back</span> 
+        </div>
+        <div class="comentario-texto">7w7 moide ele então</div>
+        <div class="comentario-meta">Mar 20, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">Eu moido, você moide, nos moidemos, vos moides, ele /elas moides</div>
+        <div class="comentario-meta">Mar 06, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">QUE FOFURA PQP AAAAAAAAAAAAAA</div>
+        <div class="comentario-meta">Jan 22, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Zos Nox</span> 
+        </div>
+        <div class="comentario-texto">Até aqui essa desgraça de 'moido'...? Agora auem quer cometer suicídio sou eu.</div>
+        <div class="comentario-meta">Dec 23, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">leticiabonilho</span> 
+        </div>
+        <div class="comentario-texto">Kawaiiii 😍😍😍 essa história tá muiito legal, valeu Alec, te amooo 🖤🖤🖤</div>
+        <div class="comentario-meta">Dec 01, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">turtle</span> 
+        </div>
+        <div class="comentario-texto">English? Just asking</div>
+        <div class="comentario-meta">Nov 04, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Willow</span> 
+        </div>
+        <div class="comentario-texto">Nois moidemos >:3</div>
+        <div class="comentario-meta">Oct 12, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">soaresnauhanna</span> 
+        </div>
+        <div class="comentario-texto">assim, alguém me explica onde iniciou isso de "eu moido"?</div>
+        <div class="comentario-meta">Sep 15, 2018 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fuckingwitch</span> 
+        </div>
+        <div class="comentario-texto">Um emo do facebook</div>
+        <div class="comentario-meta">Oct 29, 2018 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">todos mordem :3 ele moíde -qqq</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">HAHAHAHAHAHAHAHA XDDDDDD</div>
+        <div class="comentario-meta">Sep 05, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lelelis Duarte</span> 
+        </div>
+        <div class="comentario-texto">aquela aleatoriedade fora do normal kkk</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 71</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">>:3</div>
+        <div class="comentario-meta">Sep 05, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Masked</span> 
+        </div>
+        <div class="comentario-texto">Eun também moidu >:3</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gracilariopsis</span> 
+        </div>
+        <div class="comentario-texto">a gente moide</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 123</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">nós moidemos</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Niilista</span> 
+        </div>
+        <div class="comentario-texto">Vós Moideis</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">eles/elas moidem</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dhara4589</span> 
+        </div>
+        <div class="comentario-texto">eles moideieis</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yuki5482</span> 
+        </div>
+        <div class="comentario-texto">eles moidem >:3</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">tu moide</div>
+        <div class="comentario-meta">Sep 07, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dududinha2005</span> 
+        </div>
+        <div class="comentario-texto">todos nós moidemos</div>
+        <div class="comentario-meta">Sep 07, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kawaiiraissa</span> 
+        </div>
+        <div class="comentario-texto">Eles moidem</div>
+        <div class="comentario-meta">Sep 10, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Large Baguette</span> 
+        </div>
+        <div class="comentario-texto">Eles moidem</div>
+        <div class="comentario-meta">Sep 29, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">Tus moideis</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giovanna</span> 
+        </div>
+        <div class="comentario-texto">nós moidemos</div>
+        <div class="comentario-meta">Oct 25, 2024 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">Ai que amorzinho, ansiosa aqui! Ah! Comprei lebre e Coelho, chegou ontem! E ontem comprei Larry e Coelho, quando chegar eu aviso ^^ amo suas histórias, poderia me dar um autógrafo virtual?</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 45</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap20">◀ Anterior</a>
+                <a href="#cap22">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap22">
+            <h2>Capítulo 22 - 0022-1178633</h2>
+            <img src="episodes/0022-1178633/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0022-1178633/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0022-1178633/images/panel-003.jpg" alt="panel-003.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap22', this)">
+            <span>💬 Ver Comentários (104)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap22">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">estefanymilke</span> 
+        </div>
+        <div class="comentario-texto">Será que algum dia nosso querido Alec vai terminar de postar esse quadrinho aqui?</div>
+        <div class="comentario-meta">Aug 03, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Blaise_Marino</span> 
+        </div>
+        <div class="comentario-texto">Queria a continuação😭😭😭😭😭😭</div>
+        <div class="comentario-meta">Jun 22, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">cristiannascime</span> 
+        </div>
+        <div class="comentario-texto">ALIMENTE AS SUAS CRIAS</div>
+        <div class="comentario-meta">May 01, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">heloisaazpezanka</span> 
+        </div>
+        <div class="comentario-texto">QUÊ, TÁ INCOMPLETO?</div>
+        <div class="comentario-meta">Mar 19, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">melquetrefe</span> 
+        </div>
+        <div class="comentario-texto">Que ódio Alec, cadê a continuação?!?aff</div>
+        <div class="comentario-meta">Mar 18, 2026 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sugarfly</span> 
+        </div>
+        <div class="comentario-texto">Pelo amor de deus alec volta com essa comic</div>
+        <div class="comentario-meta">Mar 08, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">AnnaElish</span> 
+        </div>
+        <div class="comentario-texto">Já fazem 7 anos e o Alec ainda não terminou a história ;-;</div>
+        <div class="comentario-meta">Feb 26, 2026 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lua de cristais</span> 
+        </div>
+        <div class="comentario-texto">Continua pfvvvvvvvvvvv</div>
+        <div class="comentario-meta">Jan 30, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">onionRING</span> 
+        </div>
+        <div class="comentario-texto">E quando ele volta?……😭</div>
+        <div class="comentario-meta">Jan 26, 2026 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ágatha</span> 
+        </div>
+        <div class="comentario-texto">E aí Alec? Sem continuação msm?</div>
+        <div class="comentario-meta">Sep 04, 2025 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">estefanymilke</span> 
+        </div>
+        <div class="comentario-texto">Mano por que ele não terminou essa comiccccccc</div>
+        <div class="comentario-meta">Jun 26, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Desde 2018 tu não posta mais,né?safado😡😡😡😡</div>
+        <div class="comentario-meta">Jan 15, 2025 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rappycat</span> 
+        </div>
+        <div class="comentario-texto">VAI SE FUDER ALEC MDS, COMO QUE TU DEIXA OS TREM BOM SEM CONTINUAÇÃO? SE FUDE MANO.</div>
+        <div class="comentario-meta">Jan 05, 2025</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">adriantelles11</span> 
+        </div>
+        <div class="comentario-texto">Tô quase assim</div>
+        <div class="comentario-meta">Jan 09, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">CALVINO</span> 
+        </div>
+        <div class="comentario-texto">Opa lembra de mim provalvelmente nao e nem vai ler provalvelmete mas eu sou o luiz henrique eu adorei o jonnhy li o livro inteiro duas vezes</div>
+        <div class="comentario-meta">Dec 17, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">liamsoares55</span> 
+        </div>
+        <div class="comentario-texto">Essa obra ainda está sendo atualizada?? ^^</div>
+        <div class="comentario-meta">Nov 08, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giovanna</span> 
+        </div>
+        <div class="comentario-texto">to esperando até hoje (cadê o próximo capítulo 😭😭)</div>
+        <div class="comentario-meta">Oct 25, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pastel_raivoso</span> 
+        </div>
+        <div class="comentario-texto">Cade o jonnhy já faz anos sem atualização</div>
+        <div class="comentario-meta">Jun 20, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pastel_raivoso</span> 
+        </div>
+        <div class="comentario-texto">Alec cade a continuação</div>
+        <div class="comentario-meta">Jun 19, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lice</span> 
+        </div>
+        <div class="comentario-texto">Alec, eu comecei a ler seu conteúdo recentemente, mas já estou viciada! Por favor continua!!!</div>
+        <div class="comentario-meta">Apr 30, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aneliz Lima</span> 
+        </div>
+        <div class="comentario-texto">Oche, acabou?</div>
+        <div class="comentario-meta">Feb 13, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nika</span> 
+        </div>
+        <div class="comentario-texto">Aaaaaa nn tem fim??</div>
+        <div class="comentario-meta">Jan 21, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ׄ  ౨ৎ</span> 
+        </div>
+        <div class="comentario-texto">CONTINUA</div>
+        <div class="comentario-meta">Jan 16, 2024</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">guh</span> 
+        </div>
+        <div class="comentario-texto">Já fazem anos, que nostalgia ler essa comic :3</div>
+        <div class="comentario-meta">Jul 19, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haruzinrs</span> 
+        </div>
+        <div class="comentario-texto">2018...</div>
+        <div class="comentario-meta">Jul 17, 2023 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">D3LL</span> 
+        </div>
+        <div class="comentario-texto">Que arte incrível</div>
+        <div class="comentario-meta">Jan 26, 2023 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">mmaryjhany</span> 
+        </div>
+        <div class="comentario-texto">Alec,vc abandonou essa comic! Como vc pode TwT.... Pake meu deus,pake. Q mundo cruelll TwT</div>
+        <div class="comentario-meta">Jan 02, 2023 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">aafpt40</span> 
+        </div>
+        <div class="comentario-texto">Sdd</div>
+        <div class="comentario-meta">Jul 29, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">analuiz0a44214</span> 
+        </div>
+        <div class="comentario-texto">Mano eu necessito de continuação</div>
+        <div class="comentario-meta">Jul 23, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ladylushton</span> 
+        </div>
+        <div class="comentario-texto">Que gracinhaaaaaaaa</div>
+        <div class="comentario-meta">Apr 16, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">patinfofo</span> 
+        </div>
+        <div class="comentario-texto">O cara se chama "assassino da havaiana",como é q tu ACHA q ele mata as vítimas?</div>
+        <div class="comentario-meta">Jan 14, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">eve san</span> 
+        </div>
+        <div class="comentario-texto">Ele moide :3</div>
+        <div class="comentario-meta">Dec 09, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">amanda06souza</span> 
+        </div>
+        <div class="comentario-texto">Quando vai ter continuação?</div>
+        <div class="comentario-meta">Nov 24, 2021 • ❤️ 3</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Moranngo Torraddo</span> 
+        </div>
+        <div class="comentario-texto">🥲</div>
+        <div class="comentario-meta">Oct 27, 2022</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Star</span> 
+        </div>
+        <div class="comentario-texto">CONTINUA PFV</div>
+        <div class="comentario-meta">Sep 09, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">AAbacaxi</span> 
+        </div>
+        <div class="comentario-texto">O sol tomando um suquinho ali atrás</div>
+        <div class="comentario-meta">May 13, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vivilf2</span> 
+        </div>
+        <div class="comentario-texto">continuação?</div>
+        <div class="comentario-meta">Mar 27, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jenny</span> 
+        </div>
+        <div class="comentario-texto">continueee ;-;</div>
+        <div class="comentario-meta">Jan 21, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">alinnevictoria77</span> 
+        </div>
+        <div class="comentario-texto">Nossa ja fazem dois anos? Queria mais :(</div>
+        <div class="comentario-meta">Dec 01, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">S. H.</span> 
+        </div>
+        <div class="comentario-texto">Poderia, por favor, nos dar mais um capítulo dessa maravilha? Por favor? :)</div>
+        <div class="comentario-meta">Oct 15, 2020 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">S. H.</span> 
+        </div>
+        <div class="comentario-texto">Meu Pai, que qualidade de script é essa, Senhor... É magnífica...</div>
+        <div class="comentario-meta">Oct 15, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">aafpt40</span> 
+        </div>
+        <div class="comentario-texto">Eu aqui toda selerepe pensando que um dia eu vou ver a continuação dessa maravilhosa história;-;(serar que eu sou uma iludida)</div>
+        <div class="comentario-meta">Aug 05, 2020 • ❤️ 8</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jansesantos</span> 
+        </div>
+        <div class="comentario-texto">Entendo... Estou em dezembro de 2022.</div>
+        <div class="comentario-meta">Dec 26, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">estefanymilke</span> 
+        </div>
+        <div class="comentario-texto">Entendo estou em junho de 2025</div>
+        <div class="comentario-meta">Jun 20, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lil_Angel_Face ⸙͎</span> 
+        </div>
+        <div class="comentario-texto">Continua, pls! Eu amei essa série! Pode demorar, pode postar só uma pág por semana, eu não ligo! Só continua! 🥺</div>
+        <div class="comentario-meta">Jun 29, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ondinhazita</span> 
+        </div>
+        <div class="comentario-texto">Vixi, acabou?</div>
+        <div class="comentario-meta">Jun 09, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">btunath2020</span> 
+        </div>
+        <div class="comentario-texto">Ele treinou por anos com As Mães do Himalaias e aprendeu a técnica mais suprema entre todas as técnicas de combate. A Chinelada de Havaianas, cujo não importa quem ou o quanto o alvo corra ela sempre acertará com todo o poder bem nas costas.</div>
+        <div class="comentario-meta">Mar 26, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">inkeleft230</span> 
+        </div>
+        <div class="comentario-texto">Comprar na lojinha? Queria eu viu? ;^; pobre aqui meo</div>
+        <div class="comentario-meta">Feb 25, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cancêr ( Bob )</span> 
+        </div>
+        <div class="comentario-texto">NÃAAAAAAAAAOOOOOOOO!!!!!!!! ACABOU!!!!!!!</div>
+        <div class="comentario-meta">Feb 01, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">funyy</span> 
+        </div>
+        <div class="comentario-texto">Mente antiga técnica passada de mãe para mãe onde a pessoa tem um chinelo feito de ferro e assim que que isso taca na casa pessoa atinge seu alvo entre aspas essa pessoa é morta com muita força usada pelo assassino</div>
+        <div class="comentario-meta">Jan 24, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">YumiAe</span> 
+        </div>
+        <div class="comentario-texto">Vix não teve continuação?</div>
+        <div class="comentario-meta">Dec 22, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Katsuo</span> 
+        </div>
+        <div class="comentario-texto">NÃO ACABOU T-T QUERIA VER ELE MATANDO GERAL COM HAVAIANAS</div>
+        <div class="comentario-meta">Dec 15, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Srta.Noft</span> 
+        </div>
+        <div class="comentario-texto">Ele pega a havaiana e taca... NA SUA CARA! ... Ou ... ele te moide... 7w7(duplo sentido kkkk)</div>
+        <div class="comentario-meta">Dec 01, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Hahaha....haha.....HAHAHAHAHAHAHAHA.       SINCERAMENTE...Eu ADORARIA SABER O QUE ACONTECEU *BARULHOS DE DEMÔNIOS E O INFERNO SE ERGUENDO NA TERRA NO FONDO* COM A CONTINUAÇÃO DA SÉRIE?! *fala a frase com voz demoníaca*</div>
+        <div class="comentario-meta">Sep 08, 2019 • ❤️ 1</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">funyy</span> 
+        </div>
+        <div class="comentario-texto">Sei lá um antigo namorado</div>
+        <div class="comentario-meta">Jan 24, 2020</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Diogo Lange</span> 
+        </div>
+        <div class="comentario-texto">QUERO A CONTINUAÇAO PLSSSS</div>
+        <div class="comentario-meta">Sep 02, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Letícia</span> 
+        </div>
+        <div class="comentario-texto">Vá se fuder...! VC E AINDA NÃO POSTOU O PRÓXIMO EP?! TÁ EU SEI QUE ANIMAÇÃO DEMORA, ALIÁS DEMORA PRA CARALHO! MAIS VC QUER O QUE? ME MATAR DE CURIOSIDADE E TRISTEZA?!EU TENHO TRANSTORNO DE ANSIEDADE TÁ!? SE EU NÃO ASSISTIR ESSA MERDA LOGO EU VOU TER QUE OPITAR  POR REMÉDIOS,VC TÁ ME ENTENDENDO?!?!?!?! Bom,tirando a leve demora é uma série ótima espero que continue assim e por favor não se apresse só por que os outros ficam te enchendo o saco, não!okay meu anjo! 😄😉😚🤗</div>
+        <div class="comentario-meta">Sep 02, 2019 • ❤️ 1</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Delicious! ☆</span> 
+        </div>
+        <div class="comentario-texto">isso eh alguma copypasta ou vc ta falando serioKKKKKKKKKKKKK</div>
+        <div class="comentario-meta">Dec 18, 2020</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">KokyoTheOne</span> 
+        </div>
+        <div class="comentario-texto">Música do naruto?</div>
+        <div class="comentario-meta">Jul 24, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Leite Com Café</span> 
+        </div>
+        <div class="comentario-texto">Claramente ele mata as pessoas na...HAVAIANADA NA CABEÇA</div>
+        <div class="comentario-meta">Jun 22, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yumi</span> 
+        </div>
+        <div class="comentario-texto">E foi assim que os fãs foram trollados achando que teria uma próxima vez</div>
+        <div class="comentario-meta">Mar 06, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">amgarishia</span> 
+        </div>
+        <div class="comentario-texto">Pq parou?</div>
+        <div class="comentario-meta">Feb 24, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Tenho uma nova comic fav</div>
+        <div class="comentario-meta">Jan 22, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">artemis</span> 
+        </div>
+        <div class="comentario-texto">Eita</div>
+        <div class="comentario-meta">Jan 22, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">The Lou Show</span> 
+        </div>
+        <div class="comentario-texto">Aaaaaa me diz que você vai lançar episódio novo, por favor. Nunca te pedi nada</div>
+        <div class="comentario-meta">Jan 06, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">leticiabonilho</span> 
+        </div>
+        <div class="comentario-texto">Continuaa está demaaaaaaiiiis 🖤🖤🖤</div>
+        <div class="comentario-meta">Dec 01, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Salada de Batata</span> 
+        </div>
+        <div class="comentario-texto">Continuaaaaaaaaa plz ;<;</div>
+        <div class="comentario-meta">Nov 25, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">@gehlatina_</span> 
+        </div>
+        <div class="comentario-texto">estou a espera do resto ;-;</div>
+        <div class="comentario-meta">Nov 09, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Sleppy_Foxii</span> 
+        </div>
+        <div class="comentario-texto">Continuaa tá MT bom a comicc! TuT</div>
+        <div class="comentario-meta">Nov 08, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Fênix</span> 
+        </div>
+        <div class="comentario-texto">Continuaaaaaaaaaa!!! por favor 😝</div>
+        <div class="comentario-meta">Nov 05, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BEE</span> 
+        </div>
+        <div class="comentario-texto">Cabo? QUERO MAIS!!! CONTINUA!!!! MAIS!MAIS!MAIS!MAIS! CONTINUA!!!!</div>
+        <div class="comentario-meta">Nov 03, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gi</span> 
+        </div>
+        <div class="comentario-texto">Mais pf</div>
+        <div class="comentario-meta">Oct 17, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Sleppy_Foxii</span> 
+        </div>
+        <div class="comentario-texto">Continua pfvvvvv ;w;</div>
+        <div class="comentario-meta">Oct 13, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Randômica</span> 
+        </div>
+        <div class="comentario-texto">AAAAH estou genuinamente feliz parece que você está refazendo e voltando a desenhar essa história! espero a continuação dela faz uns 2 anos ou mais!! *A* 
+
+Por favor continue com o ótimo trabalho! ÒwÓ</div>
+        <div class="comentario-meta">Sep 14, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gamesgiulia9</span> 
+        </div>
+        <div class="comentario-texto">só eu persebi que tem uma mãozinha atraz moita</div>
+        <div class="comentario-meta">Sep 10, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Hayari</span> 
+        </div>
+        <div class="comentario-texto">Aprendeu a jogar chinelo com a mãe</div>
+        <div class="comentario-meta">Sep 08, 2018 • ❤️ 16</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lauryw</span> 
+        </div>
+        <div class="comentario-texto">n sei por que mas o Jonnhy me lembra pirata</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">ESSES DOIS SÃO MUITO FOFOS, ESSE DO "Eu moido :3" FOI UM TIRO NO MEU KOKORI AAAAAAA <333</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IceAngelSimon</span> 
+        </div>
+        <div class="comentario-texto">One Punch Havaiana Man</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 30</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">funyy</span> 
+        </div>
+        <div class="comentario-texto">Só pode</div>
+        <div class="comentario-meta">Jan 24, 2020 • ❤️ 3</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gi</span> 
+        </div>
+        <div class="comentario-texto">só eu que pensei na havaiana de pau ?</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 110</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sunflower-yolo</span> 
+        </div>
+        <div class="comentario-texto">Eu pensei também</div>
+        <div class="comentario-meta">Sep 14, 2019 • ❤️ 4</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gi.Cheshire432</span> 
+        </div>
+        <div class="comentario-texto">"tchutchu rururuuu" q bonitinho hsuhauahsuh ♡</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Niilista</span> 
+        </div>
+        <div class="comentario-texto">ele mata as pessoas na base da moidida :3</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 34</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">PUTA VIDA! *voz do Faustão*</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">River</span> 
+        </div>
+        <div class="comentario-texto">ele mata as pessoas usando a técnica da mãe dele: NA BASE DA HAVAIANA NA CARA</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 164</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Colibri Moriarty</span> 
+        </div>
+        <div class="comentario-texto">Havaiana com efeito ainda</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">suzzylexia</span> 
+        </div>
+        <div class="comentario-texto">E com àquelas HAVAIANAS DE PAAAAU :3</div>
+        <div class="comentario-meta">Jul 14, 2019 • ❤️ 7</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LuluFazbear</span> 
+        </div>
+        <div class="comentario-texto">OPA</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lky</span> 
+        </div>
+        <div class="comentario-texto">Claramente ele possui a técnica ninja milenar de matar as pessoas na base das havaianas</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 257</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Enjjuuu</span> 
+        </div>
+        <div class="comentario-texto">ele taca a havaianas na cara da pessoa e ela morre :3</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 29</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Niilista</span> 
+        </div>
+        <div class="comentario-texto">Famosa "Chinelada da Morte" passada de mãe pra mãe uma técnica mortal capaz de causar extrema dor ao alvo, dificilmente um homem pode aprende-la, mas caso tal ato aconteça essa técnica pode se tornar letal</div>
+        <div class="comentario-meta">Sep 05, 2018 • ❤️ 59</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lauryw</span> 
+        </div>
+        <div class="comentario-texto">CHINELADA DE PAU</div>
+        <div class="comentario-meta">Sep 06, 2018 • ❤️ 13</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Monokuma-chan</span> 
+        </div>
+        <div class="comentario-texto">Havaiana de pau!!!! Kkkkkk</div>
+        <div class="comentario-meta">Oct 21, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lauryw</span> 
+        </div>
+        <div class="comentario-texto">isso ae</div>
+        <div class="comentario-meta">Oct 26, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MaRiNa</span> 
+        </div>
+        <div class="comentario-texto">Claramente,mais essa tecnica ñ é muito utilizada por assassinos e sim pelas mães ;-;</div>
+        <div class="comentario-meta">Sep 21, 2019 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">funyy</span> 
+        </div>
+        <div class="comentario-texto">Essa é  a antiga arma chamada de ferro onde assim que acerta seu alvo queima seu rosto o deixando inconsciente e depois ele mata as pessoas no soco</div>
+        <div class="comentario-meta">Jan 24, 2020 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">funyy</span> 
+        </div>
+        <div class="comentario-texto">Chinela de ferro</div>
+        <div class="comentario-meta">Jan 24, 2020 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">luvitorianunes132</span> 
+        </div>
+        <div class="comentario-texto">Esse comentário me fez lembrar das havaianas da minha mãe. (entendedores entenderão)</div>
+        <div class="comentario-meta">Aug 03, 2020 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ana</span> 
+        </div>
+        <div class="comentario-texto">Ele e uma mãe brasileira?</div>
+        <div class="comentario-meta">Sep 05, 2020 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">iagochimato</span> 
+        </div>
+        <div class="comentario-texto">Eu pensei que essa técnica só fosse dominada pelas mães</div>
+        <div class="comentario-meta">Dec 21, 2021 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lauralurecke</span> 
+        </div>
+        <div class="comentario-texto">A mãe dele o ensinou a incrível técnica da morte com havaiana</div>
+        <div class="comentario-meta">Jul 21, 2023 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sarah_:p</span> 
+        </div>
+        <div class="comentario-texto">Arte ninja CHINELA PAU</div>
+        <div class="comentario-meta">Apr 04, 2025 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Otaka_nerdd</span> 
+        </div>
+        <div class="comentario-texto">Esse aí erdou a chinela da mãe-</div>
+        <div class="comentario-meta">Sep 13, 2025 • ❤️ 3</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap21">◀ Anterior</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ELEMENTOS DO MODO IMERSIVO -->
+    <div class="imersivo-controles">
+        <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
+    </div>
+
+    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+
+    <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3 id="modalTitle">Comentários</h3>
+                <button class="btn-fechar-modal" onclick="fecharModalComentarios()">✕</button>
+            </div>
+            <div class="modal-body" id="modalComentariosBody"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-bar">
+        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
+        <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
+            <option value="1">Cap. 1 - 0001-1116831</option><option value="2">Cap. 2 - 0002-1116832</option><option value="3">Cap. 3 - 0003-1116833</option><option value="4">Cap. 4 - 0004-1116834</option><option value="5">Cap. 5 - 0005-1116835</option><option value="6">Cap. 6 - 0006-1116836</option><option value="7">Cap. 7 - 0007-1116837</option><option value="8">Cap. 8 - 0008-1116838</option><option value="9">Cap. 9 - 0009-1116839</option><option value="10">Cap. 10 - 0010-1116840</option><option value="11">Cap. 11 - 0011-1116841</option><option value="12">Cap. 12 - 0012-1116842</option><option value="13">Cap. 13 - 0013-1116843</option><option value="14">Cap. 14 - 0014-1116844</option><option value="15">Cap. 15 - 0015-1116846</option><option value="16">Cap. 16 - 0016-1116847</option><option value="17">Cap. 17 - 0017-1116848</option><option value="18">Cap. 18 - 0018-1116850</option><option value="19">Cap. 19 - 0019-1116851</option><option value="20">Cap. 20 - 0020-1116852</option><option value="21">Cap. 21 - 0021-1178625</option><option value="22">Cap. 22 - 0022-1178633</option>
+        </select>
+        <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
+        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
+        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">▶</button>
+    </div>
+
+    <button onclick="irParaTopo()" id="topoBtn">↑</button>
+    <script>
+let tamanhoFontePixels = 16;
+let temaEscuro = true;
+let capAtualIndex = 1;
+let pagAtualIndex = 1;
+let totalCapitulos = 0;
+let modoImersivoAtivo = false;
+
+function mudarTema() { 
+    temaEscuro = !temaEscuro; 
+    document.body.classList.toggle('light', !temaEscuro); 
+}
+
+function alterarFonte(delta) { 
+    tamanhoFontePixels = Math.min(Math.max(tamanhoFontePixels + (delta * 2), 12), 26); 
+    document.documentElement.style.fontSize = tamanhoFontePixels + 'px'; 
+}
+
+function toggleSidebar() { 
+    const sidebar = document.getElementById('sidebar');
+    const conteudo = document.getElementById('conteudo');
+    const btn = document.getElementById('toggleSidebarBtn');
+    sidebar.classList.toggle('oculto');
+    conteudo.classList.toggle('expandido');
+    btn.textContent = sidebar.classList.contains('oculto') ? '☰ Painel' : '✕ Fechar';
+}
+
+function toggleComentarioIndividual(idConteudo, btnEl) {
+    const el = document.getElementById(idConteudo);
+    if (!el) return;
+    el.classList.toggle('aberto');
+}
+
+function toggleTodosComentarios() {
+    const conteudos = document.querySelectorAll('.comentarios-conteudo');
+    const btnGlobal = document.getElementById('btnGlobalComentarios');
+    const deveExibir = btnGlobal.textContent.trim() === 'Exibir Comentários';
+    conteudos.forEach(el => {
+        if (deveExibir) el.classList.add('aberto');
+        else el.classList.remove('aberto');
+    });
+    btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
+}
+
+function irParaCapitulo(index) {
+    if (!index || index < 1) return;
+    capAtualIndex = parseInt(index);
+    pagAtualIndex = 1;
+
+    if (modoImersivoAtivo) {
+        atualizarModoImersivoPagina();
+    } else {
+        const el = document.getElementById(`cap${capAtualIndex}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    sincronizarSelectsCapitulos();
+}
+
+function capAnterior() { if (capAtualIndex > 1) irParaCapitulo(capAtualIndex - 1); }
+function capProximo() { if (capAtualIndex < totalCapitulos) irParaCapitulo(capAtualIndex + 1); }
+
+function sincronizarSelectsCapitulos() {
+    const selSidebar = document.getElementById('selectCapitulosSidebar');
+    const selMobile = document.getElementById('selectCapitulosMobile');
+    if (selSidebar) selSidebar.value = capAtualIndex;
+    if (selMobile) selMobile.value = capAtualIndex;
+}
+
+function abrirModalComentarios() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return;
+    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const modalBody = document.getElementById('modalComentariosBody');
+    document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
+    if (wrapperComentarios) {
+        modalBody.innerHTML = wrapperComentarios.innerHTML;
+        const lista = modalBody.querySelector('.comentarios-conteudo');
+        if (lista) lista.style.display = 'block';
+        const btn = modalBody.querySelector('.btn-toggle-comentarios');
+        if (btn) btn.style.display = 'none';
+    } else {
+        modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
+    }
+    document.getElementById('modalComentarios').classList.add('visivel');
+}
+
+function fecharModalComentarios() {
+    document.getElementById('modalComentarios').classList.remove('visivel');
+}
+
+function atualizarCapituloAtualVisivel() {
+    if (modoImersivoAtivo) return;
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+    let indexEncontrado = 1;
+    capitulos.forEach((cap, idx) => {
+        const rect = cap.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+            indexEncontrado = idx + 1;
+        }
+    });
+    if (capAtualIndex !== indexEncontrado) {
+        capAtualIndex = indexEncontrado;
+        sincronizarSelectsCapitulos();
+    }
+    const btnPrev = document.getElementById('mobileBtnPrev');
+    const btnNext = document.getElementById('mobileBtnNext');
+    if (btnPrev) btnPrev.disabled = capAtualIndex <= 1;
+    if (btnNext) btnNext.disabled = capAtualIndex >= totalCapitulos;
+}
+
+function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+function toggleModoImersivo() {
+    modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
+    const btnFS = document.getElementById('btnFullscreen');
+    const btnFSNav = document.getElementById('mobileBtnFullscreen');
+    
+    if (modoImersivoAtivo) {
+        if (btnFS) btnFS.textContent = '❌ Sair Leitura';
+        if (btnFSNav) btnFSNav.textContent = '❌ Sair';
+        pagAtualIndex = 1;
+        atualizarModoImersivoPagina();
+    } else {
+        if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
+        if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
+        document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
+        document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
+        
+        const capEl = document.getElementById(`cap${capAtualIndex}`);
+        if (capEl) capEl.scrollIntoView();
+    }
+}
+
+function obterImagensDoCapituloAtual() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return [];
+    return Array.from(capEl.querySelectorAll('img'));
+}
+
+function atualizarModoImersivoPagina() {
+    if (!modoImersivoAtivo) return;
+
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+
+    capitulos.forEach((cap, idx) => {
+        if (idx + 1 === capAtualIndex) {
+            cap.classList.add('cap-ativo-imersivo');
+        } else {
+            cap.classList.remove('cap-ativo-imersivo');
+        }
+    });
+
+    const imgs = obterImagensDoCapituloAtual();
+    if (imgs.length === 0) return;
+
+    if (pagAtualIndex > imgs.length) pagAtualIndex = imgs.length;
+    if (pagAtualIndex < 1) pagAtualIndex = 1;
+
+    imgs.forEach((img, idx) => {
+        if (idx + 1 === pagAtualIndex) {
+            img.classList.add('pag-ativa-imersivo');
+        } else {
+            img.classList.remove('pag-ativa-imersivo');
+        }
+    });
+
+    const hud = document.getElementById('imersivoHud');
+    if (hud) {
+        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    }
+}
+
+function imersivoProximaPagina() {
+    if (!modoImersivoAtivo) return;
+    const imgs = obterImagensDoCapituloAtual();
+    if (pagAtualIndex < imgs.length) {
+        pagAtualIndex++;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex < totalCapitulos) {
+        capAtualIndex++;
+        pagAtualIndex = 1;
+        sincronizarSelectsCapitulos();
+        atualizarModoImersivoPagina();
+    }
+}
+
+function imersivoPaginaAnterior() {
+    if (!modoImersivoAtivo) return;
+    if (pagAtualIndex > 1) {
+        pagAtualIndex--;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex > 1) {
+        capAtualIndex--;
+        sincronizarSelectsCapitulos();
+        const imgsPrev = obterImagensDoCapituloAtual();
+        pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
+        atualizarModoImersivoPagina();
+    }
+}
+
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
+}, false);
+
+function tratarSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 60) {
+        if (modoImersivoAtivo) {
+            if (diff > 0) imersivoProximaPagina();
+            else imersivoPaginaAnterior();
+        } else {
+            if (diff > 0) capProximo();
+            else capAnterior();
+        }
+    }
+}
+
+// --- ATALHOS DE TECLADO ---
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        modoImersivoAtivo ? imersivoProximaPagina() : capProximo();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        modoImersivoAtivo ? imersivoPaginaAnterior() : capAnterior();
+    }
+    if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
+});
+
+window.addEventListener('scroll', () => {
+    document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
+    atualizarCapituloAtualVisivel();
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    atualizarCapituloAtualVisivel();
+});
+</script>
+</body>
+</html>

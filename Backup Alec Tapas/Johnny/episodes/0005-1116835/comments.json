@@ -1,0 +1,100 @@
+[
+ {
+  "id": 23115197,
+  "username": "estelaheuer",
+  "display_name": "b1txh",
+  "date": "Jun 08, 2026",
+  "text": "Bang, bang, dei meu tiro certo em voc&ecirc;...<br>",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 15841075,
+  "username": "pikachumariaeduarda",
+  "display_name": "pikachumariaeduarda",
+  "date": "May 06, 2022",
+  "text": "[Atiro]<br>\n[Rosno para voc&ecirc;]",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 14819979,
+  "username": "Vellany",
+  "display_name": "Vellany",
+  "date": "Dec 22, 2021",
+  "text": "Uau essa p&aacute;g 😱🤯",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6910380,
+  "username": "joaoedmilsonaf",
+  "display_name": "Jota Ed[AF]",
+  "date": "Sep 05, 2018",
+  "text": "Krl alec q tra&ccedil;o lindo",
+  "likes": 40,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6687331,
+  "username": "ReineRouge",
+  "display_name": "ReineRouge",
+  "date": "Jul 17, 2018",
+  "text": "AAAAAA esta p&aacute;gina est&aacute; magn&iacute;fica ♡u♡",
+  "likes": 2,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6628275,
+  "username": "gabrielmedeiros04",
+  "display_name": "doppelganger",
+  "date": "Jul 04, 2018",
+  "text": "Nice gwaphics",
+  "likes": 21,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6607389,
+  "username": "Enjjuuu",
+  "display_name": "Enjjuuu",
+  "date": "Jun 29, 2018",
+  "text": "*pew pew*",
+  "likes": 44,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 6607401,
+    "username": "igorc8332",
+    "display_name": "IgorComics",
+    "date": "Jun 29, 2018",
+    "text": "Pow",
+    "likes": 6,
+    "is_creator": false
+   },
+   {
+    "id": 6607449,
+    "username": "Enjjuuu",
+    "display_name": "Enjjuuu",
+    "date": "Jun 29, 2018",
+    "text": "oia, tu aki tmb? :3",
+    "likes": 4,
+    "is_creator": false
+   },
+   {
+    "id": 6607479,
+    "username": "igorc8332",
+    "display_name": "IgorComics",
+    "date": "Jun 29, 2018",
+    "text": "pse hahsha",
+    "likes": 4,
+    "is_creator": false
+   }
+  ]
+ }
+]

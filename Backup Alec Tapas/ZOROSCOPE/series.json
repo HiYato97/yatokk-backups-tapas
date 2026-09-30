@@ -1,0 +1,40 @@
+{
+ "series_id": "15879",
+ "fetched_at": "2026-09-26T19:30:14Z",
+ "data": {
+  "id": 15879,
+  "title": "Zoroscope",
+  "escape_title": "Zoroscope",
+  "url": "ZOROSCOPE",
+  "thumb_url": "https://us-a.tapas.io/sa/48/af0aa7cc-71ee-450f-9a31-1eeeb58a5904_m.jpg",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": false,
+  "has_book_cover": false,
+  "on_sale_now": false,
+  "thumbsup_cnt": 3793,
+  "discount_rate": 0,
+  "genre": {
+   "id": 2,
+   "name": "Comedy",
+   "abbr": "Comedy",
+   "books": false,
+   "description": "LOL (on the inside)",
+   "display_order": 10,
+   "artwork_url": "https://us-a.tapas.io/a/44/c15b7236-9bad-4e52-bf65-2da99694b19d.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 2,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

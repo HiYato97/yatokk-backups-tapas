@@ -1,0 +1,40 @@
+{
+ "series_id": "28572",
+ "fetched_at": "2026-09-26T20:40:18Z",
+ "data": {
+  "id": 28572,
+  "title": "Zoroscope Garden <3",
+  "escape_title": "Zoroscope Garden &lt;3",
+  "url": "zoroscopegarden",
+  "thumb_url": "https://us-a.tapas.io/sa/80/41/5d/06/745ffeca88a244f79bc44df53f2617da_m.jpg",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": false,
+  "has_book_cover": false,
+  "on_sale_now": false,
+  "thumbsup_cnt": 2741,
+  "discount_rate": 0,
+  "genre": {
+   "id": 1,
+   "name": "Slice of life",
+   "abbr": "Slice of life",
+   "books": false,
+   "description": "Sometimes funny, sometimes touching, always relatable",
+   "display_order": 13,
+   "artwork_url": "https://us-a.tapas.io/a/11/93d6646b-ee8f-4a8a-a026-8c2867fbf1d7.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/62/52db463d-1706-4a95-b3c7-0f003e7ec1f7.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/62/52db463d-1706-4a95-b3c7-0f003e7ec1f7.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 1,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

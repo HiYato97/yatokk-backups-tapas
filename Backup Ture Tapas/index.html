@@ -44,6 +44,29 @@
             text-align: center;
         }
 
+        .hub-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .hub-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
         .avatar {
             width: 150px;
             height: 150px;
@@ -204,6 +227,7 @@
 
     <div class="container">
         <aside class="sidebar">
+            <a href="../index.html" class="hub-link">← Voltar ao Hub</a>
             <img src="avatar.png" alt="ture" class="avatar">
             <h1 class="author-name">ture</h1>
             

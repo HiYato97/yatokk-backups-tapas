@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alec | Acervo de Séries</title>
+    <style>
+        :root {
+            --bg-main: #0f0f10;
+            --bg-card: #18181c;
+            --text-primary: #ffffff;
+            --text-secondary: #9999a1;
+            --accent: #ffcc00;
+            --border-color: #27272e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hub-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .hub-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--border-color);
+            background: #222;
+        }
+
+        .avatar-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid var(--border-color);
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .author-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .author-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 10px 0 20px 0;
+            line-height: 1.4;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: #444;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-tabs {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+        }
+
+        .header-tabs h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
+            padding-bottom: 10px;
+            margin-bottom: -13px;
+        }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .series-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .series-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #25252b;
+            display: block;
+        }
+
+        .card-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-author {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <a href="../index.html" class="hub-link">← Voltar ao Hub</a>
+            <img src="avatar.png" alt="Alec" class="avatar">
+            <h1 class="author-name">Alec</h1>
+            <div class="author-meta"><span>📍 Brazil - Minas Gerais</span></div>
+            <p class="bio">***Bem vindes ao meu castelo****</p>
+            <div class="social-links"><a href="https://twitter.com/alelecleclec" target="_blank" class="social-link">🐦 Twitter / X</a><a href="https://linktr.ee/castelodoalec" target="_blank" class="social-link">🔗 Linktree</a></div>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-tabs">
+                <h2>17 Séries</h2>
+            </div>
+
+            <div class="series-grid">
+
+                <a href="ChuChu/ChuChu_completo.html" class="series-card">
+                    <img src="ChuChu/cover.jpg" alt="Chuchu" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Chuchu">Chuchu</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Comedy</div>
+                    </div>
+                </a>
+
+                <a href="De novo não/De novo não_completo.html" class="series-card">
+                    <img src="De novo não/img_005_b5f61d63-2719-4b1f-9cf8-375c01596c22.jpg" alt="De novo não" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="De novo não">De novo não</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Slice of life</div>
+                    </div>
+                </a>
+
+                <a href="For the Last Time/For the Last Time_completo.html" class="series-card">
+                    <img src="For the Last Time/img_013_fc80b2e0-7599-4266-bf6d-aa4865cab4aa.jpg" alt="For the Last Time" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="For the Last Time">For the Last Time</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Romance</div>
+                    </div>
+                </a>
+
+                <a href="Hare and Bunny/Hare and Bunny_completo.html" class="series-card">
+                    <img src="Hare and Bunny/img_011_da4a7e57-9b8b-4915-b176-630132cd2115.jpg" alt="Hare and Bunny" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Hare and Bunny">Hare and Bunny</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">BL</div>
+                    </div>
+                </a>
+
+                <a href="Jojor Gamer/Jojor Gamer_completo.html" class="series-card">
+                    <img src="Jojor Gamer/img_015_7d48c4e6-6136-471d-8539-aa99b4e93515.jpg" alt="Jojor Gamer" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Jojor Gamer">Jojor Gamer</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Gaming</div>
+                    </div>
+                </a>
+
+                <a href="Johnny/Johnny_completo.html" class="series-card">
+                    <img src="Johnny/img_010_3eac0cea-4b29-40f3-baa6-8ddef35dce8a.jpg" alt="Jonnhy" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Jonnhy">Jonnhy</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Comedy</div>
+                    </div>
+                </a>
+
+                <a href="Jonnhy's Short Stories/Jonnhy's Short Stories_completo.html" class="series-card">
+                    <img src="Jonnhy's Short Stories/img_012_496cfe59-7285-433b-9362-5cdd06dde4ed.jpg" alt="Jonnhy's Short Stories" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Jonnhy's Short Stories">Jonnhy's Short Stories</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Slice of life</div>
+                    </div>
+                </a>
+
+                <a href="Lebre e Coelho/Lebre e Coelho_completo.html" class="series-card">
+                    <img src="Lebre e Coelho/img_006_62248f5b-efb8-42f0-a47d-deef4346141b.jpg" alt="Lebre e Coelho" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Lebre e Coelho">Lebre e Coelho</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">BL</div>
+                    </div>
+                </a>
+
+                <a href="Me Liga Quando Chegar/Me Liga Quando Chegar_completo.html" class="series-card">
+                    <img src="Me Liga Quando Chegar/img_003_0e8d569e-c8a5-4524-a1ba-f95a7c3b90a4.jpg" alt="Me Liga Quando Chegar" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Me Liga Quando Chegar">Me Liga Quando Chegar</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">LGBTQ+</div>
+                    </div>
+                </a>
+
+                <a href="O _Escolhido_ (PRÉVIA)/O _Escolhido_ (PRÉVIA)_completo.html" class="series-card">
+                    <img src="O _Escolhido_ (PRÉVIA)/img_002_9841d3fb-36c5-4fcf-8d18-3690451b7a72.jpg" alt="O "Escolhido" (PRÉVIA)" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="O "Escolhido" (PRÉVIA)">O "Escolhido" (PRÉVIA)</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Drama</div>
+                    </div>
+                </a>
+
+                <a href="Pela Última Vez/Pela Última Vez_completo.html" class="series-card">
+                    <img src="Pela Última Vez/img_008_2a15524e-3bd9-4c2e-b8cc-414fa7e4d025.jpg" alt="Pela Última Vez" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Pela Última Vez">Pela Última Vez</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">BL</div>
+                    </div>
+                </a>
+
+                <a href="Quem é Marceline_/Quem é Marceline__completo.html" class="series-card">
+                    <img src="Quem é Marceline_/img_001_cf46bfa5-15e0-4791-9b91-0a38cdbe4d15.png" alt="Quem é Marceline?" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Quem é Marceline?">Quem é Marceline?</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Slice of life</div>
+                    </div>
+                </a>
+
+                <a href="Saga do Serp/Saga do Serp_completo.html" class="series-card">
+                    <img src="Saga do Serp/img_007_e52b5327-17a0-45c0-ad86-ea750e6b296d.jpg" alt="Saga do Serp" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Saga do Serp">Saga do Serp</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Slice of life</div>
+                    </div>
+                </a>
+
+                <a href="ZOROSCOPE/ZOROSCOPE_completo.html" class="series-card">
+                    <img src="ZOROSCOPE/img_014_af0aa7cc-71ee-450f-9a31-1eeeb58a5904.jpg" alt="Zoroscope" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Zoroscope">Zoroscope</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Comedy</div>
+                    </div>
+                </a>
+
+                <a href="Zoroscope Garden/Zoroscope Garden_completo.html" class="series-card">
+                    <img src="Zoroscope Garden/img_017_745ffeca88a244f79bc44df53f2617da.jpg" alt="Zoroscope Garden <3" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Zoroscope Garden <3">Zoroscope Garden <3</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Slice of life</div>
+                    </div>
+                </a>
+
+                <a href="Zoróscopo_Zodícopo/Zoróscopo_Zodícopo_completo.html" class="series-card">
+                    <img src="Zoróscopo_Zodícopo/img_009_7f8f3407-c95c-4ec0-9c3d-93a10f072268.png" alt="Zoróscopo/Zodícopo" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="Zoróscopo/Zodícopo">Zoróscopo/Zodícopo</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Comedy</div>
+                    </div>
+                </a>
+
+                <a href="re_ Zoróscopo/re_ Zoróscopo_completo.html" class="series-card">
+                    <img src="re_ Zoróscopo/img_004_7e8e2c09-87fb-4b36-8afb-a586f0c92b3d.png" alt="re: Zoróscopo" class="card-thumb">
+                    <div class="card-info">
+                        <div class="card-title" title="re: Zoróscopo">re: Zoróscopo</div>
+                        <div class="card-author">Alec</div>
+                        <div class="card-tag">Comedy</div>
+                    </div>
+                </a>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

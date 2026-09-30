@@ -1,0 +1,40 @@
+{
+ "series_id": "192471",
+ "fetched_at": "2026-09-26T20:20:06Z",
+ "data": {
+  "id": 192471,
+  "title": "re: Zoróscopo",
+  "escape_title": "re: Zor&oacute;scopo",
+  "url": "re-Zoroscopo",
+  "thumb_url": "https://us-a.tapas.io/sa/0f/7e8e2c09-87fb-4b36-8afb-a586f0c92b3d_m.png",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": false,
+  "has_book_cover": true,
+  "on_sale_now": false,
+  "thumbsup_cnt": 8240,
+  "discount_rate": 0,
+  "genre": {
+   "id": 2,
+   "name": "Comedy",
+   "abbr": "Comedy",
+   "books": false,
+   "description": "LOL (on the inside)",
+   "display_order": 10,
+   "artwork_url": "https://us-a.tapas.io/a/44/c15b7236-9bad-4e52-bf65-2da99694b19d.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 2,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

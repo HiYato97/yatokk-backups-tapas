@@ -1,0 +1,70 @@
+[
+ {
+  "id": 21233550,
+  "username": "langacosta011",
+  "display_name": "Letícia",
+  "date": "Jan 15, 2025",
+  "text": "O muleque vai matar o cachorro junto?",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 18425192,
+  "username": "Haru_krl",
+  "display_name": "Haruzinrs",
+  "date": "Jul 17, 2023",
+  "text": "OMG",
+  "likes": 7,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 14820207,
+  "username": "Vellany",
+  "display_name": "Vellany",
+  "date": "Dec 22, 2021",
+  "text": "🤔😶",
+  "likes": 9,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6975602,
+  "username": "kaenaheart",
+  "display_name": "Jeon-Kookies",
+  "date": "Sep 22, 2018",
+  "text": "I WANNA KNOW WHAT THEY'RE SAYING!!!!!! (TTOTT)",
+  "likes": 34,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 7002407,
+    "username": "emillycristina90",
+    "display_name": "emillycristina90",
+    "date": "Sep 29, 2018",
+    "text": "If you want I can translate for you I'm Brazilian",
+    "likes": 2,
+    "is_creator": false
+   },
+   {
+    "id": 7004730,
+    "username": "kaenaheart",
+    "display_name": "Jeon-Kookies",
+    "date": "Sep 29, 2018",
+    "text": "Nah it's fine. I don't want to cause trouble for you :)",
+    "likes": 2,
+    "is_creator": false
+   },
+   {
+    "id": 7014338,
+    "username": "emillycristina90",
+    "display_name": "emillycristina90",
+    "date": "Oct 01, 2018",
+    "text": "It will not work for me, but if you want, I just asked.",
+    "likes": 3,
+    "is_creator": false
+   }
+  ]
+ }
+]

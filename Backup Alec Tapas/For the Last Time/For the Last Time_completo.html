@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>For the Last Time</title>
+    <style>
+:root {
+    --bg-body: #000000;
+    --bg-card: #090a0a;
+    --bg-sidebar: #0d0e10;
+    --border-color: #222428;
+    --text-primary: #e1e3e6;
+    --text-muted: #737984;
+    --accent: #ffcb05;
+    --accent-hover: #ffffff;
+    --sidebar-width: 280px;
+    --danger: #dc2626;
+    --danger-hover: #991b1b;
+    --success: #16a34a;
+}
+
+body.light {
+    --bg-body: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-sidebar: #eaecef;
+    --border-color: #d0d4dc;
+    --text-primary: #22252a;
+    --text-muted: #626875;
+    --accent: #d97706;
+    --accent-hover: #111827;
+    --danger: #ef4444;
+    --danger-hover: #b91c1c;
+    --success: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+#versao {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    padding: 0.4rem 1rem;
+    text-align: center;
+    z-index: 1000;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-voltar-index {
+    display: block;
+    width: 100%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggleSidebarBtn {
+    position: fixed;
+    top: 36px;
+    left: 10px;
+    z-index: 1001;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 31px;
+    left: 0;
+    width: var(--sidebar-width);
+    max-width: 85vw;
+    height: calc(100vh - 31px - 54px);
+    background: var(--bg-sidebar);
+    padding: 50px 15px 30px 15px;
+    border-right: 1px solid var(--border-color);
+    z-index: 999;
+    overflow-y: auto;
+    transition: transform 0.25s ease;
+}
+.sidebar.oculto { transform: translateX(-100%); }
+
+.painel-controles {
+    background: var(--bg-card);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.painel-controles h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.botoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+.painel-controles button, .select-capitulos {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 100%;
+}
+.select-capitulos {
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.btn-full-width { grid-column: span 2; }
+
+.sidebar h2 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar ul { list-style: none; }
+.sidebar a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 6px 8px;
+    display: block;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.sidebar a:hover { background: var(--bg-card); }
+
+.conteudo {
+    margin-left: var(--sidebar-width);
+    margin-top: 31px;
+    padding: 30px;
+    transition: margin-left 0.25s ease;
+}
+.conteudo.expandido { margin-left: 0; }
+
+.series-header {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.series-thumb {
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+.series-info { flex: 1; }
+.series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-genre {
+    display: inline-block;
+    background: var(--border-color);
+    color: var(--text-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.series-desc { font-size: 0.95rem; margin-top: 10px; color: var(--text-primary); line-height: 1.5; }
+
+.capitulo {
+    margin-bottom: 30px;
+    scroll-margin-top: 45px;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.capitulo h2 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+.comentarios-wrapper { margin-top: 15px; }
+.btn-toggle-comentarios {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.comentarios-conteudo {
+    display: none;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 12px;
+}
+.comentarios-conteudo.aberto { display: block !important; }
+.comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
+.autor { font-weight: 600; color: var(--text-primary); }
+.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
+.comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
+.replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
+
+.nav-botoes {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+.nav-botoes a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+
+/* MODAL COMENTÁRIOS MOBILE */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2000;
+}
+.modal-overlay.visivel { display: flex; }
+.modal-conteudo {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+.modal-body { padding: 16px; overflow-y: auto; }
+
+/* BARRA NAVEGAÇÃO MOBILE */
+.mobile-nav-bar {
+    display: flex;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 54px;
+    background: var(--bg-sidebar); 
+    border-top: 1px solid var(--border-color);
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1002;
+    padding: 0 10px;
+}
+.mobile-nav-btn {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 0.8rem; cursor: pointer; flex: 1; height: 100%;
+}
+
+#topoBtn {
+    position: fixed; 
+    bottom: 70px;
+    right: 20px;
+    background: var(--bg-card); 
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); 
+    width: 38px; 
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    z-index: 1001;
+}
+#topoBtn.visivel { display: flex; }
+
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+body.modo-imersivo #versao,
+body.modo-imersivo #toggleSidebarBtn,
+body.modo-imersivo .sidebar,
+body.modo-imersivo .series-header,
+body.modo-imersivo .capitulo h2,
+body.modo-imersivo .comentarios-wrapper,
+body.modo-imersivo .nav-botoes,
+body.modo-imersivo #topoBtn,
+body.modo-imersivo .mobile-nav-bar {
+    display: none !important;
+}
+
+body.modo-imersivo {
+    background: #000000 !important;
+    padding-bottom: 0 !important;
+}
+
+body.modo-imersivo .conteudo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-imersivo .capitulo {
+    display: none;
+    max-width: 100% !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .capitulo.cap-ativo-imersivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body.modo-imersivo img {
+    display: none !important;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+}
+
+body.modo-imersivo img.pag-ativa-imersivo {
+    display: block !important;
+}
+
+/* CONTROLES E HUD IMERSIVO */
+.imersivo-controles {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: center; }
+
+.btn-sair-imersivo {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.imersivo-hud-bottom {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+body.modo-imersivo .imersivo-hud-bottom { display: block; }
+
+@media (max-width: 768px) {
+    .conteudo { margin-left: 0 !important; padding: 15px 10px; }
+    .series-header { flex-direction: column; align-items: center; text-align: center; }
+}
+</style>
+</head>
+<body id="topo">
+    <div id="versao">
+        Série: <b>For the Last Time</b> | Gerado em 29/09/2026 22:50
+    </div>
+
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+
+    <div class="sidebar" id="sidebar">
+        <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
+        <div class="painel-controles">
+            <h3>Seletor Rápido</h3>
+            <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
+                <option value="1">Cap. 1 - 0001-650952</option><option value="2">Cap. 2 - 0002-650956</option><option value="3">Cap. 3 - 0003-650958</option><option value="4">Cap. 4 - 0004-650959</option><option value="5">Cap. 5 - 0005-855553</option><option value="6">Cap. 6 - 0006-855556</option><option value="7">Cap. 7 - 0007-855557</option><option value="8">Cap. 8 - 0008-855558</option><option value="9">Cap. 9 - 0009-855562</option><option value="10">Cap. 10 - 0010-855569</option><option value="11">Cap. 11 - 0011-855570</option><option value="12">Cap. 12 - 0012-855571</option><option value="13">Cap. 13 - 0013-857323</option><option value="14">Cap. 14 - 0014-857324</option><option value="15">Cap. 15 - 0015-857328</option><option value="16">Cap. 16 - 0016-857330</option><option value="17">Cap. 17 - 0017-867719</option><option value="18">Cap. 18 - 0018-867721</option><option value="19">Cap. 19 - 0019-867723</option><option value="20">Cap. 20 - 0020-867724</option><option value="21">Cap. 21 - 0021-867744</option><option value="22">Cap. 22 - 0022-871440</option><option value="23">Cap. 23 - 0023-871442</option><option value="24">Cap. 24 - 0024-871447</option><option value="25">Cap. 25 - 0025-877199</option><option value="26">Cap. 26 - 0026-877206</option><option value="27">Cap. 27 - 0027-877208</option><option value="28">Cap. 28 - 0028-877210</option><option value="29">Cap. 29 - 0029-877215</option>
+            </select>
+
+            <h3>Opções da Página</h3>
+            <div class="botoes-grid">
+                <button onclick="mudarTema()">Tema</button>
+                <button id="btnFullscreen" onclick="toggleModoImersivo()">📖 Leitura Imersiva</button>
+                <button onclick="alterarFonte(1)">A+</button>
+                <button onclick="alterarFonte(-1)">A-</button>
+                <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+            </div>
+        </div>
+
+        <h2>Índice</h2>
+        <ul><li><a href="#cap1">Cap. 1 - 0001-650952</a></li><li><a href="#cap2">Cap. 2 - 0002-650956</a></li><li><a href="#cap3">Cap. 3 - 0003-650958</a></li><li><a href="#cap4">Cap. 4 - 0004-650959</a></li><li><a href="#cap5">Cap. 5 - 0005-855553</a></li><li><a href="#cap6">Cap. 6 - 0006-855556</a></li><li><a href="#cap7">Cap. 7 - 0007-855557</a></li><li><a href="#cap8">Cap. 8 - 0008-855558</a></li><li><a href="#cap9">Cap. 9 - 0009-855562</a></li><li><a href="#cap10">Cap. 10 - 0010-855569</a></li><li><a href="#cap11">Cap. 11 - 0011-855570</a></li><li><a href="#cap12">Cap. 12 - 0012-855571</a></li><li><a href="#cap13">Cap. 13 - 0013-857323</a></li><li><a href="#cap14">Cap. 14 - 0014-857324</a></li><li><a href="#cap15">Cap. 15 - 0015-857328</a></li><li><a href="#cap16">Cap. 16 - 0016-857330</a></li><li><a href="#cap17">Cap. 17 - 0017-867719</a></li><li><a href="#cap18">Cap. 18 - 0018-867721</a></li><li><a href="#cap19">Cap. 19 - 0019-867723</a></li><li><a href="#cap20">Cap. 20 - 0020-867724</a></li><li><a href="#cap21">Cap. 21 - 0021-867744</a></li><li><a href="#cap22">Cap. 22 - 0022-871440</a></li><li><a href="#cap23">Cap. 23 - 0023-871442</a></li><li><a href="#cap24">Cap. 24 - 0024-871447</a></li><li><a href="#cap25">Cap. 25 - 0025-877199</a></li><li><a href="#cap26">Cap. 26 - 0026-877206</a></li><li><a href="#cap27">Cap. 27 - 0027-877208</a></li><li><a href="#cap28">Cap. 28 - 0028-877210</a></li><li><a href="#cap29">Cap. 29 - 0029-877215</a></li></ul>
+    </div>
+
+    <div class="conteudo" id="conteudo">
+        
+    <div class="series-header">
+        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <div class="series-info">
+            <h1 class="series-title">For the Last Time</h1>
+            <div class="series-meta"><span class="series-genre">Romance</span> ❤ 6338 curtidas</div>
+            <div class="series-desc"></div>
+        </div>
+    </div>
+        
+        <div class="capitulo" id="cap1">
+            <h2>Capítulo 1 - 0001-650952</h2>
+            <img src="episodes/0001-650952/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap1">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hedwig</span> 
+        </div>
+        <div class="comentario-texto">Thanks for making it in English!</div>
+        <div class="comentario-meta">Nov 12, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">wtflife</span> 
+        </div>
+        <div class="comentario-texto">Wow, look, now I can cry in English too :0</div>
+        <div class="comentario-meta">Dec 10, 2017 • ❤️ 23</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gay1ien</span> 
+        </div>
+        <div class="comentario-texto">I sense some oncoming feels for some reason and I sincerely hope that I'm wrong DDD:</div>
+        <div class="comentario-meta">May 15, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RainbowHigh</span> 
+        </div>
+        <div class="comentario-texto">Gah I love the facial expressions already!</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 8</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                
+                <a href="#cap2">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap2">
+            <h2>Capítulo 2 - 0002-650956</h2>
+            <img src="episodes/0002-650956/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap2">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RainbowHigh</span> 
+        </div>
+        <div class="comentario-texto">Smells suspicious... *Puts magnifying glass against the screen* What are you hiding little one...</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 18</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">Tell us all your secrets OuO</div>
+        <div class="comentario-meta">Apr 05, 2017 • ❤️ 5</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap1">◀ Anterior</a>
+                <a href="#cap3">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap3">
+            <h2>Capítulo 3 - 0003-650958</h2>
+            <img src="episodes/0003-650958/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
+            <span>💬 Ver Comentários (3)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap3">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hedwig</span> 
+        </div>
+        <div class="comentario-texto">I ship</div>
+        <div class="comentario-meta">Nov 12, 2019 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tsamu</span> 
+        </div>
+        <div class="comentario-texto">Kimo's really cute :3c</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RainbowHigh</span> 
+        </div>
+        <div class="comentario-texto">Aw them blushies!</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 9</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap2">◀ Anterior</a>
+                <a href="#cap4">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap4">
+            <h2>Capítulo 4 - 0004-650959</h2>
+            <img src="episodes/0004-650959/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
+            <span>💬 Ver Comentários (14)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap4">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">luadark26</span> 
+        </div>
+        <div class="comentario-texto">"Eu sou uma anta">>></div>
+        <div class="comentario-meta">Dec 12, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">aygusu</span> 
+        </div>
+        <div class="comentario-texto">please translate it please ;-;</div>
+        <div class="comentario-meta">Jul 02, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">aygusu</span> 
+        </div>
+        <div class="comentario-texto">*-*</div>
+        <div class="comentario-meta">Jul 02, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">abe-_-</span> 
+        </div>
+        <div class="comentario-texto">are going to be more of those</div>
+        <div class="comentario-meta">Jun 25, 2017 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Fujoshi</span> 
+        </div>
+        <div class="comentario-texto">Wow, this comic is so beautiful AHAHAHAH I LOVE IT</div>
+        <div class="comentario-meta">May 26, 2017 • ❤️ 9</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">The Truth Tea</span> 
+        </div>
+        <div class="comentario-texto">*When you imagine the profile pic saying it*</div>
+        <div class="comentario-meta">Jul 15, 2020</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fredttangi</span> 
+        </div>
+        <div class="comentario-texto">I really want to give spoilers but i will do nothing, only see</div>
+        <div class="comentario-meta">May 04, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">D Inside</span> 
+        </div>
+        <div class="comentario-texto">Why i will let in pain again? ;--;</div>
+        <div class="comentario-meta">Apr 28, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lilyismysoul</span> 
+        </div>
+        <div class="comentario-texto">It's so cute!!!!!
+
+Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RainbowHigh</span> 
+        </div>
+        <div class="comentario-texto">xD Someones got stung by cupids arrow...Naked...WIth one hella of an arrow xD</div>
+        <div class="comentario-meta">Apr 03, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Maia banana</span> 
+        </div>
+        <div class="comentario-texto">Yayyy nova história!! Não posso esperar por mais!</div>
+        <div class="comentario-meta">Apr 03, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minenime4thewin</span> 
+        </div>
+        <div class="comentario-texto">How cute 😍 He wants senpai to notice him👀</div>
+        <div class="comentario-meta">Apr 02, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Azur</span> 
+        </div>
+        <div class="comentario-texto">Wow, cupid sure has a massive crossbow to sot that big arrow....</div>
+        <div class="comentario-meta">Apr 02, 2017 • ❤️ 24</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Emmi-san</span> 
+        </div>
+        <div class="comentario-texto">My best weapon -u- ( my account on instagram is nyan_cupido XDD)</div>
+        <div class="comentario-meta">May 02, 2017 • ❤️ 3</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap3">◀ Anterior</a>
+                <a href="#cap5">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap5">
+            <h2>Capítulo 5 - 0005-855553</h2>
+            <img src="episodes/0005-855553/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
+            <span>💬 Ver Comentários (1)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap5">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nikol Dreamy</span> 
+        </div>
+        <div class="comentario-texto">o a sandal....</div>
+        <div class="comentario-meta">Feb 17, 2019 • ❤️ 12</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap4">◀ Anterior</a>
+                <a href="#cap6">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap6">
+            <h2>Capítulo 6 - 0006-855556</h2>
+            <img src="episodes/0006-855556/images/panel-001.png" alt="panel-001.png">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap6">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shakinghands</span> 
+        </div>
+        <div class="comentario-texto">that second panel tho</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LazyReader</span> 
+        </div>
+        <div class="comentario-texto">TOES OFF SHOES IN DEPRESSION...........</div>
+        <div class="comentario-meta">Oct 10, 2017 • ❤️ 13</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap5">◀ Anterior</a>
+                <a href="#cap7">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap7">
+            <h2>Capítulo 7 - 0007-855557</h2>
+            <img src="episodes/0007-855557/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap7', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap7">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">delaplanechristophe</span> 
+        </div>
+        <div class="comentario-texto"><3 <3 <3 :D</div>
+        <div class="comentario-meta">Oct 30, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">colourfulhues787</span> 
+        </div>
+        <div class="comentario-texto">okay but i’m thinking the “Manama” song</div>
+        <div class="comentario-meta">Jan 02, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lilgayboy45</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+        <div class="comentario-meta">Oct 24, 2017 • ❤️ 21</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N0DereDan</span> 
+        </div>
+        <div class="comentario-texto">You took the words right outta my mouth</div>
+        <div class="comentario-meta">Nov 14, 2017 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap6">◀ Anterior</a>
+                <a href="#cap8">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap8">
+            <h2>Capítulo 8 - 0008-855558</h2>
+            <img src="episodes/0008-855558/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap8', this)">
+            <span>💬 Ver Comentários (1)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap8">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">curious case of dum</span> 
+        </div>
+        <div class="comentario-texto">no comments? uhhh..</div>
+        <div class="comentario-meta">Oct 09, 2019 • ❤️ 5</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap7">◀ Anterior</a>
+                <a href="#cap9">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap9">
+            <h2>Capítulo 9 - 0009-855562</h2>
+            <img src="episodes/0009-855562/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap9', this)">
+            <span>💬 Ver Comentários (3)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap9">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Arika_uzumaki923Idk</span> 
+        </div>
+        <div class="comentario-texto">So cute</div>
+        <div class="comentario-meta">Dec 08, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cina.Monroe</span> 
+        </div>
+        <div class="comentario-texto">Hoje descobri que mortadela em inglês é mortadella. Obrigada.</div>
+        <div class="comentario-meta">Nov 23, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mimi2399</span> 
+        </div>
+        <div class="comentario-texto">I just love all of this webcom, the stile, the color sheme, Kimo, all his talking is just so cute!! -just wanted to say it haha-</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 20</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap8">◀ Anterior</a>
+                <a href="#cap10">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap10">
+            <h2>Capítulo 10 - 0010-855569</h2>
+            <img src="episodes/0010-855569/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap10', this)">
+            <span>💬 Ver Comentários (3)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap10">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jojoline Carlin</span> 
+        </div>
+        <div class="comentario-texto">Oh please don't get hurt O.0</div>
+        <div class="comentario-meta">Mar 22, 2019 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dndex</span> 
+        </div>
+        <div class="comentario-texto">Sofrendo de novo mas em ingles pq nos somos bilingue kkkk</div>
+        <div class="comentario-meta">Mar 01, 2019 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">I dont like where this is going</div>
+        <div class="comentario-meta">Nov 16, 2017 • ❤️ 20</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap9">◀ Anterior</a>
+                <a href="#cap11">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap11">
+            <h2>Capítulo 11 - 0011-855570</h2>
+            <img src="episodes/0011-855570/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap11', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap11">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">tsunderetheavenger</span> 
+        </div>
+        <div class="comentario-texto">noooooo truck-kun!!</div>
+        <div class="comentario-meta">Aug 24, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mina Toshi</span> 
+        </div>
+        <div class="comentario-texto">Nooooo! Camión-chan!!</div>
+        <div class="comentario-meta">Oct 13, 2018 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rue B.</span> 
+        </div>
+        <div class="comentario-texto">oh no……</div>
+        <div class="comentario-meta">Apr 15, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Little Person</span> 
+        </div>
+        <div class="comentario-texto">well... shit</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 19</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap10">◀ Anterior</a>
+                <a href="#cap12">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap12">
+            <h2>Capítulo 12 - 0012-855571</h2>
+            <img src="episodes/0012-855571/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap12', this)">
+            <span>💬 Ver Comentários (18)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap12">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachu</span> 
+        </div>
+        <div class="comentario-texto">:)</div>
+        <div class="comentario-meta">Oct 13, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gina</span> 
+        </div>
+        <div class="comentario-texto">What a big oof</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MangaloverXD</span> 
+        </div>
+        <div class="comentario-texto">NOOOOOOOO</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">John Calvin</span> 
+        </div>
+        <div class="comentario-texto">why......WHY</div>
+        <div class="comentario-meta">Oct 11, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shakinghands</span> 
+        </div>
+        <div class="comentario-texto">You CANNOT be serious aghhhhhhh</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Freeze</span> 
+        </div>
+        <div class="comentario-texto">WHAT</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tori</span> 
+        </div>
+        <div class="comentario-texto">me 4 pages ago: "awwww so cute"
+
+me now: "NOOOOOOO" *sobbing*</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 21</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kidori</span> 
+        </div>
+        <div class="comentario-texto">I CAN'T WAIT FOR THE NEXT !!!! HEEEEELP !!!!!</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kitkat</span> 
+        </div>
+        <div class="comentario-texto">That escalated really quickly</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Natsonariot</span> 
+        </div>
+        <div class="comentario-texto">AHHHHHHHHHHHH</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mimi2399</span> 
+        </div>
+        <div class="comentario-texto">And now I'm just sad</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bartenderburger</span> 
+        </div>
+        <div class="comentario-texto">oh hell no</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nako</span> 
+        </div>
+        <div class="comentario-texto">ooohhh so thats why it's  "For the Las Time"!</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">What the hell.</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LazyReader</span> 
+        </div>
+        <div class="comentario-texto">Look both ways......</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 15</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Renew</span> 
+        </div>
+        <div class="comentario-texto">why did you have to stop n o w omigod no</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 3</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">paintsmonkey</span> 
+        </div>
+        <div class="comentario-texto">Seems like they might kill you with anticipation before running over and killing him.</div>
+        <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Renew</span> 
+        </div>
+        <div class="comentario-texto">nO THE POOR BB</div>
+        <div class="comentario-meta">Oct 11, 2017</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap11">◀ Anterior</a>
+                <a href="#cap13">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap13">
+            <h2>Capítulo 13 - 0013-857323</h2>
+            <img src="episodes/0013-857323/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap13', this)">
+            <span>💬 Ver Comentários (3)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap13">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Red</span> 
+        </div>
+        <div class="comentario-texto">I have a bad feeling about this...</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Freeze</span> 
+        </div>
+        <div class="comentario-texto">PHEW</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LazyReader</span> 
+        </div>
+        <div class="comentario-texto">I got hit so hard I knocked out of my shoes.....but the rest of me is fine....whew</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 17</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap12">◀ Anterior</a>
+                <a href="#cap14">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap14">
+            <h2>Capítulo 14 - 0014-857324</h2>
+            <img src="episodes/0014-857324/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap14', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap14">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">SonyD</span> 
+        </div>
+        <div class="comentario-texto">Well... shit *sob* :`)</div>
+        <div class="comentario-meta">Oct 14, 2017 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Red</span> 
+        </div>
+        <div class="comentario-texto">Oh whoops you’re dead</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 13</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap13">◀ Anterior</a>
+                <a href="#cap15">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap15">
+            <h2>Capítulo 15 - 0015-857328</h2>
+            <img src="episodes/0015-857328/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap15', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap15">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shakinghands</span> 
+        </div>
+        <div class="comentario-texto">NOPE I DO NOT ACCEPT THIS AS CANON</div>
+        <div class="comentario-meta">Oct 14, 2017 • ❤️ 17</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nako</span> 
+        </div>
+        <div class="comentario-texto">plot twist</div>
+        <div class="comentario-meta">Oct 13, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Red</span> 
+        </div>
+        <div class="comentario-texto">Death</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Freeze</span> 
+        </div>
+        <div class="comentario-texto">WHAT</div>
+        <div class="comentario-meta">Oct 12, 2017</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap14">◀ Anterior</a>
+                <a href="#cap16">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap16">
+            <h2>Capítulo 16 - 0016-857330</h2>
+            <img src="episodes/0016-857330/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap16', this)">
+            <span>💬 Ver Comentários (8)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap16">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Trash™</span> 
+        </div>
+        <div class="comentario-texto">DDDDDDDDDD::;;;;;;;;;</div>
+        <div class="comentario-meta">Oct 17, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sghyutreopihg</span> 
+        </div>
+        <div class="comentario-texto">I’m not crying ur crying</div>
+        <div class="comentario-meta">Oct 16, 2017 • ❤️ 16</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">WolfVolk</span> 
+        </div>
+        <div class="comentario-texto">we´re crying ;(</div>
+        <div class="comentario-meta">Mar 30, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Usernamen</span> 
+        </div>
+        <div class="comentario-texto">Me crying doesn t exclude you from doing the same</div>
+        <div class="comentario-meta">Sep 03, 2021</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shakinghands</span> 
+        </div>
+        <div class="comentario-texto">DONT MAKE ME CRY</div>
+        <div class="comentario-meta">Oct 14, 2017 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">nOT MY SON</div>
+        <div class="comentario-meta">Oct 13, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">grumpy muffin</span> 
+        </div>
+        <div class="comentario-texto">D:</div>
+        <div class="comentario-meta">Oct 13, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LazyReader</span> 
+        </div>
+        <div class="comentario-texto">I PATRICK SWAYZED MYSELF!!!!!!!!!!!!!</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap15">◀ Anterior</a>
+                <a href="#cap17">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap17">
+            <h2>Capítulo 17 - 0017-867719</h2>
+            <img src="episodes/0017-867719/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap17', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap17">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">caocreations</span> 
+        </div>
+        <div class="comentario-texto">Sadface!!</div>
+        <div class="comentario-meta">Feb 27, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">:C</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 9</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap16">◀ Anterior</a>
+                <a href="#cap18">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap18">
+            <h2>Capítulo 18 - 0018-867721</h2>
+            <img src="episodes/0018-867721/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap18', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap18">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">|ying and yang thingys used dazzling gleam!|</div>
+        <div class="comentario-meta">Feb 21, 2024</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">Dsclp n ter comentado, mas eu tinha q comentar isso 🥰</div>
+        <div class="comentario-meta">Feb 21, 2024</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">magitie</span> 
+        </div>
+        <div class="comentario-texto">what the hell are these weird ying/yang slug thing ?</div>
+        <div class="comentario-meta">Nov 10, 2018 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravenwashere1776</span> 
+        </div>
+        <div class="comentario-texto">Cuties</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 8</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap17">◀ Anterior</a>
+                <a href="#cap19">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap19">
+            <h2>Capítulo 19 - 0019-867723</h2>
+            <img src="episodes/0019-867723/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap19', this)">
+            <span>💬 Ver Comentários (1)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap19">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tori</span> 
+        </div>
+        <div class="comentario-texto">i'm not gonna cry I'M NOT GONNA CRY ;--;</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 8</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap18">◀ Anterior</a>
+                <a href="#cap20">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap20">
+            <h2>Capítulo 20 - 0020-867724</h2>
+            <img src="episodes/0020-867724/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap20', this)">
+            <span>💬 Ver Comentários (5)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap20">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">|ying and Yang used Revival blessing !| (omg they're so pokemon)</div>
+        <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N0DereDan</span> 
+        </div>
+        <div class="comentario-texto">* cri</div>
+        <div class="comentario-meta">Nov 14, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Renew</span> 
+        </div>
+        <div class="comentario-texto">WAI YOU STOP NOW</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tori</span> 
+        </div>
+        <div class="comentario-texto">OHHHHH</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 7</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Little Person</span> 
+        </div>
+        <div class="comentario-texto">Omg ten count</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 3</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap19">◀ Anterior</a>
+                <a href="#cap21">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap21">
+            <h2>Capítulo 21 - 0021-867744</h2>
+            <img src="episodes/0021-867744/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap21', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap21">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kitkat</span> 
+        </div>
+        <div class="comentario-texto">Whyyyyyy</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ImadokiLife</span> 
+        </div>
+        <div class="comentario-texto">Cliffhangers make me cri</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravenwashere1776</span> 
+        </div>
+        <div class="comentario-texto">i cri every tiem</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">Why do you do this to me.</div>
+        <div class="comentario-meta">Oct 23, 2017 • ❤️ 11</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap20">◀ Anterior</a>
+                <a href="#cap22">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap22">
+            <h2>Capítulo 22 - 0022-871440</h2>
+            <img src="episodes/0022-871440/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap22', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap22">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gabel</span> 
+        </div>
+        <div class="comentario-texto">Cara eu corri achando que era o em PT</div>
+        <div class="comentario-meta">Oct 27, 2017 • ❤️ 6</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">T.I.B Matt</span> 
+        </div>
+        <div class="comentario-texto">por um mundo com menos hiatos</div>
+        <div class="comentario-meta">Oct 27, 2017 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap21">◀ Anterior</a>
+                <a href="#cap23">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap23">
+            <h2>Capítulo 23 - 0023-871442</h2>
+            <img src="episodes/0023-871442/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap23', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap23">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N0DereDan</span> 
+        </div>
+        <div class="comentario-texto">I know it</div>
+        <div class="comentario-meta">Nov 14, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N0DereDan</span> 
+        </div>
+        <div class="comentario-texto">Its going to make me cry again</div>
+        <div class="comentario-meta">Nov 14, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Red</span> 
+        </div>
+        <div class="comentario-texto">Not spending the holidays? Lol he’s dead</div>
+        <div class="comentario-meta">Oct 27, 2017 • ❤️ 13</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jojoline Carlin</span> 
+        </div>
+        <div class="comentario-texto">No, he isn't? Back to live for love</div>
+        <div class="comentario-meta">Mar 22, 2019 • ❤️ 2</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap22">◀ Anterior</a>
+                <a href="#cap24">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap24">
+            <h2>Capítulo 24 - 0024-871447</h2>
+            <img src="episodes/0024-871447/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap24', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap24">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Arika_uzumaki923Idk</span> 
+        </div>
+        <div class="comentario-texto">OMG 😖😖😖</div>
+        <div class="comentario-meta">Dec 08, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ChanLyn</span> 
+        </div>
+        <div class="comentario-texto">I can't I just understood the title Im legit in tears</div>
+        <div class="comentario-meta">Oct 29, 2017 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Little Person</span> 
+        </div>
+        <div class="comentario-texto">"I can rest in peace now" XD</div>
+        <div class="comentario-meta">Oct 27, 2017 • ❤️ 20</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">That one straight friend: Lol just gonna get changed. We're both guys, me being naked isn't a problem lolol.
+
+Me:
+
+Me: Oh no
+
+Me: I will never go to heaven with thoughts like these</div>
+        <div class="comentario-meta">Oct 27, 2017 • ❤️ 44</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">meow</span> 
+        </div>
+        <div class="comentario-texto">bro same</div>
+        <div class="comentario-meta">Jan 29, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">Same</div>
+        <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap23">◀ Anterior</a>
+                <a href="#cap25">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap25">
+            <h2>Capítulo 25 - 0025-877199</h2>
+            <img src="episodes/0025-877199/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap25', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap25">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">Omg, its really nick and charlie ! How cute 🥰</div>
+        <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rue B.</span> 
+        </div>
+        <div class="comentario-texto">charlie and nick ☺️💖💖 and lenny is sooo cute lmao</div>
+        <div class="comentario-meta">Apr 15, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Call_me_dream_daddy</span> 
+        </div>
+        <div class="comentario-texto">Lol i see Nick and Charlie</div>
+        <div class="comentario-meta">Nov 04, 2017 • ❤️ 8</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">OHHHHH omg you too. YASS</div>
+        <div class="comentario-meta">Nov 16, 2017 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alice Oseman</span> 
+        </div>
+        <div class="comentario-texto">Aaaaaa they look SO ADORABLE in your style! thank you so much Alec!!</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 19</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hrrgtt</span> 
+        </div>
+        <div class="comentario-texto">Alice-chan... Is it really you?</div>
+        <div class="comentario-meta">May 11, 2019 • ❤️ 1</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap24">◀ Anterior</a>
+                <a href="#cap26">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap26">
+            <h2>Capítulo 26 - 0026-877206</h2>
+            <img src="episodes/0026-877206/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap26', this)">
+            <span>💬 Ver Comentários (2)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap26">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MangaloverXD</span> 
+        </div>
+        <div class="comentario-texto">Your illustrations are phenomenal</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 15</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
+        </div>
+        <div class="comentario-texto">Thank you! <3</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap25">◀ Anterior</a>
+                <a href="#cap27">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap27">
+            <h2>Capítulo 27 - 0027-877208</h2>
+            <img src="episodes/0027-877208/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap27', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap27">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yell9wp3arl</span> 
+        </div>
+        <div class="comentario-texto">AU AUA AU😋 *now you die💀*  (omg he was about to say "you cute as well)"</div>
+        <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Stupid Person :)</span> 
+        </div>
+        <div class="comentario-texto">Was he going to say it? 😭💚</div>
+        <div class="comentario-meta">Nov 15, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">PUPPY NO WHAT THE HELL</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 23</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">I MEAN YOU'RE CUTE BUT WAS THAT REALLY NECESSARY</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 9</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Little Person</span> 
+        </div>
+        <div class="comentario-texto">AU AU AU AU AU</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 14</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">wtflife</span> 
+        </div>
+        <div class="comentario-texto">AU AU AU AU AU</div>
+        <div class="comentario-meta">Dec 10, 2017 • ❤️ 2</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap26">◀ Anterior</a>
+                <a href="#cap28">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap28">
+            <h2>Capítulo 28 - 0028-877210</h2>
+            <img src="episodes/0028-877210/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap28', this)">
+            <span>💬 Ver Comentários (1)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap28">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rae Kitano</span> 
+        </div>
+        <div class="comentario-texto">I love that the dog can talk. So precious. Thank you.</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 23</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap27">◀ Anterior</a>
+                <a href="#cap29">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap29">
+            <h2>Capítulo 29 - 0029-877215</h2>
+            <img src="episodes/0029-877215/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap29', this)">
+            <span>💬 Ver Comentários (54)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap29">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">eylinglezsoria</span> 
+        </div>
+        <div class="comentario-texto">Came here to have a bit of a teaser of the story, and after reading I can only say SHUT UP AND TAKE MY MONEY</div>
+        <div class="comentario-meta">Jan 03, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">curious case of dum</span> 
+        </div>
+        <div class="comentario-texto">Guys!!! The story is already finished, it just wasn't translated. Look up the author's works.</div>
+        <div class="comentario-meta">Aug 05, 2023 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Arika_uzumaki923Idk</span> 
+        </div>
+        <div class="comentario-texto">How cute is it 😊😊</div>
+        <div class="comentario-meta">Dec 08, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RISERY</span> 
+        </div>
+        <div class="comentario-texto">Dude it’s 2021 when are you coming back we miss you 🥲</div>
+        <div class="comentario-meta">Dec 30, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Usernamen</span> 
+        </div>
+        <div class="comentario-texto">Please don t make a sad ending, I couldn t take that qwq</div>
+        <div class="comentario-meta">Sep 03, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">brubs</span> 
+        </div>
+        <div class="comentario-texto">vim dar apoio na popularidade aqui também. que bom momento pra ser brasileira e já ter terminado a história 😆</div>
+        <div class="comentario-meta">Jan 15, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hedwig</span> 
+        </div>
+        <div class="comentario-texto">I'TS BEEN TWO YEARS HOW LONG IS THIS HIATUS???!!!!</div>
+        <div class="comentario-meta">Mar 24, 2020 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">meow</span> 
+        </div>
+        <div class="comentario-texto">i love these dogs yes</div>
+        <div class="comentario-meta">Jan 29, 2020 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">0325</span> 
+        </div>
+        <div class="comentario-texto">IM CRYING 😭</div>
+        <div class="comentario-meta">Dec 15, 2019 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">schermigaflop</span> 
+        </div>
+        <div class="comentario-texto">Oi it’s more than a year! Where you at!? Wait... don’t tell me.... haha you can’t be dead... right?!</div>
+        <div class="comentario-meta">Feb 17, 2019 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dndex</span> 
+        </div>
+        <div class="comentario-texto">He is not dead,but I dont know he stopped to post this comic :**(</div>
+        <div class="comentario-meta">Mar 01, 2019 • ❤️ 4</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mo258</span> 
+        </div>
+        <div class="comentario-texto">Yes to supportive pups</div>
+        <div class="comentario-meta">Jan 21, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Zarradreamer</span> 
+        </div>
+        <div class="comentario-texto">Update plz 😭</div>
+        <div class="comentario-meta">Dec 16, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ledgerina</span> 
+        </div>
+        <div class="comentario-texto">This is making me cry so bad. You are extremely good at this!</div>
+        <div class="comentario-meta">Nov 25, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">beezzzzz</span> 
+        </div>
+        <div class="comentario-texto">I'm crying, I hope there's a really big happy ending 'cause otherwise  I won't be able to take it I LOVE THIS so sad though</div>
+        <div class="comentario-meta">Nov 23, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GalaxyGirl</span> 
+        </div>
+        <div class="comentario-texto">New episodes please i promise i will tip u more just update please update</div>
+        <div class="comentario-meta">Nov 08, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Superior Trash</span> 
+        </div>
+        <div class="comentario-texto">Will you be continuing the english version? All I have to translate is google translate, and that's not very reliable. P. S. I love this comic so far!</div>
+        <div class="comentario-meta">Sep 24, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Wolf~King</span> 
+        </div>
+        <div class="comentario-texto">December or sooner my ass it's a year later?!?!😡💔</div>
+        <div class="comentario-meta">Aug 25, 2018 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">creepado</span> 
+        </div>
+        <div class="comentario-texto">See the portuguese version and traduct What they say</div>
+        <div class="comentario-meta">Sep 12, 2018 • ❤️ 5</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mr.StealYourBoy</span> 
+        </div>
+        <div class="comentario-texto">This is so good, but I know it's going to break my heart.</div>
+        <div class="comentario-meta">Jan 09, 2018 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">colourfulhues787</span> 
+        </div>
+        <div class="comentario-texto">get u a support group like those puppies</div>
+        <div class="comentario-meta">Jan 02, 2018 • ❤️ 7</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GreyWolfess</span> 
+        </div>
+        <div class="comentario-texto">So sad I hope he doesn't chicken sun down isn't far</div>
+        <div class="comentario-meta">Dec 07, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Justheretoread</span> 
+        </div>
+        <div class="comentario-texto">This is so cutely sad my feels are in confusion :,( / :)</div>
+        <div class="comentario-meta">Nov 20, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Caprikat</span> 
+        </div>
+        <div class="comentario-texto">I'm sad now</div>
+        <div class="comentario-meta">Nov 17, 2017 • ❤️ 24</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N0DereDan</span> 
+        </div>
+        <div class="comentario-texto">Ready.... 1.. 2.. 3... UDJTDJYDUYDUTDU6S6IESJYJDGMCGFHFFDDVDFSFZGDGHDJYHTDHFHGFKHYSYFYJDGXJGCHFJYDHTDJYDHSHDHDHDUYJYDJYJYDJYDJTDRHTEGRWJGF</div>
+        <div class="comentario-meta">Nov 14, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lutpan</span> 
+        </div>
+        <div class="comentario-texto">i just made an ugly cry :'D I love this comic sdfgfhg u have all of my support <33</div>
+        <div class="comentario-meta">Nov 09, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RoobixCyoob</span> 
+        </div>
+        <div class="comentario-texto">THIS IS SO COOL AND CUTE AND TOTALLY NOT THE DIRECTION I THOUGHT THE COMIC WAS GOING BUT IT'S AWESOME NONETHELESS</div>
+        <div class="comentario-meta">Nov 05, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bety</span> 
+        </div>
+        <div class="comentario-texto">When puppies start cheering for you (*✓*)</div>
+        <div class="comentario-meta">Nov 04, 2017 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">003mia</span> 
+        </div>
+        <div class="comentario-texto">awwwwww</div>
+        <div class="comentario-meta">Nov 03, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Daniel E. S.</span> 
+        </div>
+        <div class="comentario-texto">a network of support puppies is what i need in life. on a side note this comic makes me incredibly sad</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">satan-kun</span> 
+        </div>
+        <div class="comentario-texto">The day I subscribe to it I find out it's on hiatus TwT</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 40</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">satan-kun</span> 
+        </div>
+        <div class="comentario-texto">But now I'm confused on who is dead and who isn't... and if anybody is dead at all</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kirimemea</span> 
+        </div>
+        <div class="comentario-texto">S a m e</div>
+        <div class="comentario-meta">Nov 03, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">satan-kun</span> 
+        </div>
+        <div class="comentario-texto">I have no clue what the main character's gender is XD</div>
+        <div class="comentario-meta">Nov 03, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GreyWolfess</span> 
+        </div>
+        <div class="comentario-texto">The boy is dead. He has a spirit thinger in his body keeping it alive. But his ghost is running around. I guess the black spirit made it possible for him to be seen and to touch things. But yeah he has until sundown to say goodbye and his feelings</div>
+        <div class="comentario-meta">Dec 07, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GreyWolfess</span> 
+        </div>
+        <div class="comentario-texto">Right now I guess it's an out of body. His body is still alive because of the white spirit thing but whether he truly dies is all up to the author</div>
+        <div class="comentario-meta">Dec 07, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">magitie</span> 
+        </div>
+        <div class="comentario-texto">same</div>
+        <div class="comentario-meta">Nov 10, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">a hard life indeed</span> 
+        </div>
+        <div class="comentario-texto">It's still on haitus...😢</div>
+        <div class="comentario-meta">Aug 02, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Usernamen</span> 
+        </div>
+        <div class="comentario-texto">How long is this already on hiatus-</div>
+        <div class="comentario-meta">Sep 03, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">curious case of dum</span> 
+        </div>
+        <div class="comentario-texto">Guys!!! The story is already finished, it just wasn't translated. Look up the author's works.</div>
+        <div class="comentario-meta">Aug 05, 2023 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">N1ckelodeon</span> 
+        </div>
+        <div class="comentario-texto">I think it's better to install a screen translator and read in Portuguese 💔</div>
+        <div class="comentario-meta">Nov 30, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravenwashere1776</span> 
+        </div>
+        <div class="comentario-texto">Dawwwwwww</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">EthelBH</span> 
+        </div>
+        <div class="comentario-texto">damn. I wish i had puppies to support me in the important moment of my life. I mean. How awesome is this ?!</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">SUPPORTIVE PUPPERS!!! :D</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 34</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">starsixx</span> 
+        </div>
+        <div class="comentario-texto">Puppers!</div>
+        <div class="comentario-meta">Nov 02, 2017 • ❤️ 4</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Renew</span> 
+        </div>
+        <div class="comentario-texto">I LOVE IT</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">chikkichiccha</span> 
+        </div>
+        <div class="comentario-texto">Good puppos</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ImadokiLife</span> 
+        </div>
+        <div class="comentario-texto">Aww how cute</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">chiaroscura</span> 
+        </div>
+        <div class="comentario-texto">i love your art style so much and this comic is adorable!!!</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 7</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
+        </div>
+        <div class="comentario-texto">Aww thank you ;w;</div>
+        <div class="comentario-meta">Nov 03, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Little Person</span> 
+        </div>
+        <div class="comentario-texto">BEST. PUPPIES. EVER</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Morgan</span> 
+        </div>
+        <div class="comentario-texto">I love those puppy <3</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Trash™</span> 
+        </div>
+        <div class="comentario-texto">YOOOOOOOO THIS IS- THIS IS So...... YOOOOOOOO (it’s so cute!)</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">m0nk3y</span> 
+        </div>
+        <div class="comentario-texto">Awwwww! 💗💗💗(^^)</div>
+        <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap28">◀ Anterior</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ELEMENTOS DO MODO IMERSIVO -->
+    <div class="imersivo-controles">
+        <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
+    </div>
+
+    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+
+    <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3 id="modalTitle">Comentários</h3>
+                <button class="btn-fechar-modal" onclick="fecharModalComentarios()">✕</button>
+            </div>
+            <div class="modal-body" id="modalComentariosBody"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-bar">
+        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
+        <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
+            <option value="1">Cap. 1 - 0001-650952</option><option value="2">Cap. 2 - 0002-650956</option><option value="3">Cap. 3 - 0003-650958</option><option value="4">Cap. 4 - 0004-650959</option><option value="5">Cap. 5 - 0005-855553</option><option value="6">Cap. 6 - 0006-855556</option><option value="7">Cap. 7 - 0007-855557</option><option value="8">Cap. 8 - 0008-855558</option><option value="9">Cap. 9 - 0009-855562</option><option value="10">Cap. 10 - 0010-855569</option><option value="11">Cap. 11 - 0011-855570</option><option value="12">Cap. 12 - 0012-855571</option><option value="13">Cap. 13 - 0013-857323</option><option value="14">Cap. 14 - 0014-857324</option><option value="15">Cap. 15 - 0015-857328</option><option value="16">Cap. 16 - 0016-857330</option><option value="17">Cap. 17 - 0017-867719</option><option value="18">Cap. 18 - 0018-867721</option><option value="19">Cap. 19 - 0019-867723</option><option value="20">Cap. 20 - 0020-867724</option><option value="21">Cap. 21 - 0021-867744</option><option value="22">Cap. 22 - 0022-871440</option><option value="23">Cap. 23 - 0023-871442</option><option value="24">Cap. 24 - 0024-871447</option><option value="25">Cap. 25 - 0025-877199</option><option value="26">Cap. 26 - 0026-877206</option><option value="27">Cap. 27 - 0027-877208</option><option value="28">Cap. 28 - 0028-877210</option><option value="29">Cap. 29 - 0029-877215</option>
+        </select>
+        <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
+        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
+        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">▶</button>
+    </div>
+
+    <button onclick="irParaTopo()" id="topoBtn">↑</button>
+    <script>
+let tamanhoFontePixels = 16;
+let temaEscuro = true;
+let capAtualIndex = 1;
+let pagAtualIndex = 1;
+let totalCapitulos = 0;
+let modoImersivoAtivo = false;
+
+function mudarTema() { 
+    temaEscuro = !temaEscuro; 
+    document.body.classList.toggle('light', !temaEscuro); 
+}
+
+function alterarFonte(delta) { 
+    tamanhoFontePixels = Math.min(Math.max(tamanhoFontePixels + (delta * 2), 12), 26); 
+    document.documentElement.style.fontSize = tamanhoFontePixels + 'px'; 
+}
+
+function toggleSidebar() { 
+    const sidebar = document.getElementById('sidebar');
+    const conteudo = document.getElementById('conteudo');
+    const btn = document.getElementById('toggleSidebarBtn');
+    sidebar.classList.toggle('oculto');
+    conteudo.classList.toggle('expandido');
+    btn.textContent = sidebar.classList.contains('oculto') ? '☰ Painel' : '✕ Fechar';
+}
+
+function toggleComentarioIndividual(idConteudo, btnEl) {
+    const el = document.getElementById(idConteudo);
+    if (!el) return;
+    el.classList.toggle('aberto');
+}
+
+function toggleTodosComentarios() {
+    const conteudos = document.querySelectorAll('.comentarios-conteudo');
+    const btnGlobal = document.getElementById('btnGlobalComentarios');
+    const deveExibir = btnGlobal.textContent.trim() === 'Exibir Comentários';
+    conteudos.forEach(el => {
+        if (deveExibir) el.classList.add('aberto');
+        else el.classList.remove('aberto');
+    });
+    btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
+}
+
+function irParaCapitulo(index) {
+    if (!index || index < 1) return;
+    capAtualIndex = parseInt(index);
+    pagAtualIndex = 1;
+
+    if (modoImersivoAtivo) {
+        atualizarModoImersivoPagina();
+    } else {
+        const el = document.getElementById(`cap${capAtualIndex}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    sincronizarSelectsCapitulos();
+}
+
+function capAnterior() { if (capAtualIndex > 1) irParaCapitulo(capAtualIndex - 1); }
+function capProximo() { if (capAtualIndex < totalCapitulos) irParaCapitulo(capAtualIndex + 1); }
+
+function sincronizarSelectsCapitulos() {
+    const selSidebar = document.getElementById('selectCapitulosSidebar');
+    const selMobile = document.getElementById('selectCapitulosMobile');
+    if (selSidebar) selSidebar.value = capAtualIndex;
+    if (selMobile) selMobile.value = capAtualIndex;
+}
+
+function abrirModalComentarios() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return;
+    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const modalBody = document.getElementById('modalComentariosBody');
+    document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
+    if (wrapperComentarios) {
+        modalBody.innerHTML = wrapperComentarios.innerHTML;
+        const lista = modalBody.querySelector('.comentarios-conteudo');
+        if (lista) lista.style.display = 'block';
+        const btn = modalBody.querySelector('.btn-toggle-comentarios');
+        if (btn) btn.style.display = 'none';
+    } else {
+        modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
+    }
+    document.getElementById('modalComentarios').classList.add('visivel');
+}
+
+function fecharModalComentarios() {
+    document.getElementById('modalComentarios').classList.remove('visivel');
+}
+
+function atualizarCapituloAtualVisivel() {
+    if (modoImersivoAtivo) return;
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+    let indexEncontrado = 1;
+    capitulos.forEach((cap, idx) => {
+        const rect = cap.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+            indexEncontrado = idx + 1;
+        }
+    });
+    if (capAtualIndex !== indexEncontrado) {
+        capAtualIndex = indexEncontrado;
+        sincronizarSelectsCapitulos();
+    }
+    const btnPrev = document.getElementById('mobileBtnPrev');
+    const btnNext = document.getElementById('mobileBtnNext');
+    if (btnPrev) btnPrev.disabled = capAtualIndex <= 1;
+    if (btnNext) btnNext.disabled = capAtualIndex >= totalCapitulos;
+}
+
+function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+function toggleModoImersivo() {
+    modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
+    const btnFS = document.getElementById('btnFullscreen');
+    const btnFSNav = document.getElementById('mobileBtnFullscreen');
+    
+    if (modoImersivoAtivo) {
+        if (btnFS) btnFS.textContent = '❌ Sair Leitura';
+        if (btnFSNav) btnFSNav.textContent = '❌ Sair';
+        pagAtualIndex = 1;
+        atualizarModoImersivoPagina();
+    } else {
+        if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
+        if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
+        document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
+        document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
+        
+        const capEl = document.getElementById(`cap${capAtualIndex}`);
+        if (capEl) capEl.scrollIntoView();
+    }
+}
+
+function obterImagensDoCapituloAtual() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return [];
+    return Array.from(capEl.querySelectorAll('img'));
+}
+
+function atualizarModoImersivoPagina() {
+    if (!modoImersivoAtivo) return;
+
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+
+    capitulos.forEach((cap, idx) => {
+        if (idx + 1 === capAtualIndex) {
+            cap.classList.add('cap-ativo-imersivo');
+        } else {
+            cap.classList.remove('cap-ativo-imersivo');
+        }
+    });
+
+    const imgs = obterImagensDoCapituloAtual();
+    if (imgs.length === 0) return;
+
+    if (pagAtualIndex > imgs.length) pagAtualIndex = imgs.length;
+    if (pagAtualIndex < 1) pagAtualIndex = 1;
+
+    imgs.forEach((img, idx) => {
+        if (idx + 1 === pagAtualIndex) {
+            img.classList.add('pag-ativa-imersivo');
+        } else {
+            img.classList.remove('pag-ativa-imersivo');
+        }
+    });
+
+    const hud = document.getElementById('imersivoHud');
+    if (hud) {
+        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    }
+}
+
+function imersivoProximaPagina() {
+    if (!modoImersivoAtivo) return;
+    const imgs = obterImagensDoCapituloAtual();
+    if (pagAtualIndex < imgs.length) {
+        pagAtualIndex++;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex < totalCapitulos) {
+        capAtualIndex++;
+        pagAtualIndex = 1;
+        sincronizarSelectsCapitulos();
+        atualizarModoImersivoPagina();
+    }
+}
+
+function imersivoPaginaAnterior() {
+    if (!modoImersivoAtivo) return;
+    if (pagAtualIndex > 1) {
+        pagAtualIndex--;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex > 1) {
+        capAtualIndex--;
+        sincronizarSelectsCapitulos();
+        const imgsPrev = obterImagensDoCapituloAtual();
+        pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
+        atualizarModoImersivoPagina();
+    }
+}
+
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
+}, false);
+
+function tratarSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 60) {
+        if (modoImersivoAtivo) {
+            if (diff > 0) imersivoProximaPagina();
+            else imersivoPaginaAnterior();
+        } else {
+            if (diff > 0) capProximo();
+            else capAnterior();
+        }
+    }
+}
+
+// --- ATALHOS DE TECLADO ---
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        modoImersivoAtivo ? imersivoProximaPagina() : capProximo();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        modoImersivoAtivo ? imersivoPaginaAnterior() : capAnterior();
+    }
+    if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
+});
+
+window.addEventListener('scroll', () => {
+    document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
+    atualizarCapituloAtualVisivel();
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    atualizarCapituloAtualVisivel();
+});
+</script>
+</body>
+</html>

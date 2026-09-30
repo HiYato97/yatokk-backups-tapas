@@ -1,0 +1,44 @@
+[
+ {
+  "panel": 1,
+  "url": "https://us-a.tapas.io/c/76/19c68b91-1987-4212-bc03-26346b5b5fc4.png?__token__=exp=1790522211~acl=/c/76/19c68b91-1987-4212-bc03-26346b5b5fc4.png*~hmac=c6c180ca0f6071324b9d48f1df76b8dd24098e8a93192cfeeeb87f31fb478ff2&version=v4",
+  "file": "images/panel-001.png",
+  "bytes": 1835342
+ },
+ {
+  "panel": 2,
+  "url": "https://us-a.tapas.io/c/d4/67231a8a-fa3c-446f-b281-41b682f53ee4.png?__token__=exp=1790522211~acl=/c/d4/67231a8a-fa3c-446f-b281-41b682f53ee4.png*~hmac=723d5a3bba35b1e7aff9c4977cab000b1ee0bc515b64a0c76a4165bbe98e162a&version=v4",
+  "file": "images/panel-002.png",
+  "bytes": 659548
+ },
+ {
+  "panel": 3,
+  "url": "https://us-a.tapas.io/c/64/f4b573e9-9464-421f-8cad-a47f8e32ae48.png?__token__=exp=1790522211~acl=/c/64/f4b573e9-9464-421f-8cad-a47f8e32ae48.png*~hmac=ffc0e87c4921705b244a9b62c7309787e4bfdd54ed2dbff6826900d88a08ea07&version=v4",
+  "file": "images/panel-003.png",
+  "bytes": 696233
+ },
+ {
+  "panel": 4,
+  "url": "https://us-a.tapas.io/c/45/3940252d-7af2-409a-8348-45b796252679.png?__token__=exp=1790522211~acl=/c/45/3940252d-7af2-409a-8348-45b796252679.png*~hmac=cabb491aa81995a3d8aad5387554dba80da61308ade6e3a168c01b49dd73e0cc&version=v4",
+  "file": "images/panel-004.png",
+  "bytes": 812397
+ },
+ {
+  "panel": 5,
+  "url": "https://us-a.tapas.io/c/2a/ae99863a-a925-4f83-8262-bb33b046a4b1.png?__token__=exp=1790522211~acl=/c/2a/ae99863a-a925-4f83-8262-bb33b046a4b1.png*~hmac=402f78ab1f801dbe6358f66112e745db91c754a828325e297692dbb39f74fee2&version=v4",
+  "file": "images/panel-005.png",
+  "bytes": 741799
+ },
+ {
+  "panel": 6,
+  "url": "https://us-a.tapas.io/c/5c/b6a980d5-9ea5-4e87-b5bd-24a6a016eb85.png?__token__=exp=1790522211~acl=/c/5c/b6a980d5-9ea5-4e87-b5bd-24a6a016eb85.png*~hmac=fd47aecbfbd370a5895e21e8f0f623ea88feadd1c9a02ba16cf1114e9262706f&version=v4",
+  "file": "images/panel-006.png",
+  "bytes": 767243
+ },
+ {
+  "panel": 7,
+  "url": "https://us-a.tapas.io/c/2c/90aaf737-bc48-46bb-b655-69385108bf89.png?__token__=exp=1790522211~acl=/c/2c/90aaf737-bc48-46bb-b655-69385108bf89.png*~hmac=4ed686d356c62d8b0d14edff004534501ae6d86993b2e60f173c77bfbb581cc9&version=v4",
+  "file": "images/panel-007.png",
+  "bytes": 735771
+ }
+]

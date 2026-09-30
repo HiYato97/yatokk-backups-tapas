@@ -1,0 +1,62 @@
+[
+ {
+  "id": 19681666,
+  "username": "yell9wp3arl",
+  "display_name": "yell9wp3arl",
+  "date": "Feb 21, 2024",
+  "text": "Omg, its really nick and charlie ! How cute 🥰",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 6255552,
+  "username": "problackmagicalgirl",
+  "display_name": "Rue B.",
+  "date": "Apr 15, 2018",
+  "text": "charlie and nick ☺️💖💖 and lenny is sooo cute lmao",
+  "likes": 6,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 5323938,
+  "username": "kikiowatobi",
+  "display_name": "Call_me_dream_daddy",
+  "date": "Nov 04, 2017",
+  "text": "Lol i see Nick and Charlie",
+  "likes": 8,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 5388441,
+    "username": "stella10sambane",
+    "display_name": "Queen Stella",
+    "date": "Nov 16, 2017",
+    "text": "OHHHHH omg you too. YASS",
+    "likes": 2,
+    "is_creator": false
+   }
+  ]
+ },
+ {
+  "id": 5314267,
+  "username": "aliceoseman",
+  "display_name": "Alice Oseman",
+  "date": "Nov 02, 2017",
+  "text": "Aaaaaa they look SO ADORABLE in your style! thank you so much Alec!!",
+  "likes": 19,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 8107934,
+    "username": "henrymurnie",
+    "display_name": "hrrgtt",
+    "date": "May 11, 2019",
+    "text": "Alice-chan... Is it really you?",
+    "likes": 1,
+    "is_creator": false
+   }
+  ]
+ }
+]

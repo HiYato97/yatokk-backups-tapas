@@ -1,0 +1,52 @@
+[
+ {
+  "id": 19681629,
+  "username": "yell9wp3arl",
+  "display_name": "yell9wp3arl",
+  "date": "Feb 21, 2024",
+  "text": "|ying and Yang used Revival blessing !| (omg they're so pokemon)",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 5378072,
+  "username": "kiruislighty",
+  "display_name": "N0DereDan",
+  "date": "Nov 14, 2017",
+  "text": "* cri",
+  "likes": 6,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 5259771,
+  "username": "Renew",
+  "display_name": "Renew",
+  "date": "Oct 23, 2017",
+  "text": "WAI YOU STOP NOW",
+  "likes": 6,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 5259558,
+  "username": "MarshallTori",
+  "display_name": "Tori",
+  "date": "Oct 23, 2017",
+  "text": "OHHHHH",
+  "likes": 7,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 5259591,
+    "username": "daunadogg",
+    "display_name": "Little Person",
+    "date": "Oct 23, 2017",
+    "text": "Omg ten count",
+    "likes": 3,
+    "is_creator": false
+   }
+  ]
+ }
+]

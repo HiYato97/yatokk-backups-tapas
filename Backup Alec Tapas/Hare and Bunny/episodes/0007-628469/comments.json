@@ -1,0 +1,52 @@
+[
+ {
+  "id": 5137791,
+  "username": "Techi-Thestral",
+  "display_name": "Evan",
+  "date": "Oct 01, 2017",
+  "text": "It was awesome? hhehehehhehhekinkyboiii",
+  "likes": 39,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 4513527,
+  "username": "ThatOneIblisKid",
+  "display_name": "ThatOneIblisKid",
+  "date": "Jun 30, 2017",
+  "text": "My god, Jimmy is a cinnamon roll",
+  "likes": 59,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 17398397,
+    "username": "Basilm",
+    "display_name": "Травяные чаи",
+    "date": "Feb 02, 2023",
+    "text": "Its Sunny and Basil irl",
+    "likes": 0,
+    "is_creator": false
+   }
+  ]
+ },
+ {
+  "id": 3850655,
+  "username": "shawneesmith",
+  "display_name": "SweetLust23",
+  "date": "Mar 25, 2017",
+  "text": "lol my baby jimmy is so pretty",
+  "likes": 40,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 3757896,
+  "username": "chinacrimes64",
+  "display_name": "RainbowHigh",
+  "date": "Mar 12, 2017",
+  "text": "When youre left on a cliff hanger like msbhdk",
+  "likes": 3,
+  "is_creator": false,
+  "replies": []
+ }
+]

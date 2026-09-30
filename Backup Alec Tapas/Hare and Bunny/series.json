@@ -1,0 +1,40 @@
+{
+ "series_id": "57464",
+ "fetched_at": "2026-09-26T19:38:26Z",
+ "data": {
+  "id": 57464,
+  "title": "Hare and Bunny",
+  "escape_title": "Hare and Bunny",
+  "url": "Hare-and-Bunny",
+  "thumb_url": "https://us-a.tapas.io/sa/f5/da4a7e57-9b8b-4915-b176-630132cd2115_m.jpg",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": true,
+  "has_book_cover": false,
+  "on_sale_now": false,
+  "thumbsup_cnt": 33047,
+  "discount_rate": 0,
+  "genre": {
+   "id": 22,
+   "name": "BL",
+   "abbr": "BL",
+   "books": false,
+   "description": "Big hands, bigger hearts ",
+   "display_order": 7,
+   "artwork_url": "https://us-a.tapas.io/a/fc/4b6b4114-10d8-44a0-97b2-37cda42d4ff4.jpg",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/39/415f7d2b-19e4-4d69-afd3-03a5884078dd.jpg",
+   "icon_artwork_url": "https://us-a.tapas.io/a/39/415f7d2b-19e4-4d69-afd3-03a5884078dd.jpg",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 11,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

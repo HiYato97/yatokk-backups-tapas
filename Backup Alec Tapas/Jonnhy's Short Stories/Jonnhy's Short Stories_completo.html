@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>Jonnhy&#x27;s Short Stories</title>
+    <style>
+:root {
+    --bg-body: #000000;
+    --bg-card: #090a0a;
+    --bg-sidebar: #0d0e10;
+    --border-color: #222428;
+    --text-primary: #e1e3e6;
+    --text-muted: #737984;
+    --accent: #ffcb05;
+    --accent-hover: #ffffff;
+    --sidebar-width: 280px;
+    --danger: #dc2626;
+    --danger-hover: #991b1b;
+    --success: #16a34a;
+}
+
+body.light {
+    --bg-body: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-sidebar: #eaecef;
+    --border-color: #d0d4dc;
+    --text-primary: #22252a;
+    --text-muted: #626875;
+    --accent: #d97706;
+    --accent-hover: #111827;
+    --danger: #ef4444;
+    --danger-hover: #b91c1c;
+    --success: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+#versao {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    padding: 0.4rem 1rem;
+    text-align: center;
+    z-index: 1000;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-voltar-index {
+    display: block;
+    width: 100%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggleSidebarBtn {
+    position: fixed;
+    top: 36px;
+    left: 10px;
+    z-index: 1001;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 31px;
+    left: 0;
+    width: var(--sidebar-width);
+    max-width: 85vw;
+    height: calc(100vh - 31px - 54px);
+    background: var(--bg-sidebar);
+    padding: 50px 15px 30px 15px;
+    border-right: 1px solid var(--border-color);
+    z-index: 999;
+    overflow-y: auto;
+    transition: transform 0.25s ease;
+}
+.sidebar.oculto { transform: translateX(-100%); }
+
+.painel-controles {
+    background: var(--bg-card);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.painel-controles h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.botoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+.painel-controles button, .select-capitulos {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 100%;
+}
+.select-capitulos {
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.btn-full-width { grid-column: span 2; }
+
+.sidebar h2 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar ul { list-style: none; }
+.sidebar a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 6px 8px;
+    display: block;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.sidebar a:hover { background: var(--bg-card); }
+
+.conteudo {
+    margin-left: var(--sidebar-width);
+    margin-top: 31px;
+    padding: 30px;
+    transition: margin-left 0.25s ease;
+}
+.conteudo.expandido { margin-left: 0; }
+
+.series-header {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.series-thumb {
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+.series-info { flex: 1; }
+.series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-genre {
+    display: inline-block;
+    background: var(--border-color);
+    color: var(--text-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.series-desc { font-size: 0.95rem; margin-top: 10px; color: var(--text-primary); line-height: 1.5; }
+
+.capitulo {
+    margin-bottom: 30px;
+    scroll-margin-top: 45px;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.capitulo h2 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+.comentarios-wrapper { margin-top: 15px; }
+.btn-toggle-comentarios {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.comentarios-conteudo {
+    display: none;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 12px;
+}
+.comentarios-conteudo.aberto { display: block !important; }
+.comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
+.autor { font-weight: 600; color: var(--text-primary); }
+.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
+.comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
+.replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
+
+.nav-botoes {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+.nav-botoes a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+
+/* MODAL COMENTÁRIOS MOBILE */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2000;
+}
+.modal-overlay.visivel { display: flex; }
+.modal-conteudo {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+.modal-body { padding: 16px; overflow-y: auto; }
+
+/* BARRA NAVEGAÇÃO MOBILE */
+.mobile-nav-bar {
+    display: flex;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 54px;
+    background: var(--bg-sidebar); 
+    border-top: 1px solid var(--border-color);
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1002;
+    padding: 0 10px;
+}
+.mobile-nav-btn {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 0.8rem; cursor: pointer; flex: 1; height: 100%;
+}
+
+#topoBtn {
+    position: fixed; 
+    bottom: 70px;
+    right: 20px;
+    background: var(--bg-card); 
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); 
+    width: 38px; 
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    z-index: 1001;
+}
+#topoBtn.visivel { display: flex; }
+
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+body.modo-imersivo #versao,
+body.modo-imersivo #toggleSidebarBtn,
+body.modo-imersivo .sidebar,
+body.modo-imersivo .series-header,
+body.modo-imersivo .capitulo h2,
+body.modo-imersivo .comentarios-wrapper,
+body.modo-imersivo .nav-botoes,
+body.modo-imersivo #topoBtn,
+body.modo-imersivo .mobile-nav-bar {
+    display: none !important;
+}
+
+body.modo-imersivo {
+    background: #000000 !important;
+    padding-bottom: 0 !important;
+}
+
+body.modo-imersivo .conteudo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-imersivo .capitulo {
+    display: none;
+    max-width: 100% !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .capitulo.cap-ativo-imersivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body.modo-imersivo img {
+    display: none !important;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+}
+
+body.modo-imersivo img.pag-ativa-imersivo {
+    display: block !important;
+}
+
+/* CONTROLES E HUD IMERSIVO */
+.imersivo-controles {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: center; }
+
+.btn-sair-imersivo {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.imersivo-hud-bottom {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+body.modo-imersivo .imersivo-hud-bottom { display: block; }
+
+@media (max-width: 768px) {
+    .conteudo { margin-left: 0 !important; padding: 15px 10px; }
+    .series-header { flex-direction: column; align-items: center; text-align: center; }
+}
+</style>
+</head>
+<body id="topo">
+    <div id="versao">
+        Série: <b>Jonnhy&#x27;s Short Stories</b> | Gerado em 29/09/2026 22:50
+    </div>
+
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+
+    <div class="sidebar" id="sidebar">
+        <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
+        <div class="painel-controles">
+            <h3>Seletor Rápido</h3>
+            <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
+                <option value="1">Cap. 1 - 0001-631323</option><option value="2">Cap. 2 - 0002-631325</option><option value="3">Cap. 3 - 0003-893454</option>
+            </select>
+
+            <h3>Opções da Página</h3>
+            <div class="botoes-grid">
+                <button onclick="mudarTema()">Tema</button>
+                <button id="btnFullscreen" onclick="toggleModoImersivo()">📖 Leitura Imersiva</button>
+                <button onclick="alterarFonte(1)">A+</button>
+                <button onclick="alterarFonte(-1)">A-</button>
+                <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+            </div>
+        </div>
+
+        <h2>Índice</h2>
+        <ul><li><a href="#cap1">Cap. 1 - 0001-631323</a></li><li><a href="#cap2">Cap. 2 - 0002-631325</a></li><li><a href="#cap3">Cap. 3 - 0003-893454</a></li></ul>
+    </div>
+
+    <div class="conteudo" id="conteudo">
+        
+    <div class="series-header">
+        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <div class="series-info">
+            <h1 class="series-title">Jonnhy&#x27;s Short Stories</h1>
+            <div class="series-meta"><span class="series-genre">Slice of life</span> ❤ 2855 curtidas</div>
+            <div class="series-desc"></div>
+        </div>
+    </div>
+        
+        <div class="capitulo" id="cap1">
+            <h2>Capítulo 1 - 0001-631323</h2>
+            <img src="episodes/0001-631323/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0001-631323/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0001-631323/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0001-631323/images/panel-004.jpg" alt="panel-004.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
+            <span>💬 Ver Comentários (27)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap1">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">heloisaazpezanka</span> 
+        </div>
+        <div class="comentario-texto">Aaa, espero que eles fiquem juntos</div>
+        <div class="comentario-meta">Apr 20, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rosella-Moon</span> 
+        </div>
+        <div class="comentario-texto">IS HE OKAY</div>
+        <div class="comentario-meta">May 05, 2023</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">usaki_n_willow</span> 
+        </div>
+        <div class="comentario-texto">é isso, não tem mais? 💀 me suicidei</div>
+        <div class="comentario-meta">Aug 14, 2022</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lunashitpost47n</span> 
+        </div>
+        <div class="comentario-texto">SANTO SEJA O AUTOR</div>
+        <div class="comentario-meta">Apr 06, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">AspieArtWork</span> 
+        </div>
+        <div class="comentario-texto">You should make more comics about these two because, this is really cute. <3 <3 <3 Also I ship them!!!! <3 <3 <3</div>
+        <div class="comentario-meta">May 22, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Willow</span> 
+        </div>
+        <div class="comentario-texto">Please, make my otp become canon. Por favor, faça meu otp ser canon</div>
+        <div class="comentario-meta">Oct 12, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Scarlett Coke</span> 
+        </div>
+        <div class="comentario-texto">This NEEDS to be a comic!!</div>
+        <div class="comentario-meta">Mar 06, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">8fred9</span> 
+        </div>
+        <div class="comentario-texto">Ok I need more of this in my life, like 1000 pages of this all day long....thanks</div>
+        <div class="comentario-meta">Nov 21, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fujoshissuck</span> 
+        </div>
+        <div class="comentario-texto">MORE</div>
+        <div class="comentario-meta">Nov 15, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Freedom</span> 
+        </div>
+        <div class="comentario-texto">Omg please write more of this!!!</div>
+        <div class="comentario-meta">Nov 05, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Haerto</span> 
+        </div>
+        <div class="comentario-texto">continua! amei</div>
+        <div class="comentario-meta">Sep 03, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Trash™</span> 
+        </div>
+        <div class="comentario-texto">This is beautiful I would totally read this non stop please update soon!</div>
+        <div class="comentario-meta">Aug 04, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">august</span> 
+        </div>
+        <div class="comentario-texto">This is amazing and adorable and I love it.</div>
+        <div class="comentario-meta">Jun 11, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bluejit</span> 
+        </div>
+        <div class="comentario-texto">Reverse bullying</div>
+        <div class="comentario-meta">May 26, 2017 • ❤️ 28</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lilyismysoul</span> 
+        </div>
+        <div class="comentario-texto">Oh, that's so cute ❤</div>
+        <div class="comentario-meta">Apr 03, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Freedom</span> 
+        </div>
+        <div class="comentario-texto">omg so cute please continue</div>
+        <div class="comentario-meta">Mar 18, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Melliso</span> 
+        </div>
+        <div class="comentario-texto">Dammit!! THE SHIP ALREADY SAILED!</div>
+        <div class="comentario-meta">Mar 17, 2017 • ❤️ 19</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Iduna</span> 
+        </div>
+        <div class="comentario-texto">I'm hooked!!! please keep posting more please I love this story ♥</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">|Scribal.Knight|</span> 
+        </div>
+        <div class="comentario-texto">its a good story</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kass</span> 
+        </div>
+        <div class="comentario-texto">I'm in love *-*</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lky</span> 
+        </div>
+        <div class="comentario-texto">ahushuash <3 gostei</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RainbowHigh</span> 
+        </div>
+        <div class="comentario-texto">I love it already, unique, funny, and great drawing style</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ray</span> 
+        </div>
+        <div class="comentario-texto">this is gonna be a good story</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">TheKattz</span> 
+        </div>
+        <div class="comentario-texto">So cute....I can take it anymore....//die cuz cuteness//</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ArielR</span> 
+        </div>
+        <div class="comentario-texto">it can't be helped, I ship it <3 . But also I don't , they could be good friends ñ.ñ</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 32</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
+        </div>
+        <div class="comentario-texto">I intend to make a serie of this, theeeeen WAIT FOR HOMOS MWAHAHAHA <3</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 21</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cereal</span> 
+        </div>
+        <div class="comentario-texto">OMG AAAAAAAAAAAAAHHHH, I NEED THIS TO LIVE PLS</div>
+        <div class="comentario-meta">Mar 18, 2017 • ❤️ 4</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                
+                <a href="#cap2">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap2">
+            <h2>Capítulo 2 - 0002-631325</h2>
+            <img src="episodes/0002-631325/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0002-631325/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0002-631325/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0002-631325/images/panel-004.jpg" alt="panel-004.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
+            <span>💬 Ver Comentários (170)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap2">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">mateuspaulo7890</span> 
+        </div>
+        <div class="comentario-texto">Só queria uma continuação T^T
+
+Tem criança latindo e cachorro chorando aqui</div>
+        <div class="comentario-meta">Apr 23, 2022 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jenny</span> 
+        </div>
+        <div class="comentario-texto">Queria q virasse serie</div>
+        <div class="comentario-meta">Jan 21, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ari</span> 
+        </div>
+        <div class="comentario-texto">Merece continuação,dá pra fazer tantas comics divertidas com essa história simples <3</div>
+        <div class="comentario-meta">Jun 13, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">La fujoshit</span> 
+        </div>
+        <div class="comentario-texto">Já shippo</div>
+        <div class="comentario-meta">May 26, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">korra</span> 
+        </div>
+        <div class="comentario-texto">Não tem continuação ????</div>
+        <div class="comentario-meta">May 21, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">antunes2207</span> 
+        </div>
+        <div class="comentario-texto">Mano na vida eu sou o p dan e minha amiga é o Italo kkskdvkf</div>
+        <div class="comentario-meta">Mar 26, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">taisdonato13</span> 
+        </div>
+        <div class="comentario-texto">mais episodios pfv</div>
+        <div class="comentario-meta">Oct 03, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lin</span> 
+        </div>
+        <div class="comentario-texto">FAZ UMA SÉRIE POR FAVOR,ESTOU APAIXONADA</div>
+        <div class="comentario-meta">Aug 20, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Abizonha</span> 
+        </div>
+        <div class="comentario-texto">Continuaaaaaa</div>
+        <div class="comentario-meta">Aug 19, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">taisdonato13</span> 
+        </div>
+        <div class="comentario-texto">transforma em série</div>
+        <div class="comentario-meta">Jul 16, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Amora</span> 
+        </div>
+        <div class="comentario-texto">mds eu amei, faz serie pfvr ❤❤❤</div>
+        <div class="comentario-meta">Feb 20, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Confused_Sunshine</span> 
+        </div>
+        <div class="comentario-texto">Isso é tão familiar</div>
+        <div class="comentario-meta">Jan 21, 2019</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Juju</span> 
+        </div>
+        <div class="comentario-texto">Já posso shippar?</div>
+        <div class="comentario-meta">Jan 10, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">maisons2001</span> 
+        </div>
+        <div class="comentario-texto">mt fofos esses dois e divertidos. Parabéns pela tirinha. Espero que tenha umas série 💙</div>
+        <div class="comentario-meta">Dec 29, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IceAngelSimon</span> 
+        </div>
+        <div class="comentario-texto"><3</div>
+        <div class="comentario-meta">Dec 27, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">leticyacastelo</span> 
+        </div>
+        <div class="comentario-texto">eu sou o italo</div>
+        <div class="comentario-meta">Dec 26, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IceAngelSimon</span> 
+        </div>
+        <div class="comentario-texto">Queria muito ver uma série deles</div>
+        <div class="comentario-meta">Dec 09, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sthacemayara</span> 
+        </div>
+        <div class="comentario-texto">Pfv continua eu meio que quero saber o que vai acontecer</div>
+        <div class="comentario-meta">Sep 08, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">popcorn</span> 
+        </div>
+        <div class="comentario-texto">aaaaa pfv faz serie (sendo bl ou nao eu quero ver os personagens e a historia se desenvolverem )</div>
+        <div class="comentario-meta">Jun 22, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jujubaaa</span> 
+        </div>
+        <div class="comentario-texto">Achei essa história tão bonitinha, queria mais ;-;</div>
+        <div class="comentario-meta">Jun 16, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bela Sem Fera</span> 
+        </div>
+        <div class="comentario-texto">Eu achei fofo o sentido da historia!{ Fez sentido o que eu disse?} ;p</div>
+        <div class="comentario-meta">Apr 16, 2018 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mikhail</span> 
+        </div>
+        <div class="comentario-texto">queria mais um desse ;-;</div>
+        <div class="comentario-meta">Mar 12, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kuulys</span> 
+        </div>
+        <div class="comentario-texto">O Ítalo é bem parecido comigo, também não gosto de comer e tenho alguns probleminhas como insuficiencia alimentar KKK</div>
+        <div class="comentario-meta">Feb 20, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jonathan Jaeri</span> 
+        </div>
+        <div class="comentario-texto">Cara "Levante a cabeça, bata no peito e diga nossa como eu sou foda! Sou o cara mais legal do mundo!"  Ta no nivel do discurso do rocky</div>
+        <div class="comentario-meta">Feb 09, 2018 • ❤️ 19</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jonathan Jaeri</span> 
+        </div>
+        <div class="comentario-texto">Meu Zeus eterno, cara eu te amo demais todas as suas comics são maravilhosas e em PORTUGUES melhor coisa aqui quando encontro algo do brasil e bl (nivel mega ultra supremo raro) obrigado mesmo por tudo. Espero tudo de bom pra você.</div>
+        <div class="comentario-meta">Feb 09, 2018 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">∅ɧąŋŋყ∅</span> 
+        </div>
+        <div class="comentario-texto">Amei</div>
+        <div class="comentario-meta">Feb 03, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nalua</span> 
+        </div>
+        <div class="comentario-texto">Eu amo essa historinha e não consigo parar de lê-la</div>
+        <div class="comentario-meta">Jan 31, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lili Lolli</span> 
+        </div>
+        <div class="comentario-texto">Meu coraçãozinho (*♡∀♡)</div>
+        <div class="comentario-meta">Jan 20, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">_yaoi_</span> 
+        </div>
+        <div class="comentario-texto">pela mor, posta mais dissoooo!  Mais um shipp pra minha lista sz  apoio uma história só desses dois fofos!</div>
+        <div class="comentario-meta">Jan 11, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">natifacundes456</span> 
+        </div>
+        <div class="comentario-texto">SE N ESTÁ ENTENDENDO A GRAVIDADE DO PROBLEMA, EU PRECISO DE MAIS QUADRINHOS QUERO UM NOVO SHIPP!!!!PLSSS >u< preciso de mais shipps já tem a do lerry e o coelho, leon e franz, peixes e serp, lenny e kimo, preciso da sereja no bolo*-*</div>
+        <div class="comentario-meta">Jan 09, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Maricchan</span> 
+        </div>
+        <div class="comentario-texto">aguardando continuação</div>
+        <div class="comentario-meta">Jan 06, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Loren</span> 
+        </div>
+        <div class="comentario-texto">Gostei tanto disso mds <3</div>
+        <div class="comentario-meta">Jan 06, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sara.rosa025</span> 
+        </div>
+        <div class="comentario-texto">Aaaah quero mais💔</div>
+        <div class="comentario-meta">Dec 21, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Empadinhax</span> 
+        </div>
+        <div class="comentario-texto">faz serie</div>
+        <div class="comentario-meta">Dec 17, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alicinha</span> 
+        </div>
+        <div class="comentario-texto">Eu li os dois sem perceber que eram a mesma página com língua diferente, eu só pensei "um, tem alguma coisa errada..." E só dps percebi que eu li em 2 línguas diferentes</div>
+        <div class="comentario-meta">Dec 14, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Passarin Voador</span> 
+        </div>
+        <div class="comentario-texto">Ja perdi a conta de quantas vezes li isso...Algm me helpa aqui (Ｔ▽Ｔ)</div>
+        <div class="comentario-meta">Dec 12, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">AitakNelle</span> 
+        </div>
+        <div class="comentario-texto">PelamordeGoku continua ;---;</div>
+        <div class="comentario-meta">Dec 08, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">GabsGabsGabsGabsGabs</span> 
+        </div>
+        <div class="comentario-texto">por favor, faz série</div>
+        <div class="comentario-meta">Dec 04, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ismael Crispiim</span> 
+        </div>
+        <div class="comentario-texto">O nomé da pessoa que eu gosto Ìtalo</div>
+        <div class="comentario-meta">Dec 02, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Xiloui</span> 
+        </div>
+        <div class="comentario-texto">Ítalo eu na vida</div>
+        <div class="comentario-meta">Nov 30, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shurouqideis1</span> 
+        </div>
+        <div class="comentario-texto">How come the first parts in english but this one's one Spanish</div>
+        <div class="comentario-meta">Nov 24, 2017</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">tanto faz</span> 
+        </div>
+        <div class="comentario-texto">It is in Portuguese</div>
+        <div class="comentario-meta">Jan 23, 2018</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jordan</span> 
+        </div>
+        <div class="comentario-texto">continua seu puto</div>
+        <div class="comentario-meta">Nov 23, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Hikari Miharu</span> 
+        </div>
+        <div class="comentario-texto">Já quero série</div>
+        <div class="comentario-meta">Nov 23, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">⅟oliver</span> 
+        </div>
+        <div class="comentario-texto">Faz série pls</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">myrella araujo</span> 
+        </div>
+        <div class="comentario-texto">Haaaa CONTINUA MALDITOOOO</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LouCardosoBB</span> 
+        </div>
+        <div class="comentario-texto">CONTINUA</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LouCardosoBB</span> 
+        </div>
+        <div class="comentario-texto">Ficou tão fofo.</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IludidaPakas</span> 
+        </div>
+        <div class="comentario-texto">CONTINUA POR FAVOOR</div>
+        <div class="comentario-meta">Nov 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Um ser٩(๑❛ᴗ❛๑)۶</span> 
+        </div>
+        <div class="comentario-texto">Continua DESGRAÇA</div>
+        <div class="comentario-meta">Nov 13, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">manaruhinaxd</span> 
+        </div>
+        <div class="comentario-texto">faz continuação pelo amor de Deus... sou ansiosa e essa obra prima me cativou, por favor nunca te pedi nada obrigada</div>
+        <div class="comentario-meta">Nov 10, 2017 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ValBz</span> 
+        </div>
+        <div class="comentario-texto">FAZ VIRAR SÉRIE PFVV AAAAA</div>
+        <div class="comentario-meta">Nov 08, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">James</span> 
+        </div>
+        <div class="comentario-texto">1
+
+2
+
+3
+
+PA
+
+PAM
+
+PAPOW
+
+MODO FUJOSHI
+
+ATIVAR
+
+PODER:SHIPAR
+
+AAAAAAAAAA</div>
+        <div class="comentario-meta">Nov 03, 2017 • ❤️ 17</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">myrella araujo</span> 
+        </div>
+        <div class="comentario-texto">Kk eu tamben ativei o meu!!!</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Moniqueyaoi</span> 
+        </div>
+        <div class="comentario-texto">SIIIIIIMMMM</div>
+        <div class="comentario-meta">Mar 06, 2025</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MissDy</span> 
+        </div>
+        <div class="comentario-texto">Eu sempre releio e a vontade por uma continuação continua imensa</div>
+        <div class="comentario-meta">Nov 02, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nula.</span> 
+        </div>
+        <div class="comentario-texto">Ja é quinta vez que eu to lendo essa mesma tirinha e eu nao canso de fazer isso. Eu adoro essa tirinha, e gostaria ainda mais se tivesse mais paginas</div>
+        <div class="comentario-meta">Oct 21, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">susu</span> 
+        </div>
+        <div class="comentario-texto">Porfavor 😄👐. Amei...</div>
+        <div class="comentario-meta">Oct 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hemylecristinesilva</span> 
+        </div>
+        <div class="comentario-texto">continuação por favoooor</div>
+        <div class="comentario-meta">Oct 09, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ib_UwU</span> 
+        </div>
+        <div class="comentario-texto">Continua ;-; Por favor</div>
+        <div class="comentario-meta">Oct 08, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">tanto faz</span> 
+        </div>
+        <div class="comentario-texto">Continua, por favor</div>
+        <div class="comentario-meta">Oct 06, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Delaria</span> 
+        </div>
+        <div class="comentario-texto">FAZ A SÉRIE POR FAVOR, NUNCA TE PEDI NADA!!!!!!!</div>
+        <div class="comentario-meta">Oct 04, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">random guy ùwú</span> 
+        </div>
+        <div class="comentario-texto">Posta mais;-;</div>
+        <div class="comentario-meta">Oct 01, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kaka</span> 
+        </div>
+        <div class="comentario-texto">AMEI 
+
+CONTINUAAAAAA</div>
+        <div class="comentario-meta">Sep 29, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Poli-Chan</span> 
+        </div>
+        <div class="comentario-texto">como eu consegui rir no final disso tudo</div>
+        <div class="comentario-meta">Sep 22, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BolinhoDoce</span> 
+        </div>
+        <div class="comentario-texto">Já quero, shipo muito, onde, quando é aonde?</div>
+        <div class="comentario-meta">Sep 21, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nicolasramires81</span> 
+        </div>
+        <div class="comentario-texto">fas serie</div>
+        <div class="comentario-meta">Sep 11, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">croissantscaramelad</span> 
+        </div>
+        <div class="comentario-texto">Quero maiiiiis! Adorooo seu trabalho ! S-e-n-s-a-s-i-o-n-a-l !</div>
+        <div class="comentario-meta">Sep 02, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Disuki</span> 
+        </div>
+        <div class="comentario-texto">ameii continua 💜💜</div>
+        <div class="comentario-meta">Aug 29, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">sasalele</span> 
+        </div>
+        <div class="comentario-texto">SERIEEEEE PLISSSSSSSS</div>
+        <div class="comentario-meta">Aug 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Venus</span> 
+        </div>
+        <div class="comentario-texto">Amooooo</div>
+        <div class="comentario-meta">Aug 02, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kenazfurion</span> 
+        </div>
+        <div class="comentario-texto">ameiiii preciso de mais</div>
+        <div class="comentario-meta">Jul 30, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nula.</span> 
+        </div>
+        <div class="comentario-texto">Eu adorei, eu preciso de muito mais.</div>
+        <div class="comentario-meta">Jul 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">FujoshiAzarada</span> 
+        </div>
+        <div class="comentario-texto">Shippo :3 (eithan, o boy é meio masoquista... Ou depressivo.... Ou anoréxico......) Por incrível que pareça estou meio que parecendo esse cara loiro cuidado do boy com meus/minhas amigos(as) kkk</div>
+        <div class="comentario-meta">Jul 14, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lumilllion</span> 
+        </div>
+        <div class="comentario-texto">queria uma série disso ;u;</div>
+        <div class="comentario-meta">Jul 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gabriel is the best</span> 
+        </div>
+        <div class="comentario-texto">Omg q coisa mais preciosa DEUS ME HELPA Q EU TÔ NO TETO</div>
+        <div class="comentario-meta">Jul 11, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">2Ki1L</span> 
+        </div>
+        <div class="comentario-texto">Continua... please 😌</div>
+        <div class="comentario-meta">Jul 04, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gabys</span> 
+        </div>
+        <div class="comentario-texto">serie pfv!!!!</div>
+        <div class="comentario-meta">Jul 02, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Venus</span> 
+        </div>
+        <div class="comentario-texto">Que amooorr, adorei! Eu realmente preciso de uma série disso ashausha   E eu não conseguia parar de pensar que ele tinha anorexia, mas não tenho certeza... Enfim, amei demais kdosf <3</div>
+        <div class="comentario-meta">Jul 01, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">luanafofoletica</span> 
+        </div>
+        <div class="comentario-texto">achei lindo</div>
+        <div class="comentario-meta">Jun 27, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">balalalyra</span> 
+        </div>
+        <div class="comentario-texto">Hsuehauhsuahsuahs adorei ❤ "é o meu habitat" ndjdkdsjhfkdjf</div>
+        <div class="comentario-meta">Jun 22, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">leticyacastelo</span> 
+        </div>
+        <div class="comentario-texto">Na vida eu sou o ítalo</div>
+        <div class="comentario-meta">Jun 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Amaterasu</span> 
+        </div>
+        <div class="comentario-texto">CONTINUA PLSSSS ＼(^o^)／ ＼(^o^)／</div>
+        <div class="comentario-meta">Jun 17, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Uma fã BR</span> 
+        </div>
+        <div class="comentario-texto">continuaaaaaaaaaaaaaaaaaaaaaa!!!! S2</div>
+        <div class="comentario-meta">Jun 09, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">350Volts</span> 
+        </div>
+        <div class="comentario-texto">manda mais!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! eu amo as suas series</div>
+        <div class="comentario-meta">May 29, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">valverde</span> 
+        </div>
+        <div class="comentario-texto">eae vamo fecha, quer dizer continuar?</div>
+        <div class="comentario-meta">May 29, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Prégo</span> 
+        </div>
+        <div class="comentario-texto">serie?*Procurando a serie*Serie minha filha cade você!?!</div>
+        <div class="comentario-meta">May 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Prégo</span> 
+        </div>
+        <div class="comentario-texto">10101010101</div>
+        <div class="comentario-meta">May 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">brat</span> 
+        </div>
+        <div class="comentario-texto">johnny jota e sua habilidade de começar varias comics e esquecer no churrasco</div>
+        <div class="comentario-meta">May 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ingriddibby</span> 
+        </div>
+        <div class="comentario-texto">Serio tinha que ter mais eu amei mais do que amo chocolate eu verdadeiramente amo chocolate...</div>
+        <div class="comentario-meta">May 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nidss.aw</span> 
+        </div>
+        <div class="comentario-texto">maisss</div>
+        <div class="comentario-meta">May 24, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jhonvicthor</span> 
+        </div>
+        <div class="comentario-texto">maisssssss</div>
+        <div class="comentario-meta">May 22, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Fell Sans!</span> 
+        </div>
+        <div class="comentario-texto">preciso de mais</div>
+        <div class="comentario-meta">May 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Chobella</span> 
+        </div>
+        <div class="comentario-texto">Continua ;-; eu preciso disso na minha vida</div>
+        <div class="comentario-meta">May 18, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Doda Oz</span> 
+        </div>
+        <div class="comentario-texto">PRECISO DE SÉRIE DISSO PQP</div>
+        <div class="comentario-meta">May 12, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">RynTrinity</span> 
+        </div>
+        <div class="comentario-texto">SOOO GOOOOOD!!!!</div>
+        <div class="comentario-meta">May 07, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">valverde</span> 
+        </div>
+        <div class="comentario-texto">continua</div>
+        <div class="comentario-meta">Apr 28, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LadyMichaelis</span> 
+        </div>
+        <div class="comentario-texto">eu só preciso que vire uma série... só isso °^°</div>
+        <div class="comentario-meta">Apr 21, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LadyMichaelis</span> 
+        </div>
+        <div class="comentario-texto">ai mds, que nenês *-*</div>
+        <div class="comentario-meta">Apr 21, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ana57</span> 
+        </div>
+        <div class="comentario-texto">Sempre que vejo essa webcomic me lembro da comic pretty boy do pinterest,recomendo é muito para as fujioshis como eu kk</div>
+        <div class="comentario-meta">Apr 18, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pam</span> 
+        </div>
+        <div class="comentario-texto">meu Deus, faz uma série dessa comic. por favorzinho. eu realmente nunca te pedi nada.</div>
+        <div class="comentario-meta">Apr 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gilmaraassuncao</span> 
+        </div>
+        <div class="comentario-texto">faz série pfv, nunca te pedia nada jonnhyjota (pelo menos aq em comentário)</div>
+        <div class="comentario-meta">Apr 08, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Hany_Chan</span> 
+        </div>
+        <div class="comentario-texto">essa comic já entrou na minha mente e eu já imaginei mais dois capítulos dela (do meu jeito fujoshi) por favor faz virar uma série</div>
+        <div class="comentario-meta">Apr 08, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jennycamui</span> 
+        </div>
+        <div class="comentario-texto">Eu preciso de uma série sobre isso aaaaaa</div>
+        <div class="comentario-meta">Apr 04, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bia B2</span> 
+        </div>
+        <div class="comentario-texto">QUERO MAIS AGORA</div>
+        <div class="comentario-meta">Apr 01, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">byunmare</span> 
+        </div>
+        <div class="comentario-texto">eu preciso de mais grr</div>
+        <div class="comentario-meta">Apr 01, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Xasteh</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAAAAAAAAAAAAAAAAAAAAAA QUE FOFO</div>
+        <div class="comentario-meta">Apr 01, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Myrella (Libriana)</span> 
+        </div>
+        <div class="comentario-texto">adorei</div>
+        <div class="comentario-meta">Mar 31, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Calliope</span> 
+        </div>
+        <div class="comentario-texto">"O lixeiro é meu hábitat...
+
+Eu vivo aqui"
+</div>
+        <div class="comentario-meta">Mar 31, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tarci_Wonder</span> 
+        </div>
+        <div class="comentario-texto">continua :3</div>
+        <div class="comentario-meta">Mar 31, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ramiresresende</span> 
+        </div>
+        <div class="comentario-texto">More more more ^^</div>
+        <div class="comentario-meta">Mar 30, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">anamiranda0501</span> 
+        </div>
+        <div class="comentario-texto">EH YAOI?! ME DIZ QUE EH PELOAMLRDEDEUS</div>
+        <div class="comentario-meta">Mar 28, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hiimih</span> 
+        </div>
+        <div class="comentario-texto">Q amor <3</div>
+        <div class="comentario-meta">Mar 26, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mayukka</span> 
+        </div>
+        <div class="comentario-texto">Lixo tmb é o meu abtat</div>
+        <div class="comentario-meta">Mar 25, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lariusagichan</span> 
+        </div>
+        <div class="comentario-texto">já shippei</div>
+        <div class="comentario-meta">Mar 24, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Xiumiau__EXO</span> 
+        </div>
+        <div class="comentario-texto">Se eu SHIPPEI? NÃÃÃÃÃÃÃO tô de boa ❤</div>
+        <div class="comentario-meta">Mar 21, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kailorne</span> 
+        </div>
+        <div class="comentario-texto">"É o meu habitat" eu me identificando com os personagens, penso se você escreve as coisas e da tanta risada quanto eu kkkkk</div>
+        <div class="comentario-meta">Mar 21, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ana57</span> 
+        </div>
+        <div class="comentario-texto">Eu quero ver o Italo corar</div>
+        <div class="comentario-meta">Mar 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yukusen</span> 
+        </div>
+        <div class="comentario-texto">Amo seus comics, n sei cada vez q vejo um manga ou comic bom eu sinto um.calafrio tao bom, e com certeza suas historias fazem isso.</div>
+        <div class="comentario-meta">Mar 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ally</span> 
+        </div>
+        <div class="comentario-texto">Como virou meu otp tão rapido</div>
+        <div class="comentario-meta">Mar 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">beccacimi</span> 
+        </div>
+        <div class="comentario-texto">FOFO</div>
+        <div class="comentario-meta">Mar 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cereal</span> 
+        </div>
+        <div class="comentario-texto">migo eu te adoro tanto, serião continua isso pelo amor de Deus <3</div>
+        <div class="comentario-meta">Mar 18, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">chikasama</span> 
+        </div>
+        <div class="comentario-texto">Necessito</div>
+        <div class="comentario-meta">Mar 17, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Esteulica</span> 
+        </div>
+        <div class="comentario-texto">esse ano vai ser top</div>
+        <div class="comentario-meta">Mar 17, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Cotton Candy Pie</span> 
+        </div>
+        <div class="comentario-texto">ke? *bugou* Ok...né? ADOREI!!!!!!</div>
+        <div class="comentario-meta">Mar 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Tomoito</span> 
+        </div>
+        <div class="comentario-texto">Na fala da doutora esta "Desmaio pela ALTA de nutrientes"! Só pra avisar hahahahahaha</div>
+        <div class="comentario-meta">Mar 16, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ninasoo666</span> 
+        </div>
+        <div class="comentario-texto">uhuuu quero série :3</div>
+        <div class="comentario-meta">Mar 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Altair</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAA KERO</div>
+        <div class="comentario-meta">Mar 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alberto Chiba</span> 
+        </div>
+        <div class="comentario-texto">ja gostei muitooooooo</div>
+        <div class="comentario-meta">Mar 16, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nekomimi10</span> 
+        </div>
+        <div class="comentario-texto">Todas as tuas histórias são muito amorzinho, socorrrrrrrr</div>
+        <div class="comentario-meta">Mar 16, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">d8hunter</span> 
+        </div>
+        <div class="comentario-texto">Ri pra caralho. Nossa!!</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">linneh</span> 
+        </div>
+        <div class="comentario-texto">ai meu deeeeus
+
+lá vou eu morrer de novo!</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">darilha</span> 
+        </div>
+        <div class="comentario-texto">Muito lindo e sensacional! Precisa sim fazer uma série completa dessa história! Parabéns pelo trabalho incrível, você merece todo o reconhecimento do mundo! ❤️</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Brago</span> 
+        </div>
+        <div class="comentario-texto">Adorei, merece virar série <3</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nanny-chan</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.... quero continuação</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nasu Girl</span> 
+        </div>
+        <div class="comentario-texto">Sei que deve dar um trabalho considerável, mas faça continuação pra isso, por favor!!! 
+
+Está lindo <3 <3</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Miguel</span> 
+        </div>
+        <div class="comentario-texto">kkkk esse muleke...o habitat dele é uma lixeira! WTF?!😂😂😂</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">HiwiTsuki</span> 
+        </div>
+        <div class="comentario-texto">eu preciso de mais <3 omg estou shippando pode isso produção?</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">jennifermadara2001</span> 
+        </div>
+        <div class="comentario-texto">Nossa, amei *-*</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gabsaura</span> 
+        </div>
+        <div class="comentario-texto">QUERO SERIE PFV AA</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Deadly Spraycision</span> 
+        </div>
+        <div class="comentario-texto">Eu não to pedindo pra virar série... VAI VIRAR OK
+
+(por favor <3)</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gabsaura</span> 
+        </div>
+        <div class="comentario-texto">CARAI JONNY OUTRO SHIPP PRA NOIS SOFRER</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Luana_1234</span> 
+        </div>
+        <div class="comentario-texto">que bunitinho * -* owwt</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">dartus</span> 
+        </div>
+        <div class="comentario-texto">eu gostei muito das história haha. lembrei me de handa-kun.</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">wario73</span> 
+        </div>
+        <div class="comentario-texto">Ítalo parece uma pessoa que se desculpa instintivamente para evitar de ter problemas, ele sequer se sente realmente culpado para se desculpar. Quero muito que vire serie e descobrir no que vai dar.</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">nathaliesantos</span> 
+        </div>
+        <div class="comentario-texto">PitBully  <3 bdsm shippei</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">milenissima</span> 
+        </div>
+        <div class="comentario-texto">FAZ SÉRIE POR FAVOR AAAAAAAA</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Kass</span> 
+        </div>
+        <div class="comentario-texto">Que fofo!</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MyungHee Moon</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAA QUE AMOR CARA</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Geissiane</span> 
+        </div>
+        <div class="comentario-texto">AMEI! ❤</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">kiwi</span> 
+        </div>
+        <div class="comentario-texto">SÉRIE PELO AMOR DE JESUS CRISTO ANDANDO NUM TRICICLO</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Pierre</span> 
+        </div>
+        <div class="comentario-texto">Por favor me diz que isso vai ser uma serie porque seria genial pacas *-*</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Evangeline</span> 
+        </div>
+        <div class="comentario-texto">owwwwwwwwwwwwwwww (arco-ires) amei S2</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">thiago rodrigues</span> 
+        </div>
+        <div class="comentario-texto">sérieeee por favor *0*</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">acgcollares</span> 
+        </div>
+        <div class="comentario-texto">MAAAAAAAAAAAAISSSSS</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bear</span> 
+        </div>
+        <div class="comentario-texto">isso precisa ser uma série pfvr 😍😍😍</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Noah</span> 
+        </div>
+        <div class="comentario-texto">PRECISO DE SÉRIE, AMEI ISSO
+
+EU TÔ RINDO DE MAIS, SOCORRO</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">rialasilva</span> 
+        </div>
+        <div class="comentario-texto">SÉRIEEEEEEEEEEEEEE POR FAVOOOOOOOOOOORRRRRRR</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">rialasilva</span> 
+        </div>
+        <div class="comentario-texto">Se possível, é claro.</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">bellaohimesama</span> 
+        </div>
+        <div class="comentario-texto">Mal posso esperar uma serie dessa belezura aqui *00*</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dan</span> 
+        </div>
+        <div class="comentario-texto">shippei gostoso</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">anaclaraestevesbarb</span> 
+        </div>
+        <div class="comentario-texto">OWNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">insanidadegamer1492</span> 
+        </div>
+        <div class="comentario-texto">mano nunca fiquei tão feliz vendo umas comics como fico vendo as suas</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 82</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">insanidadegamer1492</span> 
+        </div>
+        <div class="comentario-texto">faz serie pfv</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 118</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lainike</span> 
+        </div>
+        <div class="comentario-texto">quero q vire série 💜💜</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 58</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jul</span> 
+        </div>
+        <div class="comentario-texto">AAAAAAAAAAAAAAAAAAAAAAAIAHSUAHDAUHDSUDHUS que coisinha mais linda e preciosa 💖</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Amy</span> 
+        </div>
+        <div class="comentario-texto">que fofo, mds!! ♡</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">IsaMlima</span> 
+        </div>
+        <div class="comentario-texto">Aaaaaa mds, que fofoooo ❤ Amei muito ❤</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Apenas Um Cara</span> 
+        </div>
+        <div class="comentario-texto">Mds amei</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">L I 0 N</span> 
+        </div>
+        <div class="comentario-texto">ai meu deus KSKDKADK amei essa short story, quero mais ♥
+
+
+
+Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem boa surgindo dela!! *v*</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 6</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap1">◀ Anterior</a>
+                <a href="#cap3">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap3">
+            <h2>Capítulo 3 - 0003-893454</h2>
+            <img src="episodes/0003-893454/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0003-893454/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0003-893454/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0003-893454/images/panel-004.jpg" alt="panel-004.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
+            <span>💬 Ver Comentários (45)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap3">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">alicemgonzales2</span> 
+        </div>
+        <div class="comentario-texto">Do nada o cara solta uma historia sem pé nem cabeça na pasta do Jhonny</div>
+        <div class="comentario-meta">Feb 14, 2026</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">memezilds</span> 
+        </div>
+        <div class="comentario-texto">Chorei ...</div>
+        <div class="comentario-meta">May 18, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">memezilds</span> 
+        </div>
+        <div class="comentario-texto">Pq só tem três EP?</div>
+        <div class="comentario-meta">May 18, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">memezilds</span> 
+        </div>
+        <div class="comentario-texto">Ahhhhh</div>
+        <div class="comentario-meta">May 18, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fatcat</span> 
+        </div>
+        <div class="comentario-texto">achei super normal. todos os dias eu converso com uns duendes psicodélicos quando ninguém tá vendo.</div>
+        <div class="comentario-meta">Nov 04, 2018 • ❤️ 6</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BolinhoDoce</span> 
+        </div>
+        <div class="comentario-texto">Vdd, sempre faço isso</div>
+        <div class="comentario-meta">Nov 25, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ari</span> 
+        </div>
+        <div class="comentario-texto">concordo</div>
+        <div class="comentario-meta">Jun 13, 2020 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ari</span> 
+        </div>
+        <div class="comentario-texto">concordo</div>
+        <div class="comentario-meta">Jun 13, 2020 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jonathan Jaeri</span> 
+        </div>
+        <div class="comentario-texto">No começo ta tudo sem cor menos aquele espirito que é o amigo invisível da infância dela. Ai ela fica com raiva e manda ele embora como se quisesse a todo custo se tornar adulta mas no fim encontra uma memoria de quando era mais jovem e tudo fica colorido pq seu coração ainda vive um espirito de criança.  ME DIGA QUE É ISSO OU EU TO FUMANDO BANANA.</div>
+        <div class="comentario-meta">Feb 09, 2018 • ❤️ 111</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lua Estrelar</span> 
+        </div>
+        <div class="comentario-texto">Pode até estar fumando banana... Mas que faz sentido faz...</div>
+        <div class="comentario-meta">Oct 26, 2018 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">naotocanofilhoe</span> 
+        </div>
+        <div class="comentario-texto">Faz muito sentido, e eu percebi que quando ela manda ele embora ele fica meio sem cor</div>
+        <div class="comentario-meta">Dec 11, 2022 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">naotocanofilhoe</span> 
+        </div>
+        <div class="comentario-texto">Ela também tinha um pouco de cor e quando mandou ele embora ela também ficou sem cor</div>
+        <div class="comentario-meta">Dec 11, 2022 • ❤️ 2</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jonathan Jaeri</span> 
+        </div>
+        <div class="comentario-texto">ENTEEEENDII</div>
+        <div class="comentario-meta">Feb 09, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jonathan Jaeri</span> 
+        </div>
+        <div class="comentario-texto">AHHHH é o amigo invisivel da infancia dela, acho que é como se mesmo cíntia adulta ainda tivesse um espirito de criança no coração.</div>
+        <div class="comentario-meta">Feb 09, 2018 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">:)</span> 
+        </div>
+        <div class="comentario-texto">A comic nao carrega</div>
+        <div class="comentario-meta">Dec 11, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">caeruleum_igne</span> 
+        </div>
+        <div class="comentario-texto">Eu chorei e não foi pouco</div>
+        <div class="comentario-meta">Dec 07, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">isistillypat123</span> 
+        </div>
+        <div class="comentario-texto">Lagrimas só lagrimas</div>
+        <div class="comentario-meta">Nov 29, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LalahCupcake</span> 
+        </div>
+        <div class="comentario-texto">EU ENTENDI</div>
+        <div class="comentario-meta">Nov 23, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Mikhail</span> 
+        </div>
+        <div class="comentario-texto">AMEEEI, OBG ❤❤</div>
+        <div class="comentario-meta">Nov 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lili Lolli</span> 
+        </div>
+        <div class="comentario-texto">Aquele momento em que você pensa... EU QUERO TER UM AMIGO IMAGINÁRIO (╥ω╥)</div>
+        <div class="comentario-meta">Nov 20, 2017 • ❤️ 8</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Jpx0999</span> 
+        </div>
+        <div class="comentario-texto">faça um
+
+no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito e use como amigo imaginario</div>
+        <div class="comentario-meta">Sep 29, 2020 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hemylecristinesilva</span> 
+        </div>
+        <div class="comentario-texto">Que história fofa. ^^</div>
+        <div class="comentario-meta">Nov 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nalua</span> 
+        </div>
+        <div class="comentario-texto">E pensar sobre a história, é uma ideia bonita e é tão triste. Não só o estado dele, mas a falta de infância e o excesso de insegurança dela em relação a "não saber fazer nada". Eu adoro que as suas histórias sempre abordam um tema sério sem tirar o foco e a magia da história, isso é realmente fantástico</div>
+        <div class="comentario-meta">Nov 20, 2017 • ❤️ 37</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Nalua</span> 
+        </div>
+        <div class="comentario-texto">O que você fez com as cores foi bem legal, muda completamente o clima, isso é muito legal!</div>
+        <div class="comentario-meta">Nov 20, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gabriellyfigueiredo</span> 
+        </div>
+        <div class="comentario-texto">MARAVILHOSO❤</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LuluFazbear</span> 
+        </div>
+        <div class="comentario-texto">que bonitinho ;w;</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giih Sh</span> 
+        </div>
+        <div class="comentario-texto">Parabéns por mais uma comic incrível, Alec! Continue assim e você irá longe, admiro muito o seu trabalho! 👏</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giih Sh</span> 
+        </div>
+        <div class="comentario-texto">Aquele momento que você percebe como a vida é curta e passa tão depressa... Deixamos de fazer coisas que amávamos devido a falta de tempo. Precisamos parar um pouco e se divertir, ou até mesmo descansar um pouquinho 💕</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gracilariopsis</span> 
+        </div>
+        <div class="comentario-texto"><3</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gi.Cheshire432</span> 
+        </div>
+        <div class="comentario-texto">Não sei se compreendi muito bem, mas tenho certeza que, em algum momento, do nada, eu vou entender e dizer "AAAAAAAAAHHH". Mesmo assim, até onde entendi, a história conseguiu me emocionar e me fazer lembrar de muitas coisas.
+
+
+
+*Você tem uma criatividade que me inspira e fascina (e com certeza outras pessoas também) cada vez mais. É impressionante! Não tenho mais dedos para contar à quantas pessoas já recomendei suas histórias! 
+
+
+
+Não tem nada mais justo do que te parabenizar por mais uma história incrível que criou, então deixo aqui meus parabéns! 
+
+
+
+*A partir daqui, o comentário vale para todas as suas comics/histórias.</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 47</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Krauser</span> 
+        </div>
+        <div class="comentario-texto">obg por me fazer chorar.</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">SaphyrTurk</span> 
+        </div>
+        <div class="comentario-texto">Aquela tirinha que mostra, que quando a gente chega a fase adulta e perdemos algo importante, que é nosso lado infantil... ai ai... que eu ainda não perca esse lado tão divertido hahaha * vai pro cantinho chorar feat. sussura *  ja tenho 20 ano na cara.....</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alyss</span> 
+        </div>
+        <div class="comentario-texto">Quando uma tira simples te toca :c -vida de adulto eh uma merd*, quero meu tempo de volta <\3-</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MehGabss</span> 
+        </div>
+        <div class="comentario-texto">Eu não faço ideia do pq me identifiquei cm essa história??? Tá na vdd até faço,tbm tenho uma casa q era MT importante pro meu vô,consigo me ver fácil fácil nessa história. PERA EU DISSE HISTÓRIA? QUIS DIZER OBRA DE ARTE <3</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lunart18</span> 
+        </div>
+        <div class="comentario-texto">awww~ q fofo</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Pluto</span> 
+        </div>
+        <div class="comentario-texto">*cries* ISSO É TAO RELATABLE AAAAAAAAA</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">yd979209@gmail.com</span> 
+        </div>
+        <div class="comentario-texto">que fofinho mano</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">stioncenha</span> 
+        </div>
+        <div class="comentario-texto">MaravilhOSSO</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">rwflowers</span> 
+        </div>
+        <div class="comentario-texto">Que lindo, Alec 💜 Já quero continuação</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">porra Alec ;-; Senti falta dos meus 'amigos' nos quais só tenho lembranças...</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LouCardosoBB</span> 
+        </div>
+        <div class="comentario-texto">Eu to morrendo</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">hiimih</span> 
+        </div>
+        <div class="comentario-texto">Eu não entedi (??</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">d8hunter</span> 
+        </div>
+        <div class="comentario-texto">Repara no último quadrinho</div>
+        <div class="comentario-meta">Nov 19, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">natureba</span> 
+        </div>
+        <div class="comentario-texto">AAAAAA QUE FOFO! Cíntia sou eu, se culpando por não conseguir fazer nada direito</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">fwrzi</span> 
+        </div>
+        <div class="comentario-texto">É TÃO FOFINHO~~! >w<</div>
+        <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap2">◀ Anterior</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ELEMENTOS DO MODO IMERSIVO -->
+    <div class="imersivo-controles">
+        <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
+    </div>
+
+    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+
+    <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3 id="modalTitle">Comentários</h3>
+                <button class="btn-fechar-modal" onclick="fecharModalComentarios()">✕</button>
+            </div>
+            <div class="modal-body" id="modalComentariosBody"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-bar">
+        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
+        <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
+            <option value="1">Cap. 1 - 0001-631323</option><option value="2">Cap. 2 - 0002-631325</option><option value="3">Cap. 3 - 0003-893454</option>
+        </select>
+        <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
+        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
+        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">▶</button>
+    </div>
+
+    <button onclick="irParaTopo()" id="topoBtn">↑</button>
+    <script>
+let tamanhoFontePixels = 16;
+let temaEscuro = true;
+let capAtualIndex = 1;
+let pagAtualIndex = 1;
+let totalCapitulos = 0;
+let modoImersivoAtivo = false;
+
+function mudarTema() { 
+    temaEscuro = !temaEscuro; 
+    document.body.classList.toggle('light', !temaEscuro); 
+}
+
+function alterarFonte(delta) { 
+    tamanhoFontePixels = Math.min(Math.max(tamanhoFontePixels + (delta * 2), 12), 26); 
+    document.documentElement.style.fontSize = tamanhoFontePixels + 'px'; 
+}
+
+function toggleSidebar() { 
+    const sidebar = document.getElementById('sidebar');
+    const conteudo = document.getElementById('conteudo');
+    const btn = document.getElementById('toggleSidebarBtn');
+    sidebar.classList.toggle('oculto');
+    conteudo.classList.toggle('expandido');
+    btn.textContent = sidebar.classList.contains('oculto') ? '☰ Painel' : '✕ Fechar';
+}
+
+function toggleComentarioIndividual(idConteudo, btnEl) {
+    const el = document.getElementById(idConteudo);
+    if (!el) return;
+    el.classList.toggle('aberto');
+}
+
+function toggleTodosComentarios() {
+    const conteudos = document.querySelectorAll('.comentarios-conteudo');
+    const btnGlobal = document.getElementById('btnGlobalComentarios');
+    const deveExibir = btnGlobal.textContent.trim() === 'Exibir Comentários';
+    conteudos.forEach(el => {
+        if (deveExibir) el.classList.add('aberto');
+        else el.classList.remove('aberto');
+    });
+    btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
+}
+
+function irParaCapitulo(index) {
+    if (!index || index < 1) return;
+    capAtualIndex = parseInt(index);
+    pagAtualIndex = 1;
+
+    if (modoImersivoAtivo) {
+        atualizarModoImersivoPagina();
+    } else {
+        const el = document.getElementById(`cap${capAtualIndex}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    sincronizarSelectsCapitulos();
+}
+
+function capAnterior() { if (capAtualIndex > 1) irParaCapitulo(capAtualIndex - 1); }
+function capProximo() { if (capAtualIndex < totalCapitulos) irParaCapitulo(capAtualIndex + 1); }
+
+function sincronizarSelectsCapitulos() {
+    const selSidebar = document.getElementById('selectCapitulosSidebar');
+    const selMobile = document.getElementById('selectCapitulosMobile');
+    if (selSidebar) selSidebar.value = capAtualIndex;
+    if (selMobile) selMobile.value = capAtualIndex;
+}
+
+function abrirModalComentarios() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return;
+    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const modalBody = document.getElementById('modalComentariosBody');
+    document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
+    if (wrapperComentarios) {
+        modalBody.innerHTML = wrapperComentarios.innerHTML;
+        const lista = modalBody.querySelector('.comentarios-conteudo');
+        if (lista) lista.style.display = 'block';
+        const btn = modalBody.querySelector('.btn-toggle-comentarios');
+        if (btn) btn.style.display = 'none';
+    } else {
+        modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
+    }
+    document.getElementById('modalComentarios').classList.add('visivel');
+}
+
+function fecharModalComentarios() {
+    document.getElementById('modalComentarios').classList.remove('visivel');
+}
+
+function atualizarCapituloAtualVisivel() {
+    if (modoImersivoAtivo) return;
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+    let indexEncontrado = 1;
+    capitulos.forEach((cap, idx) => {
+        const rect = cap.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+            indexEncontrado = idx + 1;
+        }
+    });
+    if (capAtualIndex !== indexEncontrado) {
+        capAtualIndex = indexEncontrado;
+        sincronizarSelectsCapitulos();
+    }
+    const btnPrev = document.getElementById('mobileBtnPrev');
+    const btnNext = document.getElementById('mobileBtnNext');
+    if (btnPrev) btnPrev.disabled = capAtualIndex <= 1;
+    if (btnNext) btnNext.disabled = capAtualIndex >= totalCapitulos;
+}
+
+function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+function toggleModoImersivo() {
+    modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
+    const btnFS = document.getElementById('btnFullscreen');
+    const btnFSNav = document.getElementById('mobileBtnFullscreen');
+    
+    if (modoImersivoAtivo) {
+        if (btnFS) btnFS.textContent = '❌ Sair Leitura';
+        if (btnFSNav) btnFSNav.textContent = '❌ Sair';
+        pagAtualIndex = 1;
+        atualizarModoImersivoPagina();
+    } else {
+        if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
+        if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
+        document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
+        document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
+        
+        const capEl = document.getElementById(`cap${capAtualIndex}`);
+        if (capEl) capEl.scrollIntoView();
+    }
+}
+
+function obterImagensDoCapituloAtual() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return [];
+    return Array.from(capEl.querySelectorAll('img'));
+}
+
+function atualizarModoImersivoPagina() {
+    if (!modoImersivoAtivo) return;
+
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+
+    capitulos.forEach((cap, idx) => {
+        if (idx + 1 === capAtualIndex) {
+            cap.classList.add('cap-ativo-imersivo');
+        } else {
+            cap.classList.remove('cap-ativo-imersivo');
+        }
+    });
+
+    const imgs = obterImagensDoCapituloAtual();
+    if (imgs.length === 0) return;
+
+    if (pagAtualIndex > imgs.length) pagAtualIndex = imgs.length;
+    if (pagAtualIndex < 1) pagAtualIndex = 1;
+
+    imgs.forEach((img, idx) => {
+        if (idx + 1 === pagAtualIndex) {
+            img.classList.add('pag-ativa-imersivo');
+        } else {
+            img.classList.remove('pag-ativa-imersivo');
+        }
+    });
+
+    const hud = document.getElementById('imersivoHud');
+    if (hud) {
+        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    }
+}
+
+function imersivoProximaPagina() {
+    if (!modoImersivoAtivo) return;
+    const imgs = obterImagensDoCapituloAtual();
+    if (pagAtualIndex < imgs.length) {
+        pagAtualIndex++;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex < totalCapitulos) {
+        capAtualIndex++;
+        pagAtualIndex = 1;
+        sincronizarSelectsCapitulos();
+        atualizarModoImersivoPagina();
+    }
+}
+
+function imersivoPaginaAnterior() {
+    if (!modoImersivoAtivo) return;
+    if (pagAtualIndex > 1) {
+        pagAtualIndex--;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex > 1) {
+        capAtualIndex--;
+        sincronizarSelectsCapitulos();
+        const imgsPrev = obterImagensDoCapituloAtual();
+        pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
+        atualizarModoImersivoPagina();
+    }
+}
+
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
+}, false);
+
+function tratarSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 60) {
+        if (modoImersivoAtivo) {
+            if (diff > 0) imersivoProximaPagina();
+            else imersivoPaginaAnterior();
+        } else {
+            if (diff > 0) capProximo();
+            else capAnterior();
+        }
+    }
+}
+
+// --- ATALHOS DE TECLADO ---
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        modoImersivoAtivo ? imersivoProximaPagina() : capProximo();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        modoImersivoAtivo ? imersivoPaginaAnterior() : capAnterior();
+    }
+    if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
+});
+
+window.addEventListener('scroll', () => {
+    document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
+    atualizarCapituloAtualVisivel();
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    atualizarCapituloAtualVisivel();
+});
+</script>
+</body>
+</html>

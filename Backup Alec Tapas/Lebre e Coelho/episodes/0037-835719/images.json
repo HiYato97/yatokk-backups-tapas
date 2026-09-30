@@ -1,0 +1,14 @@
+[
+ {
+  "panel": 1,
+  "url": "https://us-a.tapas.io/c/2f/73ee3eca-465c-4e06-928c-1576eee69f03.jpg?__token__=exp=1790454669~acl=/c/2f/73ee3eca-465c-4e06-928c-1576eee69f03.jpg*~hmac=c9f90896ffa7d2dc7e5065c454ed3581568456dce6041b39bcead2f26f75abbd&version=v4",
+  "file": "images/panel-001.jpg",
+  "bytes": 211798
+ },
+ {
+  "panel": 2,
+  "url": "https://us-a.tapas.io/c/c6/a2b5510a-43c2-4251-8971-dcec9d81cfae.jpg?__token__=exp=1790454669~acl=/c/c6/a2b5510a-43c2-4251-8971-dcec9d81cfae.jpg*~hmac=0b9d26ae6d6e78eb8fa06ad050f4e519a98cb4face79ab1628d1ce2638a0b000&version=v4",
+  "file": "images/panel-002.jpg",
+  "bytes": 239709
+ }
+]

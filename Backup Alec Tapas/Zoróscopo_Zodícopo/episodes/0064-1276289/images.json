@@ -1,0 +1,80 @@
+[
+ {
+  "panel": 1,
+  "url": "https://us-a.tapas.io/c/6f/704487fd-091d-4f3b-99f7-cffedaa7f17f.png?__token__=exp=1790456646~acl=/c/6f/704487fd-091d-4f3b-99f7-cffedaa7f17f.png*~hmac=cea4cfd3211327bb92451d4cd3d9ac04efde59791087b04a31b8696e225831e4&version=v4",
+  "file": "images/panel-001.png",
+  "bytes": 7638
+ },
+ {
+  "panel": 2,
+  "url": "https://us-a.tapas.io/c/f0/b63a2db4-9e3f-4abf-8f54-6067d51d2f26.png?__token__=exp=1790456646~acl=/c/f0/b63a2db4-9e3f-4abf-8f54-6067d51d2f26.png*~hmac=c1a7cd8bd5d268a0948d196bdf706961f0a88e90daae3abdeb48bb03bcc60b82&version=v4",
+  "file": "images/panel-002.png",
+  "bytes": 8443
+ },
+ {
+  "panel": 3,
+  "url": "https://us-a.tapas.io/c/83/30425362-2a13-4b66-b137-cd117494abae.png?__token__=exp=1790456646~acl=/c/83/30425362-2a13-4b66-b137-cd117494abae.png*~hmac=7b4d06c7503d41e78adf7cb4fd3bf2e6223fbd96a80faef5a5a1047cc2063e4a&version=v4",
+  "file": "images/panel-003.png",
+  "bytes": 8175
+ },
+ {
+  "panel": 4,
+  "url": "https://us-a.tapas.io/c/cb/331ac086-5655-4fd9-a8e7-bb39e217fc96.png?__token__=exp=1790456646~acl=/c/cb/331ac086-5655-4fd9-a8e7-bb39e217fc96.png*~hmac=873888970d6dd311c55543099dfe624e8b223210e9e6933f9c29ea10bf51405b&version=v4",
+  "file": "images/panel-004.png",
+  "bytes": 212576
+ },
+ {
+  "panel": 5,
+  "url": "https://us-a.tapas.io/c/c8/1bd82cb2-2832-4f86-b1ea-c0fe049f13da.png?__token__=exp=1790456646~acl=/c/c8/1bd82cb2-2832-4f86-b1ea-c0fe049f13da.png*~hmac=e69f185f71c46eb039bf6274d0fed5f96cb7c17416e411076ca9f5cee9e82626&version=v4",
+  "file": "images/panel-005.png",
+  "bytes": 6570
+ },
+ {
+  "panel": 6,
+  "url": "https://us-a.tapas.io/c/f8/359511bc-616b-4bf9-8079-f3ccfaac31b3.png?__token__=exp=1790456646~acl=/c/f8/359511bc-616b-4bf9-8079-f3ccfaac31b3.png*~hmac=fa5ee9637fdb986cdff674fe540311c09c9ec2d32eb1ec152d2f29796cef9ad6&version=v4",
+  "file": "images/panel-006.png",
+  "bytes": 6682
+ },
+ {
+  "panel": 7,
+  "url": "https://us-a.tapas.io/c/1c/faeeb27d-5343-4ee3-9802-ee0a04e953cb.png?__token__=exp=1790456646~acl=/c/1c/faeeb27d-5343-4ee3-9802-ee0a04e953cb.png*~hmac=0efb8c2da9d33381c3defe5ddfa95fe669e7dfd78123f2541942d8e8173199d9&version=v4",
+  "file": "images/panel-007.png",
+  "bytes": 7398
+ },
+ {
+  "panel": 8,
+  "url": "https://us-a.tapas.io/c/91/809fca4c-6575-4078-be60-11e747d6edcf.png?__token__=exp=1790456646~acl=/c/91/809fca4c-6575-4078-be60-11e747d6edcf.png*~hmac=e5a10715363b92830c79ff95aff021f1abc863ce2359c0363acb834c2776d31b&version=v4",
+  "file": "images/panel-008.png",
+  "bytes": 8297
+ },
+ {
+  "panel": 9,
+  "url": "https://us-a.tapas.io/c/f0/4eb2a380-7fa9-4870-9e84-88397101c175.png?__token__=exp=1790456646~acl=/c/f0/4eb2a380-7fa9-4870-9e84-88397101c175.png*~hmac=1ba704ae8f3c6762b638b9767a2b04399df03b4a0a2761bd407ae1ae0674b2ef&version=v4",
+  "file": "images/panel-009.png",
+  "bytes": 8641
+ },
+ {
+  "panel": 10,
+  "url": "https://us-a.tapas.io/c/0c/d5d3d590-a56d-4bff-a5d0-7f187602cfcc.png?__token__=exp=1790456646~acl=/c/0c/d5d3d590-a56d-4bff-a5d0-7f187602cfcc.png*~hmac=118b2ffc4de74ad28275699c93bc1f82583741ffcc94f14fd08d7d114054a347&version=v4",
+  "file": "images/panel-010.png",
+  "bytes": 7587
+ },
+ {
+  "panel": 11,
+  "url": "https://us-a.tapas.io/c/5d/4e9e7d5c-2ffb-4723-ac27-87c56900cb38.png?__token__=exp=1790456646~acl=/c/5d/4e9e7d5c-2ffb-4723-ac27-87c56900cb38.png*~hmac=1e382e298cded7a09272e1ac3542386d6b4308aa5474f093687c11a7aeccfa11&version=v4",
+  "file": "images/panel-011.png",
+  "bytes": 7960
+ },
+ {
+  "panel": 12,
+  "url": "https://us-a.tapas.io/c/42/4076796e-b82c-446a-b59f-d64e86987fbf.png?__token__=exp=1790456646~acl=/c/42/4076796e-b82c-446a-b59f-d64e86987fbf.png*~hmac=ba863dccfaee2bb31aa2074daed3b0a7e817f6f2afa24585282a93b3ab5fea3e&version=v4",
+  "file": "images/panel-012.png",
+  "bytes": 8165
+ },
+ {
+  "panel": 13,
+  "url": "https://us-a.tapas.io/c/3e/162319e0-4f2c-4295-9e05-67ac6ef28a6d.png?__token__=exp=1790456646~acl=/c/3e/162319e0-4f2c-4295-9e05-67ac6ef28a6d.png*~hmac=56e6c0691005d2d249f224954c6f503c2fbfbb2afe5c8d9806ccacd1fc411189&version=v4",
+  "file": "images/panel-013.png",
+  "bytes": 6613
+ }
+]

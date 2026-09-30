@@ -1,0 +1,40 @@
+{
+ "series_id": "74231",
+ "fetched_at": "2026-09-26T20:41:36Z",
+ "data": {
+  "id": 74231,
+  "title": "Jojor Gamer",
+  "escape_title": "Jojor Gamer",
+  "url": "Jojor-Gamer",
+  "thumb_url": "https://us-a.tapas.io/sa/84/7d48c4e6-6136-471d-8539-aa99b4e93515_m.jpg",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": false,
+  "has_book_cover": false,
+  "on_sale_now": false,
+  "thumbsup_cnt": 4034,
+  "discount_rate": 0,
+  "genre": {
+   "id": 9,
+   "name": "Gaming",
+   "abbr": "Gaming",
+   "books": false,
+   "description": "Pew pew pew!",
+   "display_order": 14,
+   "artwork_url": "https://us-a.tapas.io/a/b8/b5b537be-b165-4bcb-9714-0f8999a8a801.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/77/15246d6c-0294-4af5-a671-f94c2997b211.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/77/15246d6c-0294-4af5-a671-f94c2997b211.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 9,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

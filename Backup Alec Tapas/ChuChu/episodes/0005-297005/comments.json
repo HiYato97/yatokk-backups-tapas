@@ -1,0 +1,72 @@
+[
+ {
+  "id": 21289291,
+  "username": "sarayuemily",
+  "display_name": "SHOKO",
+  "date": "Jan 28, 2025",
+  "text": "Gente, esse &eacute; o amigo &quot;fofo&quot; e &quot;bonito&quot;? 🤨<br>\nN&atilde;o sei se s&atilde;o os meus par&acirc;metros que est&atilde;o muito altos ou os dela que est&atilde;o muito baixos",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 14689978,
+  "username": "Vellany",
+  "display_name": "Vellany",
+  "date": "Dec 05, 2021",
+  "text": "Tadin do garoto, eu faria o mesmo por uma edi&ccedil;&atilde;o limitada.",
+  "likes": 0,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 7844374,
+  "username": "zucapatricia",
+  "display_name": "robertin",
+  "date": "Mar 30, 2019",
+  "text": "Chuchu ja ta me reprentando, so por tocar o sapato nos amigo",
+  "likes": 15,
+  "is_creator": false,
+  "replies": [
+   {
+    "id": 9251188,
+    "username": "giselycostaferreira",
+    "display_name": "leãodivo",
+    "date": "Jan 02, 2020",
+    "text": "A minha amiga faz a mesma coisa",
+    "likes": 0,
+    "is_creator": false
+   }
+  ]
+ },
+ {
+  "id": 3421574,
+  "username": "friskhug",
+  "display_name": "Frisk Hug Life",
+  "date": "Jan 24, 2017",
+  "text": "Vamos la quiabo bcjehcjabxijaxjcud",
+  "likes": 48,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 2392708,
+  "username": "mariribeiro07",
+  "display_name": "TiaMRSS",
+  "date": "Aug 04, 2016",
+  "text": "Felipe me representou no segundo quadro quando falo com gente chata :v &quot;Como quero bater nele&quot;",
+  "likes": 20,
+  "is_creator": false,
+  "replies": []
+ },
+ {
+  "id": 2343679,
+  "username": "clarasimoes",
+  "display_name": "Clara",
+  "date": "Jul 26, 2016",
+  "text": "Algu&eacute;m me mata. KJASNJAKSFKJN",
+  "likes": 1,
+  "is_creator": false,
+  "replies": []
+ }
+]

@@ -1,0 +1,40 @@
+{
+ "series_id": "277344",
+ "fetched_at": "2026-09-26T20:23:58Z",
+ "data": {
+  "id": 277344,
+  "title": "O \"Escolhido\" (PRÉVIA)",
+  "escape_title": "O &quot;Escolhido&quot; (PR&Eacute;VIA)",
+  "url": "O-Escolhido-PREVIA",
+  "thumb_url": "https://us-a.tapas.io/sa/4b/9841d3fb-36c5-4fcf-8d18-3690451b7a72_m.jpg",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": true,
+  "has_book_cover": true,
+  "on_sale_now": false,
+  "thumbsup_cnt": 1361,
+  "discount_rate": 0,
+  "genre": {
+   "id": 8,
+   "name": "Drama",
+   "abbr": "Drama",
+   "books": false,
+   "description": "Serious comics can still be fun",
+   "display_order": 3,
+   "artwork_url": "https://us-a.tapas.io/a/35/4638e926-f310-4991-9e37-37eac3db3f67.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/2e/c0c3c85e-0ac6-433f-8b65-bbefbfa2f0e5.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/2e/c0c3c85e-0ac6-433f-8b65-bbefbfa2f0e5.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 8,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

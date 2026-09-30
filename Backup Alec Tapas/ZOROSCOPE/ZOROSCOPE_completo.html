@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>Zoroscope</title>
+    <style>
+:root {
+    --bg-body: #000000;
+    --bg-card: #090a0a;
+    --bg-sidebar: #0d0e10;
+    --border-color: #222428;
+    --text-primary: #e1e3e6;
+    --text-muted: #737984;
+    --accent: #ffcb05;
+    --accent-hover: #ffffff;
+    --sidebar-width: 280px;
+    --danger: #dc2626;
+    --danger-hover: #991b1b;
+    --success: #16a34a;
+}
+
+body.light {
+    --bg-body: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-sidebar: #eaecef;
+    --border-color: #d0d4dc;
+    --text-primary: #22252a;
+    --text-muted: #626875;
+    --accent: #d97706;
+    --accent-hover: #111827;
+    --danger: #ef4444;
+    --danger-hover: #b91c1c;
+    --success: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: hidden;
+    padding-bottom: 70px;
+}
+
+#versao {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--bg-sidebar);
+    color: var(--text-muted);
+    padding: 0.4rem 1rem;
+    text-align: center;
+    z-index: 1000;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-voltar-index {
+    display: block;
+    width: 100%;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggleSidebarBtn {
+    position: fixed;
+    top: 36px;
+    left: 10px;
+    z-index: 1001;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 31px;
+    left: 0;
+    width: var(--sidebar-width);
+    max-width: 85vw;
+    height: calc(100vh - 31px - 54px);
+    background: var(--bg-sidebar);
+    padding: 50px 15px 30px 15px;
+    border-right: 1px solid var(--border-color);
+    z-index: 999;
+    overflow-y: auto;
+    transition: transform 0.25s ease;
+}
+.sidebar.oculto { transform: translateX(-100%); }
+
+.painel-controles {
+    background: var(--bg-card);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+.painel-controles h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+.botoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+.painel-controles button, .select-capitulos {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 100%;
+}
+.select-capitulos {
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.btn-full-width { grid-column: span 2; }
+
+.sidebar h2 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar ul { list-style: none; }
+.sidebar a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 6px 8px;
+    display: block;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.sidebar a:hover { background: var(--bg-card); }
+
+.conteudo {
+    margin-left: var(--sidebar-width);
+    margin-top: 31px;
+    padding: 30px;
+    transition: margin-left 0.25s ease;
+}
+.conteudo.expandido { margin-left: 0; }
+
+.series-header {
+    max-width: 850px;
+    margin: 0 auto 30px auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.series-thumb {
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+.series-info { flex: 1; }
+.series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-genre {
+    display: inline-block;
+    background: var(--border-color);
+    color: var(--text-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.series-desc { font-size: 0.95rem; margin-top: 10px; color: var(--text-primary); line-height: 1.5; }
+
+.capitulo {
+    margin-bottom: 30px;
+    scroll-margin-top: 45px;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.capitulo h2 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+.comentarios-wrapper { margin-top: 15px; }
+.btn-toggle-comentarios {
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.comentarios-conteudo {
+    display: none;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 12px;
+}
+.comentarios-conteudo.aberto { display: block !important; }
+.comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
+.autor { font-weight: 600; color: var(--text-primary); }
+.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
+.comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
+.replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
+
+.nav-botoes {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+}
+.nav-botoes a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+
+/* MODAL COMENTÁRIOS MOBILE */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2000;
+}
+.modal-overlay.visivel { display: flex; }
+.modal-conteudo {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+.modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+.modal-body { padding: 16px; overflow-y: auto; }
+
+/* BARRA NAVEGAÇÃO MOBILE */
+.mobile-nav-bar {
+    display: flex;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 54px;
+    background: var(--bg-sidebar); 
+    border-top: 1px solid var(--border-color);
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1002;
+    padding: 0 10px;
+}
+.mobile-nav-btn {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 0.8rem; cursor: pointer; flex: 1; height: 100%;
+}
+
+#topoBtn {
+    position: fixed; 
+    bottom: 70px;
+    right: 20px;
+    background: var(--bg-card); 
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); 
+    width: 38px; 
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    z-index: 1001;
+}
+#topoBtn.visivel { display: flex; }
+
+/* --- MODO LEITURA IMERSIVO CORRIGIDO --- */
+body.modo-imersivo #versao,
+body.modo-imersivo #toggleSidebarBtn,
+body.modo-imersivo .sidebar,
+body.modo-imersivo .series-header,
+body.modo-imersivo .capitulo h2,
+body.modo-imersivo .comentarios-wrapper,
+body.modo-imersivo .nav-botoes,
+body.modo-imersivo #topoBtn,
+body.modo-imersivo .mobile-nav-bar {
+    display: none !important;
+}
+
+body.modo-imersivo {
+    background: #000000 !important;
+    padding-bottom: 0 !important;
+}
+
+body.modo-imersivo .conteudo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-imersivo .capitulo {
+    display: none;
+    max-width: 100% !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .capitulo.cap-ativo-imersivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body.modo-imersivo img {
+    display: none !important;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+}
+
+body.modo-imersivo img.pag-ativa-imersivo {
+    display: block !important;
+}
+
+/* CONTROLES E HUD IMERSIVO */
+.imersivo-controles {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: center; }
+
+.btn-sair-imersivo {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.imersivo-hud-bottom {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+body.modo-imersivo .imersivo-hud-bottom { display: block; }
+
+@media (max-width: 768px) {
+    .conteudo { margin-left: 0 !important; padding: 15px 10px; }
+    .series-header { flex-direction: column; align-items: center; text-align: center; }
+}
+</style>
+</head>
+<body id="topo">
+    <div id="versao">
+        Série: <b>Zoroscope</b> | Gerado em 29/09/2026 22:50
+    </div>
+
+    <button id="toggleSidebarBtn" onclick="toggleSidebar()">✕ Fechar</button>
+
+    <div class="sidebar" id="sidebar">
+        <a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>
+        <div class="painel-controles">
+            <h3>Seletor Rápido</h3>
+            <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
+                <option value="1">Cap. 1 - 0001-164162</option><option value="2">Cap. 2 - 0002-164175</option><option value="3">Cap. 3 - 0003-180922</option><option value="4">Cap. 4 - 0004-605045</option><option value="5">Cap. 5 - 0005-606272</option><option value="6">Cap. 6 - 0006-607829</option><option value="7">Cap. 7 - 0007-607851</option><option value="8">Cap. 8 - 0008-607854</option><option value="9">Cap. 9 - 0009-621161</option><option value="10">Cap. 10 - 0010-621176</option><option value="11">Cap. 11 - 0011-845904</option><option value="12">Cap. 12 - 0012-845940</option>
+            </select>
+
+            <h3>Opções da Página</h3>
+            <div class="botoes-grid">
+                <button onclick="mudarTema()">Tema</button>
+                <button id="btnFullscreen" onclick="toggleModoImersivo()">📖 Leitura Imersiva</button>
+                <button onclick="alterarFonte(1)">A+</button>
+                <button onclick="alterarFonte(-1)">A-</button>
+                <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+            </div>
+        </div>
+
+        <h2>Índice</h2>
+        <ul><li><a href="#cap1">Cap. 1 - 0001-164162</a></li><li><a href="#cap2">Cap. 2 - 0002-164175</a></li><li><a href="#cap3">Cap. 3 - 0003-180922</a></li><li><a href="#cap4">Cap. 4 - 0004-605045</a></li><li><a href="#cap5">Cap. 5 - 0005-606272</a></li><li><a href="#cap6">Cap. 6 - 0006-607829</a></li><li><a href="#cap7">Cap. 7 - 0007-607851</a></li><li><a href="#cap8">Cap. 8 - 0008-607854</a></li><li><a href="#cap9">Cap. 9 - 0009-621161</a></li><li><a href="#cap10">Cap. 10 - 0010-621176</a></li><li><a href="#cap11">Cap. 11 - 0011-845904</a></li><li><a href="#cap12">Cap. 12 - 0012-845940</a></li></ul>
+    </div>
+
+    <div class="conteudo" id="conteudo">
+        
+    <div class="series-header">
+        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <div class="series-info">
+            <h1 class="series-title">Zoroscope</h1>
+            <div class="series-meta"><span class="series-genre">Comedy</span> ❤ 3793 curtidas</div>
+            <div class="series-desc"></div>
+        </div>
+    </div>
+        
+        <div class="capitulo" id="cap1">
+            <h2>Capítulo 1 - 0001-164162</h2>
+            <img src="episodes/0001-164162/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap1">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shadowwings8810</span> 
+        </div>
+        <div class="comentario-texto">Yussss gemini</div>
+        <div class="comentario-meta">Nov 22, 2017 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gabriela1</span> 
+        </div>
+        <div class="comentario-texto">Segundo quadro: "Didn't I tell ya*" seria o correto, ou "haven't I told ya"</div>
+        <div class="comentario-meta">Feb 18, 2017 • ❤️ 9</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">francessm39</span> 
+        </div>
+        <div class="comentario-texto">i love your comics <3 but when r u posting more?</div>
+        <div class="comentario-meta">Mar 24, 2016 • ❤️ 8</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">iug279</span> 
+        </div>
+        <div class="comentario-texto">He probably needs time or help translating his stuff to English.</div>
+        <div class="comentario-meta">Jan 26, 2017</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                
+                <a href="#cap2">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap2">
+            <h2>Capítulo 2 - 0002-164175</h2>
+            <img src="episodes/0002-164175/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
+            <span>💬 Ver Comentários (3)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap2">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giih Blackheart</span> 
+        </div>
+        <div class="comentario-texto">Pera, Leãozito gosta do Peixes?</div>
+        <div class="comentario-meta">Feb 21, 2017 • ❤️ 6</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Queen Stella</span> 
+        </div>
+        <div class="comentario-texto">não ele ta com inveja k o peixes acorda lindo e ele tem k se preparar</div>
+        <div class="comentario-meta">Dec 10, 2017 • ❤️ 3</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oportuno</span> 
+        </div>
+        <div class="comentario-texto">dlç</div>
+        <div class="comentario-meta">Feb 19, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap1">◀ Anterior</a>
+                <a href="#cap3">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap3">
+            <h2>Capítulo 3 - 0003-180922</h2>
+            <img src="episodes/0003-180922/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
+            <span>💬 Ver Comentários (15)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap3">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">MewTyCat</span> 
+        </div>
+        <div class="comentario-texto">Proud to be a scorpio</div>
+        <div class="comentario-meta">Jul 13, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Zia</span> 
+        </div>
+        <div class="comentario-texto">Estou ultrajada com esses absurdos afirmados sobre quem é de gêmeos. A gente é um amor.</div>
+        <div class="comentario-meta">Jan 26, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">marvelkids22</span> 
+        </div>
+        <div class="comentario-texto">im a scorpio. . .</div>
+        <div class="comentario-meta">Oct 02, 2017 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravenwashere1776</span> 
+        </div>
+        <div class="comentario-texto">Scorpio definitely my fav character till my horoscope shows up</div>
+        <div class="comentario-meta">Oct 01, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Omlit</span> 
+        </div>
+        <div class="comentario-texto">You're so creative with the hair :D</div>
+        <div class="comentario-meta">Jul 19, 2017 • ❤️ 18</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Giih Blackheart</span> 
+        </div>
+        <div class="comentario-texto">A Scorpio é homem? Que? Sempre imaginei ela como mulher...</div>
+        <div class="comentario-meta">Feb 21, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">zazzycat</span> 
+        </div>
+        <div class="comentario-texto">I love hiiiiiim</div>
+        <div class="comentario-meta">Feb 18, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">vanessadalfabbro</span> 
+        </div>
+        <div class="comentario-texto">omg shippei forte</div>
+        <div class="comentario-meta">Feb 09, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Avalon</span> 
+        </div>
+        <div class="comentario-texto">Please, i need one of cancer!</div>
+        <div class="comentario-meta">Feb 03, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">elisafelisbertothom</span> 
+        </div>
+        <div class="comentario-texto">Entao migoo,onde eu leio em pt? KKKK</div>
+        <div class="comentario-meta">Feb 03, 2017 • ❤️ 5</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aiko-quase-sensei</span> 
+        </div>
+        <div class="comentario-texto">no face :3</div>
+        <div class="comentario-meta">Feb 03, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">andreiakennen</span> 
+        </div>
+        <div class="comentario-texto">aqui tb tem só procurar por Zoroscopo</div>
+        <div class="comentario-meta">Feb 18, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Xiloui</span> 
+        </div>
+        <div class="comentario-texto">Vai no perfil do criador e vai em zoroscopo</div>
+        <div class="comentario-meta">Nov 30, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">I like the scorpy :v <3 mainly scorpisces muahhahaha -qq</div>
+        <div class="comentario-meta">Feb 28, 2016</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">J1000</span> 
+        </div>
+        <div class="comentario-texto">It would be a good idea to make these comics app-friendly. If you know what I mean.... ;D</div>
+        <div class="comentario-meta">Feb 16, 2016</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap2">◀ Anterior</a>
+                <a href="#cap4">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap4">
+            <h2>Capítulo 4 - 0004-605045</h2>
+            <img src="episodes/0004-605045/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
+            <span>💬 Ver Comentários (11)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap4">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lucifer</span> 
+        </div>
+        <div class="comentario-texto">XD</div>
+        <div class="comentario-meta">Feb 18, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Bellen</span> 
+        </div>
+        <div class="comentario-texto">Jonhy! Uma pergunta: 
+
+Você upará a série em inglês no Tapas ou apenas em inglês? 
+
+(Apesar de que eu não me importo XD)</div>
+        <div class="comentario-meta">Feb 18, 2017</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
+        </div>
+        <div class="comentario-texto">pera, n entendi a pergunta dhkszhis</div>
+        <div class="comentario-meta">Feb 19, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oportuno</span> 
+        </div>
+        <div class="comentario-texto">*Reler em inglês te enche de Determinação*</div>
+        <div class="comentario-meta">Feb 18, 2017 • ❤️ 33</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">:v hsuahsushsushushsushsu :v</div>
+        <div class="comentario-meta">Feb 18, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">airLMAO</span> 
+        </div>
+        <div class="comentario-texto">*invests on the potential of this series to be big*</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 30</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">iug279</span> 
+        </div>
+        <div class="comentario-texto">It is pretty good,seriously,each and everyone of them(the signs) are very unique in personality and design</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">airLMAO</span> 
+        </div>
+        <div class="comentario-texto">the comedy was good and yeah, each horoscope signs gave its own characteristics, can't wait for the rest of the comics being translated (since I don't speak Portuguese)</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
+        </div>
+        <div class="comentario-texto">The translation is complete and we are working on editing right now õ/</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">airLMAO</span> 
+        </div>
+        <div class="comentario-texto">hopefully your series would be at the recommended picks :D</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yago França</span> 
+        </div>
+        <div class="comentario-texto">LOL, mt bom Jonnhy! Agora manda mais da Saga de Serp e do Lebre e Coelho prfvr! *u*</div>
+        <div class="comentario-meta">Feb 17, 2017 • ❤️ 8</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap3">◀ Anterior</a>
+                <a href="#cap5">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap5">
+            <h2>Capítulo 5 - 0005-606272</h2>
+            <img src="episodes/0005-606272/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
+            <span>💬 Ver Comentários (4)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap5">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">Jojo vai traduzir as asks também?</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oportuno</span> 
+        </div>
+        <div class="comentario-texto">só passando para ver os Gringos comentando essa perfeição</div>
+        <div class="comentario-meta">Feb 19, 2017 • ❤️ 29</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Layla Crane</span> 
+        </div>
+        <div class="comentario-texto">I'm a Virgo too. I'm laughing but I'm not too organized I'm the perfect caos really.  Hahaha I love your comics <3</div>
+        <div class="comentario-meta">Feb 19, 2017 • ❤️ 21</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lucifer</span> 
+        </div>
+        <div class="comentario-texto">.. I'm a Virgo, but I hate/love cleaning... Well, mostly hate but what I  mean is that Im not pretty neat. But for ur perspective/other Virgos, is it really like this?</div>
+        <div class="comentario-meta">Feb 19, 2017</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap4">◀ Anterior</a>
+                <a href="#cap6">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap6">
+            <h2>Capítulo 6 - 0006-607829</h2>
+            <img src="episodes/0006-607829/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
+            <span>💬 Ver Comentários (13)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap6">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Rappycat</span> 
+        </div>
+        <div class="comentario-texto">Me identifiquei, sou taurina kk</div>
+        <div class="comentario-meta">Jan 02, 2025</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">AneenaSevla</span> 
+        </div>
+        <div class="comentario-texto">CARACA MANO EU TE LIA NO TUMBLR! Agora tou feliz, te achei no Tapas e posso me inscrever e ler tudo com calma!</div>
+        <div class="comentario-meta">Oct 05, 2021</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">placer</span> 
+        </div>
+        <div class="comentario-texto">my sign is cancer so... I understand how this feels</div>
+        <div class="comentario-meta">Dec 18, 2020</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dumby Soup</span> 
+        </div>
+        <div class="comentario-texto">My sign is Cancer.. awee you drew them so well ;-;</div>
+        <div class="comentario-meta">Sep 01, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">LinaSalles</span> 
+        </div>
+        <div class="comentario-texto">Eu não acredito que vc fez a piada do pavê huahauhauahua</div>
+        <div class="comentario-meta">Dec 05, 2017 • ❤️ 6</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">FerenzaaNet</span> 
+        </div>
+        <div class="comentario-texto">"I am on the Seafood diet. I see food and eat it."
+
+
+
+Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
+        <div class="comentario-meta">Aug 08, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">JesUHZ</span> 
+        </div>
+        <div class="comentario-texto">xD  classic Taurus</div>
+        <div class="comentario-meta">Feb 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Galua</span> 
+        </div>
+        <div class="comentario-texto">Achei o máximo eu lendo a explicação do pavê ou pacumê. AHHAHAHAHAHA Good job, btw!</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 19</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">hsushsijsyshsusjsgushsyshsyshsgushsushsyshshushshsushsh</div>
+        <div class="comentario-meta">Feb 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BecauseICannotRead</span> 
+        </div>
+        <div class="comentario-texto">Wahey I'm cancer</div>
+        <div class="comentario-meta">Feb 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">(●^●)/</span> 
+        </div>
+        <div class="comentario-texto">É PAVÊ OU PACUMÊ? KKKKKKK</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 17</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Honeycombie</span> 
+        </div>
+        <div class="comentario-texto">qndo vc pensa que a piada morreu, vem o natal e ressucita td de novo</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">robertin</span> 
+        </div>
+        <div class="comentario-texto">E pra infia no seu nariz</div>
+        <div class="comentario-meta">Oct 06, 2018 • ❤️ 2</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap5">◀ Anterior</a>
+                <a href="#cap7">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap7">
+            <h2>Capítulo 7 - 0007-607851</h2>
+            <img src="episodes/0007-607851/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap7', this)">
+            <span>💬 Ver Comentários (6)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap7">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">✨Actually Trash✨</span> 
+        </div>
+        <div class="comentario-texto">Classic Aquarius</div>
+        <div class="comentario-meta">Dec 17, 2021 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Yokocchi</span> 
+        </div>
+        <div class="comentario-texto">Aquarius puts originality before everything, that's a fact.</div>
+        <div class="comentario-meta">Nov 26, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pikachu</span> 
+        </div>
+        <div class="comentario-texto">"fish with lemon"</div>
+        <div class="comentario-meta">Oct 13, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">saleshyte</span> 
+        </div>
+        <div class="comentario-texto">escorpião quer comer peixe hauahuahau</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 15</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Honeycombie</span> 
+        </div>
+        <div class="comentario-texto">vo dar dica tbm : D
+
+pega uma fonte mais forte. algumas pessoas são miopes -q
+
+zoa mas no cel eh impossivel ler sem dar zoom</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 8</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">gabriela1</span> 
+        </div>
+        <div class="comentario-texto">Dica: No primeiro quadro, a fala do Peixes ficaria melhor se fosse "so, have you already chosen what you'll eat?" 
+
+Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de semelhante qualidade xD</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 8</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap6">◀ Anterior</a>
+                <a href="#cap8">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap8">
+            <h2>Capítulo 8 - 0008-607854</h2>
+            <img src="episodes/0008-607854/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap8', this)">
+            <span>💬 Ver Comentários (16)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap8">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lillianna_hermman</span> 
+        </div>
+        <div class="comentario-texto">Oh dear, but this is legit what I feel like doing whenever I have to repeat myself. I'M WITH YOU, ARES!</div>
+        <div class="comentario-meta">Jan 04, 2018</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oh</span> 
+        </div>
+        <div class="comentario-texto">eu shippo taries</div>
+        <div class="comentario-meta">Sep 24, 2017</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oh</span> 
+        </div>
+        <div class="comentario-texto">tauries</div>
+        <div class="comentario-meta">Sep 24, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pasta</span> 
+        </div>
+        <div class="comentario-texto">I can relate. Im a taurus and my mother is an Aries.SHE'S ALWAYS ANGRY.
+</div>
+        <div class="comentario-meta">Sep 04, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">SalamanderSlander</span> 
+        </div>
+        <div class="comentario-texto">I can so relate to my sign ♈</div>
+        <div class="comentario-meta">Aug 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gustavo Ziul</span> 
+        </div>
+        <div class="comentario-texto">Can't stop laughing THE PROBLEM IS THE ANOTHER ONE!!!!!!!!!!!!!!!</div>
+        <div class="comentario-meta">Jun 10, 2017 • ❤️ 13</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Azur</span> 
+        </div>
+        <div class="comentario-texto">Aries and Taurus make the best friendships!</div>
+        <div class="comentario-meta">Mar 30, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">ike8033</span> 
+        </div>
+        <div class="comentario-texto">aries bem eu S2</div>
+        <div class="comentario-meta">Mar 07, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aural</span> 
+        </div>
+        <div class="comentario-texto">I´m tauro</div>
+        <div class="comentario-meta">Mar 03, 2017 • ❤️ 3</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ryukborn</span> 
+        </div>
+        <div class="comentario-texto">Oh finally! I'm aries hahaha</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 10</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">aries is the best!</div>
+        <div class="comentario-meta">Feb 25, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">satanaries <3</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 18</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">minyasmin</span> 
+        </div>
+        <div class="comentario-texto">melhor shipp ever</div>
+        <div class="comentario-meta">Feb 20, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">não existe melhor</div>
+        <div class="comentario-meta">Feb 20, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Gustavo Ziul</span> 
+        </div>
+        <div class="comentario-texto">NUNCA existiu melhor (EU SOU ÁRIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES)</div>
+        <div class="comentario-meta">Jun 10, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Oh</span> 
+        </div>
+        <div class="comentario-texto">vamos la amigo?(eu sou touro)</div>
+        <div class="comentario-meta">Sep 24, 2017</div>
+        
+    </li></ul>
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap7">◀ Anterior</a>
+                <a href="#cap9">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap9">
+            <h2>Capítulo 9 - 0009-621161</h2>
+            <img src="episodes/0009-621161/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap9', this)">
+            <span>💬 Ver Comentários (5)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap9">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ravenwashere1776</span> 
+        </div>
+        <div class="comentario-texto">Yeeeeee Libra my boi</div>
+        <div class="comentario-meta">Oct 01, 2017 • ❤️ 12</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Pão</span> 
+        </div>
+        <div class="comentario-texto">alguém traduz pra mim ;-;</div>
+        <div class="comentario-meta">Mar 05, 2017 • ❤️ 4</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lizzie</span> 
+        </div>
+        <div class="comentario-texto">tem em portugues, só procura Zoroscopo :3</div>
+        <div class="comentario-meta">Mar 06, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Benjie</span> 
+        </div>
+        <div class="comentario-texto">o autor é BR 
+
+Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é mineira -q</div>
+        <div class="comentario-meta">Apr 05, 2017 • ❤️ 1</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lky</span> 
+        </div>
+        <div class="comentario-texto">eu traduzo isso <3</div>
+        <div class="comentario-meta">Mar 05, 2017 • ❤️ 5</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap8">◀ Anterior</a>
+                <a href="#cap10">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap10">
+            <h2>Capítulo 10 - 0010-621176</h2>
+            <img src="episodes/0010-621176/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap10', this)">
+            <span>💬 Ver Comentários (16)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap10">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">lillianna_hermman</span> 
+        </div>
+        <div class="comentario-texto">You...scarred....my....precious...boi....pisces.....I'LL BEAT HIS BUT WITCHU VIRGO!</div>
+        <div class="comentario-meta">Jan 04, 2018 • ❤️ 4</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">King_Ghost</span> 
+        </div>
+        <div class="comentario-texto">ha gayyy</div>
+        <div class="comentario-meta">Sep 12, 2017 • ❤️ 5</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aural</span> 
+        </div>
+        <div class="comentario-texto">No girls? (T_T)</div>
+        <div class="comentario-meta">Aug 23, 2017 • ❤️ 1</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lyns</span> 
+        </div>
+        <div class="comentario-texto">There Is another version of it named Zorodicopo and all of them are girls instead XD</div>
+        <div class="comentario-meta">Nov 04, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Aural</span> 
+        </div>
+        <div class="comentario-texto">I prefer mix both genders</div>
+        <div class="comentario-meta">Nov 06, 2017</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">FerenzaaNet</span> 
+        </div>
+        <div class="comentario-texto">Love this.</div>
+        <div class="comentario-meta">Aug 08, 2017 • ❤️ 10</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Omlit</span> 
+        </div>
+        <div class="comentario-texto">Waaaahhh</div>
+        <div class="comentario-meta">Jul 19, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ana57</span> 
+        </div>
+        <div class="comentario-texto">kkkkkkkkkkkkk it's a boy kkkkkkkkkkkkkkkkkkk eu não  consigo para de rir kkkkkkkk</div>
+        <div class="comentario-meta">Apr 08, 2017 • ❤️ 11</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Berimpau</span> 
+        </div>
+        <div class="comentario-texto">oi desculpe o incomodo mas, como conseguimos postar uma comic?</div>
+        <div class="comentario-meta">Mar 15, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Pipo no Whatsapp</span> 
+        </div>
+        <div class="comentario-texto">IMAGINA O PACOTE NOSSA</div>
+        <div class="comentario-meta">Mar 15, 2017 • ❤️ 15</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Berimpau</span> 
+        </div>
+        <div class="comentario-texto">não entendo nada de inglês então só vejo as imagens :V</div>
+        <div class="comentario-meta">Mar 11, 2017 • ❤️ 1</div>
+        <ul class="replies">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ceci</span> 
+        </div>
+        <div class="comentario-texto">Tem a versão em português '-'</div>
+        <div class="comentario-meta">Feb 03, 2018</div>
+        
+    </li></ul>
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lostbou_</span> 
+        </div>
+        <div class="comentario-texto">gente HUAHAUAHHAAUAHU TINHA ME ESQUECIDO O QUANTO ESSA TIRINHA ERA ENGRAÇADA</div>
+        <div class="comentario-meta">Mar 06, 2017 • ❤️ 2</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">BecauseICannotRead</span> 
+        </div>
+        <div class="comentario-texto">omg</div>
+        <div class="comentario-meta">Mar 05, 2017</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Slowju</span> 
+        </div>
+        <div class="comentario-texto">Oh sagi <3</div>
+        <div class="comentario-meta">Mar 05, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Lky</span> 
+        </div>
+        <div class="comentario-texto">ahsuhaushau ruddy cheeks :3</div>
+        <div class="comentario-meta">Mar 05, 2017</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap9">◀ Anterior</a>
+                <a href="#cap11">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap11">
+            <h2>Capítulo 11 - 0011-845904</h2>
+            <img src="episodes/0011-845904/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap11', this)">
+            <span>💬 Ver Comentários (1)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap11">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">-_Hot_Cocoa_-</span> 
+        </div>
+        <div class="comentario-texto">Accurate to myself, not gonna lie-</div>
+        <div class="comentario-meta">Feb 28, 2020 • ❤️ 9</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap10">◀ Anterior</a>
+                <a href="#cap12">Próximo ▶</a>
+            </div>
+        </div>
+        <div class="capitulo" id="cap12">
+            <h2>Capítulo 12 - 0012-845940</h2>
+            <img src="episodes/0012-845940/images/panel-001.jpg" alt="panel-001.jpg">
+            
+    <div class="comentarios-wrapper">
+        <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap12', this)">
+            <span>💬 Ver Comentários (5)</span>
+            <span>▼</span>
+        </button>
+        <div class="comentarios-conteudo" id="coms-cap12">
+            <ul class="comentarios-lista">
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Ray Ray</span> 
+        </div>
+        <div class="comentario-texto">Hello?</div>
+        <div class="comentario-meta">Jun 22, 2019 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">shadowwings8810</span> 
+        </div>
+        <div class="comentario-texto">Scorpio dont give a shit</div>
+        <div class="comentario-meta">Nov 22, 2017 • ❤️ 20</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">pancake</span> 
+        </div>
+        <div class="comentario-texto">This series has been sooooo good so far and I hope to see moreeeeee!!!!</div>
+        <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">That Bunny</span> 
+        </div>
+        <div class="comentario-texto">The strange thing is that my personality is like Skorpios but I am a Gemini... ;P</div>
+        <div class="comentario-meta">Oct 02, 2017 • ❤️ 1</div>
+        
+    </li>
+    <li class="comentario-item">
+        <div class="comentario-header">
+            <span class="autor">Dadniel</span> 
+        </div>
+        <div class="comentario-texto">*whispers* Beautiful</div>
+        <div class="comentario-meta">Oct 02, 2017 • ❤️ 25</div>
+        
+    </li></ul>
+        </div>
+    </div>
+            <div class="nav-botoes">
+                <a href="#topo">⬆ Topo</a>
+                <a href="#cap11">◀ Anterior</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ELEMENTOS DO MODO IMERSIVO -->
+    <div class="imersivo-controles">
+        <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
+    </div>
+
+    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+
+    <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3 id="modalTitle">Comentários</h3>
+                <button class="btn-fechar-modal" onclick="fecharModalComentarios()">✕</button>
+            </div>
+            <div class="modal-body" id="modalComentariosBody"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-bar">
+        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
+        <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
+            <option value="1">Cap. 1 - 0001-164162</option><option value="2">Cap. 2 - 0002-164175</option><option value="3">Cap. 3 - 0003-180922</option><option value="4">Cap. 4 - 0004-605045</option><option value="5">Cap. 5 - 0005-606272</option><option value="6">Cap. 6 - 0006-607829</option><option value="7">Cap. 7 - 0007-607851</option><option value="8">Cap. 8 - 0008-607854</option><option value="9">Cap. 9 - 0009-621161</option><option value="10">Cap. 10 - 0010-621176</option><option value="11">Cap. 11 - 0011-845904</option><option value="12">Cap. 12 - 0012-845940</option>
+        </select>
+        <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
+        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
+        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">▶</button>
+    </div>
+
+    <button onclick="irParaTopo()" id="topoBtn">↑</button>
+    <script>
+let tamanhoFontePixels = 16;
+let temaEscuro = true;
+let capAtualIndex = 1;
+let pagAtualIndex = 1;
+let totalCapitulos = 0;
+let modoImersivoAtivo = false;
+
+function mudarTema() { 
+    temaEscuro = !temaEscuro; 
+    document.body.classList.toggle('light', !temaEscuro); 
+}
+
+function alterarFonte(delta) { 
+    tamanhoFontePixels = Math.min(Math.max(tamanhoFontePixels + (delta * 2), 12), 26); 
+    document.documentElement.style.fontSize = tamanhoFontePixels + 'px'; 
+}
+
+function toggleSidebar() { 
+    const sidebar = document.getElementById('sidebar');
+    const conteudo = document.getElementById('conteudo');
+    const btn = document.getElementById('toggleSidebarBtn');
+    sidebar.classList.toggle('oculto');
+    conteudo.classList.toggle('expandido');
+    btn.textContent = sidebar.classList.contains('oculto') ? '☰ Painel' : '✕ Fechar';
+}
+
+function toggleComentarioIndividual(idConteudo, btnEl) {
+    const el = document.getElementById(idConteudo);
+    if (!el) return;
+    el.classList.toggle('aberto');
+}
+
+function toggleTodosComentarios() {
+    const conteudos = document.querySelectorAll('.comentarios-conteudo');
+    const btnGlobal = document.getElementById('btnGlobalComentarios');
+    const deveExibir = btnGlobal.textContent.trim() === 'Exibir Comentários';
+    conteudos.forEach(el => {
+        if (deveExibir) el.classList.add('aberto');
+        else el.classList.remove('aberto');
+    });
+    btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
+}
+
+function irParaCapitulo(index) {
+    if (!index || index < 1) return;
+    capAtualIndex = parseInt(index);
+    pagAtualIndex = 1;
+
+    if (modoImersivoAtivo) {
+        atualizarModoImersivoPagina();
+    } else {
+        const el = document.getElementById(`cap${capAtualIndex}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    sincronizarSelectsCapitulos();
+}
+
+function capAnterior() { if (capAtualIndex > 1) irParaCapitulo(capAtualIndex - 1); }
+function capProximo() { if (capAtualIndex < totalCapitulos) irParaCapitulo(capAtualIndex + 1); }
+
+function sincronizarSelectsCapitulos() {
+    const selSidebar = document.getElementById('selectCapitulosSidebar');
+    const selMobile = document.getElementById('selectCapitulosMobile');
+    if (selSidebar) selSidebar.value = capAtualIndex;
+    if (selMobile) selMobile.value = capAtualIndex;
+}
+
+function abrirModalComentarios() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return;
+    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const modalBody = document.getElementById('modalComentariosBody');
+    document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
+    if (wrapperComentarios) {
+        modalBody.innerHTML = wrapperComentarios.innerHTML;
+        const lista = modalBody.querySelector('.comentarios-conteudo');
+        if (lista) lista.style.display = 'block';
+        const btn = modalBody.querySelector('.btn-toggle-comentarios');
+        if (btn) btn.style.display = 'none';
+    } else {
+        modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
+    }
+    document.getElementById('modalComentarios').classList.add('visivel');
+}
+
+function fecharModalComentarios() {
+    document.getElementById('modalComentarios').classList.remove('visivel');
+}
+
+function atualizarCapituloAtualVisivel() {
+    if (modoImersivoAtivo) return;
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+    let indexEncontrado = 1;
+    capitulos.forEach((cap, idx) => {
+        const rect = cap.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+            indexEncontrado = idx + 1;
+        }
+    });
+    if (capAtualIndex !== indexEncontrado) {
+        capAtualIndex = indexEncontrado;
+        sincronizarSelectsCapitulos();
+    }
+    const btnPrev = document.getElementById('mobileBtnPrev');
+    const btnNext = document.getElementById('mobileBtnNext');
+    if (btnPrev) btnPrev.disabled = capAtualIndex <= 1;
+    if (btnNext) btnNext.disabled = capAtualIndex >= totalCapitulos;
+}
+
+function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+function toggleModoImersivo() {
+    modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
+    const btnFS = document.getElementById('btnFullscreen');
+    const btnFSNav = document.getElementById('mobileBtnFullscreen');
+    
+    if (modoImersivoAtivo) {
+        if (btnFS) btnFS.textContent = '❌ Sair Leitura';
+        if (btnFSNav) btnFSNav.textContent = '❌ Sair';
+        pagAtualIndex = 1;
+        atualizarModoImersivoPagina();
+    } else {
+        if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
+        if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
+        document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
+        document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
+        
+        const capEl = document.getElementById(`cap${capAtualIndex}`);
+        if (capEl) capEl.scrollIntoView();
+    }
+}
+
+function obterImagensDoCapituloAtual() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return [];
+    return Array.from(capEl.querySelectorAll('img'));
+}
+
+function atualizarModoImersivoPagina() {
+    if (!modoImersivoAtivo) return;
+
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+
+    capitulos.forEach((cap, idx) => {
+        if (idx + 1 === capAtualIndex) {
+            cap.classList.add('cap-ativo-imersivo');
+        } else {
+            cap.classList.remove('cap-ativo-imersivo');
+        }
+    });
+
+    const imgs = obterImagensDoCapituloAtual();
+    if (imgs.length === 0) return;
+
+    if (pagAtualIndex > imgs.length) pagAtualIndex = imgs.length;
+    if (pagAtualIndex < 1) pagAtualIndex = 1;
+
+    imgs.forEach((img, idx) => {
+        if (idx + 1 === pagAtualIndex) {
+            img.classList.add('pag-ativa-imersivo');
+        } else {
+            img.classList.remove('pag-ativa-imersivo');
+        }
+    });
+
+    const hud = document.getElementById('imersivoHud');
+    if (hud) {
+        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    }
+}
+
+function imersivoProximaPagina() {
+    if (!modoImersivoAtivo) return;
+    const imgs = obterImagensDoCapituloAtual();
+    if (pagAtualIndex < imgs.length) {
+        pagAtualIndex++;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex < totalCapitulos) {
+        capAtualIndex++;
+        pagAtualIndex = 1;
+        sincronizarSelectsCapitulos();
+        atualizarModoImersivoPagina();
+    }
+}
+
+function imersivoPaginaAnterior() {
+    if (!modoImersivoAtivo) return;
+    if (pagAtualIndex > 1) {
+        pagAtualIndex--;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex > 1) {
+        capAtualIndex--;
+        sincronizarSelectsCapitulos();
+        const imgsPrev = obterImagensDoCapituloAtual();
+        pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
+        atualizarModoImersivoPagina();
+    }
+}
+
+// --- NAVEGAÇÃO POR TOQUE / SWIPE ---
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].screenX;
+        tratarSwipe();
+    }
+}, false);
+
+function tratarSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 60) {
+        if (modoImersivoAtivo) {
+            if (diff > 0) imersivoProximaPagina();
+            else imersivoPaginaAnterior();
+        } else {
+            if (diff > 0) capProximo();
+            else capAnterior();
+        }
+    }
+}
+
+// --- ATALHOS DE TECLADO ---
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        modoImersivoAtivo ? imersivoProximaPagina() : capProximo();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        modoImersivoAtivo ? imersivoPaginaAnterior() : capAnterior();
+    }
+    if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
+});
+
+window.addEventListener('scroll', () => {
+    document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
+    atualizarCapituloAtualVisivel();
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    atualizarCapituloAtualVisivel();
+});
+</script>
+</body>
+</html>

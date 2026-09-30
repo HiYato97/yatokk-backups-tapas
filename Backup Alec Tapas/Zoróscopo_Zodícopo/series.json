@@ -1,0 +1,40 @@
+{
+ "series_id": "58137",
+ "fetched_at": "2026-09-26T19:50:52Z",
+ "data": {
+  "id": 58137,
+  "title": "Zoróscopo/Zodícopo",
+  "escape_title": "Zor&oacute;scopo/Zod&iacute;copo",
+  "url": "ZorscopoZodcopo",
+  "thumb_url": "https://us-a.tapas.io/sa/c9/7f8f3407-c95c-4ec0-9c3d-93a10f072268_m.png",
+  "type": "COMMUNITY",
+  "sale_type": "FREE",
+  "subscribed": false,
+  "comic": true,
+  "book": false,
+  "premium": false,
+  "has_top_banner": false,
+  "has_book_cover": false,
+  "on_sale_now": false,
+  "thumbsup_cnt": 110726,
+  "discount_rate": 0,
+  "genre": {
+   "id": 2,
+   "name": "Comedy",
+   "abbr": "Comedy",
+   "books": false,
+   "description": "LOL (on the inside)",
+   "display_order": 10,
+   "artwork_url": "https://us-a.tapas.io/a/44/c15b7236-9bad-4e52-bf65-2da99694b19d.png",
+   "ugc_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "icon_artwork_url": "https://us-a.tapas.io/a/0d/7d0b5d3a-def5-47d1-b2fa-6c5d15153ef0.png",
+   "series": null,
+   "series_cnt": 0,
+   "group_id": 2,
+   "shortcut": true,
+   "ugc_series": null
+  },
+  "badges": [],
+  "item_type": null
+ }
+}

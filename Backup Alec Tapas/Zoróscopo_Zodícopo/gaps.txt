@@ -1,0 +1,4 @@
+# gaps for series 58137 - episodes locked (free=false) or failed after retries
+# generated 2026-09-26T20:07:05Z
+
+ep 67 (id 1280809): panel 14/31 failed (download failed or placeholder/invalid image bytes): https://us-a.tapas.io/c/de/3382baf0-29fe-496c-8ae4-d22cc05ed62b.png?__token__=exp=1790456728~acl=/c/de/3382baf0-29fe-496c-8ae4-d22cc05ed62b.png*~hmac=e166cd59ef1e22f1d1304bf437f6bc2244963665aeff5fa7b77f01a592273773&version=v4
