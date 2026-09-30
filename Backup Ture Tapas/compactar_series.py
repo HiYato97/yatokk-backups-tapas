@@ -8,33 +8,45 @@ BASE_DIR = Path(".").resolve()
 
 # Conteúdo do arquivo LEIA-ME que será colocado em cada .zip
 INSTRUCOES_TXT = """====================================================================
-  PRESERVAÇÃO E LEITURA OFFLINE - ACERVO WEBCOMICS
+  PRESERVAÇÃO E LEITURA - ACERVO WEBCOMICS (TAPAS) TURE
 ====================================================================
 
-Este arquivo contém o backup completo da webcomic, incluindo todos os 
-capítulos, imagens e comentários preservados.
+Esta página oferece um backup da Webcomic do Ture, Bruno tem um namorado  postadas na plataforma Tapas até a presente data (26/09/2026), incluindo todos os capítulos, imagens e comentários preservados.
 
 --------------------------------------------------------------------
-COMO LER / USAR:
+COMO LER / USAR ONLINE (RECOMENDADO):
 --------------------------------------------------------------------
-1. Extraia TODO o conteúdo deste arquivo .zip em uma pasta no seu 
-   computador ou celular.
-2. Certifique-se de que a pasta 'episodes' e o arquivo '.html' 
-   permaneçam na mesma pasta após extrair.
+Para a melhor experiência de leitura (página principal, índice navegável e modo escuro), acesse o leitor web oficial:
+🔗 https://hiyato97.github.io/yatokk-backups-tapas/Backup%20Ture%20Tapas/index.html
+
+💡 Dicas para celular:
+- Ao acessar pelo navegador do celular, use a Barra Inferior para alternar facilmente entre capítulos e abrir a caixa de Comentários.
+- Você pode alternar entre o Modo Escuro / Claro e ajustar o Tamanho da Fonte (A+ / A-) no painel de opções no topo.
+
+--------------------------------------------------------------------
+COMO LER / USAR OFFLINE (COMPUTADOR):
+--------------------------------------------------------------------
+Se preferir baixar os arquivos para ler sem internet, faça o download do arquivo .ZIP na seção "Download Options" abaixo.
+
+1. Extraia todo o conteúdo do arquivo .zip em uma pasta no seu computador.
+2. Certifique-se de que a pasta 'episodes' e o arquivo '..._completo.html' 
+   estejam juntos no mesmo diretório.
 3. Clique duas vezes no arquivo '.html' para abri-lo em qualquer 
-   navegador (Chrome, Edge, Firefox, Safari, etc.).
-4. Não é necessária conexão com a internet para realizar a leitura.
+   navegador de internet (Chrome, Edge, Firefox, Safari, etc.).
+4. Não é necessária conexão com a internet para ler a HQ.
+
+⚠️ OBSERVAÇÃO PARA CELULARES (OFFLINE): 
+Ao tentar abrir o arquivo HTML baixado diretamente no celular, as imagens podem não carregar devido a restrições de segurança do sistema (Android/iOS) para arquivos locais. Para ler no celular, utilize preferencialmente o link online acima.
 
 --------------------------------------------------------------------
-RECURSOS DA INTERFACE:
+RECURSOS DISPONÍVEIS NA INTERFACE:
 --------------------------------------------------------------------
-- Painel Lateral (☰): Índice de capítulos, alternador de Tema (Escuro/Claro) 
-  e controle de tamanho de fonte.
-- Comentários: Clique no botão "💬 Ver Comentários" em cada capítulo 
-  para ver as interações preservadas.
-- Navegação Mobile: Barra inferior para alternar entre capítulos em celulares.
-
-====================================================================
+- Painel Lateral (☰): Índice de capítulos, alternador de Tema (Claro/Escuro) 
+  e ajuste de tamanho de fonte (A+/A-).
+- Comentários: Clique no botão "💬 Ver Comentários" em cada capítulo para 
+  expandir os comentários preservados da época da publicação.
+- Navegação Mobile: Barra inferior para avançar ou voltar capítulos facilmente 
+  em telas de smartphone.
 """
 
 def compactar_pasta_serie(pasta_serie):

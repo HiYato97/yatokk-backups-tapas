@@ -15,9 +15,12 @@ CSS_ESTILOS = """
     --border-color: #222428;
     --text-primary: #e1e3e6;
     --text-muted: #737984;
-    --accent: #ffcb05; /* Tapas Yellow Accent */
+    --accent: #ffcb05;
     --accent-hover: #ffffff;
     --sidebar-width: 280px;
+    --danger: #dc2626;
+    --danger-hover: #991b1b;
+    --success: #16a34a;
 }
 
 body.light {
@@ -29,9 +32,12 @@ body.light {
     --text-muted: #626875;
     --accent: #d97706;
     --accent-hover: #111827;
+    --danger: #ef4444;
+    --danger-hover: #b91c1c;
+    --success: #22c55e;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -41,7 +47,7 @@ body {
     line-height: 1.6;
     font-size: 1rem;
     overflow-x: hidden;
-    padding-bottom: 60px;
+    padding-bottom: 70px;
 }
 
 #versao {
@@ -91,9 +97,9 @@ body {
     left: 0;
     width: var(--sidebar-width);
     max-width: 85vw;
-    height: calc(100vh - 31px);
+    height: calc(100vh - 31px - 54px); /* <-- Desconta a barra superior e o rodapé */
     background: var(--bg-sidebar);
-    padding: 50px 15px 20px 15px;
+    padding: 50px 15px 30px 15px;
     border-right: 1px solid var(--border-color);
     z-index: 999;
     overflow-y: auto;
@@ -119,7 +125,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 6px;
 }
-.painel-controles button {
+.painel-controles button, .select-capitulos {
     background: var(--bg-body);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
@@ -127,6 +133,59 @@ body {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.8rem;
+    width: 100%;
+}
+.select-capitulos {
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.btn-full-width { grid-column: span 2; }
+
+/* PAINEL SELETOR OFFLINE */
+.seletor-offline-container {
+    max-height: 160px;
+    overflow-y: auto;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+.item-cap-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.item-cap-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+.tag-salvo {
+    font-size: 0.7rem;
+    color: var(--success);
+    font-weight: bold;
+}
+
+button.btn-desalvar {
+    background: var(--danger) !important;
+    color: #ffffff !important;
+    border-color: var(--danger-hover) !important;
+}
+
+.status-cache {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-align: center;
+    grid-column: span 2;
+    word-break: break-word;
 }
 
 .sidebar h2 {
@@ -247,10 +306,11 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 .nav-botoes a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
 
+/* MODAL COMENTÁRIOS MOBILE */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     display: none;
     justify-content: center;
     align-items: flex-end;
@@ -271,20 +331,161 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
 .modal-body { padding: 16px; overflow-y: auto; }
 
+/* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; height: 54px;
-    background: var(--bg-sidebar); border-top: 1px solid var(--border-color);
-    display: flex; justify-around; align-items: center; z-index: 1002;
+    display: flex; /* <-- Agora fica sempre visível */
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    height: 54px;
+    background: var(--bg-sidebar); 
+    border-top: 1px solid var(--border-color);
+    justify-content: space-around; 
+    align-items: center; 
+    z-index: 1002;
+    padding: 0 10px;
 }
-.mobile-nav-btn { background: transparent; border: none; color: var(--text-primary); font-size: 0.85rem; cursor: pointer; flex: 1; height: 100%; }
+.mobile-nav-btn {
+    background: transparent; border: none; color: var(--text-primary);
+    font-size: 0.8rem; cursor: pointer; flex: 1; height: 100%;
+}
 
 #topoBtn {
-    position: fixed; bottom: 70px; right: 20px;
-    background: var(--bg-card); color: var(--text-primary);
-    border: 1px solid var(--border-color); width: 38px; height: 38px;
-    border-radius: 4px; cursor: pointer; display: none; align-items: center; justify-content: center;
+    position: fixed; 
+    bottom: 70px; /* Sobe o botão do topo para ficar acima do rodapé */
+    right: 20px;
+    background: var(--bg-card); 
+    color: var(--text-primary);
+    border: 1px solid var(--border-color); 
+    width: 38px; 
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer; 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    z-index: 1001;
 }
 #topoBtn.visivel { display: flex; }
+
+/* --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) --- */
+body.modo-imersivo #versao,
+body.modo-imersivo #toggleSidebarBtn,
+body.modo-imersivo .sidebar,
+body.modo-imersivo .series-header,
+body.modo-imersivo .capitulo h2,
+body.modo-imersivo .comentarios-wrapper,
+body.modo-imersivo .nav-botoes,
+body.modo-imersivo #topoBtn,
+body.modo-imersivo .mobile-nav-bar {
+    display: none !important;
+}
+
+body.modo-imersivo {
+    overflow: hidden !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .conteudo {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-imersivo .capitulo {
+    display: none;
+    max-width: 100% !important;
+    height: 100vh;
+    width: 100vw;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: #000000 !important;
+}
+
+body.modo-imersivo .capitulo.cap-ativo-imersivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+body.modo-imersivo img {
+    display: none !important;
+    max-height: 100vh;
+    max-width: 100vw;
+    object-fit: contain;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+    user-select: none;
+}
+
+body.modo-imersivo img.pag-ativa-imersivo {
+    display: block !important;
+}
+
+/* CONTROLES E HUD IMERSIVO */
+.imersivo-controles {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+body.modo-imersivo .imersivo-controles { display: flex; gap: 10px; align-items: center; }
+
+.btn-sair-imersivo {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.imersivo-hud-bottom {
+    display: none;
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+body.modo-imersivo .imersivo-hud-bottom { display: block; }
+
+/* ZONAS DE TOQUE PARA NAVEGAÇÃO */
+.imersivo-touch-zone {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 35%;
+    z-index: 9998;
+}
+body.modo-imersivo .imersivo-touch-zone { display: block; }
+.touch-left { left: 0; }
+.touch-right { right: 0; }
 
 @media (max-width: 768px) {
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
@@ -296,7 +497,9 @@ JS_SCRIPT = """
 let tamanhoFontePixels = 16;
 let temaEscuro = true;
 let capAtualIndex = 1;
+let pagAtualIndex = 1;
 let totalCapitulos = 0;
+let modoImersivoAtivo = false;
 
 function mudarTema() { 
     temaEscuro = !temaEscuro; 
@@ -335,12 +538,28 @@ function toggleTodosComentarios() {
 }
 
 function irParaCapitulo(index) {
-    const el = document.getElementById(`cap${index}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (!index || index < 1) return;
+    capAtualIndex = parseInt(index);
+    pagAtualIndex = 1;
+
+    if (modoImersivoAtivo) {
+        atualizarModoImersivoPagina();
+    } else {
+        const el = document.getElementById(`cap${capAtualIndex}`);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    sincronizarSelectsCapitulos();
 }
 
 function capAnterior() { if (capAtualIndex > 1) irParaCapitulo(capAtualIndex - 1); }
 function capProximo() { if (capAtualIndex < totalCapitulos) irParaCapitulo(capAtualIndex + 1); }
+
+function sincronizarSelectsCapitulos() {
+    const selSidebar = document.getElementById('selectCapitulosSidebar');
+    const selMobile = document.getElementById('selectCapitulosMobile');
+    if (selSidebar) selSidebar.value = capAtualIndex;
+    if (selMobile) selMobile.value = capAtualIndex;
+}
 
 function abrirModalComentarios() {
     const capEl = document.getElementById(`cap${capAtualIndex}`);
@@ -365,6 +584,7 @@ function fecharModalComentarios() {
 }
 
 function atualizarCapituloAtualVisivel() {
+    if (modoImersivoAtivo) return;
     const capitulos = document.querySelectorAll('.capitulo');
     totalCapitulos = capitulos.length;
     let indexEncontrado = 1;
@@ -374,7 +594,10 @@ function atualizarCapituloAtualVisivel() {
             indexEncontrado = idx + 1;
         }
     });
-    capAtualIndex = indexEncontrado;
+    if (capAtualIndex !== indexEncontrado) {
+        capAtualIndex = indexEncontrado;
+        sincronizarSelectsCapitulos();
+    }
     const btnPrev = document.getElementById('mobileBtnPrev');
     const btnNext = document.getElementById('mobileBtnNext');
     if (btnPrev) btnPrev.disabled = capAtualIndex <= 1;
@@ -383,11 +606,328 @@ function atualizarCapituloAtualVisivel() {
 
 function irParaTopo() { window.scrollTo({top: 0, behavior: 'smooth'}); }
 
+// --- MODO LEITURA IMERSIVO (PÁGINA POR PÁGINA) ---
+function toggleModoImersivo() {
+    modoImersivoAtivo = document.body.classList.toggle('modo-imersivo');
+    const btnFS = document.getElementById('btnFullscreen');
+    const btnFSNav = document.getElementById('mobileBtnFullscreen');
+    
+    if (modoImersivoAtivo) {
+        if (btnFS) btnFS.textContent = '❌ Sair Leitura';
+        if (btnFSNav) btnFSNav.textContent = '❌ Sair';
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }
+        pagAtualIndex = 1;
+        atualizarModoImersivoPagina();
+    } else {
+        if (btnFS) btnFS.textContent = '📖 Modo Imersivo';
+        if (btnFSNav) btnFSNav.textContent = '📖 Imersivo';
+        if (document.exitFullscreen && document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+        }
+        // Limpa classes do imersivo
+        document.querySelectorAll('.capitulo').forEach(c => c.classList.remove('cap-ativo-imersivo'));
+        document.querySelectorAll('img').forEach(i => i.classList.remove('pag-ativa-imersivo'));
+        
+        // Garante rolar até o capítulo atual ao sair
+        const capEl = document.getElementById(`cap${capAtualIndex}`);
+        if (capEl) capEl.scrollIntoView();
+    }
+}
+
+function obterImagensDoCapituloAtual() {
+    const capEl = document.getElementById(`cap${capAtualIndex}`);
+    if (!capEl) return [];
+    return Array.from(capEl.querySelectorAll('img'));
+}
+
+function atualizarModoImersivoPagina() {
+    if (!modoImersivoAtivo) return;
+
+    const capitulos = document.querySelectorAll('.capitulo');
+    totalCapitulos = capitulos.length;
+
+    capitulos.forEach((cap, idx) => {
+        if (idx + 1 === capAtualIndex) {
+            cap.classList.add('cap-ativo-imersivo');
+        } else {
+            cap.classList.remove('cap-ativo-imersivo');
+        }
+    });
+
+    const imgs = obterImagensDoCapituloAtual();
+    if (imgs.length === 0) return;
+
+    if (pagAtualIndex > imgs.length) pagAtualIndex = imgs.length;
+    if (pagAtualIndex < 1) pagAtualIndex = 1;
+
+    imgs.forEach((img, idx) => {
+        if (idx + 1 === pagAtualIndex) {
+            img.classList.add('pag-ativa-imersivo');
+        } else {
+            img.classList.remove('pag-ativa-imersivo');
+        }
+    });
+
+    // Atualiza HUD de status no fundo da tela
+    const hud = document.getElementById('imersivoHud');
+    if (hud) {
+        hud.textContent = `Cap. ${capAtualIndex}/${totalCapitulos} • Pág. ${pagAtualIndex}/${imgs.length}`;
+    }
+}
+
+function imersivoProximaPagina() {
+    if (!modoImersivoAtivo) return;
+    const imgs = obterImagensDoCapituloAtual();
+    if (pagAtualIndex < imgs.length) {
+        pagAtualIndex++;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex < totalCapitulos) {
+        // Avança pro próximo capítulo se estiver na última página
+        capAtualIndex++;
+        pagAtualIndex = 1;
+        sincronizarSelectsCapitulos();
+        atualizarModoImersivoPagina();
+    }
+}
+
+function imersivoPaginaAnterior() {
+    if (!modoImersivoAtivo) return;
+    if (pagAtualIndex > 1) {
+        pagAtualIndex--;
+        atualizarModoImersivoPagina();
+    } else if (capAtualIndex > 1) {
+        // Volta pro capítulo anterior (na última página dele)
+        capAtualIndex--;
+        sincronizarSelectsCapitulos();
+        const imgsPrev = obterImagensDoCapituloAtual();
+        pagAtualIndex = imgsPrev.length > 0 ? imgsPrev.length : 1;
+        atualizarModoImersivoPagina();
+    }
+}
+
+// --- NAVEGAÇÃO MOBILE POR SWIPE ---
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    tratarSwipe();
+}, false);
+
+function tratarSwipe() {
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+        if (modoImersivoAtivo) {
+            if (diff > 0) imersivoProximaPagina();
+            else imersivoPaginaAnterior();
+        } else {
+            if (diff > 0) capProximo();
+            else capAnterior();
+        }
+    }
+}
+
+// --- ATALHOS DE TECLADO ---
+document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+    
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        modoImersivoAtivo ? imersivoProximaPagina() : capProximo();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        modoImersivoAtivo ? imersivoPaginaAnterior() : capAnterior();
+    }
+    if (e.key === 'f' || e.key === 'F') toggleModoImersivo();
+});
+
+// --- GERENCIAMENTO OFFLINE SELETIVO POR CAPÍTULO ---
+const CACHE_NAME = 'serie-cache-' + window.location.pathname.replace(/[^a-zA-Z0-9]/g, '_');
+
+function obterRecursosDoCapitulo(idxCap) {
+    const recursos = new Set();
+    const capEl = document.getElementById(`cap${idxCap}`);
+    if (!capEl) return [];
+
+    capEl.querySelectorAll('img').forEach(img => {
+        const src = img.getAttribute('src');
+        if (src) recursos.add(new URL(src, window.location.href).href);
+    });
+    return Array.from(recursos);
+}
+
+function marcarTodosCheckboxes(marcar) {
+    document.querySelectorAll('.chk-cap-offline').forEach(chk => {
+        chk.checked = marcar;
+    });
+}
+
+async function verificarEstadoOffline() {
+    const statusEl = document.getElementById('statusCacheMsg');
+    if (!('caches' in window)) return;
+
+    try {
+        const existe = await caches.has(CACHE_NAME);
+        if (!existe) {
+            if (statusEl) statusEl.textContent = 'Nenhum capítulo salvo.';
+            return;
+        }
+
+        const cache = await caches.open(CACHE_NAME);
+        const keys = await cache.keys();
+        const urlsCached = new Set(keys.map(k => k.url));
+
+        let capSalvos = 0;
+        const totalCaps = document.querySelectorAll('.capitulo').length;
+
+        for (let i = 1; i <= totalCaps; i++) {
+            const urlsCap = obterRecursosDoCapitulo(i);
+            const salvo = urlsCap.length > 0 && urlsCap.every(u => urlsCached.has(u));
+            
+            const badgeEl = document.getElementById(`badgeSalvoCap${i}`);
+            const tagIdxEl = document.getElementById(`tagIndexSalvoCap${i}`);
+            
+            if (salvo) {
+                capSalvos++;
+                if (badgeEl) badgeEl.style.display = 'inline';
+                if (tagIdxEl) tagIdxEl.style.display = 'inline';
+            } else {
+                if (badgeEl) badgeEl.style.display = 'none';
+                if (tagIdxEl) tagIdxEl.style.display = 'none';
+            }
+        }
+
+        if (statusEl) {
+            statusEl.textContent = `${capSalvos}/${totalCaps} cap. salvos (${keys.length} imgs)`;
+        }
+    } catch (e) {
+        console.error('Erro ao verificar cache:', e);
+    }
+}
+
+async function salvarCapitulosSelecionados() {
+    if (!('caches' in window)) {
+        alert('Seu navegador não suporta armazenamento offline.');
+        return;
+    }
+
+    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
+                              .map(chk => parseInt(chk.value));
+
+    const statusEl = document.getElementById('statusCacheMsg');
+    if (selecionados.length === 0) {
+        if (statusEl) statusEl.textContent = 'Selecione pelo menos 1 cap.!';
+        return;
+    }
+
+    if (statusEl) statusEl.textContent = 'Mapeando imagens...';
+    
+    const recursos = new Set();
+    recursos.add(window.location.href);
+
+    const thumbImg = document.querySelector('.series-thumb');
+    if (thumbImg && thumbImg.src) recursos.add(thumbImg.src);
+
+    selecionados.forEach(idx => {
+        obterRecursosDoCapitulo(idx).forEach(u => recursos.add(u));
+    });
+
+    const listaUrls = Array.from(recursos);
+    const total = listaUrls.length;
+
+    try {
+        const cache = await caches.open(CACHE_NAME);
+        const chunkSize = 15;
+        let baixados = 0;
+
+        for (let i = 0; i < total; i += chunkSize) {
+            const chunk = listaUrls.slice(i, i + chunkSize);
+            await Promise.allSettled(chunk.map(url => cache.add(url)));
+            baixados = Math.min(i + chunkSize, total);
+            if (statusEl) statusEl.textContent = `Baixando (${baixados}/${total})...`;
+        }
+
+        if (statusEl) statusEl.textContent = 'Salvo com sucesso!';
+        verificarEstadoOffline();
+    } catch (err) {
+        console.error(err);
+        if (statusEl) statusEl.textContent = 'Erro no download.';
+    }
+}
+
+async function deletarCapitulosSelecionados() {
+    if (!('caches' in window)) return;
+    const selecionados = Array.from(document.querySelectorAll('.chk-cap-offline:checked'))
+                              .map(chk => parseInt(chk.value));
+
+    const statusEl = document.getElementById('statusCacheMsg');
+    if (selecionados.length === 0) {
+        if (statusEl) statusEl.textContent = 'Selecione para remover!';
+        return;
+    }
+
+    try {
+        const cache = await caches.open(CACHE_NAME);
+        const recursosParaDeletar = new Set();
+
+        selecionados.forEach(idx => {
+            obterRecursosDoCapitulo(idx).forEach(u => recursosParaDeletar.add(u));
+        });
+
+        for (const url of recursosParaDeletar) {
+            await cache.delete(url);
+        }
+
+        if (statusEl) statusEl.textContent = 'Selecionados removidos!';
+        verificarEstadoOffline();
+    } catch (e) {
+        console.error(e);
+        if (statusEl) statusEl.textContent = 'Erro ao remover.';
+    }
+}
+
+async function limparTodoCache() {
+    if (!('caches' in window)) return;
+    const statusEl = document.getElementById('statusCacheMsg');
+    if (statusEl) statusEl.textContent = 'Limpando tudo...';
+    await caches.delete(CACHE_NAME);
+    if (statusEl) statusEl.textContent = 'Todo o cache foi limpo!';
+    verificarEstadoOffline();
+}
+
+// Service Worker Inline
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        const swScript = `
+            const CACHE_NAME = '${CACHE_NAME}';
+            self.addEventListener('fetch', (event) => {
+                event.respondWith(
+                    caches.match(event.request).then((response) => {
+                        return response || fetch(event.request);
+                    })
+                );
+            });
+        `;
+        const blob = new Blob([swScript], { type: 'text/javascript' });
+        const swUrl = URL.createObjectURL(blob);
+        navigator.serviceWorker.register(swUrl).catch(err => console.warn('SW:', err));
+    });
+}
+
 window.addEventListener('scroll', () => {
     document.getElementById('topoBtn').classList.toggle('visivel', window.scrollY > 300);
     atualizarCapituloAtualVisivel();
 });
-document.addEventListener('DOMContentLoaded', () => { atualizarCapituloAtualVisivel(); });
+
+document.addEventListener('DOMContentLoaded', () => { 
+    atualizarCapituloAtualVisivel();
+    verificarEstadoOffline();
+});
 """
 
 def baixar_capa_local(url, pasta_serie):
@@ -489,7 +1029,6 @@ def processar_comentarios(caminho_json, id_cap):
     </div>'''
 
 def extrair_valor(dicionario, chaves, padrao=""):
-    """Navega por dicionários buscando a primeira chave válida encontrada."""
     for chave in chaves:
         if isinstance(dicionario, dict) and chave in dicionario and dicionario[chave]:
             return dicionario[chave]
@@ -513,33 +1052,23 @@ def carregar_dados_serie(pasta_serie):
         try:
             with open(series_json_path, 'r', encoding='utf-8') as f:
                 data_raw = json.load(f)
-                
-                # O JSON pode ter um wrapper "data" ou estar na raiz
                 s_data = data_raw.get("data", data_raw) if isinstance(data_raw, dict) else {}
 
-                # Busca Título
                 metadata["title"] = extrair_valor(s_data, ["title", "name"], pasta_serie.name)
-                
-                # Busca Thumb / Capa
                 metadata["thumb_url"] = extrair_valor(s_data, ["thumb_url", "cover_url", "square_thumb_url", "thumb"])
 
-                # Busca Gênero
                 genre_raw = s_data.get("genre")
                 if isinstance(genre_raw, dict):
                     metadata["genre"] = genre_raw.get("name", "")
                 elif isinstance(genre_raw, str):
                     metadata["genre"] = genre_raw
 
-                # Busca Curtidas
                 metadata["likes"] = extrair_valor(s_data, ["thumbsup_cnt", "like_cnt", "likes"], 0)
-
-                # Busca Descrição / Sinopse
                 metadata["description"] = extrair_valor(s_data, ["description", "summary", "synopsis"])
 
         except Exception as e:
-            print(f"   ⚠️ Erro ao ler series.json: {e}")
+            print(f"   ⚠️️ Erro ao ler series.json: {e}")
 
-    # Baixar ou carregar imagem da capa se houver URL
     if metadata["thumb_url"]:
         metadata["local_thumb"] = baixar_capa_local(metadata["thumb_url"], pasta_serie)
 
@@ -571,12 +1100,10 @@ def processar_serie(pasta_serie):
     existe_index_raiz = (BASE_DIR / "index.html").exists()
     botao_voltar_html = '<a href="../index.html" class="btn-voltar-index">← Voltar ao Início</a>' if existe_index_raiz else ''
 
-    # Header da Série
     thumb_html = f'<img src="{meta["local_thumb"]}" class="series-thumb" alt="Capa">' if meta["local_thumb"] else ''
     genre_html = f'<span class="series-genre">{html.escape(str(meta["genre"]))}</span>' if meta["genre"] else ''
     likes_html = f'❤️ {meta["likes"]} curtidas' if meta["likes"] else ''
     
-    # Tratamento da descrição: permite quebra de linha ou HTML original
     desc_str = str(meta["description"])
     desc_formatted = desc_str if ("<p>" in desc_str or "<br>" in desc_str) else html.escape(desc_str).replace("\n", "<br>")
 
@@ -591,6 +1118,8 @@ def processar_serie(pasta_serie):
     </div>'''
 
     indice_items = []
+    select_options = []
+    checkboxes_offline = []
     capitulos_html = []
 
     for idx, ep_path in enumerate(episodios, start=1):
@@ -603,7 +1132,20 @@ def processar_serie(pasta_serie):
         else:
             ep_title = folder_name
 
-        indice_items.append(f'<li><a href="#{id_cap}">Cap. {idx} - {html.escape(ep_title)}</a></li>')
+        titulo_limpo = html.escape(ep_title)
+        
+        tag_index = f'<span id="tagIndexSalvoCap{idx}" class="tag-salvo" style="display:none; margin-left:5px;">[✅ Salvo]</span>'
+        indice_items.append(f'<li><a href="#{id_cap}">Cap. {idx} - {titulo_limpo} {tag_index}</a></li>')
+        select_options.append(f'<option value="{idx}">Cap. {idx} - {titulo_limpo}</option>')
+
+        checkboxes_offline.append(f'''
+        <div class="item-cap-checkbox">
+            <label>
+                <input type="checkbox" class="chk-cap-offline" value="{idx}">
+                <span>Cap. {idx}</span>
+            </label>
+            <span id="badgeSalvoCap{idx}" class="tag-salvo" style="display:none;">Salvo</span>
+        </div>''')
 
         imgs_html = []
         comentarios_html = ""
@@ -625,7 +1167,7 @@ def processar_serie(pasta_serie):
 
         capitulos_html.append(f'''
         <div class="capitulo" id="{id_cap}">
-            <h2>Capítulo {idx} - {html.escape(ep_title)}</h2>
+            <h2>Capítulo {idx} - {titulo_limpo}</h2>
             {"".join(imgs_html)}
             {comentarios_html}
             <div class="nav-botoes">
@@ -635,11 +1177,13 @@ def processar_serie(pasta_serie):
             </div>
         </div>''')
 
+    options_html_str = "".join(select_options)
+
     html_final = f'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>{html.escape(meta["title"])}</title>
     <style>{CSS_ESTILOS}</style>
 </head>
@@ -653,12 +1197,31 @@ def processar_serie(pasta_serie):
     <div class="sidebar" id="sidebar">
         {botao_voltar_html}
         <div class="painel-controles">
-            <h3>Opções</h3>
+            <h3>Seletor Rápido</h3>
+            <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
+                {options_html_str}
+            </select>
+
+            <h3>Gerenciador Offline</h3>
+            <div class="seletor-offline-container">
+                {"".join(checkboxes_offline)}
+            </div>
+            <div class="botoes-grid" style="margin-bottom:8px;">
+                <button onclick="marcarTodosCheckboxes(true)">Marcar Todos</button>
+                <button onclick="marcarTodosCheckboxes(false)">Limpar Seleção</button>
+                <button onclick="salvarCapitulosSelecionados()" class="btn-full-width">📥 Baixar Selecionados</button>
+                <button onclick="deletarCapitulosSelecionados()" class="btn-desalvar">🗑️ Apagar Sel.</button>
+                <button onclick="limparTodoCache()" class="btn-desalvar">⚠️ Apagar Tudo</button>
+            </div>
+
+            <h3>Opções da Página</h3>
             <div class="botoes-grid">
                 <button onclick="mudarTema()">Tema</button>
+                <button id="btnFullscreen" onclick="toggleModoImersivo()">📖 Leitura Imersiva</button>
                 <button onclick="alterarFonte(1)">A+</button>
                 <button onclick="alterarFonte(-1)">A-</button>
-                <button id="btnGlobalComentarios" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+                <button id="btnGlobalComentarios" class="btn-full-width" onclick="toggleTodosComentarios()">Exibir Comentários</button>
+                <div id="statusCacheMsg" class="status-cache"></div>
             </div>
         </div>
 
@@ -671,6 +1234,16 @@ def processar_serie(pasta_serie):
         {"".join(capitulos_html)}
     </div>
 
+    <!-- ELEMENTOS DO MODO IMERSIVO -->
+    <div class="imersivo-touch-zone touch-left" onclick="imersivoPaginaAnterior()"></div>
+    <div class="imersivo-touch-zone touch-right" onclick="imersivoProximaPagina()"></div>
+    
+    <div class="imersivo-controles">
+        <button class="btn-sair-imersivo" onclick="toggleModoImersivo()">❌ Sair do Modo Leitura</button>
+    </div>
+
+    <div id="imersivoHud" class="imersivo-hud-bottom">Cap. 1 • Pág. 1/1</div>
+
     <div class="modal-overlay" id="modalComentarios" onclick="if(event.target === this) fecharModalComentarios()">
         <div class="modal-conteudo">
             <div class="modal-header">
@@ -682,9 +1255,13 @@ def processar_serie(pasta_serie):
     </div>
 
     <div class="mobile-nav-bar">
-        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀ Anterior</button>
-        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬 Comentários</button>
-        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">Próximo ▶</button>
+        <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
+        <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
+            {options_html_str}
+        </select>
+        <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
+        <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
+        <button class="mobile-nav-btn" id="mobileBtnNext" onclick="capProximo()">▶</button>
     </div>
 
     <button onclick="irParaTopo()" id="topoBtn">↑</button>
