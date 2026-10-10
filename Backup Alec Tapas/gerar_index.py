@@ -1,20 +1,28 @@
 import html
 import json
 import os
+from datetime import datetime
 from pathlib import Path
+
+# Importa o módulo isolado de informações do projeto
+from utils_projeto import CSS_MODAL_INFO, gerar_componente_modal_info
 
 BASE_DIR = Path(".").resolve()
 CONFIG_FILE = BASE_DIR / "config.json"
+DATA_GERACAO = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-# Template padrão criado caso o config.json não exista
+# Template padrão genérico/universal com o campo tools
 CONFIG_PADRAO = {
     "nome": "Nome do Autor",
     "bio": "Escreva uma breve descrição sobre o autor aqui.",
     "localizacao": "Brasil",
     "foto": "",
-    "twitter": "",
-    "linktree": "",
-    "site": "",
+    "perfil_original": "",
+    "tools": "",
+    "redes_sociais": {
+        "Twitter / X": "",
+        "Website": ""
+    }
 }
 
 
@@ -24,16 +32,36 @@ def carregar_configuracao():
         with open(CONFIG_FILE, "w", encoding="utf-8") as f:
             json.dump(CONFIG_PADRAO, f, ensure_ascii=False, indent=2)
         print(
-            f"⚠️️  Arquivo 'config.json' não encontrado. Criado um modelo padrão em: {CONFIG_FILE}"
+            f"⚠ Arquivo 'config.json' não encontrado. Criado modelo padrão em: {CONFIG_FILE}"
         )
         return CONFIG_PADRAO
 
     try:
         with open(CONFIG_FILE, "r", encoding="utf-8") as f:
             dados = json.load(f)
-            # Garante que todas as chaves esperadas existam
-            for chave, valor in CONFIG_PADRAO.items():
-                dados.setdefault(chave, valor)
+            
+            # Garante retrocompatibilidade e campos básicos
+            dados.setdefault("nome", CONFIG_PADRAO["nome"])
+            dados.setdefault("bio", "")
+            dados.setdefault("localizacao", "")
+            dados.setdefault("foto", "")
+            dados.setdefault("perfil_original", "")
+            dados.setdefault("tools", "")
+            
+            # Trata redes sociais genéricas
+            if "redes_sociais" not in dados or not isinstance(dados["redes_sociais"], dict):
+                dados["redes_sociais"] = {}
+
+            # Converte chaves legadas antigas para a nova estrutura se existirem
+            chaves_legadas = {
+                "twitter": "Twitter / X",
+                "linktree": "Linktree",
+                "site": "Website"
+            }
+            for chave_old, label in chaves_legadas.items():
+                if dados.get(chave_old) and label not in dados["redes_sociais"]:
+                    dados["redes_sociais"][label] = dados[chave_old]
+
             return dados
     except Exception as e:
         print(f"❌ Erro ao ler 'config.json': {e}. Usando valores padrão.")
@@ -154,16 +182,35 @@ def gerar_html_index():
         if autor.get("localizacao")
         else ""
     )
+    
+    # Campo Tools (Ferramentas)
+    tools_html = (
+        f'<div class="author-tools"><span>🛠️ {autor["tools"]}</span></div>'
+        if autor.get("tools")
+        else ""
+    )
+
     bio_html = f'<p class="bio">{autor["bio"]}</p>' if autor.get("bio") else ""
 
-    # Links de mídias sociais
+    # Botão do Perfil Original
+    perfil_original_html = ""
+    if autor.get("perfil_original"):
+        perfil_original_html = (
+            f'<a href="{autor["perfil_original"]}" target="_blank" class="social-link btn-perfil-original">'
+            f'🌐 Perfil Original</a>'
+        )
+
+    # Links de mídias sociais genéricas
     social_links_html = ""
-    if autor.get("twitter"):
-        social_links_html += f'<a href="{autor["twitter"]}" target="_blank" class="social-link">🐦 Twitter / X</a>'
-    if autor.get("linktree"):
-        social_links_html += f'<a href="{autor["linktree"]}" target="_blank" class="social-link">🔗 Linktree</a>'
-    if autor.get("site"):
-        social_links_html += f'<a href="{autor["site"]}" target="_blank" class="social-link">🌐 Website</a>'
+    if perfil_original_html:
+        social_links_html += perfil_original_html
+
+    redes = autor.get("redes_sociais", {})
+    for nome_rede, url in redes.items():
+        if url and url.strip():
+            social_links_html += (
+                f'<a href="{url.strip()}" target="_blank" class="social-link">🔗 {nome_rede}</a>'
+            )
 
     if social_links_html:
         social_links_html = f'<div class="social-links">{social_links_html}</div>'
@@ -189,9 +236,31 @@ def gerar_html_index():
         body {{
             background-color: var(--bg-main);
             color: var(--text-primary);
-            padding: 30px 20px;
+            padding-top: 60px;
+            padding-bottom: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
             min-height: 100vh;
         }}
+
+        #versao {{
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            text-align: center;
+            z-index: 1000;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }}
+
+        /* Estilos do Modal de Informação importados do utils_projeto */
+        {CSS_MODAL_INFO}
 
         .container {{
             max-width: 1100px;
@@ -268,14 +337,18 @@ def gerar_html_index():
             margin-bottom: 8px;
         }}
 
-        .author-meta {{
+        .author-meta, .author-tools {{
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 5px;
             justify-content: center;
+        }}
+
+        .author-tools {{
+            margin-bottom: 12px;
         }}
 
         .bio {{
@@ -310,6 +383,17 @@ def gerar_html_index():
         .social-link:hover {{
             color: var(--text-primary);
             border-color: #444;
+        }}
+
+        .btn-perfil-original {{
+            border-color: rgba(255, 204, 0, 0.4);
+            color: var(--accent);
+            font-weight: 600;
+        }}
+
+        .btn-perfil-original:hover {{
+            background: rgba(255, 204, 0, 0.1);
+            border-color: var(--accent);
         }}
 
         .main-content {{
@@ -395,12 +479,18 @@ def gerar_html_index():
 </head>
 <body>
 
+    <div id="versao">
+        <span>Acervo de Séries de <b>{html.escape(autor["nome"])}</b> | Gerado em {DATA_GERACAO}</span>
+        {gerar_componente_modal_info(BASE_DIR.parent)}
+    </div>
+
     <div class="container">
         <aside class="sidebar">
             {hub_button_html}
             {avatar_html}
             <h1 class="author-name">{autor["nome"]}</h1>
             {loc_html}
+            {tools_html}
             {bio_html}
             {social_links_html}
         </aside>

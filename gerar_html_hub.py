@@ -1,6 +1,12 @@
 import json
+from datetime import datetime
 from pathlib import Path
 
+# Importa o módulo isolado de informações do projeto
+from utils_projeto import CSS_MODAL_INFO, gerar_componente_modal_info
+
+BASE_DIR = Path(".").resolve()
+DATA_GERACAO = datetime.now().strftime("%d/%m/%Y %H:%M")
 
 def gerar_hub_html():
     pasta_raiz = Path(".")
@@ -91,6 +97,25 @@ def gerar_hub_html():
             padding: 40px 20px;
             min-height: 100vh;
         }}
+
+        #versao {{
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            text-align: center;
+            z-index: 1000;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }}
+
+        /* Estilos do Modal de Informação importados do utils_projeto */
+        {CSS_MODAL_INFO}
 
         .container {{
             max-width: 1000px;
@@ -201,6 +226,11 @@ def gerar_hub_html():
     </style>
 </head>
 <body>
+
+    <div id="versao">
+        <span>Hub de Autores</b> | Gerado em {DATA_GERACAO}</span>
+        {gerar_componente_modal_info(BASE_DIR)}
+    </div>
 
     <div class="container">
         <header class="header">

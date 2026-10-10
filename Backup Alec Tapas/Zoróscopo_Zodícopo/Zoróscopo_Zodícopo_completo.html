@@ -443,13 +443,71 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
     .series-header { flex-direction: column; align-items: center; text-align: center; }
 }
+
+.btn-info-modal {
+    background: transparent;
+    border: 1px solid var(--border-color, #222428);
+    color: var(--accent, #ffcb05);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.btn-info-modal:hover { background: var(--border-color, #222428); }
+
+.modal-info-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    padding: 20px;
+}
+.modal-info-overlay.visivel { display: flex; }
+.modal-info-box {
+    background: var(--bg-card, #090a0a);
+    border: 1px solid var(--border-color, #222428);
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    color: var(--text-primary, #e1e3e6);
+    position: relative;
+}
+.modal-info-box h3 { margin-bottom: 12px; font-size: 1.2rem; color: var(--accent, #ffcb05); }
+.modal-info-box p, .modal-info-box li { font-size: 0.9rem; color: var(--text-muted, #737984); margin-bottom: 8px; line-height: 1.4; }
+.modal-info-box ul { margin-left: 20px; margin-bottom: 10px; }
+.modal-info-box a { color: var(--accent, #ffcb05); text-decoration: none; }
+.modal-info-box a:hover { text-decoration: underline; }
+.btn-fechar-modal-info {
+    position: absolute; top: 15px; right: 15px;
+    background: transparent; border: none; color: var(--text-muted, #737984); font-size: 1.1rem; cursor: pointer;
+}
 </style>
 </head>
+
 <body id="topo">
     <div id="versao">
-        Série: <b>Zoróscopo/Zodícopo</b> | Gerado em 30/09/2026 18:40
+        <span>Série: <b>Zoróscopo/Zodícopo</b> | Gerado em 10/10/2026 17:41</span>
+        
+    <button class="btn-info-modal" onclick="document.getElementById('modalInfoProj').classList.add('visivel')" title="Informações do Projeto">ⓘ</button>
+    
+    <div class="modal-info-overlay" id="modalInfoProj" onclick="if(event.target === this) this.classList.remove('visivel')">
+        <div class="modal-info-box">
+            <button class="btn-fechar-modal-info" onclick="document.getElementById('modalInfoProj').classList.remove('visivel')">✕</button>
+            <h3>Meu Acervo de Preservação de Webcomics</h3><p>Mini Projeto dedicado à preservação de algumas obras independentes do tapas.<br>interessados, podem copiar o meu repositório do github!</p><p><strong>Desenvolvedor(es):</strong> eu e o Gemini</p><p><strong>GitHub:</strong> <a href="https://github.com/HiYato97/yatokk-backups-tapas" target="_blank">https://github.com/HiYato97/yatokk-backups-tapas</a></p><p><strong>Contato:</strong></p><ul><li><strong>Discord:</strong> <a href="https://discord.com/channels/@me/721841085055238265" target="_blank">@yatokk</a></li><li><strong>Twitter:</strong> <a href="https://x.com/wxy_eddy" target="_blank">@wxy_eddy</a></li></ul><p><strong>Links Relacionados:</strong></p><ul><li><a href="https://github.com/HiYato97/yatokk-backups-tapas" target="_blank">Repositório de meus backups</a></li><li><a href="https://github.com/weso-m/tapas-backup" target="_blank">Como fazer backup de obras</a></li></ul>
+        </div>
     </div>
-
+    
+    </div>
+    
     <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
     <div class="sidebar oculto" id="sidebar">

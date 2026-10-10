@@ -1,0 +1,14 @@
+{
+  "titulo_projeto": "Meu Acervo de Preservação de Webcomics",
+  "descricao": "Mini Projeto dedicado à preservação de algumas obras independentes do tapas.\ninteressados, podem copiar o meu repositório do github!",
+  "desenvolvedores": "eu e o Gemini",
+  "github": "https://github.com/HiYato97/yatokk-backups-tapas",
+  "contato": {
+    "Discord": "<a href=\"https://discord.com/channels/@me/721841085055238265\" target=\"_blank\">@yatokk</a>",
+    "Twitter": "<a href=\"https://x.com/wxy_eddy\" target=\"_blank\">@wxy_eddy</a>"
+  },
+  "links_uteis": {
+    "Repositório de meus backups": "https://github.com/HiYato97/yatokk-backups-tapas",
+    "Como fazer backup de obras": "https://github.com/weso-m/tapas-backup"
+  }
+}

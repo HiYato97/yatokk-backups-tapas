@@ -3,7 +3,10 @@
   "bio": "***Bem vindes ao meu castelo****",
   "localizacao": "Brazil - Minas Gerais",
   "foto": "avatar.png",
-  "twitter": "https://twitter.com/alelecleclec",
-  "linktree": "https://linktr.ee/castelodoalec",
-  "site": ""
+  "perfil_original": "https://tapas.io/castelodoalec",
+  "tools": "Clip Studio Paint",
+  "redes_sociais": {
+    "Twitter": "https://twitter.com/alelecleclec",
+    "Linktree": "https://linktr.ee/castelodoalec"
+  }
 }

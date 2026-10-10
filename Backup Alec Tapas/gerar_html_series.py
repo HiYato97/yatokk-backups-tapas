@@ -1,3 +1,4 @@
+from utils_projeto import CSS_MODAL_INFO, gerar_componente_modal_info
 import html
 import json
 import urllib.request
@@ -446,7 +447,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
     .conteudo { margin-left: 0 !important; padding: 15px 10px; }
     .series-header { flex-direction: column; align-items: center; text-align: center; }
 }
-"""
+""" + CSS_MODAL_INFO
 
 JS_SCRIPT = """
 let tamanhoFontePixels = 16;
@@ -920,11 +921,13 @@ def processar_serie(pasta_serie):
     <title>{html.escape(meta["title"])}</title>
     <style>{CSS_ESTILOS}</style>
 </head>
+
 <body id="topo">
     <div id="versao">
-        Série: <b>{html.escape(meta["title"])}</b> | Gerado em {DATA_GERACAO}
+        <span>Série: <b>{html.escape(meta["title"])}</b> | Gerado em {DATA_GERACAO}</span>
+        {gerar_componente_modal_info(BASE_DIR.parent)}
     </div>
-
+    
     <button id="toggleSidebarBtn" onclick="toggleSidebar()">☰ Painel</button>
 
     <div class="sidebar oculto" id="sidebar">
