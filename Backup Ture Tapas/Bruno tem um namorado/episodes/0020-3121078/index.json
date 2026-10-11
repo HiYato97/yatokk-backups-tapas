@@ -1,7 +1,7 @@
 {
  "num": 20,
  "episode_id": "3121078",
- "fetched_at": "2026-09-27T15:26:44Z",
+ "fetched_at": "2026-10-11T18:06:19Z",
  "data": {
   "id": 3121078,
   "title": "Extras! Fanart Time #2",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5751,
-  "like_cnt": 234,
+  "view_cnt": 5841,
+  "like_cnt": 236,
   "comment_cnt": 4,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

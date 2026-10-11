@@ -1,7 +1,7 @@
 {
  "num": 9,
  "episode_id": "2022293",
- "fetched_at": "2026-09-27T14:10:20Z",
+ "fetched_at": "2026-10-11T18:49:52Z",
  "data": {
   "id": 2022293,
   "title": "39 - 44",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 49154,
-  "like_cnt": 2099,
+  "view_cnt": 49367,
+  "like_cnt": 2103,
   "comment_cnt": 64,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mais páginas do que o normal pra comemorar a minha repentina recuperação da total indisposição que eu estava para fazer qualquer coisa senão dormir e olhar pro teto.<br>\n<br>\nSe gosta do meu trabalho, considere apoiar Marceline com alguns inks <3"
  }
 }

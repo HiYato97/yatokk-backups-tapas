@@ -1,7 +1,7 @@
 {
  "num": 40,
  "episode_id": "845153",
- "fetched_at": "2026-09-26T19:31:50Z",
+ "fetched_at": "2026-10-11T20:11:52Z",
  "data": {
   "id": 845153,
   "title": "Larry e Coelho 33 - 34",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 114437,
-  "like_cnt": 3673,
+  "view_cnt": 114810,
+  "like_cnt": 3676,
   "comment_cnt": 155,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Uma graça esses dois ah nem<br>\r\nDia 10 tem mais~"
  }
 }

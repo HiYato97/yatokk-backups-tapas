@@ -1,7 +1,7 @@
 {
  "num": 73,
  "episode_id": "3547205",
- "fetched_at": "2026-09-27T15:32:32Z",
+ "fetched_at": "2026-10-11T18:11:24Z",
  "data": {
   "id": 3547205,
   "title": "Pg 103 - 105",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3343,
-  "like_cnt": 151,
+  "view_cnt": 3396,
+  "like_cnt": 153,
   "comment_cnt": 30,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

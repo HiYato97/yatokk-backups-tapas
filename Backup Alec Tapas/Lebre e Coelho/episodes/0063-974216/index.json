@@ -1,7 +1,7 @@
 {
  "num": 63,
  "episode_id": "974216",
- "fetched_at": "2026-09-26T19:43:00Z",
+ "fetched_at": "2026-10-11T20:26:58Z",
  "data": {
   "id": 974216,
   "title": "Namoradinhos",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 144242,
-  "like_cnt": 4968,
+  "view_cnt": 144691,
+  "like_cnt": 4972,
   "comment_cnt": 222,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Saudades?<br>\r\nEm breve eu estou abrindo um Apoia.se onde vou postar sempre imagenzinhas assim, fora extras e pags adiantadas de toda série que eu fizer, ÊÊêÊ"
  }
 }

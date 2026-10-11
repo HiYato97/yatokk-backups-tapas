@@ -1,7 +1,7 @@
 {
  "num": 42,
  "episode_id": "855474",
- "fetched_at": "2026-09-26T19:32:20Z",
+ "fetched_at": "2026-10-11T20:12:27Z",
  "data": {
   "id": 855474,
   "title": "Larry e Coelho 37 - 38",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 111717,
-  "like_cnt": 3617,
+  "view_cnt": 112068,
+  "like_cnt": 3620,
   "comment_cnt": 201,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

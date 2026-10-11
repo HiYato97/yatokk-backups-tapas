@@ -1,7 +1,7 @@
 {
  "num": 4,
  "episode_id": "2345784",
- "fetched_at": "2026-09-26T20:20:30Z",
+ "fetched_at": "2026-10-11T19:07:53Z",
  "data": {
   "id": 2345784,
   "title": "#04",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 19362,
-  "like_cnt": 970,
+  "view_cnt": 19448,
+  "like_cnt": 971,
   "comment_cnt": 47,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Família que fofoca unida permanece unida <br>\n<br>\nBaseado na tira original:<br>\r\nhttps://tapas.io/episode/605067<br>\r\n<br>\r\nQUER AJUDAR E FAZER UM AUTOR FELIZ??? DEIXA UM PIX!!<br>\r\nTA SEM DINHEIRO?? DEIXA INKS!!<br>\r\nTA SEM INKS??<br>\r\nDEIXA UM COMENTÁRIO!!<br>\n<br>\no pix: alecdcunha@gmail.com, 50 centavos já compra meu amor"
  }
 }

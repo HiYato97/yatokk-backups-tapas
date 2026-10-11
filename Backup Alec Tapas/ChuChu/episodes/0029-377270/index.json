@@ -1,7 +1,7 @@
 {
  "num": 29,
  "episode_id": "377270",
- "fetched_at": "2026-09-26T20:43:08Z",
+ "fetched_at": "2026-10-11T21:52:25Z",
  "data": {
   "id": 377270,
   "title": "Pag - 29 FIM",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 24926,
+  "view_cnt": 24964,
   "like_cnt": 1393,
   "comment_cnt": 187,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "E assim acaba nossa saga ldskfjlaskjafigrje<br>\r\nChuchu foi a história em que eu mais me diverti fazendo até hoje (mesmo que tenha sido pra um trabalho) e eu gostaria muito de continuar~<br>\r\nSe você gostou, amostre pros migos que quem sabe eu faça mais õ//"
  }
 }

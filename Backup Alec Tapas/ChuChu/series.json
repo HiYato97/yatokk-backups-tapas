@@ -1,6 +1,13 @@
 {
  "series_id": "29566",
- "fetched_at": "2026-09-26T20:40:52Z",
+ "title": "Chuchu",
+ "description": "Cotidiano da amável Chuchu e seus amigos de condomínio.\r\nPor hora só em PT mesmo asdlkjalkasdjfalk\r\nTrabalho de final de curso que eu resolvi postar porque ficou muito massa, é -q",
+ "views": "545,138",
+ "subscribers": "4,347",
+ "likes": "23,572",
+ "publish_date": "2016-03-01T15:45:00Z",
+ "last_updated_date": "2016-06-16T06:11:54Z",
+ "fetched_at": "2026-10-11T21:48:48Z",
  "data": {
   "id": 29566,
   "title": "Chuchu",
@@ -16,7 +23,7 @@
   "has_top_banner": false,
   "has_book_cover": false,
   "on_sale_now": false,
-  "thumbsup_cnt": 23567,
+  "thumbsup_cnt": 23572,
   "discount_rate": 0,
   "genre": {
    "id": 2,

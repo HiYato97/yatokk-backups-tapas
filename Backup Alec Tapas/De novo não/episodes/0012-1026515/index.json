@@ -1,7 +1,7 @@
 {
  "num": 12,
  "episode_id": "1026515",
- "fetched_at": "2026-09-26T20:17:47Z",
+ "fetched_at": "2026-10-11T19:11:23Z",
  "data": {
   "id": 1026515,
   "title": "11 - Sorte",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 19223,
-  "like_cnt": 1342,
+  "view_cnt": 19258,
+  "like_cnt": 1341,
   "comment_cnt": 56,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Que bolada<br>\n<br>\nConsidere ajudar no Apoia.se para ter acesso à mais tiras!<br>\r\nAtualmente atingimos a meta para asks mensais e a próxima será um sorteio de comissão!<br>\r\nhttps://apoia.se/batatiras"
  }
 }

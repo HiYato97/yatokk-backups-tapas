@@ -1,7 +1,7 @@
 {
  "num": 54,
  "episode_id": "3448398",
- "fetched_at": "2026-09-27T15:30:20Z",
+ "fetched_at": "2026-10-11T18:09:27Z",
  "data": {
   "id": 3448398,
   "title": "Pg 34 - 36",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3424,
-  "like_cnt": 157,
+  "view_cnt": 3494,
+  "like_cnt": 158,
   "comment_cnt": 13,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpem o atraso, eu estava doente... de novo -_-"
  }
 }

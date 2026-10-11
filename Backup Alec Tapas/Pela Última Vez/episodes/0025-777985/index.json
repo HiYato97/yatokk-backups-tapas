@@ -1,7 +1,7 @@
 {
  "num": 25,
  "episode_id": "777985",
- "fetched_at": "2026-09-26T20:02:03Z",
+ "fetched_at": "2026-10-11T20:58:28Z",
  "data": {
   "id": 777985,
   "title": "25",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 49271,
-  "like_cnt": 2052,
+  "view_cnt": 49355,
+  "like_cnt": 2051,
   "comment_cnt": 60,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Perdão a demora garele, mas desde junho eu visualizei esse página e adiei ela o quanto eu pude pela preguiça.<br>\r\nAté domingo sai mais"
  }
 }

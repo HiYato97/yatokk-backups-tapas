@@ -1,7 +1,7 @@
 {
  "num": 20,
  "episode_id": "2846859",
- "fetched_at": "2026-09-27T14:14:03Z",
+ "fetched_at": "2026-10-11T18:52:36Z",
  "data": {
   "id": 2846859,
   "title": "Cap 3 13-16",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34013,
-  "like_cnt": 1282,
+  "view_cnt": 34218,
+  "like_cnt": 1288,
   "comment_cnt": 87,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mas meu senhor<br>"
  }
 }

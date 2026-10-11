@@ -1,7 +1,7 @@
 {
  "num": 47,
  "episode_id": "3350912",
- "fetched_at": "2026-09-27T15:29:30Z",
+ "fetched_at": "2026-10-11T18:08:52Z",
  "data": {
   "id": 3350912,
   "title": "Pg 11 - 13",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4076,
-  "like_cnt": 187,
+  "view_cnt": 4144,
+  "like_cnt": 189,
   "comment_cnt": 10,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

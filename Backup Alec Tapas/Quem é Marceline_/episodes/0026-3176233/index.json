@@ -1,7 +1,7 @@
 {
  "num": 26,
  "episode_id": "3176233",
- "fetched_at": "2026-09-27T14:15:42Z",
+ "fetched_at": "2026-10-11T18:53:44Z",
  "data": {
   "id": 3176233,
   "title": "Cap 4 13-17",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 31042,
-  "like_cnt": 1024,
+  "view_cnt": 31310,
+  "like_cnt": 1029,
   "comment_cnt": 60,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Ai ai ai, mais essa agora........"
  }
 }

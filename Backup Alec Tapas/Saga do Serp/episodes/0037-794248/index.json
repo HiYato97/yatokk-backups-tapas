@@ -1,7 +1,7 @@
 {
  "num": 37,
  "episode_id": "794248",
- "fetched_at": "2026-09-26T20:15:54Z",
+ "fetched_at": "2026-10-11T20:49:57Z",
  "data": {
   "id": 794248,
   "title": "Perspectivas - parte 3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 35116,
-  "like_cnt": 1539,
+  "view_cnt": 35193,
+  "like_cnt": 1540,
   "comment_cnt": 24,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

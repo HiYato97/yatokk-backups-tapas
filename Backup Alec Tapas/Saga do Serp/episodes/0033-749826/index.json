@@ -1,7 +1,7 @@
 {
  "num": 33,
  "episode_id": "749826",
- "fetched_at": "2026-09-26T20:14:47Z",
+ "fetched_at": "2026-10-11T20:48:50Z",
  "data": {
   "id": 749826,
   "title": "Monstros - Parte 14",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34403,
-  "like_cnt": 1578,
+  "view_cnt": 34481,
+  "like_cnt": 1579,
   "comment_cnt": 56,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

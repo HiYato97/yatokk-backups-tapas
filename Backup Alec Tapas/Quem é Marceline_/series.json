@@ -1,6 +1,13 @@
 {
  "series_id": "191371",
- "fetched_at": "2026-09-27T14:08:15Z",
+ "title": "Quem é Marceline?",
+ "description": "PT-BR\r\nFinalmente, a prometida história da misteriosa garota do outro bloco de Lebre e Coelho.... Como será que ela foi parar numa escola masculina? Como ela vive? O que come?\r\nQuais outros mistérios o Bloco B reserva pra nós?\r\nAgora é o momento explorar melhor essa escola...",
+ "views": "1,897,530",
+ "subscribers": "12,114",
+ "likes": "78,434",
+ "publish_date": "2020-11-12T01:41:45Z",
+ "last_updated_date": "2026-09-28T04:00:00Z",
+ "fetched_at": "2026-10-11T18:47:28Z",
  "data": {
   "id": 191371,
   "title": "Quem é Marceline?",
@@ -16,7 +23,7 @@
   "has_top_banner": false,
   "has_book_cover": true,
   "on_sale_now": false,
-  "thumbsup_cnt": 77588,
+  "thumbsup_cnt": 78434,
   "discount_rate": 0,
   "genre": {
    "id": 1,

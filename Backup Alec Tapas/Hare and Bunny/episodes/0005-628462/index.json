@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "628462",
- "fetched_at": "2026-09-26T19:39:28Z",
+ "fetched_at": "2026-10-11T21:34:32Z",
  "data": {
   "id": 628462,
   "title": "Pag 22",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17770,
-  "like_cnt": 836,
+  "view_cnt": 17795,
+  "like_cnt": 835,
   "comment_cnt": 18,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

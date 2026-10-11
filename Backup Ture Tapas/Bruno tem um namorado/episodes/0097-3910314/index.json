@@ -1,7 +1,7 @@
 {
  "num": 97,
  "episode_id": "3910314",
- "fetched_at": "2026-09-27T15:35:59Z",
+ "fetched_at": "2026-10-11T18:14:11Z",
  "data": {
   "id": 3910314,
   "title": "Pg 187 - 203",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 1676,
-  "like_cnt": 109,
+  "view_cnt": 1780,
+  "like_cnt": 114,
   "comment_cnt": 27,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Falta 1!!!!"
  }
 }

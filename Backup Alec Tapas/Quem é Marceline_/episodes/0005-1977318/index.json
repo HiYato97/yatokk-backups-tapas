@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "1977318",
- "fetched_at": "2026-09-27T14:09:22Z",
+ "fetched_at": "2026-10-11T18:48:54Z",
  "data": {
   "id": 1977318,
   "title": "21 - 26",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 50702,
-  "like_cnt": 2145,
+  "view_cnt": 50920,
+  "like_cnt": 2149,
   "comment_cnt": 177,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Fazer esse capítulo me causou dor física.<br>\n<br>\nSe gosta do meu trabalho, considere me apoiar com inks ou no ko-fi <3<br>\r\nhttps://ko-fi.com/castelodoalec"
  }
 }

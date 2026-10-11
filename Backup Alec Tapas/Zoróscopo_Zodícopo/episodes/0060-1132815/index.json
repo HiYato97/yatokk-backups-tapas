@@ -1,7 +1,7 @@
 {
  "num": 60,
  "episode_id": "1132815",
- "fetched_at": "2026-09-26T20:01:00Z",
+ "fetched_at": "2026-10-11T21:24:25Z",
  "data": {
   "id": 1132815,
   "title": "ASK parte 6",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 39798,
-  "like_cnt": 1493,
+  "view_cnt": 39917,
+  "like_cnt": 1494,
   "comment_cnt": 138,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Asks de junho<br>\r\nParte 2<br>\r\nAjude no Apoia.se para garantir sua pergunta~<br>\r\nhttps://apoia.se/batatiras<br>"
  }
 }

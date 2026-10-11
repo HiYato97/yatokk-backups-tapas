@@ -1,7 +1,7 @@
 {
  "num": 36,
  "episode_id": "794246",
- "fetched_at": "2026-09-26T20:15:49Z",
+ "fetched_at": "2026-10-11T20:49:50Z",
  "data": {
   "id": 794246,
   "title": "Perspectivas - parte 2",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 35839,
-  "like_cnt": 1513,
+  "view_cnt": 35918,
+  "like_cnt": 1514,
   "comment_cnt": 29,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

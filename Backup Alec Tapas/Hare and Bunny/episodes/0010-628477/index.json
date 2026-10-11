@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "628477",
- "fetched_at": "2026-09-26T19:39:53Z",
+ "fetched_at": "2026-10-11T21:35:02Z",
  "data": {
   "id": 628477,
   "title": "Pag 27",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 16447,
-  "like_cnt": 838,
+  "view_cnt": 16481,
+  "like_cnt": 837,
   "comment_cnt": 10,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

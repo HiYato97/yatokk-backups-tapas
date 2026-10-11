@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "596718",
- "fetched_at": "2026-09-26T19:38:34Z",
+ "fetched_at": "2026-10-11T21:33:34Z",
  "data": {
   "id": 596718,
   "title": "Page 2 - 10",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34037,
+  "view_cnt": 34099,
   "like_cnt": 1425,
   "comment_cnt": 98,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "The translation is colaborative, so please patience <3"
  }
 }

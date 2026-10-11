@@ -1,7 +1,7 @@
 {
  "num": 62,
  "episode_id": "3506404",
- "fetched_at": "2026-09-27T15:31:17Z",
+ "fetched_at": "2026-10-11T18:10:14Z",
  "data": {
   "id": 3506404,
   "title": "Pg 64 - 66",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3170,
-  "like_cnt": 153,
+  "view_cnt": 3237,
+  "like_cnt": 154,
   "comment_cnt": 13,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

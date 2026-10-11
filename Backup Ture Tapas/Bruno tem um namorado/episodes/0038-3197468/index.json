@@ -1,7 +1,7 @@
 {
  "num": 38,
  "episode_id": "3197468",
- "fetched_at": "2026-09-27T15:28:20Z",
+ "fetched_at": "2026-10-11T18:07:51Z",
  "data": {
   "id": 3197468,
   "title": "Pg 106 - 115",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5089,
-  "like_cnt": 225,
+  "view_cnt": 5175,
+  "like_cnt": 228,
   "comment_cnt": 12,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpem a demora, é que para não ter que cortar os diálogos no meio, tive que fazer mais páginas, então demora mais, diante disso os próximos dois também vão demorar por terem muitas páginas kkkk juro, vai valer a pena <3"
  }
 }

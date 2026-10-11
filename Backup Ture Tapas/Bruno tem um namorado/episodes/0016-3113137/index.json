@@ -1,7 +1,7 @@
 {
  "num": 16,
  "episode_id": "3113137",
- "fetched_at": "2026-09-27T15:26:23Z",
+ "fetched_at": "2026-10-11T18:05:58Z",
  "data": {
   "id": 3113137,
   "title": "Pg 44 - 46",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6321,
-  "like_cnt": 252,
+  "view_cnt": 6419,
+  "like_cnt": 253,
   "comment_cnt": 16,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

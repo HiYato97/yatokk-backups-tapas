@@ -1,7 +1,7 @@
 {
  "num": 27,
  "episode_id": "3203165",
- "fetched_at": "2026-09-27T14:15:53Z",
+ "fetched_at": "2026-10-11T18:53:55Z",
  "data": {
   "id": 3203165,
   "title": "Cap 4 18 - 22",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 28927,
-  "like_cnt": 1062,
+  "view_cnt": 29151,
+  "like_cnt": 1067,
   "comment_cnt": 108,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Depois de um pequeno intervalo (semanas de eventos), voltamos.<br>\r\nCorre que o emo ta puto.<br>\n<br>\nMe acompanhe~<br>\r\nX(uíter): @alelecleclec<br>\r\nInsta: @castelodoalec"
  }
 }

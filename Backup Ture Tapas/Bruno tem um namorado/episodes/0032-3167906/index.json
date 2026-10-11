@@ -1,7 +1,7 @@
 {
  "num": 32,
  "episode_id": "3167906",
- "fetched_at": "2026-09-27T15:27:48Z",
+ "fetched_at": "2026-10-11T18:07:20Z",
  "data": {
   "id": 3167906,
   "title": "Pg 89 - 92",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5018,
-  "like_cnt": 243,
+  "view_cnt": 5096,
+  "like_cnt": 244,
   "comment_cnt": 28,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

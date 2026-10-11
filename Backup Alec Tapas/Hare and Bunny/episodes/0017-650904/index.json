@@ -1,7 +1,7 @@
 {
  "num": 17,
  "episode_id": "650904",
- "fetched_at": "2026-09-26T19:40:33Z",
+ "fetched_at": "2026-10-11T21:35:46Z",
  "data": {
   "id": 650904,
   "title": "34",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15576,
-  "like_cnt": 831,
+  "view_cnt": 15602,
+  "like_cnt": 830,
   "comment_cnt": 19,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "SORRY"
  }
 }

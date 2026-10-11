@@ -1,7 +1,7 @@
 {
  "num": 62,
  "episode_id": "1274651",
- "fetched_at": "2026-09-26T20:02:44Z",
+ "fetched_at": "2026-10-11T21:25:44Z",
  "data": {
   "id": 1274651,
   "title": "Um conto de Natal PT.1",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 27108,
-  "like_cnt": 1164,
+  "view_cnt": 27182,
+  "like_cnt": 1165,
   "comment_cnt": 235,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Vamo brincar?<br>\r\nVou experimentar uma historinha interativa. Ela vai continuando de acordo com as escolhas feitas por vocês~<br>\r\nPara isso, dê like no comentário que represente sua escolha e no fim do dia, a mais votada dará continuidade aos acontecimentos.<br>\r\nVai ser curtinha então vou tentar atualizar todo dia<br>\n<br>\n(Os votos serão contabilizados com a soma dos votos do face e do Tapas, onde vai acontecer simultaneamente)"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "297030",
- "fetched_at": "2026-09-26T20:41:34Z",
+ "fetched_at": "2026-10-11T21:50:16Z",
  "data": {
   "id": 297030,
   "title": "Pag-10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17913,
-  "like_cnt": 768,
+  "view_cnt": 17939,
+  "like_cnt": 769,
   "comment_cnt": 9,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

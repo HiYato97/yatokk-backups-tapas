@@ -1,7 +1,7 @@
 {
  "num": 11,
  "episode_id": "2054978",
- "fetched_at": "2026-09-27T14:10:57Z",
+ "fetched_at": "2026-10-11T18:50:16Z",
  "data": {
   "id": 2054978,
   "title": "49 - 52 FIM DA INTRO",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 47406,
-  "like_cnt": 2095,
+  "view_cnt": 47643,
+  "like_cnt": 2098,
   "comment_cnt": 117,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "E essa, compadres e comadres, é a origem da nossa heroína. E aí, foi como você imaginou?<br>\n<br>\nMas não se desespere porque isso é só um começo. Em breve estamos de volta com as aventuras da Marceline nesse novo habitat. Que fauna estranha será que espera por ela?<br>\n<br>\nAh sim, logo eu vou abrir uma sessão de perguntas, então se tiver alguma questão pro nosso glorioso cast, guarda aí que já já é seu momento de brilhar~<br>\n<br>\nObrigado por ler até aqui e até breve!"
  }
 }

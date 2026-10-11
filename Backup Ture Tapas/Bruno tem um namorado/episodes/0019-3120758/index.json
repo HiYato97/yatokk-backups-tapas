@@ -1,7 +1,7 @@
 {
  "num": 19,
  "episode_id": "3120758",
- "fetched_at": "2026-09-27T15:26:38Z",
+ "fetched_at": "2026-10-11T18:06:13Z",
  "data": {
   "id": 3120758,
   "title": "Pg 53 - 55 ",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5994,
-  "like_cnt": 244,
+  "view_cnt": 6092,
+  "like_cnt": 246,
   "comment_cnt": 18,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

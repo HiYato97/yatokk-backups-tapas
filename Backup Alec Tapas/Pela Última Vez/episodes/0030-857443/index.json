@@ -1,7 +1,7 @@
 {
  "num": 30,
  "episode_id": "857443",
- "fetched_at": "2026-09-26T20:02:56Z",
+ "fetched_at": "2026-10-11T20:59:24Z",
  "data": {
   "id": 857443,
   "title": "Perfil: Kimo",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 53411,
+  "view_cnt": 53502,
   "like_cnt": 2277,
   "comment_cnt": 166,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Pra quem não sabe, Pela Última Vez está em hiato até Larry e Coelho terminar de ser lançado.<br>\n<br>\nUltimamente eu ando editando a história pro inglês e acabei que fiquei com saudade dos nenês, então vai aqui um bônus pra matar saudade asdjkalsk<br>\r\nDepois posto o do Lenny também"
  }
 }

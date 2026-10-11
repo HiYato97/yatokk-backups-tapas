@@ -1,7 +1,7 @@
 {
  "num": 15,
  "episode_id": "857328",
- "fetched_at": "2026-09-26T19:33:24Z",
+ "fetched_at": "2026-10-11T21:43:43Z",
  "data": {
   "id": 857328,
   "title": "15",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3716,
+  "view_cnt": 3727,
   "like_cnt": 194,
   "comment_cnt": 4,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

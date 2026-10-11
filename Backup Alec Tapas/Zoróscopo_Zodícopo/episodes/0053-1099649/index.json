@@ -1,7 +1,7 @@
 {
  "num": 53,
  "episode_id": "1099649",
- "fetched_at": "2026-09-26T19:59:18Z",
+ "fetched_at": "2026-10-11T21:22:51Z",
  "data": {
   "id": 1099649,
   "title": "Zoróscopo #37",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33363,
-  "like_cnt": 1602,
+  "view_cnt": 33453,
+  "like_cnt": 1605,
   "comment_cnt": 48,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Esses jovens de hoje que não esperam mais nada...<br>\n<br>\nQuer ter acesso às tiras antecipadamente além de ter acesso à conteúdo exclusivo?<br>\r\nhttps://apoia.se/batatiras"
  }
 }

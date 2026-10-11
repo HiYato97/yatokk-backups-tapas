@@ -1,7 +1,7 @@
 {
  "num": 65,
  "episode_id": "1049510",
- "fetched_at": "2026-09-26T19:43:49Z",
+ "fetched_at": "2026-10-11T20:27:52Z",
  "data": {
   "id": 1049510,
   "title": "EXTRA!",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 136314,
-  "like_cnt": 3582,
+  "view_cnt": 136715,
+  "like_cnt": 3585,
   "comment_cnt": 152,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "História extra para o impresso de Larry e Coelho!<br>\r\nDo que será que o Jimmy não quis falar sobre?<br>\r\nJá garanta seu exemplar ajudando no projeto~<br>\r\nhttps://www.catarse.me/larryecoelho"
  }
 }

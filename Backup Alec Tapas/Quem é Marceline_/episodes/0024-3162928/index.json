@@ -1,7 +1,7 @@
 {
  "num": 24,
  "episode_id": "3162928",
- "fetched_at": "2026-09-27T14:15:13Z",
+ "fetched_at": "2026-10-11T18:53:25Z",
  "data": {
   "id": 3162928,
   "title": "Cap 4 5 - 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 28515,
-  "like_cnt": 1042,
+  "view_cnt": 28711,
+  "like_cnt": 1046,
   "comment_cnt": 67,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Por enquanto tudo certo<br>\r\ncerto atÉ DEMAIS"
  }
 }

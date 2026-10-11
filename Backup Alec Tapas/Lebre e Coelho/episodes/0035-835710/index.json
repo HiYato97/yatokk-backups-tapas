@@ -1,7 +1,7 @@
 {
  "num": 35,
  "episode_id": "835710",
- "fetched_at": "2026-09-26T19:30:47Z",
+ "fetched_at": "2026-10-11T20:10:38Z",
  "data": {
   "id": 835710,
   "title": "Larry e Coelho 23 -24",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 110908,
-  "like_cnt": 3429,
+  "view_cnt": 111307,
+  "like_cnt": 3433,
   "comment_cnt": 78,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

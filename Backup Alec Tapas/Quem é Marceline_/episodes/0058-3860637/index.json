@@ -1,7 +1,7 @@
 {
  "num": 58,
  "episode_id": "3860637",
- "fetched_at": "2026-09-27T14:23:08Z",
+ "fetched_at": "2026-10-11T19:00:21Z",
  "data": {
   "id": 3860637,
   "title": "[CAP 8] Parte 5 [ATUALIZADA]",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 11383,
-  "like_cnt": 630,
+  "view_cnt": 11803,
+  "like_cnt": 638,
   "comment_cnt": 96,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "EU DESCOBRI QUE TINHA PULADO ESSA PARTE AAAAAAAAAAAAAAA"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "3089473",
- "fetched_at": "2026-09-26T20:23:59Z",
+ "fetched_at": "2026-10-11T19:02:48Z",
  "data": {
   "id": 3089473,
   "title": "Parte 1",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 9847,
-  "like_cnt": 437,
+  "view_cnt": 9937,
+  "like_cnt": 439,
   "comment_cnt": 31,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Essa história é na verdade uma \"homenagem\" para uma história que fiz há muitos anos atrás que só saiu na versão impressa.<br>\r\nMesmo estando pronta, eu senti que ainda tinha alguma questão mal resolvida com ela, então eu decidi que essa versão seria uma espécie de \"redenção\". A essência ainda é a mesma, mas agora dei mais tempo pra ela poder se desenvolver melhor.<br>\r\nÉ meio diferente das coisas que eu costumo fazer, de qualquer forma, espero que gostem da prévia~ (Vai sair até dia 26 de fevereiro)"
  }
 }

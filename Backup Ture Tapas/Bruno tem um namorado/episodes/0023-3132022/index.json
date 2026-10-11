@@ -1,7 +1,7 @@
 {
  "num": 23,
  "episode_id": "3132022",
- "fetched_at": "2026-09-27T15:26:57Z",
+ "fetched_at": "2026-10-11T18:06:31Z",
  "data": {
   "id": 3132022,
   "title": "Pg 62 - 64",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5544,
-  "like_cnt": 232,
+  "view_cnt": 5639,
+  "like_cnt": 234,
   "comment_cnt": 11,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

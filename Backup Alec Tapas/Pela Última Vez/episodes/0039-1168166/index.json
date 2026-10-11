@@ -1,7 +1,7 @@
 {
  "num": 39,
  "episode_id": "1168166",
- "fetched_at": "2026-09-26T20:05:15Z",
+ "fetched_at": "2026-10-11T21:06:41Z",
  "data": {
   "id": 1168166,
   "title": "57 - 59",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 50412,
+  "view_cnt": 50532,
   "like_cnt": 2438,
   "comment_cnt": 218,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ":')))<br>\r\nGente, atualizei o Apoia.se então agora o acesso à páginas antecipadas é possível com apenas 4$!<br>\r\nSe gosta do meu trabalho considere colaborar! s2<br>\r\nhttps://apoia.se/batatiras"
  }
 }

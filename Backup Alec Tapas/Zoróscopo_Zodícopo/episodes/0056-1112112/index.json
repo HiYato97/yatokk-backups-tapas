@@ -1,7 +1,7 @@
 {
  "num": 56,
  "episode_id": "1112112",
- "fetched_at": "2026-09-26T19:59:54Z",
+ "fetched_at": "2026-10-11T21:23:21Z",
  "data": {
   "id": 1112112,
   "title": "Pessoas terríveis",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 29842,
-  "like_cnt": 1330,
+  "view_cnt": 29927,
+  "like_cnt": 1332,
   "comment_cnt": 34,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Difícil"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 50,
  "episode_id": "3410750",
- "fetched_at": "2026-09-27T15:29:50Z",
+ "fetched_at": "2026-10-11T18:09:07Z",
  "data": {
   "id": 3410750,
   "title": "Pg 21 - 23",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3748,
-  "like_cnt": 163,
+  "view_cnt": 3825,
+  "like_cnt": 164,
   "comment_cnt": 15,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

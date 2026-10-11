@@ -1,7 +1,7 @@
 {
  "num": 43,
  "episode_id": "844154",
- "fetched_at": "2026-09-26T20:16:39Z",
+ "fetched_at": "2026-10-11T20:50:41Z",
  "data": {
   "id": 844154,
   "title": "Perspectivas - parte 9 (mini)",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 35614,
-  "like_cnt": 1676,
+  "view_cnt": 35690,
+  "like_cnt": 1677,
   "comment_cnt": 93,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "E DEPOIS DESMATAR A MONTANHA<br>\n<br>\n(alerta de feels se aproximando, até a prox~)"
  }
 }

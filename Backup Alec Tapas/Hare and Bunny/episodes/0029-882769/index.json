@@ -1,7 +1,7 @@
 {
  "num": 29,
  "episode_id": "882769",
- "fetched_at": "2026-09-26T19:43:04Z",
+ "fetched_at": "2026-10-11T21:37:42Z",
  "data": {
   "id": 882769,
   "title": "61 - 66",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15640,
-  "like_cnt": 942,
+  "view_cnt": 15667,
+  "like_cnt": 941,
   "comment_cnt": 33,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "poor baby<br>\n<br>"
  }
 }

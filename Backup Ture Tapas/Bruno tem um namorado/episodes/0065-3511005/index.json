@@ -1,7 +1,7 @@
 {
  "num": 65,
  "episode_id": "3511005",
- "fetched_at": "2026-09-27T15:31:32Z",
+ "fetched_at": "2026-10-11T18:10:29Z",
  "data": {
   "id": 3511005,
   "title": "Pg 73 - 75",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3179,
-  "like_cnt": 172,
+  "view_cnt": 3240,
+  "like_cnt": 173,
   "comment_cnt": 25,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

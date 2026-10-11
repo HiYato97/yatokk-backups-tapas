@@ -1,7 +1,7 @@
 {
  "num": 41,
  "episode_id": "1174342",
- "fetched_at": "2026-09-26T20:05:55Z",
+ "fetched_at": "2026-10-11T21:07:18Z",
  "data": {
   "id": 1174342,
   "title": "62",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 47420,
-  "like_cnt": 2150,
+  "view_cnt": 47513,
+  "like_cnt": 2151,
   "comment_cnt": 252,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "A hora sempre chega...<br>\r\nHoje tem até a página 85 no Apoia.se~<br>\r\nhttps://apoia.se/batatiras<br>\r\nAgora a partir de 4 reais!"
  }
 }

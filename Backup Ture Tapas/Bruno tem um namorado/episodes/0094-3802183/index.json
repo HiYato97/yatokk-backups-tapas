@@ -1,7 +1,7 @@
 {
  "num": 94,
  "episode_id": "3802183",
- "fetched_at": "2026-09-27T15:35:19Z",
+ "fetched_at": "2026-10-11T18:13:38Z",
  "data": {
   "id": 3802183,
   "title": "Pg 161 - 163",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2153,
-  "like_cnt": 104,
+  "view_cnt": 2237,
+  "like_cnt": 107,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

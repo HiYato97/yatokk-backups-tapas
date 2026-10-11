@@ -1,7 +1,7 @@
 {
  "num": 28,
  "episode_id": "815235",
- "fetched_at": "2026-09-26T19:29:26Z",
+ "fetched_at": "2026-10-11T20:08:59Z",
  "data": {
   "id": 815235,
   "title": "Larry e Coelho 11 - 12",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 116897,
-  "like_cnt": 3397,
+  "view_cnt": 117306,
+  "like_cnt": 3401,
   "comment_cnt": 74,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Voltemos~<br>\r\nHelp nas cores por Alexandre Starling"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "962579",
- "fetched_at": "2026-09-26T20:15:47Z",
+ "fetched_at": "2026-10-11T19:09:17Z",
  "data": {
   "id": 962579,
   "title": "2 - Vinícius",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 21602,
-  "like_cnt": 1343,
+  "view_cnt": 21652,
+  "like_cnt": 1342,
   "comment_cnt": 54,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Já foi direto pro chefão"
  }
 }

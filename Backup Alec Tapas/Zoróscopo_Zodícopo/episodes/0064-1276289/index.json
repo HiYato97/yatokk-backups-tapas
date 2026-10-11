@@ -1,7 +1,7 @@
 {
  "num": 64,
  "episode_id": "1276289",
- "fetched_at": "2026-09-26T20:04:05Z",
+ "fetched_at": "2026-10-11T21:27:04Z",
  "data": {
   "id": 1276289,
   "title": "Um conto de Natal PT.3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 21525,
-  "like_cnt": 1077,
+  "view_cnt": 21582,
+  "like_cnt": 1078,
   "comment_cnt": 109,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Parte 3 da saga de Natal~<br>\r\nVote somente nos comentarios do autor!"
  }
 }

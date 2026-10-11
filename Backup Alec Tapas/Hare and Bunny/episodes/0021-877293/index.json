@@ -1,7 +1,7 @@
 {
  "num": 21,
  "episode_id": "877293",
- "fetched_at": "2026-09-26T19:41:09Z",
+ "fetched_at": "2026-10-11T21:36:16Z",
  "data": {
   "id": 877293,
   "title": "38 - 40 I'M BACK",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15221,
-  "like_cnt": 783,
+  "view_cnt": 15240,
+  "like_cnt": 784,
   "comment_cnt": 20,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "FINALLY I'M BACK!!!<br>\r\nNow I'll update the pages the most fast I can<br>\r\nSORRY FOR THE DELAY!!<br>\n<br>\nAnd thanks for waiting <3"
  }
 }

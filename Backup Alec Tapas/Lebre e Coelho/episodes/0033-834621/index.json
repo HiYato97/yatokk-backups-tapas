@@ -1,7 +1,7 @@
 {
  "num": 33,
  "episode_id": "834621",
- "fetched_at": "2026-09-26T19:30:30Z",
+ "fetched_at": "2026-10-11T20:10:17Z",
  "data": {
   "id": 834621,
   "title": "ATRASADO",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 113769,
-  "like_cnt": 2592,
-  "comment_cnt": 49,
+  "view_cnt": 114158,
+  "like_cnt": 2594,
+  "comment_cnt": 50,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Sep 20, 2017",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "PERDÃO<br>\r\nhoje o dia foi loco e não consegui terminar de ajeitar aaaaaa<br>\r\npra compensar amanha tem 7 PAGINAS<br>\r\nDesculpa aí pelo susto asdlkfjal até"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 67,
  "episode_id": "1280809",
- "fetched_at": "2026-09-26T20:05:27Z",
+ "fetched_at": "2026-10-11T21:28:18Z",
  "data": {
   "id": 1280809,
   "title": "Um conto de Natal PT.6",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 20383,
-  "like_cnt": 1151,
+  "view_cnt": 20440,
+  "like_cnt": 1152,
   "comment_cnt": 149,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Parte 6 do Conto de Natal<br>\r\nNÃO COMENTE SUA ESCOLHA, VOTE APENAS DANDO LIKE NO COMENTÁRIO DO AUTOR"
  }
 }

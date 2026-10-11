@@ -1,7 +1,7 @@
 {
  "num": 18,
  "episode_id": "3118352",
- "fetched_at": "2026-09-27T15:26:34Z",
+ "fetched_at": "2026-10-11T18:06:09Z",
  "data": {
   "id": 3118352,
   "title": "Pg 50 - 52",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6092,
+  "view_cnt": 6191,
   "like_cnt": 247,
   "comment_cnt": 7,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

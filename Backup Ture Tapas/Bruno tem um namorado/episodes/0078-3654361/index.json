@@ -1,7 +1,7 @@
 {
  "num": 78,
  "episode_id": "3654361",
- "fetched_at": "2026-09-27T15:33:15Z",
+ "fetched_at": "2026-10-11T18:11:59Z",
  "data": {
   "id": 3654361,
   "title": "Pg 112 - 114",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2895,
-  "like_cnt": 145,
+  "view_cnt": 2958,
+  "like_cnt": 147,
   "comment_cnt": 24,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "E depois de um longo hiato, eu finalmente entreguei todo o material para a editora. Então, finalmente, Marcel está de volta!!!! Obrigado pelo carinho, apoio e compreensão :)<br>\r\n(E feliz aniversário adiantado, Lemi!)"
  }
 }

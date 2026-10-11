@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "499829",
- "fetched_at": "2026-09-26T20:09:15Z",
+ "fetched_at": "2026-10-11T20:36:10Z",
  "data": {
   "id": 499829,
   "title": "Parte 3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 46388,
-  "like_cnt": 1584,
+  "view_cnt": 46484,
+  "like_cnt": 1585,
   "comment_cnt": 39,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

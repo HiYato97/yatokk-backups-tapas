@@ -1,7 +1,7 @@
 {
  "num": 31,
  "episode_id": "3163347",
- "fetched_at": "2026-09-27T15:27:43Z",
+ "fetched_at": "2026-10-11T18:07:15Z",
  "data": {
   "id": 3163347,
   "title": "Pg 85 - 88",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4838,
-  "like_cnt": 229,
+  "view_cnt": 4913,
+  "like_cnt": 230,
   "comment_cnt": 11,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Demorou mais chegou, dessa vez sem perguntas e respostas, pq se não, tambem não chegava mais kkkk"
  }
 }

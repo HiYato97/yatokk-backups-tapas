@@ -1,7 +1,7 @@
 {
  "num": 16,
  "episode_id": "646948",
- "fetched_at": "2026-09-26T20:11:54Z",
+ "fetched_at": "2026-10-11T20:38:36Z",
  "data": {
   "id": 646948,
   "title": "Extra 3 - Batom",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 39705,
-  "like_cnt": 1869,
+  "view_cnt": 39780,
+  "like_cnt": 1870,
   "comment_cnt": 137,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Kibado do nonmatsu http://nonmatsu.tumblr.com/"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 49,
  "episode_id": "3405944",
- "fetched_at": "2026-09-27T15:29:45Z",
+ "fetched_at": "2026-10-11T18:09:02Z",
  "data": {
   "id": 3405944,
   "title": "Pg 18 - 20",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3772,
-  "like_cnt": 163,
+  "view_cnt": 3845,
+  "like_cnt": 164,
   "comment_cnt": 9,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Estamos de volta!!!! ( o próximo episodio já está disposnível para apoiadores, apoia.se/ture )"
  }
 }

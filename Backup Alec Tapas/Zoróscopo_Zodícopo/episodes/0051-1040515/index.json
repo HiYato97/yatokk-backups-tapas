@@ -1,7 +1,7 @@
 {
  "num": 51,
  "episode_id": "1040515",
- "fetched_at": "2026-09-26T19:58:47Z",
+ "fetched_at": "2026-10-11T21:22:18Z",
  "data": {
   "id": 1040515,
   "title": "ASK Parte 1",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 43097,
-  "like_cnt": 1710,
+  "view_cnt": 43227,
+  "like_cnt": 1713,
   "comment_cnt": 127,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Sessão de ASKs que rolou entre os apoiadores do Apoia.se~<br>\r\nColabore também para ter sua pergunta garantida õ/<br>\r\nhttps://apoia.se/batatiras"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 43,
  "episode_id": "3295154",
- "fetched_at": "2026-09-27T15:28:59Z",
+ "fetched_at": "2026-10-11T18:08:29Z",
  "data": {
   "id": 3295154,
   "title": "Extra - Dias de Sol - Pt 3 - Final",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4129,
-  "like_cnt": 212,
+  "view_cnt": 4203,
+  "like_cnt": 214,
   "comment_cnt": 15,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpe o atraso hehe Esta entre nos o final de Dias de Sol"
  }
 }

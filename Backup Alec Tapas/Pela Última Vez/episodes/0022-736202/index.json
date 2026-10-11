@@ -1,7 +1,7 @@
 {
  "num": 22,
  "episode_id": "736202",
- "fetched_at": "2026-09-26T20:01:38Z",
+ "fetched_at": "2026-10-11T20:58:02Z",
  "data": {
   "id": 736202,
   "title": "22",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 49097,
-  "like_cnt": 1980,
+  "view_cnt": 49182,
+  "like_cnt": 1979,
   "comment_cnt": 39,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "PERDÃO A DEMORA<br>\r\nessas páginas são quase uma terapia, não dá pra fazer com pressa"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 83,
  "episode_id": "1694244",
- "fetched_at": "2026-09-26T19:49:45Z",
+ "fetched_at": "2026-10-11T20:34:22Z",
  "data": {
   "id": 1694244,
   "title": "CICATRIZES - EXTRAS",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 117630,
-  "like_cnt": 4269,
+  "view_cnt": 118045,
+  "like_cnt": 4276,
   "comment_cnt": 502,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Obrigado por me acompanhar mais uma vez <3"
  }
 }

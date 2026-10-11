@@ -1,7 +1,7 @@
 {
  "num": 41,
  "episode_id": "855471",
- "fetched_at": "2026-09-26T19:32:08Z",
+ "fetched_at": "2026-10-11T20:12:14Z",
  "data": {
   "id": 855471,
   "title": "Larry e Coelho 35 - 36",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 111007,
-  "like_cnt": 3507,
+  "view_cnt": 111369,
+  "like_cnt": 3510,
   "comment_cnt": 93,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "ATRASADO MAS SE EU NÃO DORMI ENTÃO TÁ VALENDO<br>\r\nToma aqui essas fofura"
  }
 }

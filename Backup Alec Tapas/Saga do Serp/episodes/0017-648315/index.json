@@ -1,7 +1,7 @@
 {
  "num": 17,
  "episode_id": "648315",
- "fetched_at": "2026-09-26T20:12:17Z",
+ "fetched_at": "2026-10-11T20:46:25Z",
  "data": {
   "id": 648315,
   "title": "Extra 4 - Fidelidade",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 41194,
-  "like_cnt": 1757,
+  "view_cnt": 41291,
+  "like_cnt": 1758,
   "comment_cnt": 124,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Oi Áries, quanto tempo"
  }
 }

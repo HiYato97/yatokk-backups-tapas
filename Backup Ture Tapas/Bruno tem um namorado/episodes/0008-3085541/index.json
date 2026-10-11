@@ -1,7 +1,7 @@
 {
  "num": 8,
  "episode_id": "3085541",
- "fetched_at": "2026-09-27T15:25:39Z",
+ "fetched_at": "2026-10-11T18:05:16Z",
  "data": {
   "id": 3085541,
   "title": "Pg 22 - 24",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6793,
-  "like_cnt": 287,
+  "view_cnt": 6899,
+  "like_cnt": 288,
   "comment_cnt": 17,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

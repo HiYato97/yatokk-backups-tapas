@@ -1,7 +1,7 @@
 {
  "num": 72,
  "episode_id": "1417457",
- "fetched_at": "2026-09-26T19:45:40Z",
+ "fetched_at": "2026-10-11T20:29:54Z",
  "data": {
   "id": 1417457,
   "title": "Prólogo 13 - 17",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 95565,
-  "like_cnt": 3503,
+  "view_cnt": 95868,
+  "like_cnt": 3506,
   "comment_cnt": 86,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Não quer esperar?<br>\r\nPáginas adiantadas no Apoia.se <3<br>\r\nhttps://apoia.se/batatiras"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 33,
  "episode_id": "3172017",
- "fetched_at": "2026-09-27T15:27:55Z",
+ "fetched_at": "2026-10-11T18:07:27Z",
  "data": {
   "id": 3172017,
   "title": "Pg 93 - 95",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5034,
+  "view_cnt": 5109,
   "like_cnt": 220,
   "comment_cnt": 8,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

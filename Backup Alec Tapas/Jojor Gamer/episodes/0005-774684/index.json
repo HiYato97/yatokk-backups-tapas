@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "774684",
- "fetched_at": "2026-09-26T20:42:14Z",
+ "fetched_at": "2026-10-11T21:48:10Z",
  "data": {
   "id": 774684,
   "title": "Ep 5",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 9303,
-  "like_cnt": 641,
+  "view_cnt": 9325,
+  "like_cnt": 642,
   "comment_cnt": 35,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eu tenho gostos peculiares você não entenderia"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 26,
  "episode_id": "375725",
- "fetched_at": "2026-09-26T20:42:54Z",
+ "fetched_at": "2026-10-11T21:52:05Z",
  "data": {
   "id": 375725,
   "title": "Pag - 26",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17058,
+  "view_cnt": 17078,
   "like_cnt": 783,
   "comment_cnt": 27,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "AAAAAAAA TA ACABANDO"
  }
 }

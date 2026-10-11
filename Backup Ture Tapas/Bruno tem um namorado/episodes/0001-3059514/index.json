@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "3059514",
- "fetched_at": "2026-09-27T15:24:52Z",
+ "fetched_at": "2026-10-11T18:04:35Z",
  "data": {
   "id": 3059514,
   "title": "Pg 1 - 3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17328,
-  "like_cnt": 383,
+  "view_cnt": 17573,
+  "like_cnt": 384,
   "comment_cnt": 39,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

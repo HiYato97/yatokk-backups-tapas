@@ -1,7 +1,7 @@
 {
  "num": 36,
  "episode_id": "1149398",
- "fetched_at": "2026-09-26T20:04:30Z",
+ "fetched_at": "2026-10-11T21:00:59Z",
  "data": {
   "id": 1149398,
   "title": "45 - 49",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 45223,
-  "like_cnt": 2110,
+  "view_cnt": 45308,
+  "like_cnt": 2111,
   "comment_cnt": 82,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Combo de páginas!<br>\r\nNo Apoia.se tem até a 56 e ainda sai mais hoje!<br>\r\nhttps://apoia.se/batatiras<br>\r\nColabore para ajudar as comics continuarem <3"
  }
 }

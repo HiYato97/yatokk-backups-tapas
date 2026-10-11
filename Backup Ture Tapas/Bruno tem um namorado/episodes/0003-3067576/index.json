@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "3067576",
- "fetched_at": "2026-09-27T15:25:12Z",
+ "fetched_at": "2026-10-11T18:04:49Z",
  "data": {
   "id": 3067576,
   "title": "Pg 7 - 9",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 8070,
-  "like_cnt": 315,
+  "view_cnt": 8216,
+  "like_cnt": 316,
   "comment_cnt": 9,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

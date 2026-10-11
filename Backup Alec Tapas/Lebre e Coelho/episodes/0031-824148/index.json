@@ -1,7 +1,7 @@
 {
  "num": 31,
  "episode_id": "824148",
- "fetched_at": "2026-09-26T19:29:57Z",
+ "fetched_at": "2026-10-11T20:09:36Z",
  "data": {
   "id": 824148,
   "title": "Larry e Coelho 17 - 18",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 115456,
-  "like_cnt": 3374,
+  "view_cnt": 115848,
+  "like_cnt": 3379,
   "comment_cnt": 116,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Ahh, aquele fatídico dia..........<br>\n<br>\nHelp nas cores por Alexandre Starling"
  }
 }

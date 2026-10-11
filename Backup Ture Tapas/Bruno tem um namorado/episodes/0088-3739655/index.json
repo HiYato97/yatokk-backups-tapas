@@ -1,7 +1,7 @@
 {
  "num": 88,
  "episode_id": "3739655",
- "fetched_at": "2026-09-27T15:34:24Z",
+ "fetched_at": "2026-10-11T18:13:00Z",
  "data": {
   "id": 3739655,
   "title": "Pg 143 - 145",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2978,
-  "like_cnt": 120,
+  "view_cnt": 3068,
+  "like_cnt": 122,
   "comment_cnt": 24,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,6 +1,13 @@
 {
  "series_id": "61799",
- "fetched_at": "2026-09-26T19:58:27Z",
+ "title": "Pela Última Vez",
+ "description": "Mais uma historinha suave pra judiar do coração alheio.\n\nEnglish Soon",
+ "views": "2,888,815",
+ "subscribers": "18,078",
+ "likes": "123,538",
+ "publish_date": "2017-04-01T03:23:30Z",
+ "last_updated_date": "2019-03-31T21:28:03Z",
+ "fetched_at": "2026-10-11T20:54:18Z",
  "data": {
   "id": 61799,
   "title": "Pela Última Vez",
@@ -16,7 +23,7 @@
   "has_top_banner": false,
   "has_book_cover": false,
   "on_sale_now": false,
-  "thumbsup_cnt": 123549,
+  "thumbsup_cnt": 123538,
   "discount_rate": 0,
   "genre": {
    "id": 22,

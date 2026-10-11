@@ -1,7 +1,7 @@
 {
  "num": 40,
  "episode_id": "3213089",
- "fetched_at": "2026-09-27T15:28:38Z",
+ "fetched_at": "2026-10-11T18:08:09Z",
  "data": {
   "id": 3213089,
   "title": "Pg 125 - 129 Final",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5086,
-  "like_cnt": 244,
+  "view_cnt": 5174,
+  "like_cnt": 247,
   "comment_cnt": 28,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 49,
  "episode_id": "3688365",
- "fetched_at": "2026-09-27T14:21:22Z",
+ "fetched_at": "2026-10-11T18:58:23Z",
  "data": {
   "id": 3688365,
   "title": "[CAP 7] 17 - 20",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 14319,
-  "like_cnt": 784,
+  "view_cnt": 14587,
+  "like_cnt": 791,
   "comment_cnt": 46,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "ATUALIZAÇÃO MAIS CEDO???<br>\r\nSIM!! Graças aos apoiadores do Apoia.se eu consegui pagar alguém pra me ajudar nos flats da cor, o que agilizou muito o processo <3<br>\r\nCaso tenha interesse, considere se tornar um apoiador também! A partir de 10 reais você tem acesso ANTECIPADO às atualizações e acesso a conteúdo exclusivo!<br>\r\nhttps://apoia.se/sliceofalec"
  }
 }

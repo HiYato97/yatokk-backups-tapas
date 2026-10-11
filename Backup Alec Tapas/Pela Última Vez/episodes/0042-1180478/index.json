@@ -1,7 +1,7 @@
 {
  "num": 42,
  "episode_id": "1180478",
- "fetched_at": "2026-09-26T20:06:23Z",
+ "fetched_at": "2026-10-11T21:07:46Z",
  "data": {
   "id": 1180478,
   "title": "64 - 69",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 47035,
+  "view_cnt": 47119,
   "like_cnt": 2210,
   "comment_cnt": 139,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Post grande hoje~<br>\r\nLembrando que por apenas 4$ tem o Apoia.se já na página 85 (e em breve sai mais)<br>\r\nhttps://apoia.se/batatiras<br>\r\nE COMEÇOU A VAQUINHA PARA A IMPRESSÃO!<br>\r\nTodo o dinheiro além da meta irá para abrigos de animais, colabore <3<br>\r\nhttp://vaka.me/bqshus"
  }
 }

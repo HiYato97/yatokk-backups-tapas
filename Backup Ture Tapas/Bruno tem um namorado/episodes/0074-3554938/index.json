@@ -1,7 +1,7 @@
 {
  "num": 74,
  "episode_id": "3554938",
- "fetched_at": "2026-09-27T15:32:42Z",
+ "fetched_at": "2026-10-11T18:11:30Z",
  "data": {
   "id": 3554938,
   "title": "Pg 106 - 108",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3129,
-  "like_cnt": 143,
+  "view_cnt": 3180,
+  "like_cnt": 145,
   "comment_cnt": 19,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

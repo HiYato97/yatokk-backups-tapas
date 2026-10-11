@@ -37,6 +37,12 @@ body.light {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
+/* SCROLLBARS ESCURAS */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--bg-body); }
+*::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #444450; }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-body);
@@ -167,6 +173,21 @@ body {
 }
 .conteudo.expandido { margin-left: 0; }
 
+.series-banner {
+    max-width: 850px;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+.series-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
 .series-header {
     max-width: 850px;
     margin: 0 auto 30px auto;
@@ -179,15 +200,14 @@ body {
     align-items: flex-start;
 }
 .series-thumb {
-    width: 130px;
-    height: 130px;
+    max-width: 160px;
+    height: auto;
     border-radius: 6px;
-    object-fit: cover;
     border: 1px solid var(--border-color);
 }
 .series-info { flex: 1; }
 .series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
-.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .series-genre {
     display: inline-block;
     background: var(--border-color);
@@ -210,15 +230,81 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.capitulo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
 .capitulo h2 {
     font-size: 1.15rem;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+}
+.capitulo-data {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+/* CREATOR NOTE ESTILOS */
+.creator-note-box {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+.creator-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+    flex-shrink: 0;
+}
+.creator-avatar-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #222;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.creator-content {
+    flex: 1;
+}
+.creator-info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.creator-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.creator-tag {
+    background: #d97706;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.creator-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
 
 .comentarios-wrapper { margin-top: 15px; }
 .btn-toggle-comentarios {
@@ -242,9 +328,26 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
     padding: 12px;
 }
 .comentarios-conteudo.aberto { display: block !important; }
+
+.comentarios-filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.comentarios-filtros select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+    flex: 1;
+}
+
 .comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
 .autor { font-weight: 600; color: var(--text-primary); }
-.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.badge-criador { background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; }
 .comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
 .comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
 .replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
@@ -282,6 +385,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
 .modal-body { padding: 16px; overflow-y: auto; }
+.btn-fechar-modal { background: transparent; border: none; color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
 
 /* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
@@ -325,8 +429,10 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
+body.modo-imersivo .series-banner,
 body.modo-imersivo .series-header,
-body.modo-imersivo .capitulo h2,
+body.modo-imersivo .capitulo-header,
+body.modo-imersivo .creator-note-box,
 body.modo-imersivo .comentarios-wrapper,
 body.modo-imersivo .nav-botoes,
 body.modo-imersivo #topoBtn,
@@ -495,7 +601,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
 <body id="topo">
     <div id="versao">
-        <span>Série: <b>Jojor Gamer</b> | Gerado em 10/10/2026 17:41</span>
+        <span>Série: <b>Jojor Gamer</b> | Gerado em 11/10/2026 20:05</span>
         
     <button class="btn-info-modal" onclick="document.getElementById('modalInfoProj').classList.add('visivel')" title="Informações do Projeto">ⓘ</button>
     
@@ -515,7 +621,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
             <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
-                <option value="1">Cap. 1 - 0001-771983</option><option value="2">Cap. 2 - 0002-771989</option><option value="3">Cap. 3 - 0003-772885</option><option value="4">Cap. 4 - 0004-772886</option><option value="5">Cap. 5 - 0005-774684</option><option value="6">Cap. 6 - 0006-775243</option>
+                <option value="1">Cap. 1 - Ep 1</option><option value="2">Cap. 2 - Ep 2</option><option value="3">Cap. 3 - Ep 3</option><option value="4">Cap. 4 - Ep 4</option><option value="5">Cap. 5 - Ep 5</option><option value="6">Cap. 6 - Ep 6</option>
             </select>
 
             <h3>Opções da Página</h3>
@@ -529,23 +635,38 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         </div>
 
         <h2>Índice</h2>
-        <ul><li><a href="#cap1">Cap. 1 - 0001-771983</a></li><li><a href="#cap2">Cap. 2 - 0002-771989</a></li><li><a href="#cap3">Cap. 3 - 0003-772885</a></li><li><a href="#cap4">Cap. 4 - 0004-772886</a></li><li><a href="#cap5">Cap. 5 - 0005-774684</a></li><li><a href="#cap6">Cap. 6 - 0006-775243</a></li></ul>
+        <ul><li><a href="#cap1">Cap. 1 - Ep 1</a></li><li><a href="#cap2">Cap. 2 - Ep 2</a></li><li><a href="#cap3">Cap. 3 - Ep 3</a></li><li><a href="#cap4">Cap. 4 - Ep 4</a></li><li><a href="#cap5">Cap. 5 - Ep 5</a></li><li><a href="#cap6">Cap. 6 - Ep 6</a></li></ul>
     </div>
 
     <div class="conteudo expandido" id="conteudo">
         
+    
     <div class="series-header">
-        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <img src="series-thumb.jpg" class="series-thumb" alt="Capa">
         <div class="series-info">
             <h1 class="series-title">Jojor Gamer</h1>
-            <div class="series-meta"><span class="series-genre">Gaming</span> ❤ 4034 curtidas</div>
-            <div class="series-desc"></div>
+            <div class="series-meta"><span class="series-genre">Gaming</span> • 👁️ 73,611 views • 👥 1,861 inscritos • ❤️ 4,040 likes • 📅 Publicado em 23/07/2017</div>
+            <div class="series-desc">...de Date Sims de mobile.<br>Perdão.</div>
         </div>
     </div>
         
         <div class="capitulo" id="cap1">
-            <h2>Capítulo 1 - 0001-771983</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 1 - Ep 1</h2>
+                <span class="capitulo-data">23/07/2017</span>
+            </div>
             <img src="episodes/0001-771983/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0001-771983/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0001-771983/images/panel-003.jpg" alt="panel-003.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Já vi que minhas skills astrologicas serão inutilizadas</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
@@ -553,8 +674,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap1">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap1" onchange="ordenarComentariosNaSecao(this, 'lista-cap1')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap1" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">rafaelas1lv3ira</span> 
         </div>
@@ -562,7 +691,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 09, 2024</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Luna</span> 
         </div>
@@ -570,7 +699,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 26, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Vellany</span> 
         </div>
@@ -578,7 +707,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 05, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Peter Henrick</span> 
         </div>
@@ -586,7 +715,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 22, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">brendaflowermusic</span> 
         </div>
@@ -594,7 +723,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Sep 06, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">wesleyjose159</span> 
         </div>
@@ -602,7 +731,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 29, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Andrew</span> 
         </div>
@@ -610,7 +739,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">C0gwm3l4</span> 
         </div>
@@ -618,7 +747,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 17, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">ione</span> 
         </div>
@@ -626,7 +755,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 23, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Cina.Monroe</span> 
         </div>
@@ -634,7 +763,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Aug 18, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">artyu_0002</span> 
         </div>
@@ -642,14 +771,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 21, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">cami18games</span> 
         </div>
         <div class="comentario-texto">Gente alguém sabe o nome desse jogo?</div>
         <div class="comentario-meta">Mar 04, 2018</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Lua Estrelar</span> 
         </div>
@@ -658,7 +787,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">hey look at me !</span> 
         </div>
@@ -666,7 +795,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 23, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -674,14 +803,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Tibby Landmore</span> 
         </div>
         <div class="comentario-texto">gente alguém pra me dizer que jogo é esse???</div>
         <div class="comentario-meta">Jan 07, 2018</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Nanday Fazbear ;-;</span> 
         </div>
@@ -689,7 +818,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jan 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">kel</span> 
         </div>
@@ -698,7 +827,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Fadarlin</span> 
         </div>
@@ -706,7 +835,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jan 07, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Malucat456</span> 
         </div>
@@ -714,14 +843,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 22, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="55" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
         <div class="comentario-texto">quando meu signo ja começa sendo zuado... SOU DE PEIXES, SOU TROUXA, MAS ACEITO TA</div>
-        <div class="comentario-meta">Sep 11, 2017 • ❤️ 54</div>
+        <div class="comentario-meta">Sep 11, 2017 • ❤️ 55</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">Bubblegreen</span> 
         </div>
@@ -729,7 +858,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 14, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">surturr</span> 
         </div>
@@ -737,7 +866,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Sep 30, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">victoriasousa946</span> 
         </div>
@@ -745,7 +874,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 20, 2019 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">akira_peverell</span> 
         </div>
@@ -753,7 +882,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 22, 2020 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">allect</span> 
         </div>
@@ -762,15 +891,15 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="31" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
         <div class="comentario-texto">tadinho do peixes, sentiu-se traído agora :v</div>
-        <div class="comentario-meta">Aug 18, 2017 • ❤️ 30</div>
+        <div class="comentario-meta">Aug 18, 2017 • ❤️ 31</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
@@ -781,7 +910,7 @@ só vi hj hdbsjshsusbajdbdj
 e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim de signos só zoró- QUE NADA EAI TIO ALEC UMA BOA TARDE</div>
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
@@ -790,7 +919,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">chikasama</span> 
         </div>
@@ -798,7 +927,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Meu nome é Plutão</span> 
         </div>
@@ -806,7 +935,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">Jordan</span> 
         </div>
@@ -814,14 +943,14 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">dicolimab</span> 
         </div>
         <div class="comentario-texto">eu joguei esse jogo por um tempo e meu signo é realmente sagitário, caso não fosse ia ser, a Amanda ia ser minha amg</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Joojimho222</span> 
         </div>
@@ -829,7 +958,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Aug 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Lua Estrelar</span> 
         </div>
@@ -838,15 +967,15 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">Moon/Alex</span> 
         </div>
         <div class="comentario-texto">Eu ia tentar usar minhas skills de Homestuck e claramente falhar miseravelmente</div>
-        <div class="comentario-meta">Jul 23, 2017 • ❤️ 18</div>
+        <div class="comentario-meta">Jul 23, 2017 • ❤️ 19</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">Clube da Risu</span> 
         </div>
@@ -863,8 +992,22 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
             </div>
         </div>
         <div class="capitulo" id="cap2">
-            <h2>Capítulo 2 - 0002-771989</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 2 - Ep 2</h2>
+                <span class="capitulo-data">23/07/2017</span>
+            </div>
             <img src="episodes/0002-771989/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0002-771989/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0002-771989/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0002-771989/images/panel-004.jpg" alt="panel-004.jpg"><img src="episodes/0002-771989/images/panel-005.jpg" alt="panel-005.jpg"><img src="episodes/0002-771989/images/panel-006.jpg" alt="panel-006.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">As coisas acontecem rápido aqui</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
@@ -872,8 +1015,16 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap2">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap2" onchange="ordenarComentariosNaSecao(this, 'lista-cap2')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap2" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">wesleyjose159</span> 
         </div>
@@ -881,7 +1032,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Apr 29, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Andrew</span> 
         </div>
@@ -889,7 +1040,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Dec 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Cina.Monroe</span> 
         </div>
@@ -897,7 +1048,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Aug 18, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Cina.Monroe</span> 
         </div>
@@ -905,14 +1056,14 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Aug 18, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Elfa</span> 
         </div>
         <div class="comentario-texto">Aihn esse jogo! MDS foi o que aconteceu comigo! Mas eu queria o Danny!! Não curti o Julian de cara kkmk</div>
         <div class="comentario-meta">Jun 29, 2018 • ❤️ 4</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Otaku_Senpai</span> 
         </div>
@@ -920,7 +1071,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Nov 16, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Albert Homes</span> 
         </div>
@@ -929,7 +1080,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Cahn</span> 
         </div>
@@ -937,7 +1088,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">May 31, 2018 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">jkofrante</span> 
         </div>
@@ -945,7 +1096,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Mar 31, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -953,7 +1104,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">YosafChan</span> 
         </div>
@@ -961,7 +1112,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jan 13, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Shhy</span> 
         </div>
@@ -969,7 +1120,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jan 10, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Xiloui</span> 
         </div>
@@ -977,7 +1128,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Nov 27, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Enjjuuu</span> 
         </div>
@@ -985,7 +1136,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Nov 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Moonbow</span> 
         </div>
@@ -993,7 +1144,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Sep 22, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
@@ -1001,7 +1152,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Sep 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Berimpau</span> 
         </div>
@@ -1009,7 +1160,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Aug 12, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">deigothedeigo</span> 
         </div>
@@ -1017,14 +1168,14 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Aug 06, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="31" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
         <div class="comentario-texto">me fala o nome desse jogo q eu quero ele pra ontem</div>
-        <div class="comentario-meta">Jul 30, 2017 • ❤️ 30</div>
+        <div class="comentario-meta">Jul 30, 2017 • ❤️ 31</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Apple</span> 
         </div>
@@ -1033,7 +1184,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1041,7 +1192,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1049,7 +1200,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1057,7 +1208,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">takoluka</span> 
         </div>
@@ -1065,7 +1216,7 @@ e afinal,essa historinha eh referência de q jogo? Nunca ouvi de um dating sim d
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Miau</span> 
         </div>
@@ -1075,7 +1226,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 27, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">CoccoaN</span> 
         </div>
@@ -1083,7 +1234,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Meu nome é Plutão</span> 
         </div>
@@ -1091,7 +1242,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">lilyismysoul</span> 
         </div>
@@ -1099,7 +1250,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">anaxherosa</span> 
         </div>
@@ -1107,14 +1258,14 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">dicolimab</span> 
         </div>
         <div class="comentario-texto">se vc não tá entendendo nada vai lá jogar o jogo, acho que é Stars Crossed, não lembro o nome</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">jkofrante</span> 
         </div>
@@ -1123,7 +1274,7 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">dicolimab</span> 
         </div>
@@ -1131,7 +1282,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">nekoarmyv</span> 
         </div>
@@ -1139,22 +1290,22 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 23, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="50" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">Moon/Alex</span> 
         </div>
         <div class="comentario-texto">Dating Sims: Onde é tudo 8 ou 8000</div>
-        <div class="comentario-meta">Jul 23, 2017 • ❤️ 49</div>
+        <div class="comentario-meta">Jul 23, 2017 • ❤️ 50</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="78" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">Kerimacus</span> 
         </div>
         <div class="comentario-texto">quando o jogo não tá nem aí pras suas escolhas</div>
-        <div class="comentario-meta">Jul 23, 2017 • ❤️ 77</div>
+        <div class="comentario-meta">Jul 23, 2017 • ❤️ 78</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">mary</span> 
         </div>
@@ -1163,7 +1314,7 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">Clube da Risu</span> 
         </div>
@@ -1171,7 +1322,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 23, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">gabriela1</span> 
         </div>
@@ -1179,7 +1330,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 23, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">Deej</span> 
         </div>
@@ -1196,8 +1347,22 @@ e como sempre, só me ferro ;-;</div>
             </div>
         </div>
         <div class="capitulo" id="cap3">
-            <h2>Capítulo 3 - 0003-772885</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 3 - Ep 3</h2>
+                <span class="capitulo-data">24/07/2017</span>
+            </div>
             <img src="episodes/0003-772885/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0003-772885/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0003-772885/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0003-772885/images/panel-004.jpg" alt="panel-004.jpg"><img src="episodes/0003-772885/images/panel-005.jpg" alt="panel-005.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">NÃO SE FALA DO BAE DOS OUTROS ASSIM DE GRAÇA</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
@@ -1205,8 +1370,16 @@ e como sempre, só me ferro ;-;</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap3">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap3" onchange="ordenarComentariosNaSecao(this, 'lista-cap3')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap3" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Strawberry Miss</span> 
         </div>
@@ -1214,7 +1387,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Aug 04, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">dudunascimentod</span> 
         </div>
@@ -1222,7 +1395,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Sep 10, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Villia Navái</span> 
         </div>
@@ -1230,7 +1403,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">May 26, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">M000NY</span> 
         </div>
@@ -1238,7 +1411,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">May 25, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Andrew</span> 
         </div>
@@ -1246,7 +1419,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Dec 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">godkynat</span> 
         </div>
@@ -1254,7 +1427,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Nov 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Loren</span> 
         </div>
@@ -1262,14 +1435,14 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Sep 08, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">emanuelelfiebes</span> 
         </div>
         <div class="comentario-texto">sai dessa otabek e mila nada Otayurio sempre <3</div>
         <div class="comentario-meta">Aug 25, 2018 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1278,7 +1451,7 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">evy_a_estranha</span> 
         </div>
@@ -1286,14 +1459,14 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jul 25, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">furjoshii</span> 
         </div>
         <div class="comentario-texto">Q OTABEK E MILA AQUELA FILHA DA PUTA, ISSO NÃO EXISTE, poha</div>
         <div class="comentario-meta">Mar 13, 2018 • ❤️ 5</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1302,7 +1475,7 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">hey look at me !</span> 
         </div>
@@ -1310,7 +1483,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Feb 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Lauryw</span> 
         </div>
@@ -1318,7 +1491,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Feb 16, 2018 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -1326,7 +1499,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">YosafChan</span> 
         </div>
@@ -1334,14 +1507,14 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Jan 13, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="15" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Enjjuuu</span> 
         </div>
         <div class="comentario-texto">espera... ela falou q O KARAMATSU EH O PIOR MATSU!?!? Q ELA SHIPPA MILA X OTABEK?!? MININA! O KARAMATSU EH UM DOS MELHORES MATSUS E O SHIPP OTAYURI EH VERDADEIRAMENTE CANON!!!</div>
         <div class="comentario-meta">Nov 25, 2017 • ❤️ 15</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1349,7 +1522,7 @@ e como sempre, só me ferro ;-;</div>
         <div class="comentario-meta">Oct 17, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Enjjuuu</span> 
         </div>
@@ -1358,14 +1531,14 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">ray</span> 
         </div>
         <div class="comentario-texto">As pessoas de hoje em dia são inacreditáveis. É cada absurdo que não dá nem pra acreditar. COMO ASSIM OTABEK X MILA????!?!!!??</div>
         <div class="comentario-meta">Nov 25, 2017 • ❤️ 9</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1374,7 +1547,7 @@ e como sempre, só me ferro ;-;</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="12" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">James</span> 
         </div>
@@ -1383,7 +1556,7 @@ e como sempre, só me ferro ;-;</div>
 AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Nov 03, 2017 • ❤️ 12</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1392,7 +1565,7 @@ AQUI É OTAYURI KERIDA</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">drfc2012</span> 
         </div>
@@ -1400,14 +1573,14 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Oct 18, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="59" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">borbuup</span> 
         </div>
         <div class="comentario-texto">"Otabek e Mila otp" NÃO MANO SÓ PARA O OTABEK É COM O YURIO FIM</div>
-        <div class="comentario-meta">Oct 14, 2017 • ❤️ 58</div>
+        <div class="comentario-meta">Oct 14, 2017 • ❤️ 59</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1416,7 +1589,7 @@ AQUI É OTAYURI KERIDA</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">tanto faz</span> 
         </div>
@@ -1424,7 +1597,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">pikachu</span> 
         </div>
@@ -1432,14 +1605,14 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Oct 04, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
         <div class="comentario-texto">COMASSIM NGM FALA DO KARAMATSU.... SE BEM QUE O ICHIMATSU EH O MELHOR MUAHAHA</div>
         <div class="comentario-meta">Sep 11, 2017 • ❤️ 4</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">chuchu</span> 
         </div>
@@ -1447,7 +1620,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Nov 10, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
@@ -1456,7 +1629,7 @@ AQUI É OTAYURI KERIDA</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">Mazu</span> 
         </div>
@@ -1464,7 +1637,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Sep 08, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">(●^●)/</span> 
         </div>
@@ -1472,7 +1645,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 23, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
@@ -1480,7 +1653,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 18, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">juuviiaa</span> 
         </div>
@@ -1488,7 +1661,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 12, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">niji</span> 
         </div>
@@ -1496,7 +1669,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 12, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">야낭추⃤</span> 
         </div>
@@ -1504,7 +1677,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 07, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">kawaiiraissa</span> 
         </div>
@@ -1512,7 +1685,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Aug 01, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">kaksfadksk</span> 
         </div>
@@ -1520,7 +1693,7 @@ AQUI É OTAYURI KERIDA</div>
         <div class="comentario-meta">Jul 31, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">Charyera</span> 
         </div>
@@ -1530,7 +1703,7 @@ Otabek e Mila otp? SÓ PODE TÁ ZOANDO</div>
         <div class="comentario-meta">Jul 31, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
@@ -1540,7 +1713,7 @@ Aderi</div>
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">Yatagiruuヤギ</span> 
         </div>
@@ -1548,7 +1721,7 @@ Aderi</div>
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">D Inside</span> 
         </div>
@@ -1556,7 +1729,7 @@ Aderi</div>
         <div class="comentario-meta">Jul 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1564,7 +1737,7 @@ Aderi</div>
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="35">
         <div class="comentario-header">
             <span class="autor">takoluka</span> 
         </div>
@@ -1572,7 +1745,7 @@ Aderi</div>
         <div class="comentario-meta">Jul 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="36">
         <div class="comentario-header">
             <span class="autor">JoyArto</span> 
         </div>
@@ -1580,14 +1753,14 @@ Aderi</div>
         <div class="comentario-meta">Jul 27, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="37">
         <div class="comentario-header">
             <span class="autor">Haruka Dreyar</span> 
         </div>
         <div class="comentario-texto">Um exemplo claro da Ambre em AD kkkkk</div>
         <div class="comentario-meta">Jul 25, 2017 • ❤️ 3</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="37">
         <div class="comentario-header">
             <span class="autor">Haruka Dreyar</span> 
         </div>
@@ -1596,7 +1769,7 @@ Aderi</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="38">
         <div class="comentario-header">
             <span class="autor">bibifelicity</span> 
         </div>
@@ -1604,14 +1777,14 @@ Aderi</div>
         <div class="comentario-meta">Jul 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="12" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">Venus</span> 
         </div>
         <div class="comentario-texto">SUA RAPUTENGA OTABEK E MILA É MEU PAU           ,,,,,,,,                                       Sério, alguém shippa isso, de verdade                                                          Tô chocadíssima fjsdiofaj</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 12</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">James</span> 
         </div>
@@ -1619,7 +1792,7 @@ Aderi</div>
         <div class="comentario-meta">Nov 08, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">Venus</span> 
         </div>
@@ -1628,15 +1801,15 @@ Aderi</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="34" data-creator="false" data-index="40">
         <div class="comentario-header">
             <span class="autor">nekoarmyv</span> 
         </div>
         <div class="comentario-texto">AGORA A PORRA FICOU SERIA... COM MEU OTP NÃO PIRANHA, VAI RODAR BOUSINHA NA RUA QUE TU GANHA MAIS</div>
-        <div class="comentario-meta">Jul 24, 2017 • ❤️ 33</div>
+        <div class="comentario-meta">Jul 24, 2017 • ❤️ 34</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="41">
         <div class="comentario-header">
             <span class="autor">110% GAY</span> 
         </div>
@@ -1644,15 +1817,15 @@ Aderi</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="47" data-creator="false" data-index="42">
         <div class="comentario-header">
             <span class="autor">Rafa</span> 
         </div>
         <div class="comentario-texto">Quem fala alguma coisa do Beka sem ser Otayurio e "quem homão da porra" nem é gente</div>
-        <div class="comentario-meta">Jul 24, 2017 • ❤️ 46</div>
+        <div class="comentario-meta">Jul 24, 2017 • ❤️ 47</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="43">
         <div class="comentario-header">
             <span class="autor">CookieDust</span> 
         </div>
@@ -1669,8 +1842,22 @@ Aderi</div>
             </div>
         </div>
         <div class="capitulo" id="cap4">
-            <h2>Capítulo 4 - 0004-772886</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 4 - Ep 4</h2>
+                <span class="capitulo-data">24/07/2017</span>
+            </div>
             <img src="episodes/0004-772886/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0004-772886/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0004-772886/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0004-772886/images/panel-004.jpg" alt="panel-004.jpg"><img src="episodes/0004-772886/images/panel-005.jpg" alt="panel-005.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Gráficos exagerados em 300%</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
@@ -1678,8 +1865,16 @@ Aderi</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap4">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap4" onchange="ordenarComentariosNaSecao(this, 'lista-cap4')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap4" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">rafaelas1lv3ira</span> 
         </div>
@@ -1691,7 +1886,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">May 09, 2024</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Andrew</span> 
         </div>
@@ -1699,7 +1894,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Dec 20, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">bgjaksys</span> 
         </div>
@@ -1707,7 +1902,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jan 28, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -1715,7 +1910,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Enjjuuu</span> 
         </div>
@@ -1723,7 +1918,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Nov 25, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">drfc2012</span> 
         </div>
@@ -1731,7 +1926,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Oct 18, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
@@ -1739,7 +1934,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Sep 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="64" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
@@ -1750,9 +1945,9 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
 "Ah então fodase tiau"
 
 "ata"</div>
-        <div class="comentario-meta">Jul 30, 2017 • ❤️ 63</div>
+        <div class="comentario-meta">Jul 30, 2017 • ❤️ 64</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
@@ -1761,7 +1956,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Gigih</span> 
         </div>
@@ -1769,7 +1964,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 29, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1777,22 +1972,22 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="33" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
         <div class="comentario-texto">jojo, e essa indireta de sagileo? :v você notou?</div>
-        <div class="comentario-meta">Jul 25, 2017 • ❤️ 32</div>
+        <div class="comentario-meta">Jul 25, 2017 • ❤️ 33</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="27" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">SuicideBeast</span> 
         </div>
         <div class="comentario-texto">u.u qual o problema com os leões somos só perfeitos demais ue u.u kkkk zoa</div>
-        <div class="comentario-meta">Jul 24, 2017 • ❤️ 26</div>
+        <div class="comentario-meta">Jul 24, 2017 • ❤️ 27</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Sra. Yaoi</span> 
         </div>
@@ -1801,7 +1996,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">luan_ghoul</span> 
         </div>
@@ -1809,7 +2004,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 24, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">LittleCrow</span> 
         </div>
@@ -1819,14 +2014,14 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Sra. Yaoi</span> 
         </div>
         <div class="comentario-texto">Tentando entender a história '-' mesmo assim é muito engraçada</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">Sra. Yaoi</span> 
         </div>
@@ -1834,7 +2029,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">tanto faz</span> 
         </div>
@@ -1843,7 +2038,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Meu nome é Plutão</span> 
         </div>
@@ -1860,8 +2055,22 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
             </div>
         </div>
         <div class="capitulo" id="cap5">
-            <h2>Capítulo 5 - 0005-774684</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 5 - Ep 5</h2>
+                <span class="capitulo-data">26/07/2017</span>
+            </div>
             <img src="episodes/0005-774684/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0005-774684/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0005-774684/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0005-774684/images/panel-004.jpg" alt="panel-004.jpg"><img src="episodes/0005-774684/images/panel-005.jpg" alt="panel-005.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Eu tenho gostos peculiares você não entenderia</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
@@ -1869,8 +2078,16 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap5">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap5" onchange="ordenarComentariosNaSecao(this, 'lista-cap5')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap5" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Tô existindo :D</span> 
         </div>
@@ -1878,7 +2095,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Apr 20, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">beezbeezsick</span> 
         </div>
@@ -1886,7 +2103,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Mar 02, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Wel</span> 
         </div>
@@ -1894,7 +2111,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Nov 20, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">iaramilan2009</span> 
         </div>
@@ -1902,7 +2119,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jul 07, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">wesleyjose159</span> 
         </div>
@@ -1910,14 +2127,14 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Apr 29, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
         <div class="comentario-texto">Pera je</div>
         <div class="comentario-meta">Oct 17, 2018</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -1926,7 +2143,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">luanafofoletica</span> 
         </div>
@@ -1934,7 +2151,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jun 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -1942,14 +2159,14 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">YosafChan</span> 
         </div>
         <div class="comentario-texto">AMANDA COMO AQUARIANA NÃO TÁ SENDO FRIA E FUDENDO A VIDA DOS OUTROS DIREITO PARA DE SHIPPAR JOJO COM TUDO Q SE MOVE E TEM UM PINTO</div>
         <div class="comentario-meta">Jan 13, 2018 • ❤️ 3</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">miss jack</span> 
         </div>
@@ -1958,7 +2175,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Shhy</span> 
         </div>
@@ -1966,7 +2183,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Jan 10, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Enjjuuu</span> 
         </div>
@@ -1974,14 +2191,14 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         <div class="comentario-meta">Nov 25, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">gilmaraassuncao</span> 
         </div>
         <div class="comentario-texto">"Nossos filhos vão ser banhados em sangue" parece a minha reação quando vi o Castiel (que por acaso é o meu paquera) do Amor Doce pela primeira vez kkjkkk</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 8</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">miss jack</span> 
         </div>
@@ -1990,7 +2207,7 @@ jogo: "me pergunto qual sera o signo dele.......🥰"</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Bubblegreen</span> 
         </div>
@@ -2000,14 +2217,14 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Oct 14, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Fresh</span> 
         </div>
         <div class="comentario-texto">eu to morrendo de rir</div>
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">fuchi</span> 
         </div>
@@ -2016,14 +2233,14 @@ ME IDENTIFIQUEI SUPER ♡</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="70" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
         <div class="comentario-texto">tu desenha expressões faciais tão bem da vontade d lamber a tela do celular qe</div>
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 70</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">mika</span> 
         </div>
@@ -2031,7 +2248,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">May 11, 2022 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">sarah_:p</span> 
         </div>
@@ -2040,7 +2257,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Gigih</span> 
         </div>
@@ -2048,7 +2265,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 29, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -2056,7 +2273,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">fmkuhn</span> 
         </div>
@@ -2064,14 +2281,14 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="34" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">110% GAY</span> 
         </div>
         <div class="comentario-texto">eu ainda queria saber qual é o jogo ;-;</div>
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 34</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="16" data-creator="true" data-index="18">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -2079,7 +2296,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 16</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">raposachefe</span> 
         </div>
@@ -2088,7 +2305,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">gigipinck</span> 
         </div>
@@ -2096,14 +2313,14 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">nekoarmyv</span> 
         </div>
         <div class="comentario-texto">eu com os meninos ¨olha 2 segundos... BAM !!! terceira guerra mundial... e ele perde</div>
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">fuchi</span> 
         </div>
@@ -2112,7 +2329,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Gi</span> 
         </div>
@@ -2120,7 +2337,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 25, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="35" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">CandyEater</span> 
         </div>
@@ -2128,7 +2345,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 25, 2017 • ❤️ 35</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -2136,7 +2353,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 25, 2017 • ❤️ 10</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">Clube da Risu</span> 
         </div>
@@ -2144,7 +2361,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 25, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">bellaohimesama</span> 
         </div>
@@ -2161,8 +2378,22 @@ ME IDENTIFIQUEI SUPER ♡</div>
             </div>
         </div>
         <div class="capitulo" id="cap6">
-            <h2>Capítulo 6 - 0006-775243</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 6 - Ep 6</h2>
+                <span class="capitulo-data">26/07/2017</span>
+            </div>
             <img src="episodes/0006-775243/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0006-775243/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0006-775243/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0006-775243/images/panel-004.jpg" alt="panel-004.jpg"><img src="episodes/0006-775243/images/panel-005.jpg" alt="panel-005.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Tem nem graça</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
@@ -2170,8 +2401,16 @@ ME IDENTIFIQUEI SUPER ♡</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap6">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap6" onchange="ordenarComentariosNaSecao(this, 'lista-cap6')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap6" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">rafaelas1lv3ira</span> 
         </div>
@@ -2179,7 +2418,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">May 09, 2024</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Tô existindo :D</span> 
         </div>
@@ -2187,7 +2426,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Apr 20, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Apple</span> 
         </div>
@@ -2195,7 +2434,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Jul 22, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">SobbleOCamaleão</span> 
         </div>
@@ -2203,14 +2442,14 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Apr 14, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">EstefaneD</span> 
         </div>
         <div class="comentario-texto">Ovo ti dar um spoiler</div>
         <div class="comentario-meta">Jan 03, 2019</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">EstefaneD</span> 
         </div>
@@ -2219,7 +2458,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Andrew</span> 
         </div>
@@ -2227,7 +2466,7 @@ ME IDENTIFIQUEI SUPER ♡</div>
         <div class="comentario-meta">Dec 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Ju  ~(⍢)~</span> 
         </div>
@@ -2246,7 +2485,7 @@ Atualmente existem leis éticas para: robótica, biologia, programação, ...
 Então mesmo que a noção de ética atual seja diferente do período clássico: não faz nenhum sentido achar que não tem ligações científicas</div>
         <div class="comentario-meta">Dec 19, 2018</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Ju  ~(⍢)~</span> 
         </div>
@@ -2255,7 +2494,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Sheena_Wang</span> 
         </div>
@@ -2263,7 +2502,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Oct 17, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">soaresnauhanna</span> 
         </div>
@@ -2271,7 +2510,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 21, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">luanafofoletica</span> 
         </div>
@@ -2279,7 +2518,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jun 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">siessezed</span> 
         </div>
@@ -2287,7 +2526,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Apr 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">eury</span> 
         </div>
@@ -2295,7 +2534,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Feb 14, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Bia Schulz</span> 
         </div>
@@ -2303,7 +2542,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Feb 13, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -2311,7 +2550,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">mari</span> 
         </div>
@@ -2319,7 +2558,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 27, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">YosafChan</span> 
         </div>
@@ -2327,7 +2566,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 13, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">COREosidadesy</span> 
         </div>
@@ -2335,7 +2574,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 10, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">Fadarlin</span> 
         </div>
@@ -2343,7 +2582,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 07, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">carlosfirmo</span> 
         </div>
@@ -2351,14 +2590,14 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jan 04, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">crystarcry</span> 
         </div>
         <div class="comentario-texto">Signo n existe e quem acredita em signo sabe disso,pq é meio óbvio q 7 bilhões de pessoas n vão ser diferenciados em 12 "categorias"</div>
         <div class="comentario-meta">Dec 05, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">Mia_Tímida</span> 
         </div>
@@ -2367,14 +2606,14 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="38" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">BakaYuka!</span> 
         </div>
         <div class="comentario-texto">Eu sou um signo de ofensivo e eu achei isso ar</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 38</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">leãodivo</span> 
         </div>
@@ -2383,7 +2622,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">mimilk</span> 
         </div>
@@ -2391,7 +2630,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Oct 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">drfc2012</span> 
         </div>
@@ -2399,7 +2638,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Oct 18, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Bubblegreen</span> 
         </div>
@@ -2407,14 +2646,14 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Oct 14, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">senhorbiel</span> 
         </div>
         <div class="comentario-texto">oq seria "povo de ar"</div>
         <div class="comentario-meta">Oct 03, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">pikachu</span> 
         </div>
@@ -2423,7 +2662,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">acgcollares</span> 
         </div>
@@ -2431,7 +2670,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Sep 28, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">Sparkly.Idiot</span> 
         </div>
@@ -2439,7 +2678,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Sep 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">LineD</span> 
         </div>
@@ -2447,7 +2686,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Sep 10, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">ess4soueu</span> 
         </div>
@@ -2455,7 +2694,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Sep 07, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
@@ -2463,7 +2702,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Aug 15, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">Gi.Cheshire432</span> 
         </div>
@@ -2471,7 +2710,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Aug 13, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">Kitty cat</span> 
         </div>
@@ -2479,7 +2718,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Aug 13, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">SheepThaty</span> 
         </div>
@@ -2488,7 +2727,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Aug 06, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">Apple</span> 
         </div>
@@ -2496,7 +2735,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 31, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">Gi</span> 
         </div>
@@ -2504,7 +2743,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="35">
         <div class="comentario-header">
             <span class="autor">lilyismysoul</span> 
         </div>
@@ -2512,14 +2751,14 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="36">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
         <div class="comentario-texto">me senti ofendida pq concordo com o mlk dsclp ae tio</div>
         <div class="comentario-meta">Jul 30, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="true" data-index="36">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -2528,7 +2767,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="37">
         <div class="comentario-header">
             <span class="autor">kenazfurion</span> 
         </div>
@@ -2536,7 +2775,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 29, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="38">
         <div class="comentario-header">
             <span class="autor">br0ken_Tv</span> 
         </div>
@@ -2544,7 +2783,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">D Inside</span> 
         </div>
@@ -2552,7 +2791,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="40">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -2560,7 +2799,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="41">
         <div class="comentario-header">
             <span class="autor">takoluka</span> 
         </div>
@@ -2568,14 +2807,14 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 28, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="23" data-creator="false" data-index="42">
         <div class="comentario-header">
             <span class="autor">d8hunter</span> 
         </div>
         <div class="comentario-texto">Gêmeos? Fácil de manipular? Sei...</div>
-        <div class="comentario-meta">Jul 27, 2017 • ❤️ 22</div>
+        <div class="comentario-meta">Jul 27, 2017 • ❤️ 23</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="42">
         <div class="comentario-header">
             <span class="autor">jaoovicto.rrr</span> 
         </div>
@@ -2584,7 +2823,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="43">
         <div class="comentario-header">
             <span class="autor">Lenna</span> 
         </div>
@@ -2592,7 +2831,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 27, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="44">
         <div class="comentario-header">
             <span class="autor">victória</span> 
         </div>
@@ -2600,7 +2839,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 27, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="45">
         <div class="comentario-header">
             <span class="autor">acgcollares</span> 
         </div>
@@ -2608,7 +2847,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 27, 2017 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="46">
         <div class="comentario-header">
             <span class="autor">Sra. Yaoi</span> 
         </div>
@@ -2616,7 +2855,7 @@ Então mesmo que a noção de ética atual seja diferente do período clássico:
         <div class="comentario-meta">Jul 27, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="83" data-creator="false" data-index="47">
         <div class="comentario-header">
             <span class="autor">aAaAaAa</span> 
         </div>
@@ -2628,9 +2867,9 @@ e o Johnny, com essas tirinhas
 
 só arrasa 
 </div>
-        <div class="comentario-meta">Jul 26, 2017 • ❤️ 82</div>
+        <div class="comentario-meta">Jul 26, 2017 • ❤️ 83</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="47">
         <div class="comentario-header">
             <span class="autor">H.L</span> 
         </div>
@@ -2638,7 +2877,7 @@ só arrasa
         <div class="comentario-meta">Feb 02, 2019 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="47">
         <div class="comentario-header">
             <span class="autor">sarah_:p</span> 
         </div>
@@ -2647,7 +2886,7 @@ só arrasa
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="48">
         <div class="comentario-header">
             <span class="autor">110% GAY</span> 
         </div>
@@ -2655,7 +2894,7 @@ só arrasa
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="49">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -2663,7 +2902,7 @@ só arrasa
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="50">
         <div class="comentario-header">
             <span class="autor">nekoarmyv</span> 
         </div>
@@ -2671,7 +2910,7 @@ só arrasa
         <div class="comentario-meta">Jul 26, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="51">
         <div class="comentario-header">
             <span class="autor">Clube da Risu</span> 
         </div>
@@ -2713,7 +2952,7 @@ só arrasa
     <div class="mobile-nav-bar">
         <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
         <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
-            <option value="1">Cap. 1 - 0001-771983</option><option value="2">Cap. 2 - 0002-771989</option><option value="3">Cap. 3 - 0003-772885</option><option value="4">Cap. 4 - 0004-772886</option><option value="5">Cap. 5 - 0005-774684</option><option value="6">Cap. 6 - 0006-775243</option>
+            <option value="1">Cap. 1 - Ep 1</option><option value="2">Cap. 2 - Ep 2</option><option value="3">Cap. 3 - Ep 3</option><option value="4">Cap. 4 - Ep 4</option><option value="5">Cap. 5 - Ep 5</option><option value="6">Cap. 6 - Ep 6</option>
         </select>
         <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
         <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
@@ -2765,6 +3004,53 @@ function toggleTodosComentarios() {
     btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
 }
 
+function ordenarComentariosNaSecao(selectEl, listaId, sincronizarComId = null) {
+    const ordem = selectEl.value;
+    
+    if (sincronizarComId) {
+        const outroSelect = document.getElementById(sincronizarComId);
+        if (outroSelect && outroSelect.value !== ordem) {
+            outroSelect.value = ordem;
+        }
+    }
+
+    const lista = document.getElementById(listaId);
+    if (!lista) return;
+    
+    let itens = Array.from(lista.children).filter(el => el.matches('li.comentario-item'));
+
+    itens.forEach(item => {
+        const isCriador = item.getAttribute('data-creator') === 'true';
+        if (ordem === 'criador') {
+            item.style.display = isCriador ? 'block' : 'none';
+        } else {
+            item.style.display = 'block';
+        }
+    });
+
+    if (ordem === 'curtidos') {
+        itens.sort((a, b) => {
+            let likesA = parseInt(a.getAttribute('data-likes')) || 0;
+            let likesB = parseInt(b.getAttribute('data-likes')) || 0;
+            return likesB - likesA;
+        });
+    } else if (ordem === 'antigos') {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxA - idxB;
+        });
+    } else {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxB - idxA;
+        });
+    }
+
+    itens.forEach(item => lista.appendChild(item));
+}
+
 function irParaCapitulo(index) {
     if (!index || index < 1) return;
     capAtualIndex = parseInt(index);
@@ -2792,15 +3078,36 @@ function sincronizarSelectsCapitulos() {
 function abrirModalComentarios() {
     const capEl = document.getElementById(`cap${capAtualIndex}`);
     if (!capEl) return;
-    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const listaOriginal = capEl.querySelector('.comentarios-lista');
     const modalBody = document.getElementById('modalComentariosBody');
     document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
-    if (wrapperComentarios) {
-        modalBody.innerHTML = wrapperComentarios.innerHTML;
-        const lista = modalBody.querySelector('.comentarios-conteudo');
-        if (lista) lista.style.display = 'block';
-        const btn = modalBody.querySelector('.btn-toggle-comentarios');
-        if (btn) btn.style.display = 'none';
+    
+    if (listaOriginal) {
+        const selectOriginalId = `ordem-cap${capAtualIndex}`;
+        const selectOriginal = document.getElementById(selectOriginalId);
+        const ordemAtual = selectOriginal ? selectOriginal.value : 'recentes';
+
+        modalBody.innerHTML = `
+            <div class="comentarios-conteudo aberto" style="border:none; padding:0;">
+                <div class="comentarios-filtros">
+                    <select id="modal-select-ordem" onchange="ordenarComentariosNaSecao(this, 'modal-lista-comentarios', '${selectOriginalId}')">
+                        <option value="recentes">Mais Recentes</option>
+                        <option value="antigos">Mais Antigos</option>
+                        <option value="curtidos">Mais Curtidos</option>
+                        <option value="criador">Apenas do Criador</option>
+                    </select>
+                </div>
+                <ul class="comentarios-lista" id="modal-lista-comentarios" style="list-style:none;">
+                    ${listaOriginal.innerHTML}
+                </ul>
+            </div>
+        `;
+
+        const selectModal = document.getElementById('modal-select-ordem');
+        if (selectModal) {
+            selectModal.value = ordemAtual;
+            ordenarComentariosNaSecao(selectModal, 'modal-lista-comentarios');
+        }
     } else {
         modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
     }

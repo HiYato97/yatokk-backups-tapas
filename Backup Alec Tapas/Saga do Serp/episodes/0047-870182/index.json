@@ -1,7 +1,7 @@
 {
  "num": 47,
  "episode_id": "870182",
- "fetched_at": "2026-09-26T20:17:23Z",
+ "fetched_at": "2026-10-11T20:51:15Z",
  "data": {
   "id": 870182,
   "title": "Perspectivas - parte 13",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34391,
-  "like_cnt": 1527,
+  "view_cnt": 34489,
+  "like_cnt": 1528,
   "comment_cnt": 26,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 42,
  "episode_id": "821228",
- "fetched_at": "2026-09-26T20:16:28Z",
+ "fetched_at": "2026-10-11T20:50:30Z",
  "data": {
   "id": 821228,
   "title": "Perspectivas - parte 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 35203,
-  "like_cnt": 1634,
+  "view_cnt": 35279,
+  "like_cnt": 1635,
   "comment_cnt": 89,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "VAI QUE É TUA<br>\r\nPois é, o Sagi ta realmente fazendo as planilhas.<br>\r\nE chorando bastante."
  }
 }

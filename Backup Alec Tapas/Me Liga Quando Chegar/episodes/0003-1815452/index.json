@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "1815452",
- "fetched_at": "2026-09-26T20:23:31Z",
+ "fetched_at": "2026-10-11T19:04:38Z",
  "data": {
   "id": 1815452,
   "title": "Parte 3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17529,
-  "like_cnt": 1171,
+  "view_cnt": 17584,
+  "like_cnt": 1173,
   "comment_cnt": 52,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Parte 3 de 4<br>\r\nSe você lembra do meme do menino q pegava pombos vc ganhou uma estrelinha"
  }
 }

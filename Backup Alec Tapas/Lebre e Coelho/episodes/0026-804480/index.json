@@ -1,7 +1,7 @@
 {
  "num": 26,
  "episode_id": "804480",
- "fetched_at": "2026-09-26T19:28:53Z",
+ "fetched_at": "2026-10-11T20:08:20Z",
  "data": {
   "id": 804480,
   "title": "Larry e Coelho - 7 e 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 123594,
-  "like_cnt": 3483,
+  "view_cnt": 124035,
+  "like_cnt": 3485,
   "comment_cnt": 122,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

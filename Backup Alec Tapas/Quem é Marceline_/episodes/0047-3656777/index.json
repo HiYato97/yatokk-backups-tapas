@@ -1,7 +1,7 @@
 {
  "num": 47,
  "episode_id": "3656777",
- "fetched_at": "2026-09-27T14:21:03Z",
+ "fetched_at": "2026-10-11T18:58:06Z",
  "data": {
   "id": 3656777,
   "title": "[CAP 7] 9 - 12",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15128,
-  "like_cnt": 767,
+  "view_cnt": 15391,
+  "like_cnt": 774,
   "comment_cnt": 53,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Falhou com sucesso.<br>\n<br>\nNÃO QUER ESPERAR A PRÓXIMA ATUALIZAÇÃO?<br>\r\nQuerendo arrecadar uma graninha pra contratar ajuda pro quadrinho, eu abri um Apoia.se, onde você lê próxima atualização 2 semanas ates de sair daqui além de ter acesso à conteúdo exclusivo sobre produção, personagens e muito maiss<br>\r\nApoios a partir de 10 reais no mês, cancele quando quiser!<br>\r\nhttps://apoia.se/sliceofalec<br>\n<br>\nVOLUME 1 JÁ A VENDA!<br>\r\nEncontre em lojas de quadrinho ou pela Amazon:<br>\r\nencurtador.com.br/FlndD"
  }
 }

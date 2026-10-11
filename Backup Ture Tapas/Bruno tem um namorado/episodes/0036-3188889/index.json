@@ -1,7 +1,7 @@
 {
  "num": 36,
  "episode_id": "3188889",
- "fetched_at": "2026-09-27T15:28:09Z",
+ "fetched_at": "2026-10-11T18:07:41Z",
  "data": {
   "id": 3188889,
   "title": "Pg 102 - 105",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4756,
-  "like_cnt": 221,
+  "view_cnt": 4833,
+  "like_cnt": 223,
   "comment_cnt": 15,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

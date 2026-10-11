@@ -1,7 +1,7 @@
 {
  "num": 46,
  "episode_id": "3643826",
- "fetched_at": "2026-09-27T14:20:49Z",
+ "fetched_at": "2026-10-11T18:57:57Z",
  "data": {
   "id": 3643826,
   "title": "[CAP 7] 5 - 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 16021,
-  "like_cnt": 762,
+  "view_cnt": 16284,
+  "like_cnt": 769,
   "comment_cnt": 59,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mas cê ta bravo?<br>\r\nSe se garantisse no passe talvez não tava assim mas né...<br>\n<br>\nVOLUME 1 JÁ A VENDA!<br>\r\nEncontre em lojas de quadrinho ou pela Amazon:<br>\r\nencurtador.com.br/FlndD"
  }
 }

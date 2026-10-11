@@ -1,7 +1,7 @@
 {
  "num": 15,
  "episode_id": "577522",
- "fetched_at": "2026-09-26T19:21:57Z",
+ "fetched_at": "2026-10-11T19:28:30Z",
  "data": {
   "id": 577522,
   "title": "Pags 61 - 66",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 159835,
-  "like_cnt": 4194,
+  "view_cnt": 160349,
+  "like_cnt": 4200,
   "comment_cnt": 247,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "BOMBA DE 6 PAGINAS<br>\r\nDESCULPA AAAAAAAAA"
  }
 }

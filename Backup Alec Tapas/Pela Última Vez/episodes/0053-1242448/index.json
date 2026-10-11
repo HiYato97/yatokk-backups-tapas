@@ -1,7 +1,7 @@
 {
  "num": 53,
  "episode_id": "1242448",
- "fetched_at": "2026-09-26T20:10:25Z",
+ "fetched_at": "2026-10-11T21:11:38Z",
  "data": {
   "id": 1242448,
   "title": "105 - 108",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 50225,
+  "view_cnt": 50331,
   "like_cnt": 2436,
   "comment_cnt": 271,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "PRÓXIMA ATUALIZAÇÃO: 23/11<br>\r\nNão quer esperar? Por apenas 4$ você tem acesso a historia inteira +2 extras!<br>\r\nhttps://apoia.se/batatiras"
  }
 }

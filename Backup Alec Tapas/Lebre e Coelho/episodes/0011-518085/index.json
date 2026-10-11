@@ -1,7 +1,7 @@
 {
  "num": 11,
  "episode_id": "518085",
- "fetched_at": "2026-09-26T19:20:29Z",
+ "fetched_at": "2026-10-11T19:26:38Z",
  "data": {
   "id": 518085,
   "title": "Pags 41 - 46",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 153151,
-  "like_cnt": 3916,
+  "view_cnt": 153665,
+  "like_cnt": 3920,
   "comment_cnt": 200,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "SEIS PÁGINAAAAASSSSSSS<br>\r\nSEGURA ESSA BOMBA"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 75,
  "episode_id": "3560175",
- "fetched_at": "2026-09-27T15:32:52Z",
+ "fetched_at": "2026-10-11T18:11:37Z",
  "data": {
   "id": 3560175,
   "title": "Pg 109 - 111",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3344,
-  "like_cnt": 150,
+  "view_cnt": 3397,
+  "like_cnt": 152,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

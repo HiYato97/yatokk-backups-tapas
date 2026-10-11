@@ -1,7 +1,7 @@
 {
  "num": 67,
  "episode_id": "1250742",
- "fetched_at": "2026-09-26T19:44:22Z",
+ "fetched_at": "2026-10-11T20:28:28Z",
  "data": {
   "id": 1250742,
   "title": "Em breve~",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 119594,
-  "like_cnt": 3345,
+  "view_cnt": 119963,
+  "like_cnt": 3346,
   "comment_cnt": 171,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Saudades?<br>\r\nEu ia fazer só um artbook de Lebre e Coelho, mas percebi que ainda tem bastante coisa pra contar desses meninos, então em breve teremos mais algumas historinhas desses bocós~<br>\r\nPara adquirir as versões físicas: http://batatirastore.iluria.com/"
  }
 }

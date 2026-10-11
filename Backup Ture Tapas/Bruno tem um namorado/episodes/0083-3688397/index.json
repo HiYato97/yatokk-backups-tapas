@@ -1,7 +1,7 @@
 {
  "num": 83,
  "episode_id": "3688397",
- "fetched_at": "2026-09-27T15:33:53Z",
+ "fetched_at": "2026-10-11T18:12:29Z",
  "data": {
   "id": 3688397,
   "title": "Pg 128 - 130",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2632,
-  "like_cnt": 121,
+  "view_cnt": 2688,
+  "like_cnt": 123,
   "comment_cnt": 27,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

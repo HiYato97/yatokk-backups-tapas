@@ -1,7 +1,7 @@
 {
  "num": 37,
  "episode_id": "3190705",
- "fetched_at": "2026-09-27T15:28:15Z",
+ "fetched_at": "2026-10-11T18:07:47Z",
  "data": {
   "id": 3190705,
   "title": "Extras! #4 Fanart Time e Perguntas e Respostas",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4849,
-  "like_cnt": 202,
+  "view_cnt": 4928,
+  "like_cnt": 204,
   "comment_cnt": 7,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

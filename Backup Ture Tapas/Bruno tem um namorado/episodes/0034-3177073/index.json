@@ -1,7 +1,7 @@
 {
  "num": 34,
  "episode_id": "3177073",
- "fetched_at": "2026-09-27T15:28:00Z",
+ "fetched_at": "2026-10-11T18:07:32Z",
  "data": {
   "id": 3177073,
   "title": "Pg 96 - 98",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4614,
-  "like_cnt": 217,
+  "view_cnt": 4687,
+  "like_cnt": 218,
   "comment_cnt": 7,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eu disse que ia atrasar o episodio, mais nem foi tanto quanto pensei... Nem a dengue supera a minha vontade de ver um sorrisinho na cara de vocês :3"
  }
 }

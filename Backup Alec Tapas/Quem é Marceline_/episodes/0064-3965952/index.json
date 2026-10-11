@@ -1,7 +1,7 @@
 {
  "num": 64,
  "episode_id": "3965952",
- "fetched_at": "2026-09-27T14:24:44Z",
+ "fetched_at": "2026-10-11T19:01:54Z",
  "data": {
   "id": 3965952,
   "title": "[CAP 9] Parte 2",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 7998,
-  "like_cnt": 569,
-  "comment_cnt": 134,
+  "view_cnt": 9831,
+  "like_cnt": 607,
+  "comment_cnt": 136,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Aug 15",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Marceline ao vivo descobrindo que a vida não é um morango.<br>\r\nEsse capítulo vai ter várias revelações.........<br>\n<br>\nConsidere assinar o Apoia.se para ter acesso antecipado às atualizações!<br>\r\nhttps://apoia.se/sliceofalec"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 35,
  "episode_id": "3182950",
- "fetched_at": "2026-09-27T15:28:04Z",
+ "fetched_at": "2026-10-11T18:07:36Z",
  "data": {
   "id": 3182950,
   "title": "Pg 99 - 101",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4893,
-  "like_cnt": 224,
+  "view_cnt": 4968,
+  "like_cnt": 225,
   "comment_cnt": 12,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

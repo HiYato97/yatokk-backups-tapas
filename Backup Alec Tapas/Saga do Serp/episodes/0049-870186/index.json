@@ -1,7 +1,7 @@
 {
  "num": 49,
  "episode_id": "870186",
- "fetched_at": "2026-09-26T20:17:40Z",
+ "fetched_at": "2026-10-11T20:51:30Z",
  "data": {
   "id": 870186,
   "title": "Perspectivas - parte 15",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34305,
-  "like_cnt": 1740,
+  "view_cnt": 34414,
+  "like_cnt": 1741,
   "comment_cnt": 125,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

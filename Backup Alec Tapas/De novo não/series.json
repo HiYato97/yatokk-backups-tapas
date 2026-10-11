@@ -1,6 +1,13 @@
 {
  "series_id": "93917",
- "fetched_at": "2026-09-26T20:15:36Z",
+ "title": "De novo não",
+ "description": "O dia a dia de jovens tentando conviver com seus problemas de sempre.....",
+ "views": "298,079",
+ "subscribers": "5,295",
+ "likes": "20,373",
+ "publish_date": "2018-01-25T20:52:07Z",
+ "last_updated_date": "2020-07-26T13:42:24Z",
+ "fetched_at": "2026-10-11T19:08:36Z",
  "data": {
   "id": 93917,
   "title": "De novo não",
@@ -16,7 +23,7 @@
   "has_top_banner": false,
   "has_book_cover": false,
   "on_sale_now": false,
-  "thumbsup_cnt": 20388,
+  "thumbsup_cnt": 20373,
   "discount_rate": 0,
   "genre": {
    "id": 1,

@@ -1,7 +1,7 @@
 {
  "num": 16,
  "episode_id": "679156",
- "fetched_at": "2026-09-26T20:00:44Z",
+ "fetched_at": "2026-10-11T20:57:09Z",
  "data": {
   "id": 679156,
   "title": "16",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 51201,
+  "view_cnt": 51302,
   "like_cnt": 1936,
   "comment_cnt": 55,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

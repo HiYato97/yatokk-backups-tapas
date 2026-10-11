@@ -1,7 +1,7 @@
 {
  "num": 79,
  "episode_id": "3659056",
- "fetched_at": "2026-09-27T15:33:22Z",
+ "fetched_at": "2026-10-11T18:12:07Z",
  "data": {
   "id": 3659056,
   "title": "Pg 115 - 117",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2822,
-  "like_cnt": 133,
+  "view_cnt": 2877,
+  "like_cnt": 135,
   "comment_cnt": 18,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

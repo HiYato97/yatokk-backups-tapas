@@ -1,7 +1,7 @@
 {
  "num": 30,
  "episode_id": "815240",
- "fetched_at": "2026-09-26T19:29:43Z",
+ "fetched_at": "2026-10-11T20:09:19Z",
  "data": {
   "id": 815240,
   "title": "Larry e Coelho 15 -16",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 117042,
-  "like_cnt": 3445,
+  "view_cnt": 117446,
+  "like_cnt": 3448,
   "comment_cnt": 107,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 8,
  "episode_id": "499949",
- "fetched_at": "2026-09-26T20:10:08Z",
+ "fetched_at": "2026-10-11T20:37:00Z",
  "data": {
   "id": 499949,
   "title": "Parte 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 45369,
-  "like_cnt": 1627,
+  "view_cnt": 45452,
+  "like_cnt": 1629,
   "comment_cnt": 40,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Atualizada porque faltou tira haauauh"
  }
 }

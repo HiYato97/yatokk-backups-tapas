@@ -1,7 +1,7 @@
 {
  "num": 20,
  "episode_id": "716326",
- "fetched_at": "2026-09-26T20:01:21Z",
+ "fetched_at": "2026-10-11T20:57:47Z",
  "data": {
   "id": 716326,
   "title": "20",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 49852,
-  "like_cnt": 1872,
+  "view_cnt": 49950,
+  "like_cnt": 1871,
   "comment_cnt": 19,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

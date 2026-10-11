@@ -1,7 +1,7 @@
 {
  "num": 29,
  "episode_id": "749819",
- "fetched_at": "2026-09-26T20:14:09Z",
+ "fetched_at": "2026-10-11T20:48:11Z",
  "data": {
   "id": 749819,
   "title": "Monstros - Parte 10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33524,
-  "like_cnt": 1498,
+  "view_cnt": 33610,
+  "like_cnt": 1499,
   "comment_cnt": 28,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

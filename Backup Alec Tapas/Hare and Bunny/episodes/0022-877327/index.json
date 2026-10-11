@@ -1,7 +1,7 @@
 {
  "num": 22,
  "episode_id": "877327",
- "fetched_at": "2026-09-26T19:41:48Z",
+ "fetched_at": "2026-10-11T21:36:25Z",
  "data": {
   "id": 877327,
   "title": "41 - 43",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 14641,
+  "view_cnt": 14661,
   "like_cnt": 793,
   "comment_cnt": 66,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

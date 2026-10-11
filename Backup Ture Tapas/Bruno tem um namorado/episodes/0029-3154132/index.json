@@ -1,7 +1,7 @@
 {
  "num": 29,
  "episode_id": "3154132",
- "fetched_at": "2026-09-27T15:27:28Z",
+ "fetched_at": "2026-10-11T18:07:01Z",
  "data": {
   "id": 3154132,
   "title": "Pg 79 - 81",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4965,
-  "like_cnt": 248,
+  "view_cnt": 5046,
+  "like_cnt": 249,
   "comment_cnt": 31,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Foram Muitas perguntas!!! então ao invés de extra, vou responde-las de pouco em pouco no final dos eps. Se quiser mandar uma, pe só colocar PeR antes do comentario :3"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 91,
  "episode_id": "3752587",
- "fetched_at": "2026-09-27T15:34:45Z",
+ "fetched_at": "2026-10-11T18:13:21Z",
  "data": {
   "id": 3752587,
   "title": "Pg 152 - 154",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2324,
-  "like_cnt": 112,
+  "view_cnt": 2387,
+  "like_cnt": 114,
   "comment_cnt": 17,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Compre Bruno Tem Um Namorado na Amazon!!!"
  }
 }

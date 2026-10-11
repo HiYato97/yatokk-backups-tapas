@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "771989",
- "fetched_at": "2026-09-26T20:41:45Z",
+ "fetched_at": "2026-10-11T21:47:24Z",
  "data": {
   "id": 771989,
   "title": "Ep 2",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 12243,
-  "like_cnt": 675,
+  "view_cnt": 12268,
+  "like_cnt": 676,
   "comment_cnt": 39,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "As coisas acontecem rápido aqui"
  }
 }

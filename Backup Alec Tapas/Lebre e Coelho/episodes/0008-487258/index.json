@@ -1,7 +1,7 @@
 {
  "num": 8,
  "episode_id": "487258",
- "fetched_at": "2026-09-26T19:19:40Z",
+ "fetched_at": "2026-10-11T19:15:12Z",
  "data": {
   "id": 487258,
   "title": "Pags 31- 34",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 147787,
-  "like_cnt": 4027,
+  "view_cnt": 148295,
+  "like_cnt": 4031,
   "comment_cnt": 199,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Aaaaaa um dia eu volto a periodicidade normal.<br>\n<br>\nÉ gente, a partir de agora a treta vai esquentar mais."
  }
 }

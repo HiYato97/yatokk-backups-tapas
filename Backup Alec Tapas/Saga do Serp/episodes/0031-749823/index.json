@@ -1,7 +1,7 @@
 {
  "num": 31,
  "episode_id": "749823",
- "fetched_at": "2026-09-26T20:14:24Z",
+ "fetched_at": "2026-10-11T20:48:26Z",
  "data": {
   "id": 749823,
   "title": "Monstros - Parte 12",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33866,
-  "like_cnt": 1563,
+  "view_cnt": 33948,
+  "like_cnt": 1564,
   "comment_cnt": 37,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

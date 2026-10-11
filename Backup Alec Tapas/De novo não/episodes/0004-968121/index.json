@@ -1,7 +1,7 @@
 {
  "num": 4,
  "episode_id": "968121",
- "fetched_at": "2026-09-26T20:16:08Z",
+ "fetched_at": "2026-10-11T19:09:41Z",
  "data": {
   "id": 968121,
   "title": "4 - Rayane",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 19466,
-  "like_cnt": 1312,
+  "view_cnt": 19518,
+  "like_cnt": 1311,
   "comment_cnt": 77,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "R O B E R T O <br>\r\nC A R L O S"
  }
 }

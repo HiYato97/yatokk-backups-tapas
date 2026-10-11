@@ -1,6 +1,13 @@
 {
  "series_id": "40913",
- "fetched_at": "2026-09-26T19:17:21Z",
+ "title": "Lebre e Coelho",
+ "description": "NOW IN ENGLISH: https://tapastic.com/series/Hare-and-Bunny\r\nLeon acaba de achar seu verdadeiro amor, mas como sua falta de noção não o leva pra lugar nenhum, sobra pro seu amigo Franz lidas com os pepinos. Porém, nesse processo algo dá errado :x",
+ "views": "11,097,709",
+ "subscribers": "44,577",
+ "likes": "318,365",
+ "publish_date": "2016-08-17T06:16:54Z",
+ "last_updated_date": "2020-03-24T03:40:49Z",
+ "fetched_at": "2026-10-11T19:12:20Z",
  "data": {
   "id": 40913,
   "title": "Lebre e Coelho",
@@ -16,7 +23,7 @@
   "has_top_banner": true,
   "has_book_cover": false,
   "on_sale_now": false,
-  "thumbsup_cnt": 318039,
+  "thumbsup_cnt": 318365,
   "discount_rate": 0,
   "genre": {
    "id": 22,

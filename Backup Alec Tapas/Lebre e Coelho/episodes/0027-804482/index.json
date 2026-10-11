@@ -1,7 +1,7 @@
 {
  "num": 27,
  "episode_id": "804482",
- "fetched_at": "2026-09-26T19:29:06Z",
+ "fetched_at": "2026-10-11T20:08:36Z",
  "data": {
   "id": 804482,
   "title": "Larry e Coelho - 9 e 10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 123442,
-  "like_cnt": 3656,
+  "view_cnt": 123872,
+  "like_cnt": 3660,
   "comment_cnt": 173,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Atualizada todo dia 1, 10 e 20 de cada mês~<br>\r\nHelp nas cores por Alexandre Starling<br>\r\nE não começa o hate no Jimmy senão eu rodo a baiana e ameaço parar de postar<br>\r\nObrigado pela paciência, espero que goste õ/"
  }
 }

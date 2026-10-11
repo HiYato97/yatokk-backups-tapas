@@ -1,7 +1,7 @@
 {
  "num": 17,
  "episode_id": "3115177",
- "fetched_at": "2026-09-27T15:26:28Z",
+ "fetched_at": "2026-10-11T18:06:03Z",
  "data": {
   "id": 3115177,
   "title": "Pg 47 - 49",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6059,
-  "like_cnt": 260,
+  "view_cnt": 6155,
+  "like_cnt": 261,
   "comment_cnt": 21,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

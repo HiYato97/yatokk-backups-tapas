@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "621176",
- "fetched_at": "2026-09-26T19:30:58Z",
+ "fetched_at": "2026-10-11T21:46:23Z",
  "data": {
   "id": 621176,
   "title": "ZOROSCOPE #10",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 7515,
+  "view_cnt": 7534,
   "like_cnt": 280,
   "comment_cnt": 16,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "IT'S A BOY <br>\r\n(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
  }
 }

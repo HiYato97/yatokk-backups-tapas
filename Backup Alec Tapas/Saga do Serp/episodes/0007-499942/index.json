@@ -1,7 +1,7 @@
 {
  "num": 7,
  "episode_id": "499942",
- "fetched_at": "2026-09-26T20:09:51Z",
+ "fetched_at": "2026-10-11T20:36:45Z",
  "data": {
   "id": 499942,
   "title": "Parte 7",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 46272,
-  "like_cnt": 1800,
+  "view_cnt": 46372,
+  "like_cnt": 1801,
   "comment_cnt": 115,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 61,
  "episode_id": "1272744",
- "fetched_at": "2026-09-26T20:01:46Z",
+ "fetched_at": "2026-10-11T21:25:05Z",
  "data": {
   "id": 1272744,
   "title": "Calor",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 27518,
+  "view_cnt": 27601,
   "like_cnt": 1798,
   "comment_cnt": 155,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Boa tarde, estou de férias agora e vai ter conteúdo de novo~"
  }
 }

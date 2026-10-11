@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "3091234",
- "fetched_at": "2026-09-27T15:25:48Z",
+ "fetched_at": "2026-10-11T18:05:26Z",
  "data": {
   "id": 3091234,
   "title": "Pg 28 - 30",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6920,
-  "like_cnt": 288,
+  "view_cnt": 7038,
+  "like_cnt": 289,
   "comment_cnt": 32,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

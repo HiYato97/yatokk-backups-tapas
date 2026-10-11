@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "1954445",
- "fetched_at": "2026-09-27T14:08:29Z",
+ "fetched_at": "2026-10-11T18:48:05Z",
  "data": {
   "id": 1954445,
   "title": "1-10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 69085,
-  "like_cnt": 2468,
+  "view_cnt": 69481,
+  "like_cnt": 2470,
   "comment_cnt": 157,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "A JUSTIÇA TARDA MAS NÃO FALHA<br>\r\nSei que já tem muitos anos que prometo a história da Marceline, mas devagar se vai longe ne aoisdjfaoisdjf <br>\r\nTenho muita coisa pra falar sobre o processo mas vou deixar pra depois, por enquanto divirta-se com essa espécime exótica que é essa garota.<br>\r\nParticipação especial do do meu amigo João no design da Cris e nos desenhos dela <33<br>\r\nConfira o trabalho dele no twitter:<br>\r\n@quintaldojoao_)<br>"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 29,
  "episode_id": "779864",
- "fetched_at": "2026-09-26T20:02:31Z",
+ "fetched_at": "2026-10-11T20:58:58Z",
  "data": {
   "id": 779864,
   "title": "29",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 55296,
-  "like_cnt": 2437,
+  "view_cnt": 55377,
+  "like_cnt": 2436,
   "comment_cnt": 250,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eu fiz essa história a pelo menos uns 3/4 anos e eu sempre<br>\r\nSEMPRE<br>\r\nchoro nessa parte<br>\r\nperdão, são os filhotes."
  }
 }

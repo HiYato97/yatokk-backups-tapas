@@ -1,7 +1,7 @@
 {
  "num": 36,
  "episode_id": "963435",
- "fetched_at": "2026-09-26T19:45:36Z",
+ "fetched_at": "2026-10-11T21:40:12Z",
  "data": {
   "id": 963435,
   "title": "Larry and Bunny 6 - 10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 24746,
-  "like_cnt": 1002,
+  "view_cnt": 24790,
+  "like_cnt": 1001,
   "comment_cnt": 104,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Larry is an angel"
  }
 }

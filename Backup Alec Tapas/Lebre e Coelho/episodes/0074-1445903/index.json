@@ -1,7 +1,7 @@
 {
  "num": 74,
  "episode_id": "1445903",
- "fetched_at": "2026-09-26T19:46:16Z",
+ "fetched_at": "2026-10-11T20:30:32Z",
  "data": {
   "id": 1445903,
   "title": "Prólogo 23 - 26",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 101423,
-  "like_cnt": 3550,
+  "view_cnt": 101702,
+  "like_cnt": 3553,
   "comment_cnt": 184,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Aaaaa custou mas voltei<br>\r\nAndo atolado de trabalho mas estava com saudade dos meus filhos </3<br>\r\nNão quer esperar?<br>\r\nNo Apoia.se tem sempre páginas fresquinhas!<br>\r\nhttps://apoia.se/batatiras"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "3056908",
- "fetched_at": "2026-09-26T20:25:45Z",
+ "fetched_at": "2026-10-11T19:06:36Z",
  "data": {
   "id": 3056908,
   "title": "AS AVENTURAS DE TCHUTCHUCO - 4",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5135,
+  "view_cnt": 5184,
   "like_cnt": 277,
   "comment_cnt": 12,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mais que amigos, friends."
  }
 }

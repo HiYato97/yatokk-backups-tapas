@@ -1,7 +1,7 @@
 {
  "num": 6,
  "episode_id": "2410525",
- "fetched_at": "2026-09-26T20:20:43Z",
+ "fetched_at": "2026-10-11T19:08:05Z",
  "data": {
   "id": 2410525,
   "title": "#05",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17133,
-  "like_cnt": 918,
+  "view_cnt": 17213,
+  "like_cnt": 919,
   "comment_cnt": 29,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Feliz ano novo galere~<br>\r\nComeçando com tira nova que demorou porque eu resolvi inventar moda pra pintar rs<br>\r\nE uma boa notícia: dessa vez tenho mais tiras planejadas pra vir aí, então não vamos depender só do acaso<br>\r\nFique ligado ;D"
  }
 }

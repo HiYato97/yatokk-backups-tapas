@@ -1,7 +1,7 @@
 {
  "num": 25,
  "episode_id": "366515",
- "fetched_at": "2026-09-26T20:42:50Z",
+ "fetched_at": "2026-10-11T21:52:00Z",
  "data": {
   "id": 366515,
   "title": "Pag - 25",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 16833,
+  "view_cnt": 16854,
   "like_cnt": 735,
   "comment_cnt": 19,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

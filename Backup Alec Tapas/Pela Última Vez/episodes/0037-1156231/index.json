@@ -1,7 +1,7 @@
 {
  "num": 37,
  "episode_id": "1156231",
- "fetched_at": "2026-09-26T20:04:44Z",
+ "fetched_at": "2026-10-11T21:01:12Z",
  "data": {
   "id": 1156231,
   "title": "50 - 52",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 45569,
-  "like_cnt": 2163,
+  "view_cnt": 45654,
+  "like_cnt": 2162,
   "comment_cnt": 70,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Voltamos~<br>\r\n+14 páginas no Apoia.se!<br>\r\nhttps://apoia.se/batatiras"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 48,
  "episode_id": "3353445",
- "fetched_at": "2026-09-27T15:29:38Z",
+ "fetched_at": "2026-10-11T18:08:56Z",
  "data": {
   "id": 3353445,
   "title": "Pg 14 - 17",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4151,
-  "like_cnt": 185,
+  "view_cnt": 4229,
+  "like_cnt": 186,
   "comment_cnt": 15,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

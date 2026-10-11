@@ -1,7 +1,7 @@
 {
  "num": 39,
  "episode_id": "3207714",
- "fetched_at": "2026-09-27T15:28:28Z",
+ "fetched_at": "2026-10-11T18:08:00Z",
  "data": {
   "id": 3207714,
   "title": "Pg 116 - 124",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4940,
-  "like_cnt": 240,
+  "view_cnt": 5034,
+  "like_cnt": 242,
   "comment_cnt": 31,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Saiu!!!!!! Vamos!!!! Rumo a reta final"
  }
 }

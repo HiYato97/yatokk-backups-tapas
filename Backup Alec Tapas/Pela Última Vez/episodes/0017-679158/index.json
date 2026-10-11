@@ -1,7 +1,7 @@
 {
  "num": 17,
  "episode_id": "679158",
- "fetched_at": "2026-09-26T20:00:52Z",
+ "fetched_at": "2026-10-11T20:57:16Z",
  "data": {
   "id": 679158,
   "title": "17",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 54691,
+  "view_cnt": 54789,
   "like_cnt": 2060,
-  "comment_cnt": 158,
+  "comment_cnt": 157,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Apr 28, 2017",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

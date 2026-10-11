@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "1968805",
- "fetched_at": "2026-09-26T20:20:07Z",
+ "fetched_at": "2026-10-11T19:07:32Z",
  "data": {
   "id": 1968805,
   "title": "re: Zoróscopo",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 32456,
-  "like_cnt": 1112,
+  "view_cnt": 32594,
+  "like_cnt": 1114,
   "comment_cnt": 24,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "A mesma coisa mas tudo diferente. Todo mundo merece uma segunda chance, né?"
  }
 }

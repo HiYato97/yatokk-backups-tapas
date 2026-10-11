@@ -1,7 +1,7 @@
 {
  "num": 28,
  "episode_id": "749816",
- "fetched_at": "2026-09-26T20:14:01Z",
+ "fetched_at": "2026-10-11T20:48:03Z",
  "data": {
   "id": 749816,
   "title": "Monstros - Parte 9",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33655,
-  "like_cnt": 1551,
+  "view_cnt": 33737,
+  "like_cnt": 1552,
   "comment_cnt": 33,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "FOI RAPIDO NE?"
  }
 }

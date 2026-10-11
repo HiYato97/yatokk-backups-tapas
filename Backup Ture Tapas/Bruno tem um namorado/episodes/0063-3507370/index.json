@@ -1,7 +1,7 @@
 {
  "num": 63,
  "episode_id": "3507370",
- "fetched_at": "2026-09-27T15:31:21Z",
+ "fetched_at": "2026-10-11T18:10:19Z",
  "data": {
   "id": 3507370,
   "title": "Pg 67 - 69",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3190,
-  "like_cnt": 132,
+  "view_cnt": 3251,
+  "like_cnt": 133,
   "comment_cnt": 9,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

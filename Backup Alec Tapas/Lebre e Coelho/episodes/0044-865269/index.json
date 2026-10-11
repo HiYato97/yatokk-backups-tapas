@@ -1,7 +1,7 @@
 {
  "num": 44,
  "episode_id": "865269",
- "fetched_at": "2026-09-26T19:33:09Z",
+ "fetched_at": "2026-10-11T20:13:22Z",
  "data": {
   "id": 865269,
   "title": "Larry e Coelho 40 - 41",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 110927,
-  "like_cnt": 3391,
+  "view_cnt": 111298,
+  "like_cnt": 3395,
   "comment_cnt": 103,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "MESMO ESQUEMA, NÃO É AMANHÃ SE EU AINDA NÃO DORMI"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 27,
  "episode_id": "740279",
- "fetched_at": "2026-09-26T20:13:50Z",
+ "fetched_at": "2026-10-11T20:47:52Z",
  "data": {
   "id": 740279,
   "title": "Monstros - Parte 8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33589,
-  "like_cnt": 1619,
+  "view_cnt": 33673,
+  "like_cnt": 1620,
   "comment_cnt": 83,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Aaaaaaaaaaa faz 84 que eu queria tocar nesse assunto jesuuuuuuuusss ainda bem.<br>\r\nPerdão por esse corte mas certas coisas precisam de impacto (e eu preciso trabalhar, perdão)"
  }
 }

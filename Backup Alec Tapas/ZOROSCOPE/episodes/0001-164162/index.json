@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "164162",
- "fetched_at": "2026-09-26T19:30:16Z",
+ "fetched_at": "2026-10-11T21:45:36Z",
  "data": {
   "id": 164162,
   "title": "ZOROSCOPE #01",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 31609,
+  "view_cnt": 31668,
   "like_cnt": 500,
   "comment_cnt": 4,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

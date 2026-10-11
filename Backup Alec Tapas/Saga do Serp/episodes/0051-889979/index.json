@@ -1,7 +1,7 @@
 {
  "num": 51,
  "episode_id": "889979",
- "fetched_at": "2026-09-26T20:18:20Z",
+ "fetched_at": "2026-10-11T20:52:08Z",
  "data": {
   "id": 889979,
   "title": "Petit Zoróscopo - Opostos",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 39888,
-  "like_cnt": 1850,
+  "view_cnt": 39965,
+  "like_cnt": 1851,
   "comment_cnt": 122,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Momentinho capricancer porque me bateu essa ideia ontem asoijaoi<br>\r\nSó uma descontração, logo volto com o arco~"
  }
 }

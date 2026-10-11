@@ -1,7 +1,7 @@
 {
  "num": 51,
  "episode_id": "1229216",
- "fetched_at": "2026-09-26T20:09:33Z",
+ "fetched_at": "2026-10-11T21:10:47Z",
  "data": {
   "id": 1229216,
   "title": "98 - 100",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48772,
-  "like_cnt": 2541,
+  "view_cnt": 48872,
+  "like_cnt": 2540,
   "comment_cnt": 203,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "PRÓXIMA ATUALIZAÇÃO: 09/11<br>\r\nNão quer esperar? <br>\r\nHistória completa + extras no Apoia.se<br>\r\nApenas 4$!<br>\r\nhttps://apoia.se/batatiras"
  }
 }

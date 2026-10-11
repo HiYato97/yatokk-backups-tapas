@@ -1,7 +1,7 @@
 {
  "num": 44,
  "episode_id": "870178",
- "fetched_at": "2026-09-26T20:16:57Z",
+ "fetched_at": "2026-10-11T20:50:56Z",
  "data": {
   "id": 870178,
   "title": "Perspectivas - parte 10",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34150,
-  "like_cnt": 1627,
+  "view_cnt": 34243,
+  "like_cnt": 1628,
   "comment_cnt": 33,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Voltamoooooos <br>\r\neu demorei uns 4 dias pra fazer essa ultima att, ta enorme <br>\r\nMAS TA UMA graça"
  }
 }

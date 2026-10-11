@@ -1,7 +1,7 @@
 {
  "num": 45,
  "episode_id": "1192486",
- "fetched_at": "2026-09-26T20:07:19Z",
+ "fetched_at": "2026-10-11T21:08:39Z",
  "data": {
   "id": 1192486,
   "title": "75 - 78",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48356,
-  "like_cnt": 2320,
+  "view_cnt": 48441,
+  "like_cnt": 2319,
   "comment_cnt": 81,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Ajude na vaquinha para a impressão de Pela Última Vez e ajude abrigos de animais <3<br>\r\nvakinha.com.br/vaquinha/impressao-de-pela-ultima-vez<br>\n<br>\nNão quer esperar? Com apenas 4 reais você tem acesso até a página 94! (E mais em breve)<br>\r\napoia.se/batatiras"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 85,
  "episode_id": "3716500",
- "fetched_at": "2026-09-27T15:34:05Z",
+ "fetched_at": "2026-10-11T18:12:41Z",
  "data": {
   "id": 3716500,
   "title": "Pg 134 - 139",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2587,
-  "like_cnt": 120,
+  "view_cnt": 2641,
+  "like_cnt": 122,
   "comment_cnt": 36,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Oi pessoal! Queria vir me desculpar pela demora entre os episodios... estou passando por uma fase conturbada, embora tudo corra bem eu tenho me perdido no medo e ansiedade do futuro, e acredito que essa fase ruim esteja atrapalhando minha produtividade. Estou tentando o meu melhor, obrigado a todo carinho e a todos os que leem minha comic, eu amo vocês."
  }
 }

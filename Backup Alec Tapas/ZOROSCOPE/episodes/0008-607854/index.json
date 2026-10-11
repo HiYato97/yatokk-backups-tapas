@@ -1,7 +1,7 @@
 {
  "num": 8,
  "episode_id": "607854",
- "fetched_at": "2026-09-26T19:30:48Z",
+ "fetched_at": "2026-10-11T21:46:12Z",
  "data": {
   "id": 607854,
   "title": "ZOROSCOPE #08",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6246,
+  "view_cnt": 6266,
   "like_cnt": 268,
   "comment_cnt": 16,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

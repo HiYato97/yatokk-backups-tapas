@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "618875",
- "fetched_at": "2026-09-26T19:39:00Z",
+ "fetched_at": "2026-10-11T21:34:02Z",
  "data": {
   "id": 618875,
   "title": "Pags 11 - 14",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 22794,
+  "view_cnt": 22822,
   "like_cnt": 1090,
   "comment_cnt": 20,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Translator: Helem Blum<br>\r\nIf you find any typos, please let us know õ/"
  }
 }

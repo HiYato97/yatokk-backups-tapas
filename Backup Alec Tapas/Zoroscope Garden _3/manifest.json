@@ -1,0 +1,54 @@
+{
+ "series_id": "28572",
+ "created": "2026-10-11T21:52:46Z",
+ "updated": "2026-10-11T21:53:33Z",
+ "episodes": {
+  "287694": {
+   "num": 1,
+   "episode_id": "287694",
+   "ts": "2026-10-11T21:53:16Z",
+   "status": "complete",
+   "title": " Revenge",
+   "free": true,
+   "open_comments": true,
+   "comment_cnt": 39,
+   "views": 35947,
+   "likes": 1306,
+   "creator_note": "",
+   "images": 1,
+   "images_ok": 1,
+   "images_complete": true,
+   "content_saved": true,
+   "article_bytes": 997,
+   "comments": 37,
+   "replies": 2
+  },
+  "295394": {
+   "num": 2,
+   "episode_id": "295394",
+   "ts": "2026-10-11T21:53:24Z",
+   "status": "complete",
+   "title": "Invite",
+   "free": true,
+   "open_comments": true,
+   "comment_cnt": 53,
+   "views": 32766,
+   "likes": 1439,
+   "creator_note": "",
+   "images": 2,
+   "images_ok": 2,
+   "images_complete": true,
+   "content_saved": true,
+   "article_bytes": 1853,
+   "comments": 39,
+   "replies": 14
+  }
+ },
+ "gaps": [],
+ "warnings": [],
+ "episode_ids": [
+  "287694",
+  "295394"
+ ],
+ "series_title": "Zoroscope Garden <3"
+}

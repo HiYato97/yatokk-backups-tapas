@@ -1,7 +1,7 @@
 {
  "num": 13,
  "episode_id": "605110",
- "fetched_at": "2026-09-26T19:53:02Z",
+ "fetched_at": "2026-10-11T21:16:32Z",
  "data": {
   "id": 605110,
   "title": "#13",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48302,
-  "like_cnt": 1795,
+  "view_cnt": 48400,
+  "like_cnt": 1796,
   "comment_cnt": 79,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Disfarce perfeito"
  }
 }

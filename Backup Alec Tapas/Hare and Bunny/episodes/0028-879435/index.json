@@ -1,7 +1,7 @@
 {
  "num": 28,
  "episode_id": "879435",
- "fetched_at": "2026-09-26T19:42:54Z",
+ "fetched_at": "2026-10-11T21:37:32Z",
  "data": {
   "id": 879435,
   "title": "58 - 60",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15349,
-  "like_cnt": 825,
+  "view_cnt": 15376,
+  "like_cnt": 824,
   "comment_cnt": 18,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Okay, my friend just translated this far.<br>\r\nWhen she sends more, I'll edit and post more~"
  }
 }

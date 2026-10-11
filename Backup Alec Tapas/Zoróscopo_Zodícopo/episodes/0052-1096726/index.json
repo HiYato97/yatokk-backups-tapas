@@ -1,7 +1,7 @@
 {
  "num": 52,
  "episode_id": "1096726",
- "fetched_at": "2026-09-26T19:59:09Z",
+ "fetched_at": "2026-10-11T21:22:41Z",
  "data": {
   "id": 1096726,
   "title": "Zoróscopo #36",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33128,
-  "like_cnt": 1679,
+  "view_cnt": 33223,
+  "like_cnt": 1681,
   "comment_cnt": 64,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Ninguém é de ferro gente.<br>\n<br>\nVOLTEI<br>\r\nAjude no Apoia.Se pra ter acesso às tiras antecipadas~"
  }
 }

@@ -37,6 +37,12 @@ body.light {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
+/* SCROLLBARS ESCURAS */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--bg-body); }
+*::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #444450; }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-body);
@@ -167,6 +173,21 @@ body {
 }
 .conteudo.expandido { margin-left: 0; }
 
+.series-banner {
+    max-width: 850px;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+.series-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
 .series-header {
     max-width: 850px;
     margin: 0 auto 30px auto;
@@ -179,15 +200,14 @@ body {
     align-items: flex-start;
 }
 .series-thumb {
-    width: 130px;
-    height: 130px;
+    max-width: 160px;
+    height: auto;
     border-radius: 6px;
-    object-fit: cover;
     border: 1px solid var(--border-color);
 }
 .series-info { flex: 1; }
 .series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
-.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .series-genre {
     display: inline-block;
     background: var(--border-color);
@@ -210,15 +230,81 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.capitulo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
 .capitulo h2 {
     font-size: 1.15rem;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+}
+.capitulo-data {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+/* CREATOR NOTE ESTILOS */
+.creator-note-box {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+.creator-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+    flex-shrink: 0;
+}
+.creator-avatar-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #222;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.creator-content {
+    flex: 1;
+}
+.creator-info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.creator-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.creator-tag {
+    background: #d97706;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.creator-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
 
 .comentarios-wrapper { margin-top: 15px; }
 .btn-toggle-comentarios {
@@ -242,9 +328,26 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
     padding: 12px;
 }
 .comentarios-conteudo.aberto { display: block !important; }
+
+.comentarios-filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.comentarios-filtros select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+    flex: 1;
+}
+
 .comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
 .autor { font-weight: 600; color: var(--text-primary); }
-.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.badge-criador { background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; }
 .comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
 .comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
 .replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
@@ -282,6 +385,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
 .modal-body { padding: 16px; overflow-y: auto; }
+.btn-fechar-modal { background: transparent; border: none; color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
 
 /* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
@@ -325,8 +429,10 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
+body.modo-imersivo .series-banner,
 body.modo-imersivo .series-header,
-body.modo-imersivo .capitulo h2,
+body.modo-imersivo .capitulo-header,
+body.modo-imersivo .creator-note-box,
 body.modo-imersivo .comentarios-wrapper,
 body.modo-imersivo .nav-botoes,
 body.modo-imersivo #topoBtn,
@@ -495,7 +601,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
 <body id="topo">
     <div id="versao">
-        <span>Série: <b>For the Last Time</b> | Gerado em 10/10/2026 17:41</span>
+        <span>Série: <b>For the Last Time</b> | Gerado em 11/10/2026 20:05</span>
         
     <button class="btn-info-modal" onclick="document.getElementById('modalInfoProj').classList.add('visivel')" title="Informações do Projeto">ⓘ</button>
     
@@ -515,7 +621,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
             <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
-                <option value="1">Cap. 1 - 0001-650952</option><option value="2">Cap. 2 - 0002-650956</option><option value="3">Cap. 3 - 0003-650958</option><option value="4">Cap. 4 - 0004-650959</option><option value="5">Cap. 5 - 0005-855553</option><option value="6">Cap. 6 - 0006-855556</option><option value="7">Cap. 7 - 0007-855557</option><option value="8">Cap. 8 - 0008-855558</option><option value="9">Cap. 9 - 0009-855562</option><option value="10">Cap. 10 - 0010-855569</option><option value="11">Cap. 11 - 0011-855570</option><option value="12">Cap. 12 - 0012-855571</option><option value="13">Cap. 13 - 0013-857323</option><option value="14">Cap. 14 - 0014-857324</option><option value="15">Cap. 15 - 0015-857328</option><option value="16">Cap. 16 - 0016-857330</option><option value="17">Cap. 17 - 0017-867719</option><option value="18">Cap. 18 - 0018-867721</option><option value="19">Cap. 19 - 0019-867723</option><option value="20">Cap. 20 - 0020-867724</option><option value="21">Cap. 21 - 0021-867744</option><option value="22">Cap. 22 - 0022-871440</option><option value="23">Cap. 23 - 0023-871442</option><option value="24">Cap. 24 - 0024-871447</option><option value="25">Cap. 25 - 0025-877199</option><option value="26">Cap. 26 - 0026-877206</option><option value="27">Cap. 27 - 0027-877208</option><option value="28">Cap. 28 - 0028-877210</option><option value="29">Cap. 29 - 0029-877215</option>
+                <option value="1">Cap. 1 - 1</option><option value="2">Cap. 2 - 2</option><option value="3">Cap. 3 - 3</option><option value="4">Cap. 4 - 4</option><option value="5">Cap. 5 - 5</option><option value="6">Cap. 6 - 6</option><option value="7">Cap. 7 - 7</option><option value="8">Cap. 8 - 8</option><option value="9">Cap. 9 - 9</option><option value="10">Cap. 10 - 10</option><option value="11">Cap. 11 - 11</option><option value="12">Cap. 12 - 12</option><option value="13">Cap. 13 - 13</option><option value="14">Cap. 14 - 14</option><option value="15">Cap. 15 - 15</option><option value="16">Cap. 16 - 16</option><option value="17">Cap. 17 - 17</option><option value="18">Cap. 18 - 18</option><option value="19">Cap. 19 - 19</option><option value="20">Cap. 20 - 20</option><option value="21">Cap. 21 - 21</option><option value="22">Cap. 22 - 22</option><option value="23">Cap. 23 - 23</option><option value="24">Cap. 24 - 24</option><option value="25">Cap. 25 - 25</option><option value="26">Cap. 26 - 26</option><option value="27">Cap. 27 - 27</option><option value="28">Cap. 28 - 28</option><option value="29">Cap. 29 - 29</option>
             </select>
 
             <h3>Opções da Página</h3>
@@ -529,23 +635,28 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         </div>
 
         <h2>Índice</h2>
-        <ul><li><a href="#cap1">Cap. 1 - 0001-650952</a></li><li><a href="#cap2">Cap. 2 - 0002-650956</a></li><li><a href="#cap3">Cap. 3 - 0003-650958</a></li><li><a href="#cap4">Cap. 4 - 0004-650959</a></li><li><a href="#cap5">Cap. 5 - 0005-855553</a></li><li><a href="#cap6">Cap. 6 - 0006-855556</a></li><li><a href="#cap7">Cap. 7 - 0007-855557</a></li><li><a href="#cap8">Cap. 8 - 0008-855558</a></li><li><a href="#cap9">Cap. 9 - 0009-855562</a></li><li><a href="#cap10">Cap. 10 - 0010-855569</a></li><li><a href="#cap11">Cap. 11 - 0011-855570</a></li><li><a href="#cap12">Cap. 12 - 0012-855571</a></li><li><a href="#cap13">Cap. 13 - 0013-857323</a></li><li><a href="#cap14">Cap. 14 - 0014-857324</a></li><li><a href="#cap15">Cap. 15 - 0015-857328</a></li><li><a href="#cap16">Cap. 16 - 0016-857330</a></li><li><a href="#cap17">Cap. 17 - 0017-867719</a></li><li><a href="#cap18">Cap. 18 - 0018-867721</a></li><li><a href="#cap19">Cap. 19 - 0019-867723</a></li><li><a href="#cap20">Cap. 20 - 0020-867724</a></li><li><a href="#cap21">Cap. 21 - 0021-867744</a></li><li><a href="#cap22">Cap. 22 - 0022-871440</a></li><li><a href="#cap23">Cap. 23 - 0023-871442</a></li><li><a href="#cap24">Cap. 24 - 0024-871447</a></li><li><a href="#cap25">Cap. 25 - 0025-877199</a></li><li><a href="#cap26">Cap. 26 - 0026-877206</a></li><li><a href="#cap27">Cap. 27 - 0027-877208</a></li><li><a href="#cap28">Cap. 28 - 0028-877210</a></li><li><a href="#cap29">Cap. 29 - 0029-877215</a></li></ul>
+        <ul><li><a href="#cap1">Cap. 1 - 1</a></li><li><a href="#cap2">Cap. 2 - 2</a></li><li><a href="#cap3">Cap. 3 - 3</a></li><li><a href="#cap4">Cap. 4 - 4</a></li><li><a href="#cap5">Cap. 5 - 5</a></li><li><a href="#cap6">Cap. 6 - 6</a></li><li><a href="#cap7">Cap. 7 - 7</a></li><li><a href="#cap8">Cap. 8 - 8</a></li><li><a href="#cap9">Cap. 9 - 9</a></li><li><a href="#cap10">Cap. 10 - 10</a></li><li><a href="#cap11">Cap. 11 - 11</a></li><li><a href="#cap12">Cap. 12 - 12</a></li><li><a href="#cap13">Cap. 13 - 13</a></li><li><a href="#cap14">Cap. 14 - 14</a></li><li><a href="#cap15">Cap. 15 - 15</a></li><li><a href="#cap16">Cap. 16 - 16</a></li><li><a href="#cap17">Cap. 17 - 17</a></li><li><a href="#cap18">Cap. 18 - 18</a></li><li><a href="#cap19">Cap. 19 - 19</a></li><li><a href="#cap20">Cap. 20 - 20</a></li><li><a href="#cap21">Cap. 21 - 21</a></li><li><a href="#cap22">Cap. 22 - 22</a></li><li><a href="#cap23">Cap. 23 - 23</a></li><li><a href="#cap24">Cap. 24 - 24</a></li><li><a href="#cap25">Cap. 25 - 25</a></li><li><a href="#cap26">Cap. 26 - 26</a></li><li><a href="#cap27">Cap. 27 - 27</a></li><li><a href="#cap28">Cap. 28 - 28</a></li><li><a href="#cap29">Cap. 29 - 29</a></li></ul>
     </div>
 
     <div class="conteudo expandido" id="conteudo">
         
+    
     <div class="series-header">
-        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <img src="series-thumb.jpg" class="series-thumb" alt="Capa">
         <div class="series-info">
             <h1 class="series-title">For the Last Time</h1>
-            <div class="series-meta"><span class="series-genre">Romance</span> ❤ 6338 curtidas</div>
-            <div class="series-desc"></div>
+            <div class="series-meta"><span class="series-genre">Romance</span> • 👁️ 134,556 views • 👥 2,242 inscritos • ❤️ 6,338 likes • 📅 Publicado em 03/04/2017</div>
+            <div class="series-desc">Nothing is forever...<br>PORTUGUÊS: <br>Pela Última Vez<br>https://tapastic.com/series/puv</div>
         </div>
     </div>
         
         <div class="capitulo" id="cap1">
-            <h2>Capítulo 1 - 0001-650952</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 1 - 1</h2>
+                <span class="capitulo-data">03/04/2017</span>
+            </div>
             <img src="episodes/0001-650952/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
@@ -553,8 +664,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap1">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap1" onchange="ordenarComentariosNaSecao(this, 'lista-cap1')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap1" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">hedwig</span> 
         </div>
@@ -562,7 +681,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 12, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="23" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">wtflife</span> 
         </div>
@@ -570,7 +689,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 10, 2017 • ❤️ 23</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Gay1ien</span> 
         </div>
@@ -578,7 +697,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 15, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">RainbowHigh</span> 
         </div>
@@ -595,8 +714,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap2">
-            <h2>Capítulo 2 - 0002-650956</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 2 - 2</h2>
+                <span class="capitulo-data">03/04/2017</span>
+            </div>
             <img src="episodes/0002-650956/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
@@ -604,15 +727,23 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap2">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap2" onchange="ordenarComentariosNaSecao(this, 'lista-cap2')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap2" style="list-style:none;">
+    <li class="comentario-item" data-likes="18" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">RainbowHigh</span> 
         </div>
         <div class="comentario-texto">Smells suspicious... *Puts magnifying glass against the screen* What are you hiding little one...</div>
         <div class="comentario-meta">Apr 03, 2017 • ❤️ 18</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -630,8 +761,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap3">
-            <h2>Capítulo 3 - 0003-650958</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 3 - 3</h2>
+                <span class="capitulo-data">03/04/2017</span>
+            </div>
             <img src="episodes/0003-650958/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
@@ -639,8 +774,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap3">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap3" onchange="ordenarComentariosNaSecao(this, 'lista-cap3')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap3" style="list-style:none;">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">hedwig</span> 
         </div>
@@ -648,7 +791,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 12, 2019 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Tsamu</span> 
         </div>
@@ -656,7 +799,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 03, 2017 • ❤️ 10</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">RainbowHigh</span> 
         </div>
@@ -673,8 +816,12 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap4">
-            <h2>Capítulo 4 - 0004-650959</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 4 - 4</h2>
+                <span class="capitulo-data">03/04/2017</span>
+            </div>
             <img src="episodes/0004-650959/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
@@ -682,8 +829,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap4">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap4" onchange="ordenarComentariosNaSecao(this, 'lista-cap4')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap4" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">luadark26</span> 
         </div>
@@ -691,7 +846,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Dec 12, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">aygusu</span> 
         </div>
@@ -699,7 +854,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jul 02, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">aygusu</span> 
         </div>
@@ -707,7 +862,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jul 02, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">abe-_-</span> 
         </div>
@@ -715,14 +870,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jun 25, 2017 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Fujoshi</span> 
         </div>
         <div class="comentario-texto">Wow, this comic is so beautiful AHAHAHAH I LOVE IT</div>
         <div class="comentario-meta">May 26, 2017 • ❤️ 9</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">The Truth Tea</span> 
         </div>
@@ -731,7 +886,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">fredttangi</span> 
         </div>
@@ -739,7 +894,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 04, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">D Inside</span> 
         </div>
@@ -747,7 +902,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">lilyismysoul</span> 
         </div>
@@ -757,7 +912,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Apr 03, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">RainbowHigh</span> 
         </div>
@@ -765,7 +920,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Apr 03, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Maia banana</span> 
         </div>
@@ -773,7 +928,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Apr 03, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">minenime4thewin</span> 
         </div>
@@ -781,14 +936,14 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Apr 02, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="24" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Azur</span> 
         </div>
         <div class="comentario-texto">Wow, cupid sure has a massive crossbow to sot that big arrow....</div>
         <div class="comentario-meta">Apr 02, 2017 • ❤️ 24</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Emmi-san</span> 
         </div>
@@ -806,8 +961,24 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap5">
-            <h2>Capítulo 5 - 0005-855553</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 5 - 5</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0005-855553/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">I'M BACK<br>
+SORRY FOR THE DELAY!<br>
+I'm asking for my friends translate for me cause my english is a garbage.<br></div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
@@ -815,8 +986,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap5">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap5" onchange="ordenarComentariosNaSecao(this, 'lista-cap5')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap5" style="list-style:none;">
+    <li class="comentario-item" data-likes="12" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Nikol Dreamy</span> 
         </div>
@@ -833,8 +1012,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap6">
-            <h2>Capítulo 6 - 0006-855556</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 6 - 6</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0006-855556/images/panel-001.png" alt="panel-001.png">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
@@ -842,8 +1025,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap6">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap6" onchange="ordenarComentariosNaSecao(this, 'lista-cap6')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap6" style="list-style:none;">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">shakinghands</span> 
         </div>
@@ -851,7 +1042,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="13" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">LazyReader</span> 
         </div>
@@ -868,8 +1059,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap7">
-            <h2>Capítulo 7 - 0007-855557</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 7 - 7</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0007-855557/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap7', this)">
@@ -877,8 +1072,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap7">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap7" onchange="ordenarComentariosNaSecao(this, 'lista-cap7')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap7" style="list-style:none;">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">delaplanechristophe</span> 
         </div>
@@ -886,7 +1089,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 30, 2018 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">colourfulhues787</span> 
         </div>
@@ -894,14 +1097,14 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Jan 02, 2018 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="21" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Lilgayboy45</span> 
         </div>
         <div class="comentario-texto">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
         <div class="comentario-meta">Oct 24, 2017 • ❤️ 21</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">N0DereDan</span> 
         </div>
@@ -919,8 +1122,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap8">
-            <h2>Capítulo 8 - 0008-855558</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 8 - 8</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0008-855558/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap8', this)">
@@ -928,8 +1135,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap8">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap8" onchange="ordenarComentariosNaSecao(this, 'lista-cap8')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap8" style="list-style:none;">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">curious case of dum</span> 
         </div>
@@ -946,8 +1161,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap9">
-            <h2>Capítulo 9 - 0009-855562</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 9 - 9</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0009-855562/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap9', this)">
@@ -955,8 +1174,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap9">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap9" onchange="ordenarComentariosNaSecao(this, 'lista-cap9')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap9" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Arika_uzumaki923Idk</span> 
         </div>
@@ -964,7 +1191,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Dec 08, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Cina.Monroe</span> 
         </div>
@@ -972,7 +1199,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Nov 23, 2018 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="20" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Mimi2399</span> 
         </div>
@@ -989,8 +1216,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap10">
-            <h2>Capítulo 10 - 0010-855569</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 10 - 10</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0010-855569/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap10', this)">
@@ -998,8 +1229,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap10">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap10" onchange="ordenarComentariosNaSecao(this, 'lista-cap10')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap10" style="list-style:none;">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Jojoline Carlin</span> 
         </div>
@@ -1007,7 +1246,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Mar 22, 2019 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">dndex</span> 
         </div>
@@ -1015,7 +1254,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Mar 01, 2019 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="20" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Queen Stella</span> 
         </div>
@@ -1032,8 +1271,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap11">
-            <h2>Capítulo 11 - 0011-855570</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 11 - 11</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0011-855570/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap11', this)">
@@ -1041,8 +1284,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap11">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap11" onchange="ordenarComentariosNaSecao(this, 'lista-cap11')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap11" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">tsunderetheavenger</span> 
         </div>
@@ -1050,7 +1301,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Aug 24, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Mina Toshi</span> 
         </div>
@@ -1058,7 +1309,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 13, 2018 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Rue B.</span> 
         </div>
@@ -1066,7 +1317,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Apr 15, 2018 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Little Person</span> 
         </div>
@@ -1083,8 +1334,12 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             </div>
         </div>
         <div class="capitulo" id="cap12">
-            <h2>Capítulo 12 - 0012-855571</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 12 - 12</h2>
+                <span class="capitulo-data">11/10/2017</span>
+            </div>
             <img src="episodes/0012-855571/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap12', this)">
@@ -1092,8 +1347,16 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap12">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap12" onchange="ordenarComentariosNaSecao(this, 'lista-cap12')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap12" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">pikachu</span> 
         </div>
@@ -1101,7 +1364,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 13, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Gina</span> 
         </div>
@@ -1109,7 +1372,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">MangaloverXD</span> 
         </div>
@@ -1117,7 +1380,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">John Calvin</span> 
         </div>
@@ -1125,7 +1388,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">shakinghands</span> 
         </div>
@@ -1133,7 +1396,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Freeze</span> 
         </div>
@@ -1141,7 +1404,7 @@ Can a person fall in love with a comic? 'Cause I think I am 💚💚</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="21" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Tori</span> 
         </div>
@@ -1151,7 +1414,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 21</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Kidori</span> 
         </div>
@@ -1159,7 +1422,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">kitkat</span> 
         </div>
@@ -1167,7 +1430,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Natsonariot</span> 
         </div>
@@ -1175,7 +1438,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Mimi2399</span> 
         </div>
@@ -1183,7 +1446,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="11" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">bartenderburger</span> 
         </div>
@@ -1191,7 +1454,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 11</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">nako</span> 
         </div>
@@ -1199,7 +1462,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1207,7 +1470,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="15" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">LazyReader</span> 
         </div>
@@ -1215,14 +1478,14 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 15</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Renew</span> 
         </div>
         <div class="comentario-texto">why did you have to stop n o w omigod no</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 3</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">paintsmonkey</span> 
         </div>
@@ -1230,7 +1493,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Renew</span> 
         </div>
@@ -1248,8 +1511,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap13">
-            <h2>Capítulo 13 - 0013-857323</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 13 - 13</h2>
+                <span class="capitulo-data">13/10/2017</span>
+            </div>
             <img src="episodes/0013-857323/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap13', this)">
@@ -1257,8 +1524,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap13">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap13" onchange="ordenarComentariosNaSecao(this, 'lista-cap13')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap13" style="list-style:none;">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Red</span> 
         </div>
@@ -1266,7 +1541,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Freeze</span> 
         </div>
@@ -1274,7 +1549,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="17" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">LazyReader</span> 
         </div>
@@ -1291,8 +1566,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap14">
-            <h2>Capítulo 14 - 0014-857324</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 14 - 14</h2>
+                <span class="capitulo-data">13/10/2017</span>
+            </div>
             <img src="episodes/0014-857324/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap14', this)">
@@ -1300,8 +1579,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap14">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap14" onchange="ordenarComentariosNaSecao(this, 'lista-cap14')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap14" style="list-style:none;">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">SonyD</span> 
         </div>
@@ -1309,7 +1596,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 14, 2017 • ❤️ 10</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="13" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Red</span> 
         </div>
@@ -1326,8 +1613,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap15">
-            <h2>Capítulo 15 - 0015-857328</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 15 - 15</h2>
+                <span class="capitulo-data">13/10/2017</span>
+            </div>
             <img src="episodes/0015-857328/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap15', this)">
@@ -1335,8 +1626,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap15">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap15" onchange="ordenarComentariosNaSecao(this, 'lista-cap15')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap15" style="list-style:none;">
+    <li class="comentario-item" data-likes="17" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">shakinghands</span> 
         </div>
@@ -1344,7 +1643,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 14, 2017 • ❤️ 17</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">nako</span> 
         </div>
@@ -1352,7 +1651,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 13, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Red</span> 
         </div>
@@ -1360,7 +1659,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Freeze</span> 
         </div>
@@ -1377,8 +1676,22 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap16">
-            <h2>Capítulo 16 - 0016-857330</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 16 - 16</h2>
+                <span class="capitulo-data">13/10/2017</span>
+            </div>
             <img src="episodes/0016-857330/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">:(</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap16', this)">
@@ -1386,8 +1699,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap16">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap16" onchange="ordenarComentariosNaSecao(this, 'lista-cap16')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap16" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Trash™</span> 
         </div>
@@ -1395,14 +1716,14 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 17, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="16" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">sghyutreopihg</span> 
         </div>
         <div class="comentario-texto">I’m not crying ur crying</div>
         <div class="comentario-meta">Oct 16, 2017 • ❤️ 16</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">WolfVolk</span> 
         </div>
@@ -1410,7 +1731,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Mar 30, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Usernamen</span> 
         </div>
@@ -1419,7 +1740,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">shakinghands</span> 
         </div>
@@ -1427,7 +1748,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 14, 2017 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1435,7 +1756,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 13, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">grumpy muffin</span> 
         </div>
@@ -1443,7 +1764,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 13, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">LazyReader</span> 
         </div>
@@ -1460,8 +1781,22 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap17">
-            <h2>Capítulo 17 - 0017-867719</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 17 - 17</h2>
+                <span class="capitulo-data">23/10/2017</span>
+            </div>
             <img src="episodes/0017-867719/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">I'm back~</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap17', this)">
@@ -1469,8 +1804,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap17">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap17" onchange="ordenarComentariosNaSecao(this, 'lista-cap17')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap17" style="list-style:none;">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">caocreations</span> 
         </div>
@@ -1478,7 +1821,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Feb 27, 2018 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
@@ -1495,8 +1838,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap18">
-            <h2>Capítulo 18 - 0018-867721</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 18 - 18</h2>
+                <span class="capitulo-data">23/10/2017</span>
+            </div>
             <img src="episodes/0018-867721/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap18', this)">
@@ -1504,15 +1851,23 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap18">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap18" onchange="ordenarComentariosNaSecao(this, 'lista-cap18')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap18" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
         <div class="comentario-texto">|ying and yang thingys used dazzling gleam!|</div>
         <div class="comentario-meta">Feb 21, 2024</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
@@ -1521,7 +1876,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">magitie</span> 
         </div>
@@ -1529,7 +1884,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Nov 10, 2018 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Ravenwashere1776</span> 
         </div>
@@ -1546,8 +1901,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap19">
-            <h2>Capítulo 19 - 0019-867723</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 19 - 19</h2>
+                <span class="capitulo-data">23/10/2017</span>
+            </div>
             <img src="episodes/0019-867723/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap19', this)">
@@ -1555,8 +1914,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap19">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap19" onchange="ordenarComentariosNaSecao(this, 'lista-cap19')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap19" style="list-style:none;">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Tori</span> 
         </div>
@@ -1573,8 +1940,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap20">
-            <h2>Capítulo 20 - 0020-867724</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 20 - 20</h2>
+                <span class="capitulo-data">23/10/2017</span>
+            </div>
             <img src="episodes/0020-867724/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap20', this)">
@@ -1582,8 +1953,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap20">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap20" onchange="ordenarComentariosNaSecao(this, 'lista-cap20')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap20" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
@@ -1591,7 +1970,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">N0DereDan</span> 
         </div>
@@ -1599,7 +1978,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Nov 14, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Renew</span> 
         </div>
@@ -1607,14 +1986,14 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Tori</span> 
         </div>
         <div class="comentario-texto">OHHHHH</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 7</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Little Person</span> 
         </div>
@@ -1632,8 +2011,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap21">
-            <h2>Capítulo 21 - 0021-867744</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 21 - 21</h2>
+                <span class="capitulo-data">23/10/2017</span>
+            </div>
             <img src="episodes/0021-867744/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap21', this)">
@@ -1641,8 +2024,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap21">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap21" onchange="ordenarComentariosNaSecao(this, 'lista-cap21')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap21" style="list-style:none;">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">kitkat</span> 
         </div>
@@ -1650,14 +2041,14 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">ImadokiLife</span> 
         </div>
         <div class="comentario-texto">Cliffhangers make me cri</div>
         <div class="comentario-meta">Oct 23, 2017 • ❤️ 5</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Ravenwashere1776</span> 
         </div>
@@ -1666,7 +2057,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="11" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1683,8 +2074,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap22">
-            <h2>Capítulo 22 - 0022-871440</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 22 - 22</h2>
+                <span class="capitulo-data">27/10/2017</span>
+            </div>
             <img src="episodes/0022-871440/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap22', this)">
@@ -1692,15 +2087,23 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap22">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap22" onchange="ordenarComentariosNaSecao(this, 'lista-cap22')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap22" style="list-style:none;">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Gabel</span> 
         </div>
         <div class="comentario-texto">Cara eu corri achando que era o em PT</div>
         <div class="comentario-meta">Oct 27, 2017 • ❤️ 6</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">T.I.B Matt</span> 
         </div>
@@ -1718,8 +2121,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap23">
-            <h2>Capítulo 23 - 0023-871442</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 23 - 23</h2>
+                <span class="capitulo-data">27/10/2017</span>
+            </div>
             <img src="episodes/0023-871442/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap23', this)">
@@ -1727,8 +2134,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap23">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap23" onchange="ordenarComentariosNaSecao(this, 'lista-cap23')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap23" style="list-style:none;">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">N0DereDan</span> 
         </div>
@@ -1736,7 +2151,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Nov 14, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">N0DereDan</span> 
         </div>
@@ -1744,14 +2159,14 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Nov 14, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="13" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Red</span> 
         </div>
         <div class="comentario-texto">Not spending the holidays? Lol he’s dead</div>
         <div class="comentario-meta">Oct 27, 2017 • ❤️ 13</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Jojoline Carlin</span> 
         </div>
@@ -1769,8 +2184,12 @@ me now: "NOOOOOOO" *sobbing*</div>
             </div>
         </div>
         <div class="capitulo" id="cap24">
-            <h2>Capítulo 24 - 0024-871447</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 24 - 24</h2>
+                <span class="capitulo-data">27/10/2017</span>
+            </div>
             <img src="episodes/0024-871447/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap24', this)">
@@ -1778,8 +2197,16 @@ me now: "NOOOOOOO" *sobbing*</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap24">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap24" onchange="ordenarComentariosNaSecao(this, 'lista-cap24')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap24" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Arika_uzumaki923Idk</span> 
         </div>
@@ -1787,7 +2214,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Dec 08, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="11" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">ChanLyn</span> 
         </div>
@@ -1795,7 +2222,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 29, 2017 • ❤️ 11</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="20" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Little Person</span> 
         </div>
@@ -1803,7 +2230,7 @@ me now: "NOOOOOOO" *sobbing*</div>
         <div class="comentario-meta">Oct 27, 2017 • ❤️ 20</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="44" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1816,15 +2243,15 @@ Me: Oh no
 Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Oct 27, 2017 • ❤️ 44</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="3">
         <div class="comentario-header">
-            <span class="autor">meow</span> 
+            <span class="autor">⠀</span> 
         </div>
         <div class="comentario-texto">bro same</div>
         <div class="comentario-meta">Jan 29, 2020 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
@@ -1842,8 +2269,24 @@ Me: I will never go to heaven with thoughts like these</div>
             </div>
         </div>
         <div class="capitulo" id="cap25">
-            <h2>Capítulo 25 - 0025-877199</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 25 - 25</h2>
+                <span class="capitulo-data">02/11/2017</span>
+            </div>
             <img src="episodes/0025-877199/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Yooo, there's a reference to the comic Heartstopper in this page!<br>
+Can you see Nick and Charlie?<br>
+Thanks for they, Alice <3</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap25', this)">
@@ -1851,8 +2294,16 @@ Me: I will never go to heaven with thoughts like these</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap25">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap25" onchange="ordenarComentariosNaSecao(this, 'lista-cap25')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap25" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
@@ -1860,7 +2311,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Rue B.</span> 
         </div>
@@ -1868,14 +2319,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Apr 15, 2018 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Call_me_dream_daddy</span> 
         </div>
         <div class="comentario-texto">Lol i see Nick and Charlie</div>
         <div class="comentario-meta">Nov 04, 2017 • ❤️ 8</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Queen Stella</span> 
         </div>
@@ -1884,14 +2335,14 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Alice Oseman</span> 
         </div>
         <div class="comentario-texto">Aaaaaa they look SO ADORABLE in your style! thank you so much Alec!!</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 19</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">hrrgtt</span> 
         </div>
@@ -1909,8 +2360,12 @@ Me: I will never go to heaven with thoughts like these</div>
             </div>
         </div>
         <div class="capitulo" id="cap26">
-            <h2>Capítulo 26 - 0026-877206</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 26 - 26</h2>
+                <span class="capitulo-data">02/11/2017</span>
+            </div>
             <img src="episodes/0026-877206/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap26', this)">
@@ -1918,15 +2373,23 @@ Me: I will never go to heaven with thoughts like these</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap26">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap26" onchange="ordenarComentariosNaSecao(this, 'lista-cap26')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap26" style="list-style:none;">
+    <li class="comentario-item" data-likes="15" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">MangaloverXD</span> 
         </div>
         <div class="comentario-texto">Your illustrations are phenomenal</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 15</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="true" data-index="0">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -1944,8 +2407,12 @@ Me: I will never go to heaven with thoughts like these</div>
             </div>
         </div>
         <div class="capitulo" id="cap27">
-            <h2>Capítulo 27 - 0027-877208</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 27 - 27</h2>
+                <span class="capitulo-data">02/11/2017</span>
+            </div>
             <img src="episodes/0027-877208/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap27', this)">
@@ -1953,8 +2420,16 @@ Me: I will never go to heaven with thoughts like these</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap27">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap27" onchange="ordenarComentariosNaSecao(this, 'lista-cap27')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap27" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">yell9wp3arl</span> 
         </div>
@@ -1962,7 +2437,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Feb 21, 2024 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Stupid Person :)</span> 
         </div>
@@ -1970,14 +2445,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 15, 2020 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="23" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
         <div class="comentario-texto">PUPPY NO WHAT THE HELL</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 23</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1986,14 +2461,14 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="14" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Little Person</span> 
         </div>
         <div class="comentario-texto">AU AU AU AU AU</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 14</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">wtflife</span> 
         </div>
@@ -2011,8 +2486,12 @@ Me: I will never go to heaven with thoughts like these</div>
             </div>
         </div>
         <div class="capitulo" id="cap28">
-            <h2>Capítulo 28 - 0028-877210</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 28 - 28</h2>
+                <span class="capitulo-data">02/11/2017</span>
+            </div>
             <img src="episodes/0028-877210/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap28', this)">
@@ -2020,8 +2499,16 @@ Me: I will never go to heaven with thoughts like these</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap28">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap28" onchange="ordenarComentariosNaSecao(this, 'lista-cap28')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap28" style="list-style:none;">
+    <li class="comentario-item" data-likes="23" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Rae Kitano</span> 
         </div>
@@ -2038,8 +2525,27 @@ Me: I will never go to heaven with thoughts like these</div>
             </div>
         </div>
         <div class="capitulo" id="cap29">
-            <h2>Capítulo 29 - 0029-877215</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 29 - 29</h2>
+                <span class="capitulo-data">02/11/2017</span>
+            </div>
             <img src="episodes/0029-877215/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Thanks for reading! Now we reach the original in Portuguese<br>
+<br>
+Currently the comic is in hiatus because i'm focused on my other history Hare and Bunny (Lebre e Coelho)<br>
+https://tapas.io/series/Hare-and-Bunny<br>
+<br>
+I'll be back in December or sooner!</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap29', this)">
@@ -2047,8 +2553,16 @@ Me: I will never go to heaven with thoughts like these</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap29">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap29" onchange="ordenarComentariosNaSecao(this, 'lista-cap29')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap29" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">eylinglezsoria</span> 
         </div>
@@ -2056,7 +2570,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Jan 03, 2025</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">curious case of dum</span> 
         </div>
@@ -2064,7 +2578,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Aug 05, 2023 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Arika_uzumaki923Idk</span> 
         </div>
@@ -2072,7 +2586,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 08, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">RISERY</span> 
         </div>
@@ -2080,7 +2594,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 30, 2021 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Usernamen</span> 
         </div>
@@ -2088,7 +2602,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Sep 03, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">brubs</span> 
         </div>
@@ -2096,7 +2610,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Jan 15, 2021 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">hedwig</span> 
         </div>
@@ -2104,15 +2618,15 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Mar 24, 2020 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="7">
         <div class="comentario-header">
-            <span class="autor">meow</span> 
+            <span class="autor">⠀</span> 
         </div>
         <div class="comentario-texto">i love these dogs yes</div>
         <div class="comentario-meta">Jan 29, 2020 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">0325</span> 
         </div>
@@ -2120,14 +2634,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 15, 2019 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">schermigaflop</span> 
         </div>
         <div class="comentario-texto">Oi it’s more than a year! Where you at!? Wait... don’t tell me.... haha you can’t be dead... right?!</div>
         <div class="comentario-meta">Feb 17, 2019 • ❤️ 5</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">dndex</span> 
         </div>
@@ -2136,7 +2650,7 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Mo258</span> 
         </div>
@@ -2144,7 +2658,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Jan 21, 2019 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Zarradreamer</span> 
         </div>
@@ -2152,7 +2666,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 16, 2018 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Ledgerina</span> 
         </div>
@@ -2160,7 +2674,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 25, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">beezzzzz</span> 
         </div>
@@ -2168,7 +2682,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 23, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">GalaxyGirl</span> 
         </div>
@@ -2176,7 +2690,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 08, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Superior Trash</span> 
         </div>
@@ -2184,14 +2698,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Sep 24, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Wolf~King</span> 
         </div>
         <div class="comentario-texto">December or sooner my ass it's a year later?!?!😡💔</div>
         <div class="comentario-meta">Aug 25, 2018 • ❤️ 5</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">creepado</span> 
         </div>
@@ -2200,7 +2714,7 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">Mr.StealYourBoy</span> 
         </div>
@@ -2208,7 +2722,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Jan 09, 2018 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">colourfulhues787</span> 
         </div>
@@ -2216,7 +2730,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Jan 02, 2018 • ❤️ 7</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">GreyWolfess</span> 
         </div>
@@ -2224,7 +2738,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 07, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">Justheretoread</span> 
         </div>
@@ -2232,7 +2746,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 20, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="24" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Caprikat</span> 
         </div>
@@ -2240,7 +2754,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 17, 2017 • ❤️ 24</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">N0DereDan</span> 
         </div>
@@ -2248,7 +2762,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 14, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Lutpan</span> 
         </div>
@@ -2256,7 +2770,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 09, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">RoobixCyoob</span> 
         </div>
@@ -2264,7 +2778,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 05, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">Bety</span> 
         </div>
@@ -2272,7 +2786,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 04, 2017 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">003mia</span> 
         </div>
@@ -2280,7 +2794,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 03, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">Daniel E. S.</span> 
         </div>
@@ -2288,14 +2802,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="40" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">satan-kun</span> 
         </div>
         <div class="comentario-texto">The day I subscribe to it I find out it's on hiatus TwT</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 40</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">satan-kun</span> 
         </div>
@@ -2303,7 +2817,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">Kirimemea</span> 
         </div>
@@ -2311,7 +2825,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 03, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">satan-kun</span> 
         </div>
@@ -2319,7 +2833,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 03, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">GreyWolfess</span> 
         </div>
@@ -2327,7 +2841,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 07, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">GreyWolfess</span> 
         </div>
@@ -2335,7 +2849,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Dec 07, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">magitie</span> 
         </div>
@@ -2343,7 +2857,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 10, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">a hard life indeed</span> 
         </div>
@@ -2351,7 +2865,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Aug 02, 2021 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">Usernamen</span> 
         </div>
@@ -2359,7 +2873,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Sep 03, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">curious case of dum</span> 
         </div>
@@ -2367,7 +2881,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Aug 05, 2023 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">N1ckelodeon</span> 
         </div>
@@ -2376,7 +2890,7 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">Ravenwashere1776</span> 
         </div>
@@ -2384,7 +2898,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">EthelBH</span> 
         </div>
@@ -2392,14 +2906,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="34" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
         <div class="comentario-texto">SUPPORTIVE PUPPERS!!! :D</div>
         <div class="comentario-meta">Nov 02, 2017 • ❤️ 34</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">starsixx</span> 
         </div>
@@ -2408,7 +2922,7 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">Renew</span> 
         </div>
@@ -2416,7 +2930,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">chikkichiccha</span> 
         </div>
@@ -2424,7 +2938,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">ImadokiLife</span> 
         </div>
@@ -2432,14 +2946,14 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="7" data-creator="false" data-index="35">
         <div class="comentario-header">
             <span class="autor">chiaroscura</span> 
         </div>
         <div class="comentario-texto">i love your art style so much and this comic is adorable!!!</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 7</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="true" data-index="35">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -2448,7 +2962,7 @@ Me: I will never go to heaven with thoughts like these</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="36">
         <div class="comentario-header">
             <span class="autor">Little Person</span> 
         </div>
@@ -2456,7 +2970,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="37">
         <div class="comentario-header">
             <span class="autor">Morgan</span> 
         </div>
@@ -2464,7 +2978,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="38">
         <div class="comentario-header">
             <span class="autor">Trash™</span> 
         </div>
@@ -2472,7 +2986,7 @@ Me: I will never go to heaven with thoughts like these</div>
         <div class="comentario-meta">Nov 01, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">m0nk3y</span> 
         </div>
@@ -2514,7 +3028,7 @@ Me: I will never go to heaven with thoughts like these</div>
     <div class="mobile-nav-bar">
         <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
         <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
-            <option value="1">Cap. 1 - 0001-650952</option><option value="2">Cap. 2 - 0002-650956</option><option value="3">Cap. 3 - 0003-650958</option><option value="4">Cap. 4 - 0004-650959</option><option value="5">Cap. 5 - 0005-855553</option><option value="6">Cap. 6 - 0006-855556</option><option value="7">Cap. 7 - 0007-855557</option><option value="8">Cap. 8 - 0008-855558</option><option value="9">Cap. 9 - 0009-855562</option><option value="10">Cap. 10 - 0010-855569</option><option value="11">Cap. 11 - 0011-855570</option><option value="12">Cap. 12 - 0012-855571</option><option value="13">Cap. 13 - 0013-857323</option><option value="14">Cap. 14 - 0014-857324</option><option value="15">Cap. 15 - 0015-857328</option><option value="16">Cap. 16 - 0016-857330</option><option value="17">Cap. 17 - 0017-867719</option><option value="18">Cap. 18 - 0018-867721</option><option value="19">Cap. 19 - 0019-867723</option><option value="20">Cap. 20 - 0020-867724</option><option value="21">Cap. 21 - 0021-867744</option><option value="22">Cap. 22 - 0022-871440</option><option value="23">Cap. 23 - 0023-871442</option><option value="24">Cap. 24 - 0024-871447</option><option value="25">Cap. 25 - 0025-877199</option><option value="26">Cap. 26 - 0026-877206</option><option value="27">Cap. 27 - 0027-877208</option><option value="28">Cap. 28 - 0028-877210</option><option value="29">Cap. 29 - 0029-877215</option>
+            <option value="1">Cap. 1 - 1</option><option value="2">Cap. 2 - 2</option><option value="3">Cap. 3 - 3</option><option value="4">Cap. 4 - 4</option><option value="5">Cap. 5 - 5</option><option value="6">Cap. 6 - 6</option><option value="7">Cap. 7 - 7</option><option value="8">Cap. 8 - 8</option><option value="9">Cap. 9 - 9</option><option value="10">Cap. 10 - 10</option><option value="11">Cap. 11 - 11</option><option value="12">Cap. 12 - 12</option><option value="13">Cap. 13 - 13</option><option value="14">Cap. 14 - 14</option><option value="15">Cap. 15 - 15</option><option value="16">Cap. 16 - 16</option><option value="17">Cap. 17 - 17</option><option value="18">Cap. 18 - 18</option><option value="19">Cap. 19 - 19</option><option value="20">Cap. 20 - 20</option><option value="21">Cap. 21 - 21</option><option value="22">Cap. 22 - 22</option><option value="23">Cap. 23 - 23</option><option value="24">Cap. 24 - 24</option><option value="25">Cap. 25 - 25</option><option value="26">Cap. 26 - 26</option><option value="27">Cap. 27 - 27</option><option value="28">Cap. 28 - 28</option><option value="29">Cap. 29 - 29</option>
         </select>
         <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
         <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
@@ -2566,6 +3080,53 @@ function toggleTodosComentarios() {
     btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
 }
 
+function ordenarComentariosNaSecao(selectEl, listaId, sincronizarComId = null) {
+    const ordem = selectEl.value;
+    
+    if (sincronizarComId) {
+        const outroSelect = document.getElementById(sincronizarComId);
+        if (outroSelect && outroSelect.value !== ordem) {
+            outroSelect.value = ordem;
+        }
+    }
+
+    const lista = document.getElementById(listaId);
+    if (!lista) return;
+    
+    let itens = Array.from(lista.children).filter(el => el.matches('li.comentario-item'));
+
+    itens.forEach(item => {
+        const isCriador = item.getAttribute('data-creator') === 'true';
+        if (ordem === 'criador') {
+            item.style.display = isCriador ? 'block' : 'none';
+        } else {
+            item.style.display = 'block';
+        }
+    });
+
+    if (ordem === 'curtidos') {
+        itens.sort((a, b) => {
+            let likesA = parseInt(a.getAttribute('data-likes')) || 0;
+            let likesB = parseInt(b.getAttribute('data-likes')) || 0;
+            return likesB - likesA;
+        });
+    } else if (ordem === 'antigos') {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxA - idxB;
+        });
+    } else {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxB - idxA;
+        });
+    }
+
+    itens.forEach(item => lista.appendChild(item));
+}
+
 function irParaCapitulo(index) {
     if (!index || index < 1) return;
     capAtualIndex = parseInt(index);
@@ -2593,15 +3154,36 @@ function sincronizarSelectsCapitulos() {
 function abrirModalComentarios() {
     const capEl = document.getElementById(`cap${capAtualIndex}`);
     if (!capEl) return;
-    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const listaOriginal = capEl.querySelector('.comentarios-lista');
     const modalBody = document.getElementById('modalComentariosBody');
     document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
-    if (wrapperComentarios) {
-        modalBody.innerHTML = wrapperComentarios.innerHTML;
-        const lista = modalBody.querySelector('.comentarios-conteudo');
-        if (lista) lista.style.display = 'block';
-        const btn = modalBody.querySelector('.btn-toggle-comentarios');
-        if (btn) btn.style.display = 'none';
+    
+    if (listaOriginal) {
+        const selectOriginalId = `ordem-cap${capAtualIndex}`;
+        const selectOriginal = document.getElementById(selectOriginalId);
+        const ordemAtual = selectOriginal ? selectOriginal.value : 'recentes';
+
+        modalBody.innerHTML = `
+            <div class="comentarios-conteudo aberto" style="border:none; padding:0;">
+                <div class="comentarios-filtros">
+                    <select id="modal-select-ordem" onchange="ordenarComentariosNaSecao(this, 'modal-lista-comentarios', '${selectOriginalId}')">
+                        <option value="recentes">Mais Recentes</option>
+                        <option value="antigos">Mais Antigos</option>
+                        <option value="curtidos">Mais Curtidos</option>
+                        <option value="criador">Apenas do Criador</option>
+                    </select>
+                </div>
+                <ul class="comentarios-lista" id="modal-lista-comentarios" style="list-style:none;">
+                    ${listaOriginal.innerHTML}
+                </ul>
+            </div>
+        `;
+
+        const selectModal = document.getElementById('modal-select-ordem');
+        if (selectModal) {
+            selectModal.value = ordemAtual;
+            ordenarComentariosNaSecao(selectModal, 'modal-lista-comentarios');
+        }
     } else {
         modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
     }

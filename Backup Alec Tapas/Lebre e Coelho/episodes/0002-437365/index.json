@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "437365",
- "fetched_at": "2026-09-26T19:18:01Z",
+ "fetched_at": "2026-10-11T19:13:28Z",
  "data": {
   "id": 437365,
   "title": "Pags 5-8",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 206810,
-  "like_cnt": 4684,
+  "view_cnt": 207616,
+  "like_cnt": 4692,
   "comment_cnt": 136,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eu disse que iam sair 3 pags por semana, mas toma uma bônus de presente pra você õ/<br>\r\n(agora corrigidos q)"
  }
 }

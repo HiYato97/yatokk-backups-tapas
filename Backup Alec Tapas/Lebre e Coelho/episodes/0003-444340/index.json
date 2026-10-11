@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "444340",
- "fetched_at": "2026-09-26T19:18:18Z",
+ "fetched_at": "2026-10-11T19:13:47Z",
  "data": {
   "id": 444340,
   "title": "Pags 9-12",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 176505,
-  "like_cnt": 4326,
+  "view_cnt": 177202,
+  "like_cnt": 4334,
   "comment_cnt": 114,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "'Ué, e essa menina aí? Essa não era um escola masculina?'<br>\r\nCalme.<br>\r\nTem um motivo pra ela estar aí, mas essa é oooooutra história.<br>\r\nPor hora ela fica aí de figurante asdlkjlaskd (Marceline é nome dela, aliás)"
  }
 }

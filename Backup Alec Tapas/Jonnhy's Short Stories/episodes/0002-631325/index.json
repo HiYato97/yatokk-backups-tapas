@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "631325",
- "fetched_at": "2026-09-26T19:35:59Z",
+ "fetched_at": "2026-10-11T21:41:23Z",
  "data": {
   "id": 631325,
   "title": "Bully PT-BR",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 24637,
+  "view_cnt": 24664,
   "like_cnt": 1325,
   "comment_cnt": 170,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "A história sobre um valentão e seu novo colega de classe"
  }
 }

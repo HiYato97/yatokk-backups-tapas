@@ -1,7 +1,7 @@
 {
  "num": 9,
  "episode_id": "628473",
- "fetched_at": "2026-09-26T19:39:48Z",
+ "fetched_at": "2026-10-11T21:34:56Z",
  "data": {
   "id": 628473,
   "title": "Pag 26",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 16718,
-  "like_cnt": 931,
+  "view_cnt": 16743,
+  "like_cnt": 930,
   "comment_cnt": 20,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

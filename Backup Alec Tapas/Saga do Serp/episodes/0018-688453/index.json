@@ -1,7 +1,7 @@
 {
  "num": 18,
  "episode_id": "688453",
- "fetched_at": "2026-09-26T20:12:38Z",
+ "fetched_at": "2026-10-11T20:46:45Z",
  "data": {
   "id": 688453,
   "title": "Um bocó",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 38828,
-  "like_cnt": 1794,
+  "view_cnt": 38911,
+  "like_cnt": 1795,
   "comment_cnt": 64,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Se entregou muito rápido, tsc.<br>"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 53,
  "episode_id": "3439250",
- "fetched_at": "2026-09-27T15:30:12Z",
+ "fetched_at": "2026-10-11T18:09:22Z",
  "data": {
   "id": 3439250,
   "title": "Pg 31 - 33",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3558,
-  "like_cnt": 169,
+  "view_cnt": 3632,
+  "like_cnt": 171,
   "comment_cnt": 19,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpem a demora, passei a semana na cama com febre..."
  }
 }

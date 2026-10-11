@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "431285",
- "fetched_at": "2026-09-26T19:17:25Z",
+ "fetched_at": "2026-10-11T19:12:51Z",
  "data": {
   "id": 431285,
   "title": "Pags 1-4",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 390958,
-  "like_cnt": 6202,
-  "comment_cnt": 323,
+  "view_cnt": 392415,
+  "like_cnt": 6212,
+  "comment_cnt": 325,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Aug 16, 2016",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mais uma série nova que se deus quiser sai 3 páginas por semana adsjlkalks"
  }
 }

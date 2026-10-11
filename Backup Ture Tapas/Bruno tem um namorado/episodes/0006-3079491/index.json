@@ -1,7 +1,7 @@
 {
  "num": 6,
  "episode_id": "3079491",
- "fetched_at": "2026-09-27T15:25:29Z",
+ "fetched_at": "2026-10-11T18:05:06Z",
  "data": {
   "id": 3079491,
   "title": "Pg 16 - 18",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 7171,
-  "like_cnt": 294,
+  "view_cnt": 7277,
+  "like_cnt": 296,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

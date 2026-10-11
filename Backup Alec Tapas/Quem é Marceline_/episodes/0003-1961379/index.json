@@ -1,7 +1,7 @@
 {
  "num": 3,
  "episode_id": "1961379",
- "fetched_at": "2026-09-27T14:08:54Z",
+ "fetched_at": "2026-10-11T18:48:27Z",
  "data": {
   "id": 1961379,
   "title": "11-15",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 53302,
-  "like_cnt": 2267,
+  "view_cnt": 53538,
+  "like_cnt": 2271,
   "comment_cnt": 126,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Vem aí...................<br>\r\nSe gosta do meu trampo, considere apoiar com inks ou no meu ko-fi <3<br>\r\nInclusive, to querendo fazer uns posts lá sobre o processo de (re)fazer Marceline e tals. Siga lá também se tiver interessado :DD<br>\r\nhttps://ko-fi.com/castelodoalec/posts"
  }
 }

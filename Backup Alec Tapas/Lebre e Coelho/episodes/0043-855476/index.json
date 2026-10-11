@@ -1,7 +1,7 @@
 {
  "num": 43,
  "episode_id": "855476",
- "fetched_at": "2026-09-26T19:32:43Z",
+ "fetched_at": "2026-10-11T20:12:51Z",
  "data": {
   "id": 855476,
   "title": "Larry e Coelho 39",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 114130,
-  "like_cnt": 3706,
+  "view_cnt": 114500,
+  "like_cnt": 3710,
   "comment_cnt": 240,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "nhonhonho<br>\r\nAté dia 20 galere adlfka"
  }
 }

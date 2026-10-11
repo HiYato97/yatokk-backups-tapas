@@ -1,7 +1,7 @@
 {
  "num": 9,
  "episode_id": "3089557",
- "fetched_at": "2026-09-27T15:25:44Z",
+ "fetched_at": "2026-10-11T18:05:21Z",
  "data": {
   "id": 3089557,
   "title": "Pg 25 - 27",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6750,
-  "like_cnt": 288,
+  "view_cnt": 6870,
+  "like_cnt": 289,
   "comment_cnt": 10,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

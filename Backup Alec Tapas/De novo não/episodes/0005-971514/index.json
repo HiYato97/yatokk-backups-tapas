@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "971514",
- "fetched_at": "2026-09-26T20:16:20Z",
+ "fetched_at": "2026-10-11T19:09:53Z",
  "data": {
   "id": 971514,
   "title": "5 - Giovana",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 18969,
-  "like_cnt": 1310,
+  "view_cnt": 19017,
+  "like_cnt": 1309,
   "comment_cnt": 47,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eu confiei em você"
  }
 }

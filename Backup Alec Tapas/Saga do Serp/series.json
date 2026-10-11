@@ -1,6 +1,13 @@
 {
  "series_id": "46713",
- "fetched_at": "2026-09-26T20:08:56Z",
+ "title": "Saga do Serp",
+ "description": "ULTRA SAGA DO SERPENTÁRIO\r\nProvinda das tiras de Zoróscopo, que em breve vou postar aqui também falkjakdsj",
+ "views": "2,091,155",
+ "subscribers": "11,107",
+ "likes": "89,462",
+ "publish_date": "2016-11-01T14:07:01Z",
+ "last_updated_date": "2020-01-31T19:13:42Z",
+ "fetched_at": "2026-10-11T20:35:22Z",
  "data": {
   "id": 46713,
   "title": "Saga do Serp",
@@ -16,7 +23,7 @@
   "has_top_banner": false,
   "has_book_cover": false,
   "on_sale_now": false,
-  "thumbsup_cnt": 89402,
+  "thumbsup_cnt": 89462,
   "discount_rate": 0,
   "genre": {
    "id": 1,

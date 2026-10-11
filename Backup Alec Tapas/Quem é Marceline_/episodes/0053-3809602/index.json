@@ -1,7 +1,7 @@
 {
  "num": 53,
  "episode_id": "3809602",
- "fetched_at": "2026-09-27T14:22:16Z",
+ "fetched_at": "2026-10-11T18:59:22Z",
  "data": {
   "id": 3809602,
   "title": "[CAP 8] Extra",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 12660,
-  "like_cnt": 724,
-  "comment_cnt": 87,
+  "view_cnt": 13044,
+  "like_cnt": 733,
+  "comment_cnt": 89,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Feb 18",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "COMEÇOU!<br>\r\nDigo, quase. Antes do capítulo em si, fique com esse extra sobre como os professores estão lidando com esse novo elemento.<br>\n<br>\nQuer ler antes de todo mundo? A partir de 10 reais no Apoia.se você tem acesso às atualizações 1 semana antes do público geral e ainda ajuda a financiar a produção do quadrinho <3<br>\n<br>\napoia.se/sliceofalec"
  }
 }

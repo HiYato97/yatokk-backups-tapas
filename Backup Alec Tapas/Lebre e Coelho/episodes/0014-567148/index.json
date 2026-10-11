@@ -1,7 +1,7 @@
 {
  "num": 14,
  "episode_id": "567148",
- "fetched_at": "2026-09-26T19:21:35Z",
+ "fetched_at": "2026-10-11T19:28:02Z",
  "data": {
   "id": 567148,
   "title": "Pags 58 - 60",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 156714,
-  "like_cnt": 3975,
+  "view_cnt": 157214,
+  "like_cnt": 3980,
   "comment_cnt": 191,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "VOLTEEEEEEEEEEEEEIIIIIIIIII AAAAAAAAAA<br>"
  }
 }

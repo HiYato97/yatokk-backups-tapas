@@ -1,7 +1,7 @@
 {
  "num": 69,
  "episode_id": "1403790",
- "fetched_at": "2026-09-26T19:44:50Z",
+ "fetched_at": "2026-10-11T20:29:00Z",
  "data": {
   "id": 1403790,
   "title": "Prólogo 1 - 4",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 122502,
-  "like_cnt": 3749,
+  "view_cnt": 122889,
+  "like_cnt": 3752,
   "comment_cnt": 178,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Saudades?<br>\r\nVamos então começar a incrível saga de como esses dois bocós se conheceram, uhuull<br>\r\nLembrando que no Apoia.se sempre tem mais páginas <3<br>\r\nhttps://apoia.se/batatiras"
  }
 }

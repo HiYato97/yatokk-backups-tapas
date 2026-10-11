@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "855553",
- "fetched_at": "2026-09-26T19:32:41Z",
+ "fetched_at": "2026-10-11T21:42:56Z",
  "data": {
   "id": 855553,
   "title": "5",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4396,
+  "view_cnt": 4412,
   "like_cnt": 209,
   "comment_cnt": 1,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "I'M BACK<br>\r\nSORRY FOR THE DELAY!<br>\r\nI'm asking for my friends translate for me cause my english is a garbage.<br>"
  }
 }

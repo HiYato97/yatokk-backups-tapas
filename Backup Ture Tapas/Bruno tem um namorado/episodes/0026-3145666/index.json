@@ -1,7 +1,7 @@
 {
  "num": 26,
  "episode_id": "3145666",
- "fetched_at": "2026-09-27T15:27:13Z",
+ "fetched_at": "2026-10-11T18:06:46Z",
  "data": {
   "id": 3145666,
   "title": "Pg 71 - 75 ",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 5209,
-  "like_cnt": 255,
+  "view_cnt": 5296,
+  "like_cnt": 257,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Vamos de recadinhos!<br>\r\nEu atualizei alguns balões de grito do cap 1, e concertei algumas artes de rosto especificas do cap 2 ( n sei como deixei passar alguns na época kkkk, enfim, é normal a inconstancia no traço, mas alguns estavam muito além, então só dei uma pincelada nos mais críticos kkkk, nada de mais).<br>"
  }
 }

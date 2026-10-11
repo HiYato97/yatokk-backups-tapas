@@ -1,7 +1,7 @@
 {
  "num": 81,
  "episode_id": "3668773",
- "fetched_at": "2026-09-27T15:33:42Z",
+ "fetched_at": "2026-10-11T18:12:19Z",
  "data": {
   "id": 3668773,
   "title": "Pg 122 - 124",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2783,
-  "like_cnt": 137,
+  "view_cnt": 2841,
+  "like_cnt": 139,
   "comment_cnt": 13,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 80,
  "episode_id": "3661861",
- "fetched_at": "2026-09-27T15:33:31Z",
+ "fetched_at": "2026-10-11T18:12:12Z",
  "data": {
   "id": 3661861,
   "title": "Pg 118 - 121",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2915,
-  "like_cnt": 127,
+  "view_cnt": 2980,
+  "like_cnt": 129,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

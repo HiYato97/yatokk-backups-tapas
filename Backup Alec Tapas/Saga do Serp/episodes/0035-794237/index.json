@@ -1,7 +1,7 @@
 {
  "num": 35,
  "episode_id": "794237",
- "fetched_at": "2026-09-26T20:15:44Z",
+ "fetched_at": "2026-10-11T20:49:45Z",
  "data": {
   "id": 794237,
   "title": "Perspectivas - parte 1",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 36656,
-  "like_cnt": 1567,
+  "view_cnt": 36739,
+  "like_cnt": 1568,
   "comment_cnt": 24,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "VAMOS DAR UM TEMPO NA TENSÃO<br>\r\nO que os outros estão fazendo agora hein?"
  }
 }

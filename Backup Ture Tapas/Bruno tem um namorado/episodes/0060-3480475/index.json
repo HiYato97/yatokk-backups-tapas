@@ -1,7 +1,7 @@
 {
  "num": 60,
  "episode_id": "3480475",
- "fetched_at": "2026-09-27T15:31:06Z",
+ "fetched_at": "2026-10-11T18:10:03Z",
  "data": {
   "id": 3480475,
   "title": "Pg 57 - 59",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3726,
-  "like_cnt": 158,
+  "view_cnt": 3785,
+  "like_cnt": 159,
   "comment_cnt": 11,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

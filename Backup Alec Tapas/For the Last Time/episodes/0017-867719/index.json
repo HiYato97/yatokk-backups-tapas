@@ -1,7 +1,7 @@
 {
  "num": 17,
  "episode_id": "867719",
- "fetched_at": "2026-09-26T19:33:33Z",
+ "fetched_at": "2026-10-11T21:43:53Z",
  "data": {
   "id": 867719,
   "title": "17",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3564,
+  "view_cnt": 3574,
   "like_cnt": 205,
   "comment_cnt": 2,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "I'm back~"
  }
 }

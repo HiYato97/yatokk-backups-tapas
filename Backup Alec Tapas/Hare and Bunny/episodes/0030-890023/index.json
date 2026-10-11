@@ -1,7 +1,7 @@
 {
  "num": 30,
  "episode_id": "890023",
- "fetched_at": "2026-09-26T19:43:20Z",
+ "fetched_at": "2026-10-11T21:37:58Z",
  "data": {
   "id": 890023,
   "title": "67 - 71",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 16596,
-  "like_cnt": 1109,
+  "view_cnt": 16623,
+  "like_cnt": 1108,
   "comment_cnt": 104,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Sorry for the delay~<br>\n<br>\nLeave a tip if you think these boys deserves <3"
  }
 }

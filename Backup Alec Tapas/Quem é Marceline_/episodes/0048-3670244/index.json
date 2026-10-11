@@ -1,7 +1,7 @@
 {
  "num": 48,
  "episode_id": "3670244",
- "fetched_at": "2026-09-27T14:21:12Z",
+ "fetched_at": "2026-10-11T18:58:15Z",
  "data": {
   "id": 3670244,
   "title": "[CAP 7] 13 - 16",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 14303,
-  "like_cnt": 798,
+  "view_cnt": 14559,
+  "like_cnt": 806,
   "comment_cnt": 49,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "QUE VIRADA MEUS AMIGOS<br>\r\nE enfim acabou esse jogo, que batalha.<br>\r\nAgora vamos acompanhar o que nossa estrela tem a dizer sobre a experiência.<br>\n<br>\nNão quer esperar até a próxima atualização?<br>\r\nConsidere assinar o Apoia.se! Além de ter acesso às próximas paginas 2 semanas antes, você também recebe conteúdo exclusivo que só é postado por lá!<br>\n<br>\nAjude a pagar o salário de um ajudante pro quadrinho sair mais rápido yaaayyy<br>\n<br>\nhttps://apoia.se/sliceofalec"
  }
 }

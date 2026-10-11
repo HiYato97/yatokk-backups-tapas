@@ -1,7 +1,7 @@
 {
  "num": 96,
  "episode_id": "3854824",
- "fetched_at": "2026-09-27T15:35:40Z",
+ "fetched_at": "2026-10-11T18:13:52Z",
  "data": {
   "id": 3854824,
   "title": "Pg 167 - 186",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3093,
-  "like_cnt": 144,
+  "view_cnt": 3208,
+  "like_cnt": 148,
   "comment_cnt": 51,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Ufa, finalmente acabei! Agora restam... 2 Episodios!!!!"
  }
 }

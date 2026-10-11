@@ -1,7 +1,7 @@
 {
  "num": 6,
  "episode_id": "1986468",
- "fetched_at": "2026-09-27T14:09:42Z",
+ "fetched_at": "2026-10-11T18:49:16Z",
  "data": {
   "id": 1986468,
   "title": "27 - 30",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48773,
-  "like_cnt": 2041,
+  "view_cnt": 48993,
+  "like_cnt": 2045,
   "comment_cnt": 59,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Atrasado porque eu tava em Tiradentes esses dias e n pude pintar as pags hihi<br>\r\nMas antes tarde que mais tarde.<br>"
  }
 }

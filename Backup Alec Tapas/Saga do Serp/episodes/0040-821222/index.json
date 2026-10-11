@@ -1,7 +1,7 @@
 {
  "num": 40,
  "episode_id": "821222",
- "fetched_at": "2026-09-26T20:16:18Z",
+ "fetched_at": "2026-10-11T20:50:20Z",
  "data": {
   "id": 821222,
   "title": "Perspectivas - parte 6",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 33137,
-  "like_cnt": 1434,
+  "view_cnt": 33211,
+  "like_cnt": 1435,
   "comment_cnt": 12,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

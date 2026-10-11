@@ -1,7 +1,7 @@
 {
  "num": 39,
  "episode_id": "845796",
- "fetched_at": "2026-09-26T19:57:27Z",
+ "fetched_at": "2026-10-11T21:20:58Z",
  "data": {
   "id": 845796,
   "title": "Zodícopo #04",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 32307,
-  "like_cnt": 1251,
+  "view_cnt": 32383,
+  "like_cnt": 1254,
   "comment_cnt": 23,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 13,
  "episode_id": "3104325",
- "fetched_at": "2026-09-27T15:26:05Z",
+ "fetched_at": "2026-10-11T18:05:41Z",
  "data": {
   "id": 3104325,
   "title": "Pg 34 - 36",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6468,
-  "like_cnt": 285,
+  "view_cnt": 6574,
+  "like_cnt": 286,
   "comment_cnt": 16,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

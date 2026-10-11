@@ -1,7 +1,7 @@
 {
  "num": 50,
  "episode_id": "3695042",
- "fetched_at": "2026-09-27T14:21:36Z",
+ "fetched_at": "2026-10-11T18:58:33Z",
  "data": {
   "id": 3695042,
   "title": "[CAP7] 21 - 24",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 15850,
-  "like_cnt": 797,
+  "view_cnt": 16158,
+  "like_cnt": 805,
   "comment_cnt": 90,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "OI SUMIDO<br>\r\nEnfim Vinícius deu as caras (obrigado a todos que perguntaram por ele)<br>\r\nJá estamos nos encaminhando pro fim do capítulo! Temos mais duas atualizações até lá então continue acompanhando~<br>\r\nEstou pra viajar na primeira semana de novembro então talvez tenha algum intervalo nesse tempo, mas no máximo uma semana.<br>\r\nNão quer esperar? No Apoia.se você já tem acesso à prox atualização!<br>\r\nApoie com R$10 ou mais e você já está contribuindo pro quadrinho sair mais rápido!<br>\r\nhttps://apoia.se/sliceofalec"
  }
 }

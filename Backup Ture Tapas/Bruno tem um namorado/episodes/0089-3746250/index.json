@@ -1,7 +1,7 @@
 {
  "num": 89,
  "episode_id": "3746250",
- "fetched_at": "2026-09-27T15:34:30Z",
+ "fetched_at": "2026-10-11T18:13:07Z",
  "data": {
   "id": 3746250,
   "title": "Pg 146 - 148",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2656,
-  "like_cnt": 116,
+  "view_cnt": 2718,
+  "like_cnt": 118,
   "comment_cnt": 19,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Comprem Bruno Tem Um Namorado em Pré-Venda na Amazon! :)"
  }
 }

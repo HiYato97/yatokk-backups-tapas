@@ -37,6 +37,12 @@ body.light {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
+/* SCROLLBARS ESCURAS */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--bg-body); }
+*::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #444450; }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-body);
@@ -167,6 +173,21 @@ body {
 }
 .conteudo.expandido { margin-left: 0; }
 
+.series-banner {
+    max-width: 850px;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+.series-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
 .series-header {
     max-width: 850px;
     margin: 0 auto 30px auto;
@@ -179,15 +200,14 @@ body {
     align-items: flex-start;
 }
 .series-thumb {
-    width: 130px;
-    height: 130px;
+    max-width: 160px;
+    height: auto;
     border-radius: 6px;
-    object-fit: cover;
     border: 1px solid var(--border-color);
 }
 .series-info { flex: 1; }
 .series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
-.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .series-genre {
     display: inline-block;
     background: var(--border-color);
@@ -210,15 +230,81 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.capitulo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
 .capitulo h2 {
     font-size: 1.15rem;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+}
+.capitulo-data {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+/* CREATOR NOTE ESTILOS */
+.creator-note-box {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+.creator-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+    flex-shrink: 0;
+}
+.creator-avatar-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #222;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.creator-content {
+    flex: 1;
+}
+.creator-info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.creator-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.creator-tag {
+    background: #d97706;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.creator-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
 
 .comentarios-wrapper { margin-top: 15px; }
 .btn-toggle-comentarios {
@@ -242,9 +328,26 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
     padding: 12px;
 }
 .comentarios-conteudo.aberto { display: block !important; }
+
+.comentarios-filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.comentarios-filtros select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+    flex: 1;
+}
+
 .comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
 .autor { font-weight: 600; color: var(--text-primary); }
-.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.badge-criador { background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; }
 .comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
 .comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
 .replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
@@ -282,6 +385,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
 .modal-body { padding: 16px; overflow-y: auto; }
+.btn-fechar-modal { background: transparent; border: none; color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
 
 /* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
@@ -325,8 +429,10 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
+body.modo-imersivo .series-banner,
 body.modo-imersivo .series-header,
-body.modo-imersivo .capitulo h2,
+body.modo-imersivo .capitulo-header,
+body.modo-imersivo .creator-note-box,
 body.modo-imersivo .comentarios-wrapper,
 body.modo-imersivo .nav-botoes,
 body.modo-imersivo #topoBtn,
@@ -495,7 +601,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
 <body id="topo">
     <div id="versao">
-        <span>Série: <b>Jonnhy&#x27;s Short Stories</b> | Gerado em 10/10/2026 17:41</span>
+        <span>Série: <b>Jonnhy&#x27;s Short Stories</b> | Gerado em 11/10/2026 20:05</span>
         
     <button class="btn-info-modal" onclick="document.getElementById('modalInfoProj').classList.add('visivel')" title="Informações do Projeto">ⓘ</button>
     
@@ -515,7 +621,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
             <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
-                <option value="1">Cap. 1 - 0001-631323</option><option value="2">Cap. 2 - 0002-631325</option><option value="3">Cap. 3 - 0003-893454</option>
+                <option value="1">Cap. 1 - Bully</option><option value="2">Cap. 2 - Bully PT-BR</option><option value="3">Cap. 3 - Memórias</option>
             </select>
 
             <h3>Opções da Página</h3>
@@ -529,23 +635,38 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         </div>
 
         <h2>Índice</h2>
-        <ul><li><a href="#cap1">Cap. 1 - 0001-631323</a></li><li><a href="#cap2">Cap. 2 - 0002-631325</a></li><li><a href="#cap3">Cap. 3 - 0003-893454</a></li></ul>
+        <ul><li><a href="#cap1">Cap. 1 - Bully</a></li><li><a href="#cap2">Cap. 2 - Bully PT-BR</a></li><li><a href="#cap3">Cap. 3 - Memórias</a></li></ul>
     </div>
 
     <div class="conteudo expandido" id="conteudo">
         
+    
     <div class="series-header">
-        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <img src="series-thumb.jpg" class="series-thumb" alt="Capa">
         <div class="series-info">
             <h1 class="series-title">Jonnhy&#x27;s Short Stories</h1>
-            <div class="series-meta"><span class="series-genre">Slice of life</span> ❤ 2855 curtidas</div>
-            <div class="series-desc"></div>
+            <div class="series-meta"><span class="series-genre">Slice of life</span> • 👁️ 66,848 views • 👥 2,630 inscritos • ❤️ 2,855 likes • 📅 Publicado em 15/03/2017</div>
+            <div class="series-desc">Did because yes<br>(Translate by me this time, I mean, I tried -q)</div>
         </div>
     </div>
         
         <div class="capitulo" id="cap1">
-            <h2>Capítulo 1 - 0001-631323</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 1 - Bully</h2>
+                <span class="capitulo-data">15/03/2017</span>
+            </div>
             <img src="episodes/0001-631323/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0001-631323/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0001-631323/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0001-631323/images/panel-004.jpg" alt="panel-004.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">A story about a bully and a new student in his class</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
@@ -553,8 +674,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap1">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap1" onchange="ordenarComentariosNaSecao(this, 'lista-cap1')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap1" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">heloisaazpezanka</span> 
         </div>
@@ -562,7 +691,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 20, 2026</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Rosella-Moon</span> 
         </div>
@@ -570,7 +699,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 05, 2023</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">usaki_n_willow</span> 
         </div>
@@ -578,7 +707,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Aug 14, 2022</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">lunashitpost47n</span> 
         </div>
@@ -586,7 +715,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 06, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">AspieArtWork</span> 
         </div>
@@ -594,7 +723,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 22, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Willow</span> 
         </div>
@@ -602,7 +731,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 12, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Scarlett Coke</span> 
         </div>
@@ -610,7 +739,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 06, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">8fred9</span> 
         </div>
@@ -618,7 +747,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 21, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">fujoshissuck</span> 
         </div>
@@ -626,7 +755,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 15, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Queen Freedom</span> 
         </div>
@@ -634,7 +763,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 05, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Haerto</span> 
         </div>
@@ -642,7 +771,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Sep 03, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Trash™</span> 
         </div>
@@ -650,7 +779,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Aug 04, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">august</span> 
         </div>
@@ -658,7 +787,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jun 11, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="28" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Bluejit</span> 
         </div>
@@ -666,7 +795,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">May 26, 2017 • ❤️ 28</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">lilyismysoul</span> 
         </div>
@@ -674,7 +803,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Apr 03, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Queen Freedom</span> 
         </div>
@@ -682,7 +811,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 18, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Melliso</span> 
         </div>
@@ -690,7 +819,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 17, 2017 • ❤️ 19</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">Iduna</span> 
         </div>
@@ -698,7 +827,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">|Scribal.Knight|</span> 
         </div>
@@ -706,7 +835,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">Kass</span> 
         </div>
@@ -714,7 +843,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">Lky</span> 
         </div>
@@ -722,7 +851,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">RainbowHigh</span> 
         </div>
@@ -730,7 +859,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">Ray</span> 
         </div>
@@ -738,7 +867,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">TheKattz</span> 
         </div>
@@ -746,14 +875,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="32" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">ArielR</span> 
         </div>
         <div class="comentario-texto">it can't be helped, I ship it <3 . But also I don't , they could be good friends ñ.ñ</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 32</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="21" data-creator="true" data-index="24">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -761,7 +890,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 21</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">Cereal</span> 
         </div>
@@ -779,8 +908,22 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap2">
-            <h2>Capítulo 2 - 0002-631325</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 2 - Bully PT-BR</h2>
+                <span class="capitulo-data">15/03/2017</span>
+            </div>
             <img src="episodes/0002-631325/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0002-631325/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0002-631325/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0002-631325/images/panel-004.jpg" alt="panel-004.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">A história sobre um valentão e seu novo colega de classe</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
@@ -788,8 +931,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap2">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap2" onchange="ordenarComentariosNaSecao(this, 'lista-cap2')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap2" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">mateuspaulo7890</span> 
         </div>
@@ -799,7 +950,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Apr 23, 2022 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Jenny</span> 
         </div>
@@ -807,7 +958,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 21, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Ari</span> 
         </div>
@@ -815,7 +966,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jun 13, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">La fujoshit</span> 
         </div>
@@ -823,7 +974,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">May 26, 2020 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">korra</span> 
         </div>
@@ -831,7 +982,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">May 21, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">antunes2207</span> 
         </div>
@@ -839,7 +990,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Mar 26, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">taisdonato13</span> 
         </div>
@@ -847,7 +998,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Oct 03, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Lin</span> 
         </div>
@@ -855,7 +1006,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Aug 20, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Abizonha</span> 
         </div>
@@ -863,7 +1014,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Aug 19, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">taisdonato13</span> 
         </div>
@@ -871,7 +1022,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jul 16, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Amora</span> 
         </div>
@@ -879,7 +1030,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Feb 20, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Confused_Sunshine</span> 
         </div>
@@ -887,7 +1038,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 21, 2019</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Juju</span> 
         </div>
@@ -895,7 +1046,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 10, 2019 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">maisons2001</span> 
         </div>
@@ -903,7 +1054,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 29, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">IceAngelSimon</span> 
         </div>
@@ -911,7 +1062,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 27, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">leticyacastelo</span> 
         </div>
@@ -919,7 +1070,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 26, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">IceAngelSimon</span> 
         </div>
@@ -927,7 +1078,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 09, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">sthacemayara</span> 
         </div>
@@ -935,7 +1086,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Sep 08, 2018 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">popcorn</span> 
         </div>
@@ -943,7 +1094,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jun 22, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">Jujubaaa</span> 
         </div>
@@ -951,7 +1102,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jun 16, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">Bela Sem Fera</span> 
         </div>
@@ -959,7 +1110,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Apr 16, 2018 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Mikhail</span> 
         </div>
@@ -967,7 +1118,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Mar 12, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">Kuulys</span> 
         </div>
@@ -975,7 +1126,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Feb 20, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Jonathan Jaeri</span> 
         </div>
@@ -983,7 +1134,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Feb 09, 2018 • ❤️ 19</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">Jonathan Jaeri</span> 
         </div>
@@ -991,7 +1142,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Feb 09, 2018 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">∅ɧąŋŋყ∅</span> 
         </div>
@@ -999,7 +1150,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Feb 03, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">Nalua</span> 
         </div>
@@ -1007,7 +1158,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 31, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">Lili Lolli</span> 
         </div>
@@ -1015,7 +1166,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 20, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">_yaoi_</span> 
         </div>
@@ -1023,7 +1174,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 11, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">natifacundes456</span> 
         </div>
@@ -1031,7 +1182,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 09, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">Maricchan</span> 
         </div>
@@ -1039,7 +1190,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 06, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">Loren</span> 
         </div>
@@ -1047,7 +1198,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Jan 06, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">sara.rosa025</span> 
         </div>
@@ -1055,7 +1206,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 21, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">Empadinhax</span> 
         </div>
@@ -1063,7 +1214,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 17, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">Alicinha</span> 
         </div>
@@ -1071,7 +1222,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 14, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="35">
         <div class="comentario-header">
             <span class="autor">Passarin Voador</span> 
         </div>
@@ -1079,7 +1230,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 12, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="36">
         <div class="comentario-header">
             <span class="autor">AitakNelle</span> 
         </div>
@@ -1087,7 +1238,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 08, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="37">
         <div class="comentario-header">
             <span class="autor">GabsGabsGabsGabsGabs</span> 
         </div>
@@ -1095,7 +1246,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 04, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="38">
         <div class="comentario-header">
             <span class="autor">Ismael Crispiim</span> 
         </div>
@@ -1103,7 +1254,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Dec 02, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="39">
         <div class="comentario-header">
             <span class="autor">Xiloui</span> 
         </div>
@@ -1111,14 +1262,14 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 30, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="40">
         <div class="comentario-header">
             <span class="autor">shurouqideis1</span> 
         </div>
         <div class="comentario-texto">How come the first parts in english but this one's one Spanish</div>
         <div class="comentario-meta">Nov 24, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="40">
         <div class="comentario-header">
             <span class="autor">tanto faz</span> 
         </div>
@@ -1127,7 +1278,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="41">
         <div class="comentario-header">
             <span class="autor">Jordan</span> 
         </div>
@@ -1135,7 +1286,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 23, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="42">
         <div class="comentario-header">
             <span class="autor">Hikari Miharu</span> 
         </div>
@@ -1143,7 +1294,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 23, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="43">
         <div class="comentario-header">
             <span class="autor">⅟oliver</span> 
         </div>
@@ -1151,7 +1302,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="44">
         <div class="comentario-header">
             <span class="autor">myrella araujo</span> 
         </div>
@@ -1159,7 +1310,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="45">
         <div class="comentario-header">
             <span class="autor">LouCardosoBB</span> 
         </div>
@@ -1167,7 +1318,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="46">
         <div class="comentario-header">
             <span class="autor">LouCardosoBB</span> 
         </div>
@@ -1175,7 +1326,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="47">
         <div class="comentario-header">
             <span class="autor">IludidaPakas</span> 
         </div>
@@ -1183,7 +1334,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="48">
         <div class="comentario-header">
             <span class="autor">Um ser٩(๑❛ᴗ❛๑)۶</span> 
         </div>
@@ -1191,7 +1342,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 13, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="49">
         <div class="comentario-header">
             <span class="autor">manaruhinaxd</span> 
         </div>
@@ -1199,7 +1350,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 10, 2017 • ❤️ 10</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="50">
         <div class="comentario-header">
             <span class="autor">ValBz</span> 
         </div>
@@ -1207,7 +1358,7 @@ Tem criança latindo e cachorro chorando aqui</div>
         <div class="comentario-meta">Nov 08, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="17" data-creator="false" data-index="51">
         <div class="comentario-header">
             <span class="autor">James</span> 
         </div>
@@ -1232,7 +1383,7 @@ PODER:SHIPAR
 AAAAAAAAAA</div>
         <div class="comentario-meta">Nov 03, 2017 • ❤️ 17</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="51">
         <div class="comentario-header">
             <span class="autor">myrella araujo</span> 
         </div>
@@ -1240,7 +1391,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="51">
         <div class="comentario-header">
             <span class="autor">Moniqueyaoi</span> 
         </div>
@@ -1249,7 +1400,7 @@ AAAAAAAAAA</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="52">
         <div class="comentario-header">
             <span class="autor">MissDy</span> 
         </div>
@@ -1257,7 +1408,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Nov 02, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="53">
         <div class="comentario-header">
             <span class="autor">Nula.</span> 
         </div>
@@ -1265,7 +1416,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 21, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="54">
         <div class="comentario-header">
             <span class="autor">susu</span> 
         </div>
@@ -1273,7 +1424,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="55">
         <div class="comentario-header">
             <span class="autor">hemylecristinesilva</span> 
         </div>
@@ -1281,7 +1432,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 09, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="56">
         <div class="comentario-header">
             <span class="autor">ib_UwU</span> 
         </div>
@@ -1289,7 +1440,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 08, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="57">
         <div class="comentario-header">
             <span class="autor">tanto faz</span> 
         </div>
@@ -1297,7 +1448,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 06, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="58">
         <div class="comentario-header">
             <span class="autor">Delaria</span> 
         </div>
@@ -1305,7 +1456,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 04, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="59">
         <div class="comentario-header">
             <span class="autor">random guy ùwú</span> 
         </div>
@@ -1313,7 +1464,7 @@ AAAAAAAAAA</div>
         <div class="comentario-meta">Oct 01, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="60">
         <div class="comentario-header">
             <span class="autor">kaka</span> 
         </div>
@@ -1323,7 +1474,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Sep 29, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="61">
         <div class="comentario-header">
             <span class="autor">Poli-Chan</span> 
         </div>
@@ -1331,7 +1482,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Sep 22, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="62">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
@@ -1339,7 +1490,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Sep 21, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="63">
         <div class="comentario-header">
             <span class="autor">nicolasramires81</span> 
         </div>
@@ -1347,7 +1498,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Sep 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="64">
         <div class="comentario-header">
             <span class="autor">croissantscaramelad</span> 
         </div>
@@ -1355,7 +1506,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Sep 02, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="65">
         <div class="comentario-header">
             <span class="autor">Disuki</span> 
         </div>
@@ -1363,7 +1514,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Aug 29, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="66">
         <div class="comentario-header">
             <span class="autor">sasalele</span> 
         </div>
@@ -1371,7 +1522,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Aug 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="67">
         <div class="comentario-header">
             <span class="autor">Venus</span> 
         </div>
@@ -1379,7 +1530,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Aug 02, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="68">
         <div class="comentario-header">
             <span class="autor">kenazfurion</span> 
         </div>
@@ -1387,7 +1538,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 30, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="69">
         <div class="comentario-header">
             <span class="autor">Nula.</span> 
         </div>
@@ -1395,7 +1546,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="70">
         <div class="comentario-header">
             <span class="autor">FujoshiAzarada</span> 
         </div>
@@ -1403,7 +1554,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 14, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="71">
         <div class="comentario-header">
             <span class="autor">Lumilllion</span> 
         </div>
@@ -1411,7 +1562,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="72">
         <div class="comentario-header">
             <span class="autor">Gabriel is the best</span> 
         </div>
@@ -1419,7 +1570,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 11, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="73">
         <div class="comentario-header">
             <span class="autor">2Ki1L</span> 
         </div>
@@ -1427,7 +1578,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 04, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="74">
         <div class="comentario-header">
             <span class="autor">Gabys</span> 
         </div>
@@ -1435,7 +1586,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 02, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="75">
         <div class="comentario-header">
             <span class="autor">Venus</span> 
         </div>
@@ -1443,7 +1594,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jul 01, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="76">
         <div class="comentario-header">
             <span class="autor">luanafofoletica</span> 
         </div>
@@ -1451,7 +1602,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jun 27, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="77">
         <div class="comentario-header">
             <span class="autor">balalalyra</span> 
         </div>
@@ -1459,7 +1610,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jun 22, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="78">
         <div class="comentario-header">
             <span class="autor">leticyacastelo</span> 
         </div>
@@ -1467,7 +1618,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jun 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="79">
         <div class="comentario-header">
             <span class="autor">Amaterasu</span> 
         </div>
@@ -1475,7 +1626,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jun 17, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="80">
         <div class="comentario-header">
             <span class="autor">Uma fã BR</span> 
         </div>
@@ -1483,7 +1634,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Jun 09, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="81">
         <div class="comentario-header">
             <span class="autor">350Volts</span> 
         </div>
@@ -1491,7 +1642,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 29, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="82">
         <div class="comentario-header">
             <span class="autor">valverde</span> 
         </div>
@@ -1499,7 +1650,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 29, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="83">
         <div class="comentario-header">
             <span class="autor">Prégo</span> 
         </div>
@@ -1507,7 +1658,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="84">
         <div class="comentario-header">
             <span class="autor">Prégo</span> 
         </div>
@@ -1515,7 +1666,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="85">
         <div class="comentario-header">
             <span class="autor">brat</span> 
         </div>
@@ -1523,7 +1674,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="86">
         <div class="comentario-header">
             <span class="autor">ingriddibby</span> 
         </div>
@@ -1531,7 +1682,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="87">
         <div class="comentario-header">
             <span class="autor">nidss.aw</span> 
         </div>
@@ -1539,7 +1690,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="88">
         <div class="comentario-header">
             <span class="autor">jhonvicthor</span> 
         </div>
@@ -1547,7 +1698,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 22, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="89">
         <div class="comentario-header">
             <span class="autor">Fell Sans!</span> 
         </div>
@@ -1555,7 +1706,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="90">
         <div class="comentario-header">
             <span class="autor">Chobella</span> 
         </div>
@@ -1563,7 +1714,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 18, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="91">
         <div class="comentario-header">
             <span class="autor">Doda Oz</span> 
         </div>
@@ -1571,7 +1722,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 12, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="92">
         <div class="comentario-header">
             <span class="autor">RynTrinity</span> 
         </div>
@@ -1579,7 +1730,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">May 07, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="93">
         <div class="comentario-header">
             <span class="autor">valverde</span> 
         </div>
@@ -1587,7 +1738,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="94">
         <div class="comentario-header">
             <span class="autor">LadyMichaelis</span> 
         </div>
@@ -1595,7 +1746,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 21, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="95">
         <div class="comentario-header">
             <span class="autor">LadyMichaelis</span> 
         </div>
@@ -1603,7 +1754,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 21, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="96">
         <div class="comentario-header">
             <span class="autor">Ana57</span> 
         </div>
@@ -1611,7 +1762,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 18, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="97">
         <div class="comentario-header">
             <span class="autor">pam</span> 
         </div>
@@ -1619,7 +1770,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="98">
         <div class="comentario-header">
             <span class="autor">gilmaraassuncao</span> 
         </div>
@@ -1627,7 +1778,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 08, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="99">
         <div class="comentario-header">
             <span class="autor">Hany_Chan</span> 
         </div>
@@ -1635,7 +1786,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 08, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="100">
         <div class="comentario-header">
             <span class="autor">jennycamui</span> 
         </div>
@@ -1643,7 +1794,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 04, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="101">
         <div class="comentario-header">
             <span class="autor">Bia B2</span> 
         </div>
@@ -1651,7 +1802,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 01, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="102">
         <div class="comentario-header">
             <span class="autor">byunmare</span> 
         </div>
@@ -1659,7 +1810,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 01, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="103">
         <div class="comentario-header">
             <span class="autor">Xasteh</span> 
         </div>
@@ -1667,7 +1818,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Apr 01, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="104">
         <div class="comentario-header">
             <span class="autor">Myrella (Libriana)</span> 
         </div>
@@ -1675,7 +1826,7 @@ CONTINUAAAAAA</div>
         <div class="comentario-meta">Mar 31, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="105">
         <div class="comentario-header">
             <span class="autor">Calliope</span> 
         </div>
@@ -1686,7 +1837,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 31, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="106">
         <div class="comentario-header">
             <span class="autor">Tarci_Wonder</span> 
         </div>
@@ -1694,7 +1845,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 31, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="107">
         <div class="comentario-header">
             <span class="autor">ramiresresende</span> 
         </div>
@@ -1702,7 +1853,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 30, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="108">
         <div class="comentario-header">
             <span class="autor">anamiranda0501</span> 
         </div>
@@ -1710,7 +1861,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 28, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="109">
         <div class="comentario-header">
             <span class="autor">hiimih</span> 
         </div>
@@ -1718,7 +1869,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 26, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="110">
         <div class="comentario-header">
             <span class="autor">Mayukka</span> 
         </div>
@@ -1726,7 +1877,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 25, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="111">
         <div class="comentario-header">
             <span class="autor">lariusagichan</span> 
         </div>
@@ -1734,7 +1885,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 24, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="112">
         <div class="comentario-header">
             <span class="autor">Xiumiau__EXO</span> 
         </div>
@@ -1742,7 +1893,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 21, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="113">
         <div class="comentario-header">
             <span class="autor">Kailorne</span> 
         </div>
@@ -1750,7 +1901,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 21, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="114">
         <div class="comentario-header">
             <span class="autor">Ana57</span> 
         </div>
@@ -1758,7 +1909,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="115">
         <div class="comentario-header">
             <span class="autor">Yukusen</span> 
         </div>
@@ -1766,7 +1917,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="116">
         <div class="comentario-header">
             <span class="autor">ally</span> 
         </div>
@@ -1774,7 +1925,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="117">
         <div class="comentario-header">
             <span class="autor">beccacimi</span> 
         </div>
@@ -1782,7 +1933,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="118">
         <div class="comentario-header">
             <span class="autor">Cereal</span> 
         </div>
@@ -1790,7 +1941,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 18, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="119">
         <div class="comentario-header">
             <span class="autor">chikasama</span> 
         </div>
@@ -1798,7 +1949,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 17, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="120">
         <div class="comentario-header">
             <span class="autor">Esteulica</span> 
         </div>
@@ -1806,7 +1957,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 17, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="121">
         <div class="comentario-header">
             <span class="autor">Cotton Candy Pie</span> 
         </div>
@@ -1814,7 +1965,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="122">
         <div class="comentario-header">
             <span class="autor">Tomoito</span> 
         </div>
@@ -1822,7 +1973,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="123">
         <div class="comentario-header">
             <span class="autor">Ninasoo666</span> 
         </div>
@@ -1830,7 +1981,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="124">
         <div class="comentario-header">
             <span class="autor">Altair</span> 
         </div>
@@ -1838,7 +1989,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="125">
         <div class="comentario-header">
             <span class="autor">Alberto Chiba</span> 
         </div>
@@ -1846,7 +1997,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="126">
         <div class="comentario-header">
             <span class="autor">nekomimi10</span> 
         </div>
@@ -1854,7 +2005,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 16, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="127">
         <div class="comentario-header">
             <span class="autor">d8hunter</span> 
         </div>
@@ -1862,7 +2013,7 @@ Eu vivo aqui"
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="128">
         <div class="comentario-header">
             <span class="autor">linneh</span> 
         </div>
@@ -1872,7 +2023,7 @@ lá vou eu morrer de novo!</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="129">
         <div class="comentario-header">
             <span class="autor">darilha</span> 
         </div>
@@ -1880,7 +2031,7 @@ lá vou eu morrer de novo!</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="130">
         <div class="comentario-header">
             <span class="autor">Brago</span> 
         </div>
@@ -1888,7 +2039,7 @@ lá vou eu morrer de novo!</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="131">
         <div class="comentario-header">
             <span class="autor">nanny-chan</span> 
         </div>
@@ -1896,7 +2047,7 @@ lá vou eu morrer de novo!</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="132">
         <div class="comentario-header">
             <span class="autor">Nasu Girl</span> 
         </div>
@@ -1906,7 +2057,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="133">
         <div class="comentario-header">
             <span class="autor">Miguel</span> 
         </div>
@@ -1914,7 +2065,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="134">
         <div class="comentario-header">
             <span class="autor">HiwiTsuki</span> 
         </div>
@@ -1922,7 +2073,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="135">
         <div class="comentario-header">
             <span class="autor">jennifermadara2001</span> 
         </div>
@@ -1930,7 +2081,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="136">
         <div class="comentario-header">
             <span class="autor">Gabsaura</span> 
         </div>
@@ -1938,7 +2089,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="137">
         <div class="comentario-header">
             <span class="autor">Deadly Spraycision</span> 
         </div>
@@ -1948,7 +2099,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="138">
         <div class="comentario-header">
             <span class="autor">Gabsaura</span> 
         </div>
@@ -1956,7 +2107,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="139">
         <div class="comentario-header">
             <span class="autor">Luana_1234</span> 
         </div>
@@ -1964,7 +2115,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="140">
         <div class="comentario-header">
             <span class="autor">dartus</span> 
         </div>
@@ -1972,7 +2123,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="141">
         <div class="comentario-header">
             <span class="autor">wario73</span> 
         </div>
@@ -1980,7 +2131,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="142">
         <div class="comentario-header">
             <span class="autor">nathaliesantos</span> 
         </div>
@@ -1988,7 +2139,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="143">
         <div class="comentario-header">
             <span class="autor">milenissima</span> 
         </div>
@@ -1996,7 +2147,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="144">
         <div class="comentario-header">
             <span class="autor">Kass</span> 
         </div>
@@ -2004,7 +2155,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="145">
         <div class="comentario-header">
             <span class="autor">MyungHee Moon</span> 
         </div>
@@ -2012,7 +2163,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="146">
         <div class="comentario-header">
             <span class="autor">Geissiane</span> 
         </div>
@@ -2020,7 +2171,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="147">
         <div class="comentario-header">
             <span class="autor">kiwi</span> 
         </div>
@@ -2028,7 +2179,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="148">
         <div class="comentario-header">
             <span class="autor">Pierre</span> 
         </div>
@@ -2036,7 +2187,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="149">
         <div class="comentario-header">
             <span class="autor">Evangeline</span> 
         </div>
@@ -2044,7 +2195,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="150">
         <div class="comentario-header">
             <span class="autor">thiago rodrigues</span> 
         </div>
@@ -2052,7 +2203,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="151">
         <div class="comentario-header">
             <span class="autor">acgcollares</span> 
         </div>
@@ -2060,7 +2211,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="152">
         <div class="comentario-header">
             <span class="autor">bear</span> 
         </div>
@@ -2068,7 +2219,7 @@ Está lindo <3 <3</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="153">
         <div class="comentario-header">
             <span class="autor">Noah</span> 
         </div>
@@ -2078,14 +2229,14 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="154">
         <div class="comentario-header">
             <span class="autor">rialasilva</span> 
         </div>
         <div class="comentario-texto">SÉRIEEEEEEEEEEEEEE POR FAVOOOOOOOOOOORRRRRRR</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="154">
         <div class="comentario-header">
             <span class="autor">rialasilva</span> 
         </div>
@@ -2094,7 +2245,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="155">
         <div class="comentario-header">
             <span class="autor">bellaohimesama</span> 
         </div>
@@ -2102,7 +2253,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="156">
         <div class="comentario-header">
             <span class="autor">Dan</span> 
         </div>
@@ -2110,7 +2261,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="157">
         <div class="comentario-header">
             <span class="autor">anaclaraestevesbarb</span> 
         </div>
@@ -2118,7 +2269,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="82" data-creator="false" data-index="158">
         <div class="comentario-header">
             <span class="autor">insanidadegamer1492</span> 
         </div>
@@ -2126,7 +2277,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 82</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="118" data-creator="false" data-index="159">
         <div class="comentario-header">
             <span class="autor">insanidadegamer1492</span> 
         </div>
@@ -2134,7 +2285,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 118</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="58" data-creator="false" data-index="160">
         <div class="comentario-header">
             <span class="autor">Lainike</span> 
         </div>
@@ -2142,7 +2293,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 58</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="161">
         <div class="comentario-header">
             <span class="autor">Jul</span> 
         </div>
@@ -2150,7 +2301,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="162">
         <div class="comentario-header">
             <span class="autor">Amy</span> 
         </div>
@@ -2158,7 +2309,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="163">
         <div class="comentario-header">
             <span class="autor">IsaMlima</span> 
         </div>
@@ -2166,7 +2317,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="164">
         <div class="comentario-header">
             <span class="autor">Apenas Um Cara</span> 
         </div>
@@ -2174,7 +2325,7 @@ EU TÔ RINDO DE MAIS, SOCORRO</div>
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="165">
         <div class="comentario-header">
             <span class="autor">L I 0 N</span> 
         </div>
@@ -2195,8 +2346,24 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
             </div>
         </div>
         <div class="capitulo" id="cap3">
-            <h2>Capítulo 3 - 0003-893454</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 3 - Memórias</h2>
+                <span class="capitulo-data">19/11/2017</span>
+            </div>
             <img src="episodes/0003-893454/images/panel-001.jpg" alt="panel-001.jpg"><img src="episodes/0003-893454/images/panel-002.jpg" alt="panel-002.jpg"><img src="episodes/0003-893454/images/panel-003.jpg" alt="panel-003.jpg"><img src="episodes/0003-893454/images/panel-004.jpg" alt="panel-004.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">A historinha de dois amigos que há muito tempo não se viam.<br>
+<br>
+Feito pro FIQ Jovem de 2016~</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
@@ -2204,8 +2371,16 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap3">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap3" onchange="ordenarComentariosNaSecao(this, 'lista-cap3')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap3" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">alicemgonzales2</span> 
         </div>
@@ -2213,7 +2388,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Feb 14, 2026</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">memezilds</span> 
         </div>
@@ -2221,7 +2396,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">May 18, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">memezilds</span> 
         </div>
@@ -2229,7 +2404,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">May 18, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">memezilds</span> 
         </div>
@@ -2237,14 +2412,14 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">May 18, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">fatcat</span> 
         </div>
         <div class="comentario-texto">achei super normal. todos os dias eu converso com uns duendes psicodélicos quando ninguém tá vendo.</div>
         <div class="comentario-meta">Nov 04, 2018 • ❤️ 6</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">BolinhoDoce</span> 
         </div>
@@ -2252,7 +2427,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Nov 25, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Ari</span> 
         </div>
@@ -2260,7 +2435,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Jun 13, 2020 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Ari</span> 
         </div>
@@ -2269,14 +2444,14 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="111" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Jonathan Jaeri</span> 
         </div>
         <div class="comentario-texto">No começo ta tudo sem cor menos aquele espirito que é o amigo invisível da infância dela. Ai ela fica com raiva e manda ele embora como se quisesse a todo custo se tornar adulta mas no fim encontra uma memoria de quando era mais jovem e tudo fica colorido pq seu coração ainda vive um espirito de criança.  ME DIGA QUE É ISSO OU EU TO FUMANDO BANANA.</div>
         <div class="comentario-meta">Feb 09, 2018 • ❤️ 111</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Lua Estrelar</span> 
         </div>
@@ -2284,7 +2459,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Oct 26, 2018 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">naotocanofilhoe</span> 
         </div>
@@ -2292,7 +2467,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Dec 11, 2022 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">naotocanofilhoe</span> 
         </div>
@@ -2301,7 +2476,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Jonathan Jaeri</span> 
         </div>
@@ -2309,7 +2484,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Feb 09, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Jonathan Jaeri</span> 
         </div>
@@ -2317,7 +2492,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Feb 09, 2018 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">:)</span> 
         </div>
@@ -2325,7 +2500,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Dec 11, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">caeruleum_igne</span> 
         </div>
@@ -2333,7 +2508,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Dec 07, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">isistillypat123</span> 
         </div>
@@ -2341,7 +2516,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Nov 29, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">LalahCupcake</span> 
         </div>
@@ -2349,7 +2524,7 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Nov 23, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Mikhail</span> 
         </div>
@@ -2357,14 +2532,14 @@ Apoio que vire série caso tiver tempo de sobra também, vejo uma história bem 
         <div class="comentario-meta">Nov 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Lili Lolli</span> 
         </div>
         <div class="comentario-texto">Aquele momento em que você pensa... EU QUERO TER UM AMIGO IMAGINÁRIO (╥ω╥)</div>
         <div class="comentario-meta">Nov 20, 2017 • ❤️ 8</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="13">
         <div class="comentario-header">
             <span class="autor">Jpx0999</span> 
         </div>
@@ -2375,7 +2550,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="14">
         <div class="comentario-header">
             <span class="autor">hemylecristinesilva</span> 
         </div>
@@ -2383,7 +2558,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="37" data-creator="false" data-index="15">
         <div class="comentario-header">
             <span class="autor">Nalua</span> 
         </div>
@@ -2391,7 +2566,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 20, 2017 • ❤️ 37</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="16">
         <div class="comentario-header">
             <span class="autor">Nalua</span> 
         </div>
@@ -2399,7 +2574,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 20, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="17">
         <div class="comentario-header">
             <span class="autor">gabriellyfigueiredo</span> 
         </div>
@@ -2407,7 +2582,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="18">
         <div class="comentario-header">
             <span class="autor">LuluFazbear</span> 
         </div>
@@ -2415,7 +2590,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="19">
         <div class="comentario-header">
             <span class="autor">Giih Sh</span> 
         </div>
@@ -2423,7 +2598,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="20">
         <div class="comentario-header">
             <span class="autor">Giih Sh</span> 
         </div>
@@ -2431,7 +2606,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="21">
         <div class="comentario-header">
             <span class="autor">Gracilariopsis</span> 
         </div>
@@ -2439,7 +2614,7 @@ no caso de n ter imaginação suficiente pegue um personagem que vc gosta muito 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="47" data-creator="false" data-index="22">
         <div class="comentario-header">
             <span class="autor">Gi.Cheshire432</span> 
         </div>
@@ -2459,7 +2634,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 47</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="23">
         <div class="comentario-header">
             <span class="autor">Krauser</span> 
         </div>
@@ -2467,7 +2642,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="24">
         <div class="comentario-header">
             <span class="autor">SaphyrTurk</span> 
         </div>
@@ -2475,7 +2650,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="25">
         <div class="comentario-header">
             <span class="autor">Alyss</span> 
         </div>
@@ -2483,7 +2658,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="26">
         <div class="comentario-header">
             <span class="autor">MehGabss</span> 
         </div>
@@ -2491,7 +2666,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="27">
         <div class="comentario-header">
             <span class="autor">Lunart18</span> 
         </div>
@@ -2499,7 +2674,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="28">
         <div class="comentario-header">
             <span class="autor">Pluto</span> 
         </div>
@@ -2507,7 +2682,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="29">
         <div class="comentario-header">
             <span class="autor">yd979209@gmail.com</span> 
         </div>
@@ -2515,7 +2690,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="30">
         <div class="comentario-header">
             <span class="autor">stioncenha</span> 
         </div>
@@ -2523,7 +2698,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="31">
         <div class="comentario-header">
             <span class="autor">rwflowers</span> 
         </div>
@@ -2531,7 +2706,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="32">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -2539,7 +2714,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="33">
         <div class="comentario-header">
             <span class="autor">LouCardosoBB</span> 
         </div>
@@ -2547,14 +2722,14 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">hiimih</span> 
         </div>
         <div class="comentario-texto">Eu não entedi (??</div>
         <div class="comentario-meta">Nov 19, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="34">
         <div class="comentario-header">
             <span class="autor">d8hunter</span> 
         </div>
@@ -2563,7 +2738,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="35">
         <div class="comentario-header">
             <span class="autor">natureba</span> 
         </div>
@@ -2571,7 +2746,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
         <div class="comentario-meta">Nov 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="36">
         <div class="comentario-header">
             <span class="autor">fwrzi</span> 
         </div>
@@ -2613,7 +2788,7 @@ Não tem nada mais justo do que te parabenizar por mais uma história incrível 
     <div class="mobile-nav-bar">
         <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
         <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
-            <option value="1">Cap. 1 - 0001-631323</option><option value="2">Cap. 2 - 0002-631325</option><option value="3">Cap. 3 - 0003-893454</option>
+            <option value="1">Cap. 1 - Bully</option><option value="2">Cap. 2 - Bully PT-BR</option><option value="3">Cap. 3 - Memórias</option>
         </select>
         <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
         <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
@@ -2665,6 +2840,53 @@ function toggleTodosComentarios() {
     btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
 }
 
+function ordenarComentariosNaSecao(selectEl, listaId, sincronizarComId = null) {
+    const ordem = selectEl.value;
+    
+    if (sincronizarComId) {
+        const outroSelect = document.getElementById(sincronizarComId);
+        if (outroSelect && outroSelect.value !== ordem) {
+            outroSelect.value = ordem;
+        }
+    }
+
+    const lista = document.getElementById(listaId);
+    if (!lista) return;
+    
+    let itens = Array.from(lista.children).filter(el => el.matches('li.comentario-item'));
+
+    itens.forEach(item => {
+        const isCriador = item.getAttribute('data-creator') === 'true';
+        if (ordem === 'criador') {
+            item.style.display = isCriador ? 'block' : 'none';
+        } else {
+            item.style.display = 'block';
+        }
+    });
+
+    if (ordem === 'curtidos') {
+        itens.sort((a, b) => {
+            let likesA = parseInt(a.getAttribute('data-likes')) || 0;
+            let likesB = parseInt(b.getAttribute('data-likes')) || 0;
+            return likesB - likesA;
+        });
+    } else if (ordem === 'antigos') {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxA - idxB;
+        });
+    } else {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxB - idxA;
+        });
+    }
+
+    itens.forEach(item => lista.appendChild(item));
+}
+
 function irParaCapitulo(index) {
     if (!index || index < 1) return;
     capAtualIndex = parseInt(index);
@@ -2692,15 +2914,36 @@ function sincronizarSelectsCapitulos() {
 function abrirModalComentarios() {
     const capEl = document.getElementById(`cap${capAtualIndex}`);
     if (!capEl) return;
-    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const listaOriginal = capEl.querySelector('.comentarios-lista');
     const modalBody = document.getElementById('modalComentariosBody');
     document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
-    if (wrapperComentarios) {
-        modalBody.innerHTML = wrapperComentarios.innerHTML;
-        const lista = modalBody.querySelector('.comentarios-conteudo');
-        if (lista) lista.style.display = 'block';
-        const btn = modalBody.querySelector('.btn-toggle-comentarios');
-        if (btn) btn.style.display = 'none';
+    
+    if (listaOriginal) {
+        const selectOriginalId = `ordem-cap${capAtualIndex}`;
+        const selectOriginal = document.getElementById(selectOriginalId);
+        const ordemAtual = selectOriginal ? selectOriginal.value : 'recentes';
+
+        modalBody.innerHTML = `
+            <div class="comentarios-conteudo aberto" style="border:none; padding:0;">
+                <div class="comentarios-filtros">
+                    <select id="modal-select-ordem" onchange="ordenarComentariosNaSecao(this, 'modal-lista-comentarios', '${selectOriginalId}')">
+                        <option value="recentes">Mais Recentes</option>
+                        <option value="antigos">Mais Antigos</option>
+                        <option value="curtidos">Mais Curtidos</option>
+                        <option value="criador">Apenas do Criador</option>
+                    </select>
+                </div>
+                <ul class="comentarios-lista" id="modal-lista-comentarios" style="list-style:none;">
+                    ${listaOriginal.innerHTML}
+                </ul>
+            </div>
+        `;
+
+        const selectModal = document.getElementById('modal-select-ordem');
+        if (selectModal) {
+            selectModal.value = ordemAtual;
+            ordenarComentariosNaSecao(selectModal, 'modal-lista-comentarios');
+        }
     } else {
         modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
     }

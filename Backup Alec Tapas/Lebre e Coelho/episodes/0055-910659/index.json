@@ -1,7 +1,7 @@
 {
  "num": 55,
  "episode_id": "910659",
- "fetched_at": "2026-09-26T19:38:40Z",
+ "fetched_at": "2026-10-11T20:19:37Z",
  "data": {
   "id": 910659,
   "title": "Larry e Coelho 63 - 65",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 126496,
-  "like_cnt": 4000,
+  "view_cnt": 126910,
+  "like_cnt": 4003,
   "comment_cnt": 262,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "OPA, FOI MAL A DEMORA<br>\r\nMais problemas técnicos<br>\r\nE agora as páginas alcançaram a line que eu tinha feito hmmmm<br>\r\nGente, lembrando que o impresso de Lebre e Coelho está a venda na lojinha do face! Corre pra adquirir porque daqui a pouco eu entro de férias e fecho a lojinha de novo~<br>\r\nhttp://loja.likestore.com.br/batatirastore"
  }
 }

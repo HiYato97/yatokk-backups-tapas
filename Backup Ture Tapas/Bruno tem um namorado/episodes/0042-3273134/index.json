@@ -1,7 +1,7 @@
 {
  "num": 42,
  "episode_id": "3273134",
- "fetched_at": "2026-09-27T15:28:54Z",
+ "fetched_at": "2026-10-11T18:08:25Z",
  "data": {
   "id": 3273134,
   "title": "Extra - Dias de Sol - Pt 2",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 4312,
-  "like_cnt": 209,
+  "view_cnt": 4384,
+  "like_cnt": 212,
   "comment_cnt": 12,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpem o atraso, tive uma viagem de ultima hora."
  }
 }

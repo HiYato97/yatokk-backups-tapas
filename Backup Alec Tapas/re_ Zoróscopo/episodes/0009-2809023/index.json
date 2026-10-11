@@ -1,7 +1,7 @@
 {
  "num": 9,
  "episode_id": "2809023",
- "fetched_at": "2026-09-26T20:21:02Z",
+ "fetched_at": "2026-10-11T19:08:22Z",
  "data": {
   "id": 2809023,
   "title": "#06.3",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 10758,
-  "like_cnt": 500,
+  "view_cnt": 10839,
+  "like_cnt": 501,
   "comment_cnt": 20,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Eeeeee ato 3<br>\r\nem breve voltamos com mais dos meninossss (se acharmos eles)<br>\r\nMe segue no twitter pra mais atualizaçõessss <br>\r\n@alelecleclec"
  }
 }

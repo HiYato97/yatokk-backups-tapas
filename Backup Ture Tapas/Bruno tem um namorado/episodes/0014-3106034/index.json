@@ -1,7 +1,7 @@
 {
  "num": 14,
  "episode_id": "3106034",
- "fetched_at": "2026-09-27T15:26:11Z",
+ "fetched_at": "2026-10-11T18:05:46Z",
  "data": {
   "id": 3106034,
   "title": "Pg 37 - 40",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6453,
-  "like_cnt": 279,
+  "view_cnt": 6560,
+  "like_cnt": 280,
   "comment_cnt": 17,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Pus comedia nas tags e vocês acreditaram hahahaha ( brincadeira a programação normal vai voltar... ocasionalmente)"
  }
 }

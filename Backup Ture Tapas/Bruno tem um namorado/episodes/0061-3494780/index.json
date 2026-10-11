@@ -1,7 +1,7 @@
 {
  "num": 61,
  "episode_id": "3494780",
- "fetched_at": "2026-09-27T15:31:11Z",
+ "fetched_at": "2026-10-11T18:10:09Z",
  "data": {
   "id": 3494780,
   "title": "Pg 60 - 63",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3592,
-  "like_cnt": 159,
+  "view_cnt": 3650,
+  "like_cnt": 160,
   "comment_cnt": 14,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Desculpem a pausa na sequência de episódios. Infelizmente, precisei fazer uma viagem de última hora para ajudar um amigo em um momento difícil. Em memória de Rubens César."
  }
 }

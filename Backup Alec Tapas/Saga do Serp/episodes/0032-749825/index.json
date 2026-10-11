@@ -1,7 +1,7 @@
 {
  "num": 32,
  "episode_id": "749825",
- "fetched_at": "2026-09-26T20:14:31Z",
+ "fetched_at": "2026-10-11T20:48:33Z",
  "data": {
   "id": 749825,
   "title": "Monstros - Parte 13",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34561,
-  "like_cnt": 1692,
+  "view_cnt": 34649,
+  "like_cnt": 1694,
   "comment_cnt": 129,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

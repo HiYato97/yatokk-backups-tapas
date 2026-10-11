@@ -1,7 +1,7 @@
 {
  "num": 39,
  "episode_id": "821220",
- "fetched_at": "2026-09-26T20:16:11Z",
+ "fetched_at": "2026-10-11T20:50:13Z",
  "data": {
   "id": 821220,
   "title": "Perspectivas - parte 5",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 34725,
-  "like_cnt": 1497,
+  "view_cnt": 34809,
+  "like_cnt": 1498,
   "comment_cnt": 26,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Pintura rapidinha mas hoje o tempo é curto lkjdsflaksdjf"
  }
 }

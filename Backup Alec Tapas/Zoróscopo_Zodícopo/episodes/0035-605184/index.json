@@ -1,7 +1,7 @@
 {
  "num": 35,
  "episode_id": "605184",
- "fetched_at": "2026-09-26T19:56:52Z",
+ "fetched_at": "2026-10-11T21:20:24Z",
  "data": {
   "id": 605184,
   "title": "#35",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 56453,
-  "like_cnt": 1905,
+  "view_cnt": 56544,
+  "like_cnt": 1907,
   "comment_cnt": 71,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Saga do Serp:<br>\r\nhttps://tapastic.com/series/Saga-do-Serp"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 13,
  "episode_id": "628488",
- "fetched_at": "2026-09-26T19:40:11Z",
+ "fetched_at": "2026-10-11T21:35:20Z",
  "data": {
   "id": 628488,
   "title": "Pag 30",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17402,
-  "like_cnt": 869,
+  "view_cnt": 17429,
+  "like_cnt": 868,
   "comment_cnt": 23,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

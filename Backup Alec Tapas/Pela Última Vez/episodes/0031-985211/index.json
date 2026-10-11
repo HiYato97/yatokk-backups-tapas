@@ -1,7 +1,7 @@
 {
  "num": 31,
  "episode_id": "985211",
- "fetched_at": "2026-09-26T20:03:14Z",
+ "fetched_at": "2026-10-11T20:59:43Z",
  "data": {
   "id": 985211,
   "title": "30 - 33",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48481,
+  "view_cnt": 48571,
   "like_cnt": 2230,
   "comment_cnt": 83,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "VOLTEI<br>\r\nVou tentar atualizar o PUV 3 vezes por mês assim como Larry e Coelho~<br>\r\nLembrando que sai antes pros colaboradores do Apoia.se <3"
  }
 }

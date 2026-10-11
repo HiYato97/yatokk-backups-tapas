@@ -1,7 +1,7 @@
 {
  "num": 5,
  "episode_id": "460886",
- "fetched_at": "2026-09-26T19:18:53Z",
+ "fetched_at": "2026-10-11T19:14:19Z",
  "data": {
   "id": 460886,
   "title": "Pags 18 - 21",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 164033,
-  "like_cnt": 4096,
+  "view_cnt": 164659,
+  "like_cnt": 4102,
   "comment_cnt": 116,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Tem gente que não se ajuda."
  }
 }

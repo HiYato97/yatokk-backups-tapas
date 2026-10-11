@@ -1,7 +1,7 @@
 {
  "num": 2,
  "episode_id": "499828",
- "fetched_at": "2026-09-26T20:09:08Z",
+ "fetched_at": "2026-10-11T20:36:01Z",
  "data": {
   "id": 499828,
   "title": "Parte 2",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 52115,
-  "like_cnt": 1729,
+  "view_cnt": 52205,
+  "like_cnt": 1730,
   "comment_cnt": 48,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

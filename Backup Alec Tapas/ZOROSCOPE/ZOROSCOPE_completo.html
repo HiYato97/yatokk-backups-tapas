@@ -37,6 +37,12 @@ body.light {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
+/* SCROLLBARS ESCURAS */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--bg-body); }
+*::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #444450; }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-body);
@@ -167,6 +173,21 @@ body {
 }
 .conteudo.expandido { margin-left: 0; }
 
+.series-banner {
+    max-width: 850px;
+    margin: 0 auto 15px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+}
+.series-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
 .series-header {
     max-width: 850px;
     margin: 0 auto 30px auto;
@@ -179,15 +200,14 @@ body {
     align-items: flex-start;
 }
 .series-thumb {
-    width: 130px;
-    height: 130px;
+    max-width: 160px;
+    height: auto;
     border-radius: 6px;
-    object-fit: cover;
     border: 1px solid var(--border-color);
 }
 .series-info { flex: 1; }
 .series-title { font-size: 1.8rem; margin-bottom: 5px; color: var(--text-primary); }
-.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+.series-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .series-genre {
     display: inline-block;
     background: var(--border-color);
@@ -210,15 +230,81 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.capitulo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
 .capitulo h2 {
     font-size: 1.15rem;
     color: var(--text-primary);
-    margin-bottom: 12px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+}
+.capitulo-data {
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-radius: 2px; }
+
+/* CREATOR NOTE ESTILOS */
+.creator-note-box {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    align-items: flex-start;
+}
+.creator-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #222;
+    flex-shrink: 0;
+}
+.creator-avatar-placeholder {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #222;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.creator-content {
+    flex: 1;
+}
+.creator-info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.creator-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.creator-tag {
+    background: #d97706;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.creator-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
 
 .comentarios-wrapper { margin-top: 15px; }
 .btn-toggle-comentarios {
@@ -242,9 +328,26 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
     padding: 12px;
 }
 .comentarios-conteudo.aberto { display: block !important; }
+
+.comentarios-filtros {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.comentarios-filtros select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+    flex: 1;
+}
+
 .comentario-item { padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.85rem; }
 .autor { font-weight: 600; color: var(--text-primary); }
-.badge-criador { background: var(--border-color); color: var(--text-primary); font-size: 0.7rem; padding: 1px 5px; border-radius: 3px; }
+.badge-criador { background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 1px 5px; border-radius: 3px; text-transform: uppercase; }
 .comentario-texto { color: var(--text-primary); margin: 2px 0; white-space: pre-line; }
 .comentario-meta { font-size: 0.75rem; color: var(--text-muted); }
 .replies { margin-left: 12px; padding-left: 10px; border-left: 2px solid var(--border-color); margin-top: 8px; list-style: none; }
@@ -282,6 +385,7 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 }
 .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
 .modal-body { padding: 16px; overflow-y: auto; }
+.btn-fechar-modal { background: transparent; border: none; color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
 
 /* BARRA NAVEGAÇÃO MOBILE */
 .mobile-nav-bar {
@@ -325,8 +429,10 @@ img { max-width: 100%; height: auto; display: block; margin: 10px auto; border-r
 body.modo-imersivo #versao,
 body.modo-imersivo #toggleSidebarBtn,
 body.modo-imersivo .sidebar,
+body.modo-imersivo .series-banner,
 body.modo-imersivo .series-header,
-body.modo-imersivo .capitulo h2,
+body.modo-imersivo .capitulo-header,
+body.modo-imersivo .creator-note-box,
 body.modo-imersivo .comentarios-wrapper,
 body.modo-imersivo .nav-botoes,
 body.modo-imersivo #topoBtn,
@@ -495,7 +601,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
 
 <body id="topo">
     <div id="versao">
-        <span>Série: <b>Zoroscope</b> | Gerado em 10/10/2026 17:41</span>
+        <span>Série: <b>Zoroscope</b> | Gerado em 11/10/2026 20:05</span>
         
     <button class="btn-info-modal" onclick="document.getElementById('modalInfoProj').classList.add('visivel')" title="Informações do Projeto">ⓘ</button>
     
@@ -515,7 +621,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="painel-controles">
             <h3>Seletor Rápido</h3>
             <select id="selectCapitulosSidebar" class="select-capitulos" onchange="irParaCapitulo(this.value)">
-                <option value="1">Cap. 1 - 0001-164162</option><option value="2">Cap. 2 - 0002-164175</option><option value="3">Cap. 3 - 0003-180922</option><option value="4">Cap. 4 - 0004-605045</option><option value="5">Cap. 5 - 0005-606272</option><option value="6">Cap. 6 - 0006-607829</option><option value="7">Cap. 7 - 0007-607851</option><option value="8">Cap. 8 - 0008-607854</option><option value="9">Cap. 9 - 0009-621161</option><option value="10">Cap. 10 - 0010-621176</option><option value="11">Cap. 11 - 0011-845904</option><option value="12">Cap. 12 - 0012-845940</option>
+                <option value="1">Cap. 1 - ZOROSCOPE #01</option><option value="2">Cap. 2 - ZOROSCOPE #02</option><option value="3">Cap. 3 - ZOROSCOPE #03</option><option value="4">Cap. 4 - ZOROSCOPE #04</option><option value="5">Cap. 5 - ZOROSCOPE #05</option><option value="6">Cap. 6 - ZOROSCOPE #06</option><option value="7">Cap. 7 - ZOROSCOPE #07</option><option value="8">Cap. 8 - ZOROSCOPE #08</option><option value="9">Cap. 9 - ZOROSCOPE #09</option><option value="10">Cap. 10 - ZOROSCOPE #10</option><option value="11">Cap. 11 - #11</option><option value="12">Cap. 12 - #12</option>
             </select>
 
             <h3>Opções da Página</h3>
@@ -529,23 +635,28 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         </div>
 
         <h2>Índice</h2>
-        <ul><li><a href="#cap1">Cap. 1 - 0001-164162</a></li><li><a href="#cap2">Cap. 2 - 0002-164175</a></li><li><a href="#cap3">Cap. 3 - 0003-180922</a></li><li><a href="#cap4">Cap. 4 - 0004-605045</a></li><li><a href="#cap5">Cap. 5 - 0005-606272</a></li><li><a href="#cap6">Cap. 6 - 0006-607829</a></li><li><a href="#cap7">Cap. 7 - 0007-607851</a></li><li><a href="#cap8">Cap. 8 - 0008-607854</a></li><li><a href="#cap9">Cap. 9 - 0009-621161</a></li><li><a href="#cap10">Cap. 10 - 0010-621176</a></li><li><a href="#cap11">Cap. 11 - 0011-845904</a></li><li><a href="#cap12">Cap. 12 - 0012-845940</a></li></ul>
+        <ul><li><a href="#cap1">Cap. 1 - ZOROSCOPE #01</a></li><li><a href="#cap2">Cap. 2 - ZOROSCOPE #02</a></li><li><a href="#cap3">Cap. 3 - ZOROSCOPE #03</a></li><li><a href="#cap4">Cap. 4 - ZOROSCOPE #04</a></li><li><a href="#cap5">Cap. 5 - ZOROSCOPE #05</a></li><li><a href="#cap6">Cap. 6 - ZOROSCOPE #06</a></li><li><a href="#cap7">Cap. 7 - ZOROSCOPE #07</a></li><li><a href="#cap8">Cap. 8 - ZOROSCOPE #08</a></li><li><a href="#cap9">Cap. 9 - ZOROSCOPE #09</a></li><li><a href="#cap10">Cap. 10 - ZOROSCOPE #10</a></li><li><a href="#cap11">Cap. 11 - #11</a></li><li><a href="#cap12">Cap. 12 - #12</a></li></ul>
     </div>
 
     <div class="conteudo expandido" id="conteudo">
         
+    
     <div class="series-header">
-        <img src="cover.jpg" class="series-thumb" alt="Capa">
+        <img src="series-thumb.jpg" class="series-thumb" alt="Capa">
         <div class="series-info">
             <h1 class="series-title">Zoroscope</h1>
-            <div class="series-meta"><span class="series-genre">Comedy</span> ❤ 3793 curtidas</div>
-            <div class="series-desc"></div>
+            <div class="series-meta"><span class="series-genre">Comedy</span> • 👁️ 114,643 views • 👥 2,529 inscritos • ❤️ 3,793 likes • 📅 Publicado em 17/07/2015</div>
+            <div class="series-desc">PORTUGUÊS: https://tapastic.com/series/58137<br><br>The signs are all cool.<br>Or not.</div>
         </div>
     </div>
         
         <div class="capitulo" id="cap1">
-            <h2>Capítulo 1 - 0001-164162</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 1 - ZOROSCOPE #01</h2>
+                <span class="capitulo-data">17/07/2015</span>
+            </div>
             <img src="episodes/0001-164162/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap1', this)">
@@ -553,8 +664,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap1">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap1" onchange="ordenarComentariosNaSecao(this, 'lista-cap1')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap1" style="list-style:none;">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">shadowwings8810</span> 
         </div>
@@ -562,7 +681,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Nov 22, 2017 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">gabriela1</span> 
         </div>
@@ -570,14 +689,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 18, 2017 • ❤️ 9</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">francessm39</span> 
         </div>
         <div class="comentario-texto">i love your comics <3 but when r u posting more?</div>
         <div class="comentario-meta">Mar 24, 2016 • ❤️ 8</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">iug279</span> 
         </div>
@@ -595,8 +714,22 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap2">
-            <h2>Capítulo 2 - 0002-164175</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 2 - ZOROSCOPE #02</h2>
+                <span class="capitulo-data">17/07/2015</span>
+            </div>
             <img src="episodes/0002-164175/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">I swear</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap2', this)">
@@ -604,15 +737,23 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap2">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap2" onchange="ordenarComentariosNaSecao(this, 'lista-cap2')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap2" style="list-style:none;">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Giih Blackheart</span> 
         </div>
         <div class="comentario-texto">Pera, Leãozito gosta do Peixes?</div>
         <div class="comentario-meta">Feb 21, 2017 • ❤️ 6</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Queen Stella</span> 
         </div>
@@ -621,7 +762,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Oportuno</span> 
         </div>
@@ -638,8 +779,22 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap3">
-            <h2>Capítulo 3 - 0003-180922</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 3 - ZOROSCOPE #03</h2>
+                <span class="capitulo-data">19/08/2015</span>
+            </div>
             <img src="episodes/0003-180922/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">A nice guy (Y)</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap3', this)">
@@ -647,8 +802,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap3">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap3" onchange="ordenarComentariosNaSecao(this, 'lista-cap3')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap3" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">MewTyCat</span> 
         </div>
@@ -656,7 +819,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jul 13, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Zia</span> 
         </div>
@@ -664,7 +827,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jan 26, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="11" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">marvelkids22</span> 
         </div>
@@ -672,7 +835,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 02, 2017 • ❤️ 11</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Ravenwashere1776</span> 
         </div>
@@ -680,7 +843,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Oct 01, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="18" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Omlit</span> 
         </div>
@@ -688,7 +851,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Jul 19, 2017 • ❤️ 18</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Giih Blackheart</span> 
         </div>
@@ -696,7 +859,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 21, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">zazzycat</span> 
         </div>
@@ -704,7 +867,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 18, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">vanessadalfabbro</span> 
         </div>
@@ -712,7 +875,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 09, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Avalon</span> 
         </div>
@@ -720,14 +883,14 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 03, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">elisafelisbertothom</span> 
         </div>
         <div class="comentario-texto">Entao migoo,onde eu leio em pt? KKKK</div>
         <div class="comentario-meta">Feb 03, 2017 • ❤️ 5</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Aiko-quase-sensei</span> 
         </div>
@@ -735,7 +898,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 03, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">andreiakennen</span> 
         </div>
@@ -743,7 +906,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 18, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Xiloui</span> 
         </div>
@@ -752,7 +915,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -760,7 +923,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 28, 2016</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">J1000</span> 
         </div>
@@ -777,8 +940,22 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             </div>
         </div>
         <div class="capitulo" id="cap4">
-            <h2>Capítulo 4 - 0004-605045</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 4 - ZOROSCOPE #04</h2>
+                <span class="capitulo-data">18/02/2017</span>
+            </div>
             <img src="episodes/0004-605045/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">HOW MUCH??????</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap4', this)">
@@ -786,8 +963,16 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap4">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap4" onchange="ordenarComentariosNaSecao(this, 'lista-cap4')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap4" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">lucifer</span> 
         </div>
@@ -795,7 +980,7 @@ body.modo-imersivo .imersivo-hud-bottom { display: flex; }
         <div class="comentario-meta">Feb 18, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Bellen</span> 
         </div>
@@ -806,7 +991,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
 (Apesar de que eu não me importo XD)</div>
         <div class="comentario-meta">Feb 18, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="true" data-index="1">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -815,7 +1000,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="33" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Oportuno</span> 
         </div>
@@ -823,7 +1008,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 18, 2017 • ❤️ 33</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -831,14 +1016,14 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 18, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="30" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">airLMAO</span> 
         </div>
         <div class="comentario-texto">*invests on the potential of this series to be big*</div>
         <div class="comentario-meta">Feb 17, 2017 • ❤️ 30</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">iug279</span> 
         </div>
@@ -846,7 +1031,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 17, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">airLMAO</span> 
         </div>
@@ -854,7 +1039,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 17, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="true" data-index="4">
         <div class="comentario-header">
             <span class="autor">Alec</span> <span class="badge-criador">Criador</span>
         </div>
@@ -862,7 +1047,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 17, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">airLMAO</span> 
         </div>
@@ -871,7 +1056,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Yago França</span> 
         </div>
@@ -888,8 +1073,22 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
             </div>
         </div>
         <div class="capitulo" id="cap5">
-            <h2>Capítulo 5 - 0005-606272</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 5 - ZOROSCOPE #05</h2>
+                <span class="capitulo-data">19/02/2017</span>
+            </div>
             <img src="episodes/0005-606272/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Poor Virgo</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap5', this)">
@@ -897,8 +1096,16 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap5">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap5" onchange="ordenarComentariosNaSecao(this, 'lista-cap5')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap5" style="list-style:none;">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
@@ -906,7 +1113,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="29" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Oportuno</span> 
         </div>
@@ -914,7 +1121,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 19, 2017 • ❤️ 29</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="21" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Layla Crane</span> 
         </div>
@@ -922,7 +1129,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Feb 19, 2017 • ❤️ 21</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">lucifer</span> 
         </div>
@@ -939,8 +1146,22 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
             </div>
         </div>
         <div class="capitulo" id="cap6">
-            <h2>Capítulo 6 - 0006-607829</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 6 - ZOROSCOPE #06</h2>
+                <span class="capitulo-data">20/02/2017</span>
+            </div>
             <img src="episodes/0006-607829/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">There is a joke there that only makes sense in Portuguese. Pavê is a dessert with phonetics similar to 'para ver' (to see) in the informal language and ALL the uncles of the Brazil make the joke of IT'S PAVÊ (to see) OR PACUMÊ (to eat) considered the worst joke of the country. Clearly Gemini is one of those uncles.</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap6', this)">
@@ -948,8 +1169,16 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap6">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap6" onchange="ordenarComentariosNaSecao(this, 'lista-cap6')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap6" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Rappycat</span> 
         </div>
@@ -957,7 +1186,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Jan 02, 2025</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">AneenaSevla</span> 
         </div>
@@ -965,7 +1194,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Oct 05, 2021</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">placer</span> 
         </div>
@@ -973,7 +1202,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Dec 18, 2020</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">Dumby Soup</span> 
         </div>
@@ -981,7 +1210,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Sep 01, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="6" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">LinaSalles</span> 
         </div>
@@ -989,7 +1218,7 @@ Você upará a série em inglês no Tapas ou apenas em inglês?
         <div class="comentario-meta">Dec 05, 2017 • ❤️ 6</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">FerenzaaNet</span> 
         </div>
@@ -1001,7 +1230,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Aug 08, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">JesUHZ</span> 
         </div>
@@ -1009,7 +1238,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="19" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Galua</span> 
         </div>
@@ -1017,7 +1246,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 19</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -1025,7 +1254,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">BecauseICannotRead</span> 
         </div>
@@ -1033,14 +1262,14 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="17" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">(●^●)/</span> 
         </div>
         <div class="comentario-texto">É PAVÊ OU PACUMÊ? KKKKKKK</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 17</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">Honeycombie</span> 
         </div>
@@ -1048,7 +1277,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">robertin</span> 
         </div>
@@ -1066,8 +1295,22 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
             </div>
         </div>
         <div class="capitulo" id="cap7">
-            <h2>Capítulo 7 - 0007-607851</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 7 - ZOROSCOPE #07</h2>
+                <span class="capitulo-data">20/02/2017</span>
+            </div>
             <img src="episodes/0007-607851/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">Refuse imitations.</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap7', this)">
@@ -1075,8 +1318,16 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap7">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap7" onchange="ordenarComentariosNaSecao(this, 'lista-cap7')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap7" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">✨Actually Trash✨</span> 
         </div>
@@ -1084,7 +1335,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Dec 17, 2021 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Yokocchi</span> 
         </div>
@@ -1092,7 +1343,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Nov 26, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">pikachu</span> 
         </div>
@@ -1100,7 +1351,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Oct 13, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="15" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">saleshyte</span> 
         </div>
@@ -1108,7 +1359,7 @@ Eu estou na dieta do marisco. Vejo comida e comi-la. (??)</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 15</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Honeycombie</span> 
         </div>
@@ -1120,7 +1371,7 @@ zoa mas no cel eh impossivel ler sem dar zoom</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 8</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="8" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">gabriela1</span> 
         </div>
@@ -1139,8 +1390,12 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
             </div>
         </div>
         <div class="capitulo" id="cap8">
-            <h2>Capítulo 8 - 0008-607854</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 8 - ZOROSCOPE #08</h2>
+                <span class="capitulo-data">20/02/2017</span>
+            </div>
             <img src="episodes/0008-607854/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap8', this)">
@@ -1148,8 +1403,16 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap8">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap8" onchange="ordenarComentariosNaSecao(this, 'lista-cap8')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap8" style="list-style:none;">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">lillianna_hermman</span> 
         </div>
@@ -1157,14 +1420,14 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Jan 04, 2018</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Oh</span> 
         </div>
         <div class="comentario-texto">eu shippo taries</div>
         <div class="comentario-meta">Sep 24, 2017</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Oh</span> 
         </div>
@@ -1173,7 +1436,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">pasta</span> 
         </div>
@@ -1182,7 +1445,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Sep 04, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">SalamanderSlander</span> 
         </div>
@@ -1190,7 +1453,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Aug 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="13" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Gustavo Ziul</span> 
         </div>
@@ -1198,7 +1461,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Jun 10, 2017 • ❤️ 13</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Azur</span> 
         </div>
@@ -1206,7 +1469,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Mar 30, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">ike8033</span> 
         </div>
@@ -1214,7 +1477,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Mar 07, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="3" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Aural</span> 
         </div>
@@ -1222,14 +1485,14 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Mar 03, 2017 • ❤️ 3</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Ryukborn</span> 
         </div>
         <div class="comentario-texto">Oh finally! I'm aries hahaha</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 10</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
@@ -1238,14 +1501,14 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="18" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
         <div class="comentario-texto">satanaries <3</div>
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 18</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">minyasmin</span> 
         </div>
@@ -1253,7 +1516,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Feb 20, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
@@ -1261,7 +1524,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Feb 20, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Gustavo Ziul</span> 
         </div>
@@ -1269,7 +1532,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Jun 10, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Oh</span> 
         </div>
@@ -1287,8 +1550,12 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
             </div>
         </div>
         <div class="capitulo" id="cap9">
-            <h2>Capítulo 9 - 0009-621161</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 9 - ZOROSCOPE #09</h2>
+                <span class="capitulo-data">05/03/2017</span>
+            </div>
             <img src="episodes/0009-621161/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap9', this)">
@@ -1296,8 +1563,16 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap9">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap9" onchange="ordenarComentariosNaSecao(this, 'lista-cap9')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap9" style="list-style:none;">
+    <li class="comentario-item" data-likes="12" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Ravenwashere1776</span> 
         </div>
@@ -1305,14 +1580,14 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Oct 01, 2017 • ❤️ 12</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Pão</span> 
         </div>
         <div class="comentario-texto">alguém traduz pra mim ;-;</div>
         <div class="comentario-meta">Mar 05, 2017 • ❤️ 4</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Lizzie</span> 
         </div>
@@ -1320,7 +1595,7 @@ Sem querer ser a chata, mas comics tão boas têm que ter uma gramática de seme
         <div class="comentario-meta">Mar 06, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">Benjie</span> 
         </div>
@@ -1331,7 +1606,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Lky</span> 
         </div>
@@ -1348,8 +1623,23 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             </div>
         </div>
         <div class="capitulo" id="cap10">
-            <h2>Capítulo 10 - 0010-621176</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 10 - ZOROSCOPE #10</h2>
+                <span class="capitulo-data">05/03/2017</span>
+            </div>
             <img src="episodes/0010-621176/images/panel-001.jpg" alt="panel-001.jpg">
+            
+            <div class="creator-note-box">
+                <img src="../avatar.png" alt="Alec" class="creator-avatar">
+                <div class="creator-content">
+                    <div class="creator-info-line">
+                        <span class="creator-name">Alec</span>
+                        <span class="creator-tag">Creator</span>
+                    </div>
+                    <div class="creator-text">IT'S A BOY <br>
+(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</div>
+                </div>
+            </div>
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap10', this)">
@@ -1357,8 +1647,16 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap10">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap10" onchange="ordenarComentariosNaSecao(this, 'lista-cap10')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap10" style="list-style:none;">
+    <li class="comentario-item" data-likes="4" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">lillianna_hermman</span> 
         </div>
@@ -1366,7 +1664,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Jan 04, 2018 • ❤️ 4</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="5" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">King_Ghost</span> 
         </div>
@@ -1374,14 +1672,14 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Sep 12, 2017 • ❤️ 5</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Aural</span> 
         </div>
         <div class="comentario-texto">No girls? (T_T)</div>
         <div class="comentario-meta">Aug 23, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Lyns</span> 
         </div>
@@ -1389,7 +1687,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Nov 04, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">Aural</span> 
         </div>
@@ -1398,7 +1696,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="10" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">FerenzaaNet</span> 
         </div>
@@ -1406,7 +1704,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Aug 08, 2017 • ❤️ 10</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Omlit</span> 
         </div>
@@ -1414,7 +1712,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Jul 19, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="11" data-creator="false" data-index="5">
         <div class="comentario-header">
             <span class="autor">Ana57</span> 
         </div>
@@ -1422,7 +1720,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Apr 08, 2017 • ❤️ 11</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="6">
         <div class="comentario-header">
             <span class="autor">Berimpau</span> 
         </div>
@@ -1430,7 +1728,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Mar 15, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="15" data-creator="false" data-index="7">
         <div class="comentario-header">
             <span class="autor">Pipo no Whatsapp</span> 
         </div>
@@ -1438,14 +1736,14 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Mar 15, 2017 • ❤️ 15</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Berimpau</span> 
         </div>
         <div class="comentario-texto">não entendo nada de inglês então só vejo as imagens :V</div>
         <div class="comentario-meta">Mar 11, 2017 • ❤️ 1</div>
         <ul class="replies">
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="8">
         <div class="comentario-header">
             <span class="autor">Ceci</span> 
         </div>
@@ -1454,7 +1752,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         
     </li></ul>
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="2" data-creator="false" data-index="9">
         <div class="comentario-header">
             <span class="autor">Lostbou_</span> 
         </div>
@@ -1462,7 +1760,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Mar 06, 2017 • ❤️ 2</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="10">
         <div class="comentario-header">
             <span class="autor">BecauseICannotRead</span> 
         </div>
@@ -1470,7 +1768,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Mar 05, 2017</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="11">
         <div class="comentario-header">
             <span class="autor">Slowju</span> 
         </div>
@@ -1478,7 +1776,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Mar 05, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="0" data-creator="false" data-index="12">
         <div class="comentario-header">
             <span class="autor">Lky</span> 
         </div>
@@ -1495,8 +1793,12 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             </div>
         </div>
         <div class="capitulo" id="cap11">
-            <h2>Capítulo 11 - 0011-845904</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 11 - #11</h2>
+                <span class="capitulo-data">02/10/2017</span>
+            </div>
             <img src="episodes/0011-845904/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap11', this)">
@@ -1504,8 +1806,16 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap11">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap11" onchange="ordenarComentariosNaSecao(this, 'lista-cap11')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap11" style="list-style:none;">
+    <li class="comentario-item" data-likes="9" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">-_Hot_Cocoa_-</span> 
         </div>
@@ -1522,8 +1832,12 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             </div>
         </div>
         <div class="capitulo" id="cap12">
-            <h2>Capítulo 12 - 0012-845940</h2>
+            <div class="capitulo-header">
+                <h2>Capítulo 12 - #12</h2>
+                <span class="capitulo-data">02/10/2017</span>
+            </div>
             <img src="episodes/0012-845940/images/panel-001.jpg" alt="panel-001.jpg">
+            
             
     <div class="comentarios-wrapper">
         <button class="btn-toggle-comentarios" onclick="toggleComentarioIndividual('coms-cap12', this)">
@@ -1531,8 +1845,16 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
             <span>▼</span>
         </button>
         <div class="comentarios-conteudo" id="coms-cap12">
-            <ul class="comentarios-lista">
-    <li class="comentario-item">
+            <div class="comentarios-filtros">
+                <select id="ordem-cap12" onchange="ordenarComentariosNaSecao(this, 'lista-cap12')">
+                    <option value="recentes">Mais Recentes</option>
+                    <option value="antigos">Mais Antigos</option>
+                    <option value="curtidos">Mais Curtidos</option>
+                    <option value="criador">Apenas do Criador</option>
+                </select>
+            </div>
+            <ul class="comentarios-lista" id="lista-cap12" style="list-style:none;">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="0">
         <div class="comentario-header">
             <span class="autor">Ray Ray</span> 
         </div>
@@ -1540,7 +1862,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Jun 22, 2019 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="20" data-creator="false" data-index="1">
         <div class="comentario-header">
             <span class="autor">shadowwings8810</span> 
         </div>
@@ -1548,7 +1870,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Nov 22, 2017 • ❤️ 20</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="2">
         <div class="comentario-header">
             <span class="autor">pancake</span> 
         </div>
@@ -1556,7 +1878,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Oct 12, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="1" data-creator="false" data-index="3">
         <div class="comentario-header">
             <span class="autor">That Bunny</span> 
         </div>
@@ -1564,7 +1886,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
         <div class="comentario-meta">Oct 02, 2017 • ❤️ 1</div>
         
     </li>
-    <li class="comentario-item">
+    <li class="comentario-item" data-likes="25" data-creator="false" data-index="4">
         <div class="comentario-header">
             <span class="autor">Dadniel</span> 
         </div>
@@ -1606,7 +1928,7 @@ Ele só ta postando em ENG pra ter mais alcance mas essa criança de 20 anos é 
     <div class="mobile-nav-bar">
         <button class="mobile-nav-btn" id="mobileBtnPrev" onclick="capAnterior()">◀</button>
         <select id="selectCapitulosMobile" class="select-capitulos" style="flex:2; margin:0 4px;" onchange="irParaCapitulo(this.value)">
-            <option value="1">Cap. 1 - 0001-164162</option><option value="2">Cap. 2 - 0002-164175</option><option value="3">Cap. 3 - 0003-180922</option><option value="4">Cap. 4 - 0004-605045</option><option value="5">Cap. 5 - 0005-606272</option><option value="6">Cap. 6 - 0006-607829</option><option value="7">Cap. 7 - 0007-607851</option><option value="8">Cap. 8 - 0008-607854</option><option value="9">Cap. 9 - 0009-621161</option><option value="10">Cap. 10 - 0010-621176</option><option value="11">Cap. 11 - 0011-845904</option><option value="12">Cap. 12 - 0012-845940</option>
+            <option value="1">Cap. 1 - ZOROSCOPE #01</option><option value="2">Cap. 2 - ZOROSCOPE #02</option><option value="3">Cap. 3 - ZOROSCOPE #03</option><option value="4">Cap. 4 - ZOROSCOPE #04</option><option value="5">Cap. 5 - ZOROSCOPE #05</option><option value="6">Cap. 6 - ZOROSCOPE #06</option><option value="7">Cap. 7 - ZOROSCOPE #07</option><option value="8">Cap. 8 - ZOROSCOPE #08</option><option value="9">Cap. 9 - ZOROSCOPE #09</option><option value="10">Cap. 10 - ZOROSCOPE #10</option><option value="11">Cap. 11 - #11</option><option value="12">Cap. 12 - #12</option>
         </select>
         <button class="mobile-nav-btn" id="mobileBtnFullscreen" onclick="toggleModoImersivo()">📖 Imersivo</button>
         <button class="mobile-nav-btn" id="mobileBtnComms" onclick="abrirModalComentarios()">💬</button>
@@ -1658,6 +1980,53 @@ function toggleTodosComentarios() {
     btnGlobal.textContent = deveExibir ? 'Ocultar Comentários' : 'Exibir Comentários';
 }
 
+function ordenarComentariosNaSecao(selectEl, listaId, sincronizarComId = null) {
+    const ordem = selectEl.value;
+    
+    if (sincronizarComId) {
+        const outroSelect = document.getElementById(sincronizarComId);
+        if (outroSelect && outroSelect.value !== ordem) {
+            outroSelect.value = ordem;
+        }
+    }
+
+    const lista = document.getElementById(listaId);
+    if (!lista) return;
+    
+    let itens = Array.from(lista.children).filter(el => el.matches('li.comentario-item'));
+
+    itens.forEach(item => {
+        const isCriador = item.getAttribute('data-creator') === 'true';
+        if (ordem === 'criador') {
+            item.style.display = isCriador ? 'block' : 'none';
+        } else {
+            item.style.display = 'block';
+        }
+    });
+
+    if (ordem === 'curtidos') {
+        itens.sort((a, b) => {
+            let likesA = parseInt(a.getAttribute('data-likes')) || 0;
+            let likesB = parseInt(b.getAttribute('data-likes')) || 0;
+            return likesB - likesA;
+        });
+    } else if (ordem === 'antigos') {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxA - idxB;
+        });
+    } else {
+        itens.sort((a, b) => {
+            let idxA = parseInt(a.getAttribute('data-index')) || 0;
+            let idxB = parseInt(b.getAttribute('data-index')) || 0;
+            return idxB - idxA;
+        });
+    }
+
+    itens.forEach(item => lista.appendChild(item));
+}
+
 function irParaCapitulo(index) {
     if (!index || index < 1) return;
     capAtualIndex = parseInt(index);
@@ -1685,15 +2054,36 @@ function sincronizarSelectsCapitulos() {
 function abrirModalComentarios() {
     const capEl = document.getElementById(`cap${capAtualIndex}`);
     if (!capEl) return;
-    const wrapperComentarios = capEl.querySelector('.comentarios-wrapper');
+    const listaOriginal = capEl.querySelector('.comentarios-lista');
     const modalBody = document.getElementById('modalComentariosBody');
     document.getElementById('modalTitle').textContent = `Comentários - Cap. ${capAtualIndex}`;
-    if (wrapperComentarios) {
-        modalBody.innerHTML = wrapperComentarios.innerHTML;
-        const lista = modalBody.querySelector('.comentarios-conteudo');
-        if (lista) lista.style.display = 'block';
-        const btn = modalBody.querySelector('.btn-toggle-comentarios');
-        if (btn) btn.style.display = 'none';
+    
+    if (listaOriginal) {
+        const selectOriginalId = `ordem-cap${capAtualIndex}`;
+        const selectOriginal = document.getElementById(selectOriginalId);
+        const ordemAtual = selectOriginal ? selectOriginal.value : 'recentes';
+
+        modalBody.innerHTML = `
+            <div class="comentarios-conteudo aberto" style="border:none; padding:0;">
+                <div class="comentarios-filtros">
+                    <select id="modal-select-ordem" onchange="ordenarComentariosNaSecao(this, 'modal-lista-comentarios', '${selectOriginalId}')">
+                        <option value="recentes">Mais Recentes</option>
+                        <option value="antigos">Mais Antigos</option>
+                        <option value="curtidos">Mais Curtidos</option>
+                        <option value="criador">Apenas do Criador</option>
+                    </select>
+                </div>
+                <ul class="comentarios-lista" id="modal-lista-comentarios" style="list-style:none;">
+                    ${listaOriginal.innerHTML}
+                </ul>
+            </div>
+        `;
+
+        const selectModal = document.getElementById('modal-select-ordem');
+        if (selectModal) {
+            selectModal.value = ordemAtual;
+            ordenarComentariosNaSecao(selectModal, 'modal-lista-comentarios');
+        }
     } else {
         modalBody.innerHTML = '<p style="color:var(--text-muted); text-align:center;">Sem comentários neste capítulo.</p>';
     }

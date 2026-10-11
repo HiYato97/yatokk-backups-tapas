@@ -1,7 +1,7 @@
 {
  "num": 90,
  "episode_id": "3748866",
- "fetched_at": "2026-09-27T15:34:36Z",
+ "fetched_at": "2026-10-11T18:13:12Z",
  "data": {
   "id": 3748866,
   "title": "Pg 149 - 151",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 2384,
-  "like_cnt": 108,
+  "view_cnt": 2445,
+  "like_cnt": 110,
   "comment_cnt": 31,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Bruno Tem Um Namorado Dísponivel na Amazon!!!"
  }
 }

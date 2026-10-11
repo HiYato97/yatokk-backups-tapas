@@ -1,7 +1,7 @@
 {
  "num": 13,
  "episode_id": "2087841",
- "fetched_at": "2026-09-27T14:11:28Z",
+ "fetched_at": "2026-10-11T18:50:46Z",
  "data": {
   "id": 2087841,
   "title": "ESPECIAL: RESPOSTAS - PARTE 1",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48883,
-  "like_cnt": 2063,
+  "view_cnt": 49112,
+  "like_cnt": 2068,
   "comment_cnt": 153,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "GENTE eu sei que demorou mais que devia, mas acabou que eu tb peguei mais trampo do que eu aguentaria e to sofrendo as consequências.<br>\r\nForam MUITAS pergunta, não da pra responder todas, claro, mas muito obrigado pela participação. Em breve terá mais especiais que nem esse, hihi<br>\r\nESSA É SÓ A PRIMEIRA PARTE, decidi dividir porque senão não sairia nunca.<br>\r\nEm breve a parte 2 ta aí tb <3"
  }
 }

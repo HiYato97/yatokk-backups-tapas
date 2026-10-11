@@ -1,7 +1,7 @@
 {
  "num": 67,
  "episode_id": "3517194",
- "fetched_at": "2026-09-27T15:31:42Z",
+ "fetched_at": "2026-10-11T18:10:39Z",
  "data": {
   "id": 3517194,
   "title": "Pg 79 - 82",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 3329,
-  "like_cnt": 155,
+  "view_cnt": 3390,
+  "like_cnt": 156,
   "comment_cnt": 22,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

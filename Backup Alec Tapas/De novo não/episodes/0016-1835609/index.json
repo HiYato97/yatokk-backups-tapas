@@ -1,7 +1,7 @@
 {
  "num": 16,
  "episode_id": "1835609",
- "fetched_at": "2026-09-26T20:18:23Z",
+ "fetched_at": "2026-10-11T19:12:05Z",
  "data": {
   "id": 1835609,
   "title": "DNNUp - Macetes",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 11850,
-  "like_cnt": 942,
-  "comment_cnt": 45,
+  "view_cnt": 11894,
+  "like_cnt": 941,
+  "comment_cnt": 46,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Jul 26, 2020",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Coisas que ninguém te ensina quando você vai morar sozinho.<br>\n<br>\nA Giovanna e o nosso miquinho acabaram meiando um apê no futuro, e prosseguem apenas bons amigos."
  }
 }

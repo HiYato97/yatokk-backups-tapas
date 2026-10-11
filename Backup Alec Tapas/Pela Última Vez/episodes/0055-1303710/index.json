@@ -1,7 +1,7 @@
 {
  "num": 55,
  "episode_id": "1303710",
- "fetched_at": "2026-09-26T20:12:03Z",
+ "fetched_at": "2026-10-11T21:13:14Z",
  "data": {
   "id": 1303710,
   "title": "Impresso!",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 38320,
+  "view_cnt": 38403,
   "like_cnt": 1803,
   "comment_cnt": 47,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Finalmente!<br>\r\nEstoque limitado~<br>\r\nhttp://batatirastore.iluria.com/"
  }
 }

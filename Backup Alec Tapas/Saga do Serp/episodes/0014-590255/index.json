@@ -1,7 +1,7 @@
 {
  "num": 14,
  "episode_id": "590255",
- "fetched_at": "2026-09-26T20:11:21Z",
+ "fetched_at": "2026-10-11T20:38:07Z",
  "data": {
   "id": 590255,
   "title": "Extra 1 - Mudança do Scorpy",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 48167,
-  "like_cnt": 1890,
+  "view_cnt": 48255,
+  "like_cnt": 1891,
   "comment_cnt": 99,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Coisinhas que não são importantes pro plot mas eu quis fazer ojfaosf<br>"
  }
 }

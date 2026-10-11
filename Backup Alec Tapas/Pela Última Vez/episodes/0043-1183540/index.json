@@ -1,7 +1,7 @@
 {
  "num": 43,
  "episode_id": "1183540",
- "fetched_at": "2026-09-26T20:06:44Z",
+ "fetched_at": "2026-10-11T21:08:07Z",
  "data": {
   "id": 1183540,
   "title": "VAQUINHA!",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 43778,
+  "view_cnt": 43860,
   "like_cnt": 1827,
   "comment_cnt": 29,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Quer colaborar com o quadrinho nacional e ainda ajudar numa boa causa?<br>\n<br>\nEstá aberta a vaquinha para a arrecadação de fundos para a versão impressa de Pela Última Vez!<br>\n<br>\nDiferentemente do Catarse, dessa vez o valor é somente o necessário para a impressão, e todo o valor arrecadado além da meta será investido em doações de rações e vacinas para abrigos de animais <3<br>\r\n(E também parte das vendas do impresso)<br>\r\nDoações acima de 20$ dão direito também a uma cartela de adesivos<br>\r\nColabore!<br>\n<br>\nhttps://www.vakinha.com.br/vaquinha/impressao-de-pela-ultima-vez<br>\n<br>\nVálido até 14 de outubro~"
  }
 }

@@ -1,7 +1,7 @@
 {
  "num": 11,
  "episode_id": "3095027",
- "fetched_at": "2026-09-27T15:25:55Z",
+ "fetched_at": "2026-10-11T18:05:32Z",
  "data": {
   "id": 3095027,
   "title": "Extras! Fanart Time #1 ",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 6433,
-  "like_cnt": 251,
+  "view_cnt": 6537,
+  "like_cnt": 252,
   "comment_cnt": 3,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Se você tiver alguma fanart que queira me mostrar, fique a vontade para compartilhar e me marcar nas redes sociais ( twitter @oarturee Istagram @oarture ). Eu estarei compartilhando, e colocando em futuros extras :3"
  }
 }

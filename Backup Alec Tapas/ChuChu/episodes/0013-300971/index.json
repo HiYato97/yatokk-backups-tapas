@@ -1,7 +1,7 @@
 {
  "num": 13,
  "episode_id": "300971",
- "fetched_at": "2026-09-26T20:41:47Z",
+ "fetched_at": "2026-10-11T21:50:35Z",
  "data": {
   "id": 300971,
   "title": "Pag-13",
@@ -21,7 +21,7 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 17084,
+  "view_cnt": 17103,
   "like_cnt": 737,
   "comment_cnt": 10,
   "unlock_cnt": 0,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ""
  }
 }

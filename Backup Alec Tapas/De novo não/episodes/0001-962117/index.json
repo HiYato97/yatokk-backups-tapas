@@ -1,7 +1,7 @@
 {
  "num": 1,
  "episode_id": "962117",
- "fetched_at": "2026-09-26T20:15:38Z",
+ "fetched_at": "2026-10-11T19:09:06Z",
  "data": {
   "id": 962117,
   "title": "1 - Giovana",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 31782,
-  "like_cnt": 1391,
+  "view_cnt": 31870,
+  "like_cnt": 1390,
   "comment_cnt": 60,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "E quem não tem"
  }
 }

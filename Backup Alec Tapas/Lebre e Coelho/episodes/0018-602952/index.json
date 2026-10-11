@@ -1,7 +1,7 @@
 {
  "num": 18,
  "episode_id": "602952",
- "fetched_at": "2026-09-26T19:24:04Z",
+ "fetched_at": "2026-10-11T20:02:19Z",
  "data": {
   "id": 602952,
   "title": "Pags 79 - 86",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 177502,
-  "like_cnt": 5020,
-  "comment_cnt": 671,
+  "view_cnt": 178066,
+  "like_cnt": 5026,
+  "comment_cnt": 670,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Feb 15, 2017",
@@ -35,6 +35,7 @@
   "bgm_title": "Ib Memory",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "8 PÁGINAS<br>\r\nRECORDE!!!!!!11!!!!11<br>\r\nE A TENDÊNCIA É AUMENTAR<br>\r\nTentei por música mas não consegui ouvir qual eu coloquei (se é a que eu escolhi mesmo) então se não tiver nada a ver, perdão"
  }
 }

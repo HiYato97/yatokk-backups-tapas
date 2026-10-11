@@ -1,7 +1,7 @@
 {
  "num": 27,
  "episode_id": "878732",
- "fetched_at": "2026-09-26T19:42:46Z",
+ "fetched_at": "2026-10-11T21:37:24Z",
  "data": {
   "id": 878732,
   "title": "56 - 57",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 14921,
-  "like_cnt": 889,
+  "view_cnt": 14944,
+  "like_cnt": 888,
   "comment_cnt": 16,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": ":("
  }
 }

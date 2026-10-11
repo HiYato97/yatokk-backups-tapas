@@ -1,7 +1,7 @@
 {
  "num": 6,
  "episode_id": "976004",
- "fetched_at": "2026-09-26T20:16:30Z",
+ "fetched_at": "2026-10-11T19:10:04Z",
  "data": {
   "id": 976004,
   "title": "6 - ...",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 18772,
-  "like_cnt": 1317,
+  "view_cnt": 18812,
+  "like_cnt": 1316,
   "comment_cnt": 84,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Mas ninguém jamais tocou no assunto"
  }
 }

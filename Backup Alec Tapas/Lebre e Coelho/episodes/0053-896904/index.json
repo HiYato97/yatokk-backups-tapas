@@ -1,7 +1,7 @@
 {
  "num": 53,
  "episode_id": "896904",
- "fetched_at": "2026-09-26T19:36:54Z",
+ "fetched_at": "2026-10-11T20:17:38Z",
  "data": {
   "id": 896904,
   "title": "Larry e Coelho 57 - 60",
@@ -21,9 +21,9 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 126549,
-  "like_cnt": 4479,
-  "comment_cnt": 873,
+  "view_cnt": 126948,
+  "like_cnt": 4484,
+  "comment_cnt": 874,
   "unlock_cnt": 0,
   "related_ep_id": null,
   "relative_publish_date": "Nov 22, 2017",
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Pouquinho mas é de coração <3<br>\n<br>\nAgradeço a compreensão pelo atraso!<br>\r\n(Deixe uns Tips se achar que esses nenéns merecem :D)"
  }
 }

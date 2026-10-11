@@ -1,7 +1,7 @@
 {
  "num": 10,
  "episode_id": "2963361",
- "fetched_at": "2026-09-26T20:21:10Z",
+ "fetched_at": "2026-10-11T19:08:28Z",
  "data": {
   "id": 2963361,
   "title": "#07",
@@ -21,8 +21,8 @@
   "early_access": false,
   "mature": false,
   "free_access": false,
-  "view_cnt": 9130,
-  "like_cnt": 444,
+  "view_cnt": 9237,
+  "like_cnt": 446,
   "comment_cnt": 30,
   "unlock_cnt": 0,
   "related_ep_id": null,
@@ -35,6 +35,7 @@
   "bgm_title": "",
   "closing": null,
   "must_pay": false,
-  "scheduled": false
+  "scheduled": false,
+  "creator_note": "Fiz essa besteira agr 2h antes de viajar pra SP<br>\r\ninclusive espero não ir a óbito com o calor de lá, amém"
  }
 }
