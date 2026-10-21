@@ -1,109 +1,111 @@
-import os
-import json
-import html
 import argparse
+import html
+import json
+import re
 from pathlib import Path
 from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, PageBreak
+from reportlab.platypus import (
+    SimpleDocTemplate, Paragraph, Spacer, Image as RLImage, PageBreak, HRFlowable
+)
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
 BASE_DIR = Path(".").resolve()
 
-def carregar_config_autor():
+
+def carregar_dados_autor():
+    author_file = BASE_DIR / "author.json"
+    if author_file.exists():
+        try:
+            with open(author_file, "r", encoding="utf-8") as f:
+                d = json.load(f)
+                d_inner = d.get("data", d)
+                return d_inner.get("display_name") or d_inner.get("username") or "Autor Desconhecido"
+        except Exception:
+            pass
+
     config_file = BASE_DIR / "config.json"
     if config_file.exists():
         try:
             with open(config_file, "r", encoding="utf-8") as f:
-                dados = json.load(f)
-                return dados.get("nome", "Autor Desconhecido")
+                d = json.load(f)
+                return d.get("nome") or d.get("author") or "Autor Desconhecido"
         except Exception:
             pass
+
     return "Autor Desconhecido"
 
-def obter_metadados_serie(pasta_serie):
-    titulo = pasta_serie.name
-    genero = "Geral"
-    descricao = ""
+
+def carregar_metadados_serie(pasta_serie):
+    meta = {
+        "title": pasta_serie.name,
+        "genre": "",
+        "description": "",
+        "views": "",
+        "likes": "",
+        "subscribers": "",
+        "publish_date": ""
+    }
 
     caminho_series_json = pasta_serie / "series.json"
     if caminho_series_json.exists():
         try:
             with open(caminho_series_json, "r", encoding="utf-8") as f:
                 data = json.load(f)
+                meta["views"] = data.get("views", "")
+                meta["likes"] = data.get("likes", "")
+                meta["subscribers"] = data.get("subscribers", "")
+                meta["publish_date"] = data.get("publish_date", "")
+                meta["description"] = data.get("description", "")
+
                 s_data = data.get("data", data)
-                titulo = s_data.get("title", titulo)
-                descricao = s_data.get("description", "")
-                
-                genre_data = s_data.get("genre", {})
-                if isinstance(genre_data, dict):
-                    genero = genre_data.get("name", genero)
-                elif isinstance(genre_data, str):
-                    genero = genre_data
+                if isinstance(s_data, dict):
+                    meta["title"] = s_data.get("title") or s_data.get("name") or meta["title"]
+                    meta["description"] = s_data.get("description") or meta["description"]
+
+                    genre_raw = s_data.get("genre")
+                    if isinstance(genre_raw, dict):
+                        meta["genre"] = genre_raw.get("name", "")
+                    elif isinstance(genre_raw, str):
+                        meta["genre"] = genre_raw
         except Exception:
             pass
 
-    return html.unescape(titulo).strip(), genero, descricao
+    return meta
 
-def obter_capa_e_imagens(pasta_serie):
-    extensoes = ('*.jpg', '*.jpeg', '*.png', '*.webp', '*.JPG', '*.PNG', '*.JPEG')
-    
-    # 1. Procura a CAPA exclusivamente na raiz da pasta da série
-    capa_encontrada = None
-    for ext in extensoes:
-        imagens_raiz = list(pasta_serie.glob(ext))
-        if imagens_raiz:
-            # Prefere imagem que contenha "cover", "banner" ou "img_" no nome se houver mais de uma na raiz
-            for img in imagens_raiz:
-                nome_lower = img.name.lower()
-                if "cover" in nome_lower or "banner" in nome_lower or "img_" in nome_lower:
-                    capa_encontrada = img
-                    break
-            if not capa_encontrada:
-                capa_encontrada = imagens_raiz[0]
-            break
 
-    # 2. Coleta todas as imagens da série (incluindo episódios nas subpastas)
-    todas_imagens = []
-    for ext in extensoes:
-        todas_imagens.extend(pasta_serie.rglob(ext))
+def carregar_dados_episodio(ep_path):
+    ep_data = {
+        "title": ep_path.name,
+        "publish_date": "",
+        "creator_note": ""
+    }
+    index_json = ep_path / "index.json"
+    if index_json.exists():
+        try:
+            with open(index_json, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                d_inner = data.get("data", data)
+                if isinstance(d_inner, dict):
+                    ep_data["title"] = d_inner.get("title", ep_path.name)
+                    ep_data["publish_date"] = d_inner.get("publish_date") or data.get("relative_publish_date", "")
+                    ep_data["creator_note"] = d_inner.get("creator_note", "")
+        except Exception:
+            pass
+    return ep_data
 
-    imagens_validas = []
-    for img in todas_imagens:
-        if img.suffix.lower() in ['.pdf', '.epub']:
-            continue
-        
-        partes_caminho = [p.lower() for p in img.parts]
-        if any(p in partes_caminho for p in ['cache', '.cache', 'thumb', 'thumbs', 'thumbnail', 'thumbnails']):
-            continue
-        if any(part.startswith('.') for part in img.parts):
-            continue
 
-        imagens_validas.append(img)
+def encontrar_capa_serie(pasta_serie):
+    extensoes = (".jpg", ".jpeg", ".png", ".webp")
+    for f in pasta_serie.iterdir():
+        if f.is_file() and f.suffix.lower() in extensoes:
+            n = f.name.lower()
+            if "cover" in n or "header" in n or "banner" in n or "thumb" in n or "series" in n:
+                return f
+    return None
 
-    if not imagens_validas:
-        return None, []
-
-    # Deduplicação e ordenação
-    unicas_por_caminho = {}
-    for img in imagens_validas:
-        chave_relativa = img.relative_to(pasta_serie).as_posix()
-        if chave_relativa not in unicas_por_caminho:
-            unicas_por_caminho[chave_relativa] = img
-
-    lista_final = list(unicas_por_caminho.values())
-    lista_final.sort(key=lambda x: [int(c) if c.isdigit() else c.lower() for c in x.as_posix().split('/')])
-
-    # Separa a capa das imagens do corpo
-    if capa_encontrada:
-        imagens_corpo = [img for img in lista_final if img.resolve() != capa_encontrada.resolve()]
-    else:
-        capa_encontrada = lista_final[0]
-        imagens_corpo = lista_final[1:]
-
-    return capa_encontrada, imagens_corpo
 
 class NumberedCanvas(canvas.Canvas):
     def __init__(self, *args, **kwargs):
@@ -120,8 +122,8 @@ class NumberedCanvas(canvas.Canvas):
             self.__dict__.update(state)
             if self._pageNumber > 1:
                 self.draw_header_footer(num_pages)
-            canvas.Canvas.showPage(self)
-        canvas.Canvas.save(self)
+            super().showPage()
+        super().save()
 
     def draw_header_footer(self, page_count):
         self.saveState()
@@ -131,8 +133,8 @@ class NumberedCanvas(canvas.Canvas):
         self.setFont("Helvetica", 8)
         titulo_obra = getattr(self, "titulo_obra", "")
         self.drawString(35, height - 25, titulo_obra)
-        
-        self.setStrokeColor(colors.HexColor("#E2E8F0"))
+
+        self.setStrokeColor(colors.HexColor("#2D3748"))
         self.setLineWidth(0.5)
         self.line(35, height - 30, width - 35, height - 30)
 
@@ -143,20 +145,42 @@ class NumberedCanvas(canvas.Canvas):
 
         self.restoreState()
 
+
+def encontrar_avatar_autor():
+    for ext in [".png", ".jpg", ".jpeg", ".webp"]:
+        avatar_path = BASE_DIR / f"avatar{ext}"
+        if avatar_path.exists():
+            return avatar_path
+    return None
+
+def limpar_html_para_reportlab(texto_html):
+    """Converte tags HTML comuns em tags suportadas pelo ReportLab Paragraph."""
+    if not texto_html:
+        return ""
+    t = re.sub(r'(?i)<br\s*/?>', '<br/>', texto_html)
+    t = re.sub(r'(?i)<strong>', '<b>', t)
+    t = re.sub(r'(?i)</strong>', '</b>', t)
+    t = re.sub(r'(?i)<em>', '<i>', t)
+    t = re.sub(r'(?i)</em>', '</i>', t)
+    return t
+
 def converter_serie_para_pdf(pasta_serie, autor_nome):
-    if not pasta_serie.exists() or not pasta_serie.is_dir():
-        print(f"❌ Erro: Pasta não encontrada: '{pasta_serie}'")
+    pasta_serie = Path(pasta_serie).resolve()
+    caminho_episodes = pasta_serie / "episodes"
+
+    if not caminho_episodes.is_dir():
+        print(f"⚠️ [PDF] A pasta '{pasta_serie.name}' não possui a pasta 'episodes'. Pulando.")
         return
 
-    titulo, genero, descricao = obter_metadados_serie(pasta_serie)
-    capa_path, imagens = obter_capa_e_imagens(pasta_serie)
-
-    if not capa_path and not imagens:
-        print(f"⚠️  Nenhuma imagem encontrada em: '{pasta_serie.name}'")
+    print(f"🔍 [PDF] Varrendo pastas de episódios em '{pasta_serie.name}'...")
+    episodios = sorted([p for p in caminho_episodes.iterdir() if p.is_dir()])
+    if not episodios:
+        print(f"⚠️ [PDF] Nenhum episódio encontrado em '{pasta_serie.name}'. Pulando.")
         return
+    print(f"   ✔️ Total de pastas de episódios encontradas: {len(episodios)}")
 
-    total_imagens = len(imagens) + (1 if capa_path else 0)
-    print(f"🔄 Processando PDF de '{pasta_serie.name}' ({total_imagens} imagens)...")
+    meta = carregar_metadados_serie(pasta_serie)
+    print(f"\n🚀 [PDF] Iniciando compilação de: '{meta['title']}'")
 
     pdf_nome = f"{pasta_serie.name}.pdf"
     pdf_path = pasta_serie / pdf_nome
@@ -179,97 +203,158 @@ def converter_serie_para_pdf(pasta_serie, autor_nome):
 
     styles = getSampleStyleSheet()
 
-    style_title = ParagraphStyle(
-        'CoverTitle', parent=styles['Title'], fontName='Helvetica-Bold',
-        fontSize=24, leading=28, textColor=colors.HexColor("#1A202C"), alignment=1, spaceAfter=10
-    )
-    style_author = ParagraphStyle(
-        'CoverAuthor', parent=styles['Normal'], fontName='Helvetica-Bold',
-        fontSize=12, leading=16, textColor=colors.HexColor("#4A5568"), alignment=1, spaceAfter=15
-    )
-    style_badge = ParagraphStyle(
-        'CoverBadge', parent=styles['Normal'], fontName='Helvetica',
-        fontSize=10, leading=14, textColor=colors.HexColor("#2B6CB0"), alignment=1, spaceAfter=20
-    )
-    style_desc = ParagraphStyle(
-        'CoverDesc', parent=styles['Normal'], fontName='Helvetica',
-        fontSize=9.5, leading=14, textColor=colors.HexColor("#718096"), alignment=1, spaceAfter=15
-    )
+    style_title = ParagraphStyle('CoverTitle', parent=styles['Title'], fontName='Helvetica-Bold', fontSize=24, leading=28, textColor=colors.HexColor("#1A202C"), alignment=1, spaceAfter=10)
+    style_author = ParagraphStyle('CoverAuthor', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=12, leading=16, textColor=colors.HexColor("#4A5568"), alignment=1, spaceAfter=15)
+    style_stats = ParagraphStyle('CoverStats', parent=styles['Normal'], fontName='Helvetica', fontSize=9, leading=14, textColor=colors.HexColor("#2B6CB0"), alignment=1, spaceAfter=15)
+    style_desc = ParagraphStyle('CoverDesc', parent=styles['Normal'], fontName='Helvetica', fontSize=9.5, leading=14, textColor=colors.HexColor("#4A5568"), alignment=1, spaceAfter=15)
+    style_toc_head = ParagraphStyle('TOCHead', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=16, leading=20, textColor=colors.HexColor("#1A202C"), alignment=0, spaceAfter=15)
+    style_toc_item = ParagraphStyle('TOCItem', parent=styles['Normal'], fontName='Helvetica', fontSize=10, leading=16, textColor=colors.HexColor("#2B6CB0"), alignment=0)
+    style_ep_title = ParagraphStyle('EpTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=18, leading=22, textColor=colors.HexColor("#1A202C"), alignment=1, spaceAfter=10)
+    style_creator_note = ParagraphStyle('CreatorNote', parent=styles['Normal'], fontName='Helvetica', fontSize=9.5, leading=14, textColor=colors.HexColor("#4A5568"))
+    style_creator_name = ParagraphStyle('CreatorName', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=10, leading=13, textColor=colors.HexColor("#1A202C"))
 
     story = []
 
-    # PÁGINA DE CAPA / INFORMAÇÕES
+    # Capa
+    print("   📄 Adicionando página de rosto e informações...")
     story.append(Spacer(1, 10))
-    story.append(Paragraph(titulo, style_title))
-    story.append(Paragraph(f"Por <b>{autor_nome}</b>", style_author))
-    
-    badge_text = f"<b>Gênero:</b> {genero} &nbsp;&nbsp;|&nbsp;&nbsp; <b>Total de Imagens:</b> {total_imagens}"
-    story.append(Paragraph(badge_text, style_badge))
+    story.append(Paragraph(html.escape(meta["title"]), style_title))
+    story.append(Paragraph(f"Por <b>{html.escape(autor_nome)}</b>", style_author))
 
+    stats_list = []
+    if meta["genre"]: stats_list.append(f"<b>Gênero:</b> {html.escape(meta['genre'])}")
+    if meta["views"]: stats_list.append(f"<b>Visualizações:</b> {meta['views']}")
+    if meta["likes"]: stats_list.append(f"<b>Curtidas:</b> {meta['likes']}")
+    if meta["subscribers"]: stats_list.append(f"<b>Inscritos:</b> {meta['subscribers']}")
+    if stats_list:
+        story.append(Paragraph(" &nbsp;&nbsp;|&nbsp;&nbsp; ".join(stats_list), style_stats))
+
+    capa_path = encontrar_capa_serie(pasta_serie)
     if capa_path and capa_path.exists():
         try:
             with Image.open(capa_path) as img:
                 w, h = img.size
-                max_w = printable_width * 0.7
-                max_h = 280
-                ratio = min(max_w / w, max_h / h) * 0.99
-                final_w = w * ratio
-                final_h = h * ratio
-
-                story.append(RLImage(str(capa_path), width=final_w, height=final_h))
+                ratio = min((printable_width * 0.75) / w, 260 / h) * 0.99
+                story.append(RLImage(str(capa_path), width=w * ratio, height=h * ratio))
                 story.append(Spacer(1, 15))
-        except Exception as e:
-            print(f"   ⚠️  Aviso ao carregar capa: {e}")
+        except Exception:
+            pass
 
-    if descricao:
-        desc_limpa = html.unescape(descricao)
-        if len(desc_limpa) > 300:
-            desc_limpa = desc_limpa[:300] + "..."
+    if meta["description"]:
+        desc_limpa = limpar_html_para_reportlab(meta["description"])
         story.append(Paragraph(f"<i>{desc_limpa}</i>", style_desc))
 
     story.append(PageBreak())
 
-    # PÁGINAS DO CORPO
-    for img_path in imagens:
-        try:
-            with Image.open(img_path) as img:
-                w, h = img.size
-                ratio = min(printable_width / w, printable_height / h) * 0.99
-                final_w = w * ratio
-                final_h = h * ratio
+    # Sumário com leitura de cada episódio
+    print("   📑 Construindo sumário (lendo títulos e metadados dos capítulos)...")
+    story.append(Paragraph("Sumário", style_toc_head))
+    story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#E2E8F0"), spaceAfter=15))
 
-                story.append(RLImage(str(img_path), width=final_w, height=final_h))
-                story.append(PageBreak())
-        except Exception as e:
-            print(f"   ⚠️ Erro na imagem {img_path.name}: {e}")
+    for idx, ep_path in enumerate(episodios, start=1):
+        ep_info = carregar_dados_episodio(ep_path)
+        data_ep = f" ({ep_info['publish_date']})" if ep_info['publish_date'] else ""
+        item_text = f'<b>Cap. {idx}</b> — <a href="#cap_{idx}" color="#2B6CB0"><b>{html.escape(ep_info["title"])}</b></a>{data_ep}'
+        story.append(Paragraph(item_text, style_toc_item))
+        story.append(Spacer(1, 4))
+        if idx % 10 == 0 or idx == len(episodios):
+            print(f"      ... sumário processado até o capítulo {idx}/{len(episodios)}")
+
+    story.append(PageBreak())
+
+    avatar_autor = encontrar_avatar_autor()
+    total_imagens_geral = 0
+
+    # Processamento de Capítulos e Imagens
+    for idx, ep_path in enumerate(episodios, start=1):
+        ep_info = carregar_dados_episodio(ep_path)
+        print(f"   📦 Processando Capítulo {idx}/{len(episodios)}: {ep_info['title']}")
+
+        story.append(Spacer(1, 20))
+        story.append(Paragraph(f'<a name="cap_{idx}"/>', style_toc_item))
+        story.append(Paragraph(f'Capítulo {idx} — {html.escape(ep_info["title"])}', style_ep_title))
+
+        if ep_info["publish_date"]:
+            story.append(Paragraph(f"<font color='#718096'>Publicado em {ep_info['publish_date']}</font>", style_author))
+
+        if ep_info["creator_note"]:
+            note_clean = limpar_html_para_reportlab(ep_info["creator_note"])
+            conteudo_nota = [
+                Paragraph(html.escape(autor_nome), style_creator_name),
+                Spacer(1, 3),
+                Paragraph(note_clean, style_creator_note)
+            ]
+
+            if avatar_autor and avatar_autor.exists():
+                try:
+                    avatar_img = RLImage(str(avatar_autor), width=35, height=35)
+                    t_data = [[avatar_img, conteudo_nota]]
+                    t = Table(t_data, colWidths=[45, printable_width - 55])
+                    t.setStyle(TableStyle([
+                        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#F7FAFC")),
+                        ('BOX', (0,0), (-1,-1), 0.5, colors.HexColor("#CBD5E0")),
+                        ('ROUNDEDCORNERS', [4, 4, 4, 4]),
+                        ('TOPPADDING', (0,0), (-1,-1), 8),
+                        ('BOTTOMPADDING', (0,0), (-1,-1), 8),
+                        ('LEFTPADDING', (0,0), (-1,-1), 8),
+                        ('RIGHTPADDING', (0,0), (-1,-1), 8),
+                    ]))
+                    story.append(Spacer(1, 10))
+                    story.append(t)
+                except Exception:
+                    story.append(Paragraph(f"<b>{autor_nome}:</b><br/>{note_clean}", style_creator_note))
+            else:
+                story.append(Spacer(1, 10))
+                story.append(Paragraph(f"<b>{autor_nome}:</b><br/>{note_clean}", style_creator_note))
+
+        story.append(Spacer(1, 15))
+        story.append(HRFlowable(width="60%", thickness=1, color=colors.HexColor("#CBD5E0"), spaceAfter=20))
+        story.append(PageBreak())
+
+        images_dir = ep_path / "images"
+        if images_dir.is_dir():
+            exts = ('.jpg', '.jpeg', '.png', '.gif', '.webp')
+            arquivos_img = sorted([f for f in images_dir.iterdir() if f.suffix.lower() in exts])
+            print(f"      🖼️ Adicionando {len(arquivos_img)} imagens...")
+
+            for img_path in arquivos_img:
+                try:
+                    with Image.open(img_path) as img:
+                        w, h = img.size
+                        ratio = min(printable_width / w, printable_height / h) * 0.99
+                        story.append(RLImage(str(img_path), width=w * ratio, height=h * ratio))
+                        story.append(PageBreak())
+                        total_imagens_geral += 1
+                except Exception as e:
+                    print(f"      ⚠️ Erro na imagem {img_path.name}: {e}")
 
     if story and isinstance(story[-1], PageBreak):
         story.pop()
 
     def canvas_factory(*args, **kwargs):
         c = NumberedCanvas(*args, **kwargs)
-        c.titulo_obra = titulo
+        c.titulo_obra = meta["title"]
         return c
 
+        print("   💾 Iniciando montagem final e cálculo de páginas do PDF (isso pode demorar devido ao tamanho)...")
     try:
         doc.build(story, canvasmaker=canvas_factory)
-        print(f"✅ PDF gerado com sucesso: {pdf_path.relative_to(BASE_DIR)}\n")
-    except PermissionError:
-        print(f"❌ ERRO: O arquivo '{pdf_path.name}' está aberto em outro programa. Feche-o e tente novamente.\n")
+        print(f"   ✅ [Sucesso] PDF gerado: {pdf_path.name} ({total_imagens_geral} imagens processadas)\n")
     except Exception as e:
-        print(f"❌ ERRO ao gerar PDF de '{pasta_serie.name}': {e}\n")
+        print(f"   ❌ [Erro] Falha ao gerar PDF de '{pasta_serie.name}': {e}\n")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Gera PDFs para séries de quadrinhos/manga.")
     parser.add_argument(
-        "--pastas", "-p",
-        nargs="*",
-        help="Caminhos ou nomes de pastas específicas para processar. Se omitido, processa todas."
+        "--pastas", "-p", nargs="*",
+        help="Caminhos de pastas específicas para processar."
     )
     args = parser.parse_args()
 
-    autor_nome = carregar_config_autor()
-    print(f"🚀 Gerando PDFs para o autor: {autor_nome}\n")
+    autor_nome = carregar_dados_autor()
+    print(f"🚀 Gerando PDFs | Autor: {autor_nome}\n")
 
     if args.pastas:
         for p in args.pastas:
@@ -277,8 +362,9 @@ def main():
             converter_serie_para_pdf(pasta_alvo, autor_nome)
     else:
         for item in BASE_DIR.iterdir():
-            if item.is_dir() and not item.name.startswith('.') and not item.name.startswith('__'):
+            if item.is_dir() and not item.name.startswith('.'):
                 converter_serie_para_pdf(item, autor_nome)
+
 
 if __name__ == "__main__":
     main()
